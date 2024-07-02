@@ -58,6 +58,7 @@ parts:
     - file: 50_code_generation/04_generating_code_for_processing_images.ipynb
     - file: 50_code_generation/06_system_messages.ipynb
     - file: 50_code_generation/10_reflection.ipynb
+    - file: 50_code_generation/20_book_generation.ipynb
     
   - caption: Retrieval Augmented Generation
     chapters:
