@@ -1,0 +1,1844 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Generating a Jupyter book about Python basics &#8212; Generative Artificial Intelligence Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '50_code_generation/20_book_generation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Word embeddings" href="../60_rag/10_word-embeddings.html" />
+    <link rel="prev" title="Reflection" href="10_reflection.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        <no title>
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/01_prompting.html">
+                        Prompting chatGPT
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/02_use_cases.html">
+                        Use cases
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/03_prompt_engineering.html">
+                        Prompt Engineering
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/01_openai_api.html">
+                        OpenAI Application Programming Interface
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/02_chatbot.html">
+                        Programming an LLM-based chatbot
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/gui.html">
+                        A Bio-Image Analysis chatbot GUI
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/10_function_calling.html">
+                        Function calling using ollama
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/20_langchain.html">
+                        Prompting tasks using LangChain
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/30_langchain_bia.html">
+                        Prompting bio-image analysis tasks using LangChain
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/50_blablado.html">
+                        blablado calls functions for you
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/55_microscope_stage_demo.html">
+                        Demo: Controlling a simulated microscope
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../33_pptx_generation/prompting_rdm.html">
+                        Auto-generating PowerPoint files with chatGPT and Dall-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/10_generating_images_dall_e.html">
+                        Generating images using DALL-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/20_generating_mri_images_dall_e.html">
+                        Generating Magnetic Resonance images using DALL-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../41_image_generation_huggingface/30_generating_images_using_huggingface.html">
+                        Generating images using Stable Diffusion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/51_inpainting_dall-e.html">
+                        Inpainting using Dall-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../41_image_generation_huggingface/50_inpainting_huggingface.html">
+                        Inpainting using Stable Diffusion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../41_image_generation_huggingface/60_image_variations_huggingface.html">
+                        Image variations using Stable Diffusion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../41_image_generation_huggingface/60_image_variations_pix2pix.html">
+                        Image editing using instruct-pix2pix
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/10_vision_CLIP.html">
+                        CLIP transformer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/20_vision_ollama_openai.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/30_vision_models_structred_output.html">
+                        Vision models with structured output
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="03_generating_code.html">
+                        Generating code
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="04_generating_code_for_processing_images.html">
+                        Generating code for processing images
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="06_system_messages.html">
+                        Powerful system messages
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="10_reflection.html">
+                        Reflection
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Generating a Jupyter book about Python basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/10_word-embeddings.html">
+                        Word embeddings
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/20-simple-rag.html">
+                        Simple retrieval augmented generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../63_chat_with_docs/chat-with-docs.html">
+                        Chat with your PDFs!
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/10_generate_qa.html">
+                        Turning knowledge into a list of question and answers
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/40_fine_tuning.html">
+                        Fine-tuning a model from questions and answers
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/50_model_testing.html">
+                        Test fine-tuned models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/checking_job_status.html">
+                        Checking a fine-tuning job status
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/list_available_models.html">
+                        Listing available models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/10_CLIP_scores.html">
+                        Optimizing image generation prompting using CLIP scores
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/20_vision_models.html">
+                        Vision Large Language Models for Counting objects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/30_measuring_executability.html">
+                        Generating advanced image analysis code
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/40_summarize_error_messages.html">
+                        Summarizing generated code failure reasons
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        <no title>
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/01_prompting.html">
+                        Prompting chatGPT
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/02_use_cases.html">
+                        Use cases
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/03_prompt_engineering.html">
+                        Prompt Engineering
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/01_openai_api.html">
+                        OpenAI Application Programming Interface
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/02_chatbot.html">
+                        Programming an LLM-based chatbot
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/gui.html">
+                        A Bio-Image Analysis chatbot GUI
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/10_function_calling.html">
+                        Function calling using ollama
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/20_langchain.html">
+                        Prompting tasks using LangChain
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/30_langchain_bia.html">
+                        Prompting bio-image analysis tasks using LangChain
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/50_blablado.html">
+                        blablado calls functions for you
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/55_microscope_stage_demo.html">
+                        Demo: Controlling a simulated microscope
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../33_pptx_generation/prompting_rdm.html">
+                        Auto-generating PowerPoint files with chatGPT and Dall-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/10_generating_images_dall_e.html">
+                        Generating images using DALL-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/20_generating_mri_images_dall_e.html">
+                        Generating Magnetic Resonance images using DALL-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../41_image_generation_huggingface/30_generating_images_using_huggingface.html">
+                        Generating images using Stable Diffusion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/51_inpainting_dall-e.html">
+                        Inpainting using Dall-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../41_image_generation_huggingface/50_inpainting_huggingface.html">
+                        Inpainting using Stable Diffusion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../41_image_generation_huggingface/60_image_variations_huggingface.html">
+                        Image variations using Stable Diffusion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../41_image_generation_huggingface/60_image_variations_pix2pix.html">
+                        Image editing using instruct-pix2pix
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/10_vision_CLIP.html">
+                        CLIP transformer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/20_vision_ollama_openai.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/30_vision_models_structred_output.html">
+                        Vision models with structured output
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="03_generating_code.html">
+                        Generating code
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="04_generating_code_for_processing_images.html">
+                        Generating code for processing images
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="06_system_messages.html">
+                        Powerful system messages
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="10_reflection.html">
+                        Reflection
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Generating a Jupyter book about Python basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/10_word-embeddings.html">
+                        Word embeddings
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/20-simple-rag.html">
+                        Simple retrieval augmented generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../63_chat_with_docs/chat-with-docs.html">
+                        Chat with your PDFs!
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/10_generate_qa.html">
+                        Turning knowledge into a list of question and answers
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/40_fine_tuning.html">
+                        Fine-tuning a model from questions and answers
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/50_model_testing.html">
+                        Test fine-tuned models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/checking_job_status.html">
+                        Checking a fine-tuning job status
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/list_available_models.html">
+                        Listing available models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/10_CLIP_scores.html">
+                        Optimizing image generation prompting using CLIP scores
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/20_vision_models.html">
+                        Vision Large Language Models for Counting objects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/30_measuring_executability.html">
+                        Generating advanced image analysis code
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/40_summarize_error_messages.html">
+                        Summarizing generated code failure reasons
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Generative Artificial Intelligence Notebooks
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prompting basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../10_prompting_basics/01_prompting.html">Prompting chatGPT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_prompting_basics/02_use_cases.html">Use cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_prompting_basics/03_prompt_engineering.html">Prompt Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chatbots</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../20_chatbots/01_openai_api.html">OpenAI Application Programming Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_chatbots/02_chatbot.html">Programming an LLM-based chatbot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_chatbots/gui.html">A Bio-Image Analysis chatbot GUI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Function Calling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../30_function_calling/10_function_calling.html">Function calling using ollama</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_function_calling/20_langchain.html">Prompting tasks using LangChain</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../30_function_calling/30_langchain_bia.html">Prompting bio-image analysis tasks using LangChain</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../30_function_calling/50_blablado.html"><code class="docutils literal notranslate"><span class="pre">blablado</span></code> calls functions for you</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_function_calling/55_microscope_stage_demo.html">Demo: Controlling a simulated microscope</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../33_pptx_generation/prompting_rdm.html">Auto-generating PowerPoint files with chatGPT and Dall-E</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Generation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../40_image_generation_openai/10_generating_images_dall_e.html">Generating images using DALL-E</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../40_image_generation_openai/20_generating_mri_images_dall_e.html">Generating Magnetic Resonance images using DALL-E</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../41_image_generation_huggingface/30_generating_images_using_huggingface.html">Generating images using Stable Diffusion</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Manipulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../40_image_generation_openai/51_inpainting_dall-e.html">Inpainting using Dall-E</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../41_image_generation_huggingface/50_inpainting_huggingface.html">Inpainting using Stable Diffusion</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Variation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_huggingface.html">Image variations using Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_pix2pix.html">Image editing using instruct-pix2pix</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Vision Language Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../47_vision/10_vision_CLIP.html">CLIP transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../47_vision/20_vision_ollama_openai.html">Vision language models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../47_vision/30_vision_models_structred_output.html">Vision models with structured output</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code Generation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03_generating_code.html">Generating code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_generating_code_for_processing_images.html">Generating code for processing images</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="06_system_messages.html">Powerful system messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_reflection.html">Reflection</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Generating a Jupyter book about Python basics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Retrieval Augmented Generation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../60_rag/10_word-embeddings.html">Word embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_rag/20-simple-rag.html">Simple retrieval augmented generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../63_chat_with_docs/chat-with-docs.html">Chat with your PDFs!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Fine-Tuning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../70_fine_tuning/10_generate_qa.html">Turning knowledge into a list of question and answers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../70_fine_tuning/40_fine_tuning.html">Fine-tuning a model from questions and answers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../70_fine_tuning/50_model_testing.html">Test fine-tuned models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../70_fine_tuning/checking_job_status.html">Checking a fine-tuning job status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../70_fine_tuning/list_available_models.html">Listing available models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Benchmarking</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../80_benchmarking_llms/10_CLIP_scores.html">Optimizing image generation prompting using CLIP scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../80_benchmarking_llms/20_vision_models.html">Vision Large Language Models for Counting objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../80_benchmarking_llms/30_measuring_executability.html">Generating advanced image analysis code</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../80_benchmarking_llms/40_summarize_error_messages.html">Summarizing generated code failure reasons</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../imprint.html">Imprint</a></li>
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks/issues/new?title=Issue%20on%20page%20%2F50_code_generation/20_book_generation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/50_code_generation/20_book_generation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Generating a Jupyter book about Python basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-the-content-of-the-book">
+   Defining the content of the book
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#helper-functions">
+   Helper functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#context">
+   Context
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chatting-about-book-content">
+   Chatting about book content
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generating-the-book">
+   Generating the book
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generating-additional-text-and-config-files">
+   Generating additional text and config files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chat-history">
+   Chat history
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="generating-a-jupyter-book-about-python-basics">
+<h1>Generating a Jupyter book about Python basics<a class="headerlink" href="#generating-a-jupyter-book-about-python-basics" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we will generate a Jupyter book using a large language model. We use Claude 3.5 Sonnet for this.</p>
+<p>The deployed book can be found under this url: <a class="reference external" href="https://generated-books.github.io/python-basics/intro.html">https://generated-books.github.io/python-basics/intro.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">anthropic</span>
+<span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">anthropic</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;1.30.1&#39;, &#39;0.29.0&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="defining-the-content-of-the-book">
+<h2>Defining the content of the book<a class="headerlink" href="#defining-the-content-of-the-book" title="Permalink to this heading">#</a></h2>
+<p>The topic of the book will be specified and also the table of contents and some extra hints:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;Python basics&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The table of contents must be a markdown list with * at the beginning of every line.</span>
+<span class="n">toc</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">* Introduction to Jupyter notebooks</span>
+<span class="s2">* Mathematical operations</span>
+<span class="s2">* Data Types: Lists, Tuples, Dictionaries</span>
+<span class="s2">* For-loops</span>
+<span class="s2">* Conditional statements</span>
+<span class="s2">* Custom functions</span>
+<span class="s2">* Image Processing with sckit-image</span>
+<span class="s2">* Tabular data wrangling with pandas</span>
+<span class="s2">* Plotting with seaborn</span>
+<span class="s2">* Random forest classifiers in scikit-learn</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extra_hints</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">If you need an example image for image processing, use skimage.data.cells3d. In case you use it, add `pooch` to the list requirements.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will also specify the location where to store the book:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">repository_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/generated-books/python-basics&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will use this language model to generate the book:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="helper-functions">
+<h2>Helper functions<a class="headerlink" href="#helper-functions" title="Permalink to this heading">#</a></h2>
+<p>Here we create some helper functions for prompting and for file format handling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_chatGPT</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-2024-05-13&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A prompt helper function that sends a message to openAI</span>
+<span class="sd">    and returns only the text response.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">import</span> <span class="nn">openai</span>
+    
+    <span class="c1"># convert message in the right format if necessary</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
+        
+    <span class="c1"># setup connection to the LLM</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
+    
+    <span class="c1"># submit prompt</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">message</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># extract answer</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_claude</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A prompt helper function that sends a message to anthropic</span>
+<span class="sd">    and returns only the text response.</span>
+
+<span class="sd">    Example models: claude-3-5-sonnet-20240620 or claude-3-opus-20240229</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">anthropic</span> <span class="kn">import</span> <span class="n">Anthropic</span>
+    
+    <span class="c1"># convert message in the right format if necessary</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
+        
+    <span class="c1"># setup connection to the LLM</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">Anthropic</span><span class="p">()</span>
+    
+    <span class="n">message</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># extract answer</span>
+    <span class="k">return</span> <span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s2">&quot;gpt&quot;</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">prompt_gpt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">prompt_claude</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_with_memory</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function allows to use an LLMs in a chat-mode. </span>
+<span class="sd">    The LLM is equipped with some memory, </span>
+<span class="sd">    so that we can refer back for former conversation steps.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># convert message in the right format and store it in memory</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
+    <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    
+    <span class="c1"># receive answer</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="n">chat_history</span><span class="p">)</span>
+    
+    <span class="c1"># convert answer in the right format and store it in memory</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">response</span><span class="p">}</span>
+    <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_valid_json</span><span class="p">(</span><span class="n">test_string</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function returns if a string is formatted json.&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">test_string</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">ensure_json</span><span class="p">(</span><span class="n">notebook</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function makes sure that the passed notebook is indeed a json-formatted ipynb file.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_valid_json</span><span class="p">(</span><span class="n">notebook</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">notebook</span>
+        
+    <span class="k">return</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Take the following text and extract the Jupyter </span>
+<span class="s2">notebook ipynb/json from it:</span>
+
+<span class="si">{</span><span class="n">notebook</span><span class="si">}</span>
+
+<span class="s2">Make sure the output is in ipynb/json format. </span>
+<span class="s2">Respond only the JSON content.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;```json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;```python&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;```&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this heading">#</a></h2>
+<p>Here we provide some context to the language model. As gpt4 and claude have different APIs for providing system messages, we instead use this message to start the conversation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are data scientist and statistician. </span>
+<span class="s2">You have didactic skills and you can explain data analysis very well.</span>
+<span class="s2">You are about to write a Jupyter book consisting of multiple Jupyter notebooks about a given topic.</span>
+
+<span class="s2">In front of every code-cell, add a markdown cell with an explanation of the next code cell. </span>
+<span class="s2">Write 1-3 sentences in these markdown cells.</span>
+<span class="s2">When writing a notebook, always keep the code in the code cells concise. </span>
+<span class="s2">Do only one thing and let the user see the intermediate result.</span>
+<span class="s2">Then, continue with the next thing in a new code cell.</span>
+
+<span class="si">{</span><span class="n">extra_hints</span><span class="si">}</span>
+
+<span class="s2">Confirm this with &quot;ok&quot;.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">chat_history</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_message</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">}]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We just test if the chat mode works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_with_memory</span><span class="p">(</span><span class="s2">&quot;Hi, my name is Robert Haase.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Hello Robert Haase! It&#39;s nice to meet you. I&#39;m ready to assist you with creating a Jupyter book consisting of multiple Jupyter notebooks. As requested, I&#39;ll make sure to add explanatory markdown cells before each code cell, keep the code concise, and break down operations into separate cells for clarity. I&#39;ll also use the skimage.data.cells3d example for image processing tasks if needed. How can I help you get started with your Jupyter book project?&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_with_memory</span><span class="p">(</span><span class="s2">&quot;What is my name?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Your name is Robert Haase.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="chatting-about-book-content">
+<h2>Chatting about book content<a class="headerlink" href="#chatting-about-book-content" title="Permalink to this heading">#</a></h2>
+<p>We start chatting with the LLM about the book’s content. It is key that the LLM <em>knows</em> about all the content of the book before it starts generating the first notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Markdown</span><span class="p">(</span><span class="n">prompt_with_memory</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">I would like to teach others in </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2"> and cover these aspects:</span>
+<span class="si">{</span><span class="n">toc</span><span class="si">}</span>
+
+<span class="s2">Therefore, it would be great to have training material in the form of a Jupyter book.</span>
+
+<span class="s2">Which Python libraries are relevant in this context? Do not write any Python code yet.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>For the topics you’ve mentioned, the following Python libraries are relevant:</p>
+<ol class="arabic simple">
+<li><p>Jupyter: For creating and running interactive notebooks.</p></li>
+<li><p>NumPy: For mathematical operations and working with arrays.</p></li>
+<li><p>scikit-image: For image processing tasks.</p></li>
+<li><p>pandas: For tabular data manipulation and analysis.</p></li>
+<li><p>seaborn: For statistical data visualization.</p></li>
+<li><p>matplotlib: As the underlying library for seaborn and general plotting.</p></li>
+<li><p>scikit-learn: For machine learning tasks, including random forest classifiers.</p></li>
+</ol>
+<p>Additionally, these standard Python libraries will be useful:</p>
+<ol class="arabic simple" start="8">
+<li><p>random: For generating random numbers (useful in various examples).</p></li>
+<li><p>math: For additional mathematical functions.</p></li>
+<li><p>itertools: For advanced iteration tools.</p></li>
+</ol>
+<p>While not libraries, it’s also worth mentioning that we’ll be using Python’s built-in data types (lists, tuples, dictionaries) and control structures (for-loops, conditional statements) extensively.</p>
+<p>For the image processing section using scikit-image, we’ll also need:</p>
+<ol class="arabic simple" start="11">
+<li><p>pooch: For downloading and caching data files, as it’s required for the skimage.data.cells3d example.</p></li>
+</ol>
+<p>These libraries will cover all the aspects you want to teach in your Python basics course.</p>
+</div>
+</div>
+</section>
+<section id="generating-the-book">
+<h2>Generating the book<a class="headerlink" href="#generating-the-book" title="Permalink to this heading">#</a></h2>
+<p>Here we start generating the notebooks for the content listed in the table of contents.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contents</span> <span class="o">=</span> <span class="n">toc</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;* &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">* &quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">subtopic</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">contents</span><span class="p">):</span>
+    <span class="n">notebook</span> <span class="o">=</span> <span class="n">ensure_json</span><span class="p">(</span><span class="n">prompt</span><span class="p">(</span>
+        <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_message</span><span class="p">},</span>
+         <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">},</span>
+         <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Please write a Jupyter notebook in json format about &quot;</span><span class="si">{</span><span class="n">subtopic</span><span class="si">}</span><span class="s2">&quot; as part of a course about </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">.</span>
+<span class="s2">    Respond only the JSON content.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">}]))</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;```json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;```python&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;```&quot;</span><span class="p">)</span>
+
+    <span class="c1"># f&quot;{i:02}_&quot; + </span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span> <span class="o">/</span> <span class="n">prompt_with_memory</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;What would be a good filename for the &#39;</span><span class="si">{</span><span class="n">subtopic</span><span class="si">}</span><span class="s2">&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;</span><span class="p">)</span>
+
+    <span class="n">directory</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">notebook</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">subtopic</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Introduction to Jupyter notebooks : docs\01_introduction_to_jupyter_notebooks.ipynb
+Mathematical operations : docs\02_mathematical_operations.ipynb
+Data Types: Lists, Tuples, Dictionaries : docs\03_data_types_lists_tuples_dictionaries.ipynb
+For-loops : docs\04_for_loops.ipynb
+Conditional statements : docs\05_conditional_statements.ipynb
+Custom functions : docs\06_custom_functions.ipynb
+Image Processing with sckit-image : docs\07_image_processing_with_scikit_image.ipynb
+Tabular data wrangling with pandas : docs\08_tabular_data_wrangling_with_pandas.ipynb
+Plotting with seaborn : docs\09_plotting_with_seaborn.ipynb
+Random forest classifiers in scikit-learn : docs\10_random_forest_classifiers_scikit_learn.ipynb
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generating-additional-text-and-config-files">
+<h2>Generating additional text and config files<a class="headerlink" href="#generating-additional-text-and-config-files" title="Permalink to this heading">#</a></h2>
+<p>We would like to build the book automatically, and we also need some introduction texts and documentation. Now that the individual notebooks have been built, we can generate those additional files as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs_folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%B </span><span class="si">%d</span><span class="s2">, %Y&quot;</span><span class="p">)</span>
+
+<span class="n">more_files</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Path</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span> <span class="o">/</span> <span class="s2">&quot;intro.md&quot;</span><span class="p">:</span> 
+<span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Create a intro.md file for a jupyter book that contains all Jupyter notebooks we just created. </span>
+<span class="s2">The introduction should give an overview in text form and with bullet points linking to the notebooks.</span>
+<span class="s2">Mention that the entire book is AI-generated.</span>
+<span class="s2">The repository url of the book is `</span><span class="si">{</span><span class="n">repository_url</span><span class="si">}</span><span class="s2">`.</span>
+<span class="s2">Mention that the `generator.ipynb` file in the github repository contains all the code used for generating the book. Add a link to this file.</span>
+<span class="s2">Respond the content of this file only.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+    
+    <span class="n">Path</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span> <span class="o">/</span> <span class="s2">&quot;_toc.yml&quot;</span><span class="p">:</span> 
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Build a table of contents in Jupytyer book yml format.</span>
+<span class="sd">First, mention the intro.md file.</span>
+<span class="sd">Please give me the list of all notebook filenames we just created. </span>
+<span class="sd">Put them in a _yml file for a Jupyter book.</span>
+<span class="sd">Respond the content of this file only.</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">,</span>
+
+    <span class="n">Path</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span> <span class="o">/</span> <span class="s2">&quot;requirements.txt&quot;</span><span class="p">:</span>
+<span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">A requirements.txt file in the `docs` folder containing all python libraries used in this Jupyter book.</span>
+<span class="s2">Respond the content of this file only.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+    
+    <span class="n">Path</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span> <span class="o">/</span> <span class="s2">&quot;_config.yml&quot;</span><span class="p">:</span> 
+<span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Create a minimal config.yml file for the jupyter book.</span>
+<span class="s2">The book will be uploaded to this github repository: </span><span class="si">{</span><span class="n">repository_url</span><span class="si">}</span>
+<span class="s2">Make sure the notebooks will be executed when the book is built.</span>
+<span class="s2">The icon for the book is saved in ../icon.png</span>
+<span class="s2">Note that today is </span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s2">.</span>
+<span class="s2">Respond the content of this file only.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+    
+    <span class="n">Path</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;.github&quot;</span> <span class="o">/</span> <span class="s2">&quot;workflows&quot;</span> <span class="o">/</span> <span class="s2">&quot;book.yml&quot;</span><span class="p">:</span> 
+<span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Write a Github workflow file that builds the book and uploads the content to the gh_pages branch.</span>
+<span class="s2">The book is stored in the `</span><span class="si">{</span><span class="n">docs_folder</span><span class="si">}</span><span class="s2">` folder of the respository.</span>
+<span class="s2">Respond the content of this file only.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+
+    <span class="n">Path</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;readme.md&quot;</span><span class="p">:</span> 
+<span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Create a readme.md file for the jupyter book. </span>
+<span class="s2">Give instructions how to build the book.</span>
+<span class="s2">Mention that the entire book is AI-generated. </span>
+<span class="s2">Mention that the `generator.ipynb` file in the github repository contains all the code used for generating the book.</span>
+<span class="s2">Respond the content of this file only.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">filename</span><span class="p">,</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">more_files</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">file_content</span> <span class="o">=</span> <span class="n">prompt_with_memory</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+    <span class="n">directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_content</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>docs\intro.md
+docs\_toc.yml
+docs\requirements.txt
+docs\_config.yml
+.github\workflows\book.yml
+readme.md
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="chat-history">
+<h2>Chat history<a class="headerlink" href="#chat-history" title="Permalink to this heading">#</a></h2>
+<p>For documentation purposes, we output the entire chat with the LLM. Note: The notebooks were generated without storing the notebooks in the chat-history because that would make the history too quickly too long.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chat_history</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &#39;\nYou are data scientist and statistician. \nYou have didactic skills and you can explain data analysis very well.\nYou are about to write a Jupyter book consisting of multiple Jupyter notebooks about a given topic.\n\nIn front of every code-cell, add a markdown cell with an explanation of the next code cell. Write 1-3 sentences in these markdown cells.\nWhen writing a notebook, always keep the code in the code cells concise. \nDo only one thing and let the user see the intermediate result.\nThen, continue with the next thing in a new code cell.\n\n\nIf you need an example image for image processing, use skimage.data.cells3d. In case you use it, add `pooch` to the list requirements.\n\n\nConfirm this with &quot;ok&quot;.\n&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;ok&#39;},
+ {&#39;role&#39;: &#39;user&#39;, &#39;content&#39;: &#39;Hi, my name is Robert Haase.&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &quot;Hello Robert Haase! It&#39;s nice to meet you. I&#39;m ready to assist you with creating a Jupyter book consisting of multiple Jupyter notebooks. As requested, I&#39;ll make sure to add explanatory markdown cells before each code cell, keep the code concise, and break down operations into separate cells for clarity. I&#39;ll also use the skimage.data.cells3d example for image processing tasks if needed. How can I help you get started with your Jupyter book project?&quot;},
+ {&#39;role&#39;: &#39;user&#39;, &#39;content&#39;: &#39;What is my name?&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;Your name is Robert Haase.&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &#39;\nI would like to teach others in Python basics and cover these aspects:\n\n* Introduction to Jupyter notebooks\n* Mathematical operations\n* Data Types: Lists, Tuples, Dictionaries\n* For-loops\n* Conditional statements\n* Custom functions\n* Image Processing with sckit-image\n* Tabular data wrangling with pandas\n* Plotting with seaborn\n* Random forest classifiers in scikit-learn\n\n\nTherefore, it would be great to have training material in the form of a Jupyter book.\n\nWhich Python libraries are relevant in this context? Do not write any Python code yet.\n&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &quot;For the topics you&#39;ve mentioned, the following Python libraries are relevant:\n\n1. Jupyter: For creating and running interactive notebooks.\n2. NumPy: For mathematical operations and working with arrays.\n3. scikit-image: For image processing tasks.\n4. pandas: For tabular data manipulation and analysis.\n5. seaborn: For statistical data visualization.\n6. matplotlib: As the underlying library for seaborn and general plotting.\n7. scikit-learn: For machine learning tasks, including random forest classifiers.\n\nAdditionally, these standard Python libraries will be useful:\n\n8. random: For generating random numbers (useful in various examples).\n9. math: For additional mathematical functions.\n10. itertools: For advanced iteration tools.\n\nWhile not libraries, it&#39;s also worth mentioning that we&#39;ll be using Python&#39;s built-in data types (lists, tuples, dictionaries) and control structures (for-loops, conditional statements) extensively.\n\nFor the image processing section using scikit-image, we&#39;ll also need:\n\n11. pooch: For downloading and caching data files, as it&#39;s required for the skimage.data.cells3d example.\n\nThese libraries will cover all the aspects you want to teach in your Python basics course.&quot;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Introduction to Jupyter notebooks&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;01_introduction_to_jupyter_notebooks.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Mathematical operations&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;02_mathematical_operations.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Data Types: Lists, Tuples, Dictionaries&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;03_data_types_lists_tuples_dictionaries.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;For-loops&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;04_for_loops.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Conditional statements&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;05_conditional_statements.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Custom functions&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;06_custom_functions.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Image Processing with sckit-image&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;07_image_processing_with_scikit_image.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Tabular data wrangling with pandas&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;08_tabular_data_wrangling_with_pandas.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Plotting with seaborn&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;, &#39;content&#39;: &#39;09_plotting_with_seaborn.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &quot;What would be a good filename for the &#39;Random forest classifiers in scikit-learn&#39; notebook? Make sure it contains no spaces and ends with .ipynb . Respond with the filename only.&quot;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;10_random_forest_classifiers_scikit_learn.ipynb&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &#39;\nCreate a intro.md file for a jupyter book that contains all Jupyter notebooks we just created. \nThe introduction should give an overview in text form and with bullet points linking to the notebooks.\nMention that the entire book is AI-generated.\nThe repository url of the book is `https://github.com/generated-books/python-basics`.\nMention that the `generator.ipynb` file in the github repository contains all the code used for generating the book. Add a link to this file.\nRespond the content of this file only.\n&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;# Introduction to Python Basics\n\nWelcome to this comprehensive guide on Python basics! This Jupyter book is designed to take you through the fundamental concepts of Python programming, from the very basics to more advanced topics like data analysis and machine learning.\n\nThis entire book is AI-generated, providing a structured and comprehensive approach to learning Python. The content has been created to offer clear explanations and practical examples for each topic.\n\n## Contents\n\nThis book covers the following topics:\n\n* [Introduction to Jupyter notebooks](01_introduction_to_jupyter_notebooks.ipynb)\n* [Mathematical operations](02_mathematical_operations.ipynb)\n* [Data Types: Lists, Tuples, Dictionaries](03_data_types_lists_tuples_dictionaries.ipynb)\n* [For-loops](04_for_loops.ipynb)\n* [Conditional statements](05_conditional_statements.ipynb)\n* [Custom functions](06_custom_functions.ipynb)\n* [Image Processing with scikit-image](07_image_processing_with_scikit_image.ipynb)\n* [Tabular data wrangling with pandas](08_tabular_data_wrangling_with_pandas.ipynb)\n* [Plotting with seaborn](09_plotting_with_seaborn.ipynb)\n* [Random forest classifiers in scikit-learn](10_random_forest_classifiers_scikit_learn.ipynb)\n\nEach notebook is designed to be self-contained, allowing you to focus on specific topics or work through the entire book sequentially.\n\n## About this Book\n\nThis book is part of an AI-generated series, created to provide accessible and comprehensive learning materials for various topics. The content is hosted on GitHub, and you can find the repository at:\n\n[https://github.com/generated-books/python-basics](https://github.com/generated-books/python-basics)\n\nFor those interested in the process behind this AI-generated book, you can view the code used for generation in the `generator.ipynb` file:\n\n[View Generator Notebook](https://github.com/generated-books/python-basics/blob/main/generator.ipynb)\n\nWe hope you find this resource helpful in your journey to learn Python. Happy coding!&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &#39;\nBuild a table of contents in Jupytyer book yml format.\nFirst, mention the intro.md file.\nPlease give me the list of all notebook filenames we just created. \nPut them in a _yml file for a Jupyter book.\nRespond the content of this file only.\n&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;# Table of contents\n# Learn more at https://jupyterbook.org/customize/toc.html\n\nformat: jb-book\nroot: intro\nchapters:\n- file: 01_introduction_to_jupyter_notebooks\n- file: 02_mathematical_operations\n- file: 03_data_types_lists_tuples_dictionaries\n- file: 04_for_loops\n- file: 05_conditional_statements\n- file: 06_custom_functions\n- file: 07_image_processing_with_scikit_image\n- file: 08_tabular_data_wrangling_with_pandas\n- file: 09_plotting_with_seaborn\n- file: 10_random_forest_classifiers_scikit_learn&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &#39;\nA requirements.txt file in the `docs` folder containing all python libraries used in this Jupyter book.\nRespond the content of this file only.\n&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;jupyter-book\nnumpy\nscikit-image\npandas\nseaborn\nmatplotlib\nscikit-learn\npooch&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &#39;\nCreate a minimal config.yml file for the jupyter book.\nThe book will be uploaded to this github repository: https://github.com/generated-books/python-basics\nMake sure the notebooks will be executed when the book is built.\nThe icon for the book is saved in ../icon.png\nNote that today is June 23, 2024.\nRespond the content of this file only.\n&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &#39;# Book settings\ntitle: Python Basics\nauthor: AI-Generated\ncopyright: &quot;2024&quot;\nlogo: ../icon.png\n\n# Force re-execution of notebooks on each build.\n# See https://jupyterbook.org/content/execute.html\nexecute:\n  execute_notebooks: force\n\n# Define the name of the latex output file for PDF builds\nlatex:\n  latex_documents:\n    targetname: book.tex\n\n# Add a bibtex file so that we can create citations\nbibtex_bibfiles:\n  - references.bib\n\n# Information about where the book exists on the web\nrepository:\n  url: https://github.com/generated-books/python-basics\n  path_to_book: docs\n\n# Add GitHub buttons to your book\n# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository\nhtml:\n  use_issues_button: true\n  use_repository_button: true\n\n# Launch button settings\nlaunch_buttons:\n  notebook_interface: classic\n  binderhub_url: &quot;&quot;\n\n# Date of last update\nlast_updated: &quot;June 23, 2024&quot;&#39;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &#39;\nWrite a Github workflow file that builds the book and uploads the content to the gh_pages branch.\nThe book is stored in the `docs` folder of the respository.\nRespond the content of this file only.\n&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &quot;name: deploy-book\n\n# Only run this when the main branch changes\non:\n  push:\n    branches:\n    - main\n\n# This job installs dependencies, builds the book, and pushes it to `gh-pages`\njobs:\n  deploy-book:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v2\n\n    # Install dependencies\n    - name: Set up Python 3.8\n      uses: actions/setup-python@v2\n      with:\n        python-version: 3.8\n\n    - name: Install dependencies\n      run: |\n        pip install -r docs/requirements.txt\n\n    # Build the book\n    - name: Build the book\n      run: |\n        jupyter-book build docs/\n\n    # Push the book&#39;s HTML to github-pages\n    - name: GitHub Pages action\n      uses: peaceiris/actions-gh-pages@v3.6.1\n      with:\n        github_token: ${{ secrets.GITHUB_TOKEN }}\n        publish_dir: docs/_build/html&quot;},
+ {&#39;role&#39;: &#39;user&#39;,
+  &#39;content&#39;: &#39;\nCreate a readme.md file for the jupyter book. \nGive instructions how to build the book.\nMention that the entire book is AI-generated. \nMention that the `generator.ipynb` file in the github repository contains all the code used for generating the book.\nRespond the content of this file only.\n&#39;},
+ {&#39;role&#39;: &#39;assistant&#39;,
+  &#39;content&#39;: &quot;# Python Basics: An AI-Generated Jupyter Book\n\nThis repository contains an AI-generated Jupyter Book on Python Basics. The book covers fundamental concepts of Python programming, from introductory topics to more advanced subjects like data analysis and machine learning.\n\n## About the Book\n\nThis Jupyter Book is entirely AI-generated, providing a structured and comprehensive approach to learning Python. The content has been created to offer clear explanations and practical examples for each topic.\n\nThe `generator.ipynb` file in this repository contains all the code used for generating this book. You can review this file to understand the process behind the AI-generated content.\n\n## Building the Book\n\nTo build the book locally, follow these steps:\n\n1. Clone this repository:\n   ```\n   git clone https://github.com/generated-books/python-basics.git\n   cd python-basics\n   ```\n\n2. Install the required dependencies:\n   ```\n   pip install -r docs/requirements.txt\n   ```\n\n3. Build the book:\n   ```\n   jupyter-book build docs/\n   ```\n\n4. The built book will be in the `docs/_build/html/` directory. You can open the `index.html` file in your web browser to view the book.\n\n## Online Version\n\nYou can also view the online version of this book at: https://generated-books.github.io/python-basics\n\n## Contributing\n\nAs this is an AI-generated book, we&#39;re not accepting direct contributions to the content. However, if you notice any issues or have suggestions for improvements, please open an issue in this repository.\n\n## License\n\nThis book is released under the [MIT License](LICENSE).&quot;}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is just an approximation of the number of tokens in the chat history:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">chat_history</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1859
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./50_code_generation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="10_reflection.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Reflection</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../60_rag/10_word-embeddings.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Word embeddings</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-the-content-of-the-book">
+   Defining the content of the book
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#helper-functions">
+   Helper functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#context">
+   Context
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chatting-about-book-content">
+   Chatting about book content
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generating-the-book">
+   Generating the book
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generating-additional-text-and-config-files">
+   Generating additional text and config files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chat-history">
+   Chat history
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on 2024-07-02.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+Contributions and feedback are welcome.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
