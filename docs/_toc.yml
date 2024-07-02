@@ -1,0 +1,86 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+
+parts:
+  - caption: Installation
+    chapters:
+    - file: 00_setup/readme.md
+    
+  - caption: Prompting basics
+    chapters:
+    - file: 10_prompting_basics/01_prompting.ipynb
+    - file: 10_prompting_basics/02_use_cases.ipynb
+    - file: 10_prompting_basics/03_prompt_engineering.ipynb
+
+  - caption: Chatbots
+    chapters:
+    - file: 20_chatbots/01_openai_api.ipynb
+    - file: 20_chatbots/02_chatbot.ipynb
+    - file: 20_chatbots/gui.ipynb
+
+  - caption: Function Calling
+    chapters:
+    - file: 30_function_calling/10_function_calling.ipynb
+    - file: 30_function_calling/20_langchain.ipynb
+    - file: 30_function_calling/30_langchain_bia.ipynb
+    - file: 30_function_calling/50_blablado.ipynb
+    - file: 30_function_calling/55_microscope_stage_demo.ipynb
+    - file: 33_pptx_generation/prompting_rdm.ipynb
+
+  - caption: Image Generation
+    chapters:
+    - file: 40_image_generation_openai/10_generating_images_dall_e.ipynb
+    - file: 40_image_generation_openai/20_generating_mri_images_dall_e.ipynb
+    - file: 41_image_generation_huggingface/30_generating_images_using_huggingface.ipynb
+
+  - caption: Image Manipulation
+    chapters:
+    - file: 40_image_generation_openai/51_inpainting_dall-e.ipynb
+    - file: 41_image_generation_huggingface/50_inpainting_huggingface.ipynb
+
+  - caption: Image Variation
+    chapters:
+    - file: 41_image_generation_huggingface/60_image_variations_huggingface.ipynb
+    - file: 41_image_generation_huggingface/60_image_variations_pix2pix.ipynb
+
+  - caption: Vision Language Models
+    chapters:
+    - file: 47_vision/10_vision_CLIP.ipynb
+    - file: 47_vision/20_vision_ollama_openai.ipynb
+    - file: 47_vision/30_vision_models_structred_output.ipynb
+
+  - caption: Code Generation
+    chapters:
+    - file: 50_code_generation/03_generating_code.ipynb
+    - file: 50_code_generation/04_generating_code_for_processing_images.ipynb
+    - file: 50_code_generation/06_system_messages.ipynb
+    - file: 50_code_generation/10_reflection.ipynb
+    
+  - caption: Retrieval Augmented Generation
+    chapters:
+    - file: 60_rag/10_word-embeddings.ipynb
+    - file: 60_rag/20-simple-rag.ipynb
+    - file: 63_chat_with_docs/chat-with-docs.ipynb
+
+  - caption: Model Fine-Tuning
+    chapters:
+    - file: 70_fine_tuning/10_generate_qa.ipynb
+    - file: 70_fine_tuning/40_fine_tuning.ipynb
+    - file: 70_fine_tuning/50_model_testing.ipynb
+    - file: 70_fine_tuning/checking_job_status.ipynb
+    - file: 70_fine_tuning/list_available_models.ipynb
+    
+  - caption: Benchmarking
+    chapters:
+    - file: 80_benchmarking_llms/10_CLIP_scores.ipynb
+    - file: 80_benchmarking_llms/20_vision_models.ipynb
+    - file: 80_benchmarking_llms/30_measuring_executability.ipynb
+    - file: 80_benchmarking_llms/40_summarize_error_messages.ipynb
+
+    
+  - caption: Links
+    chapters:
+    - file: imprint

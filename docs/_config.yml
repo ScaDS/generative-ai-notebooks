@@ -1,0 +1,35 @@
+title: Generative Artificial Intelligence Notebooks
+author: Robert Haase
+logo: logo.png
+
+# Execute notebooks if the have one missing output
+# could be "force" or "auto" or "off"
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: off
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/ScaDS/generative-ai-notebooks
+  path_to_book: . # Optional path to your book, relative to the repository root
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: true
+  use_repository_button: true
+  extra_footer: |
+    <p>
+    Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+    Contributions and feedback are welcome.
+    </p>
+sphinx:
+  config:
+    html_show_copyright: false
+    html_last_updated_fmt: '%Y-%m-%d'

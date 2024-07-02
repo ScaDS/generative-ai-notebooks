@@ -1,0 +1,5 @@
+This document is licensed CC-BY 4.0 by:
+Robert Haase, Elnaz Fazeli, David Legland, Michael Doube, Siân Culley, Ilya Belevich, Eija Jokitalo, Martin Schorb, Anna Klemm, Christian Tischer
+
+and originates from:
+https://arxiv.org/abs/2204.07547
