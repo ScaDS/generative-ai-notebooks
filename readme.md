@@ -22,14 +22,8 @@ jupyter lab
 
 To build the book, you can run this from the same folder (tested on MacOS only):
 ```
-chmod u+x ./build.sh
-./build.sh
-```
-
-To clear the build, e.g. before committing using git, run this:
-```
-chmod u+x ./clean.sh
-./clean.sh
+cd docs
+jupyterbook build .
 ```
 
 ## Acknowledgements
