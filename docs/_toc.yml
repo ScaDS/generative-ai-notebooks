@@ -19,6 +19,7 @@ parts:
     chapters:
     - file: 20_chatbots/01_openai_api.ipynb
     - file: 20_chatbots/02_chatbot.ipynb
+    - file: 20_chatbots/10_anthropic_api.ipynb
     - file: 20_chatbots/gui.ipynb
 
   - caption: Function Calling
