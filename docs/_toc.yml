@@ -73,6 +73,12 @@ parts:
     - file: 50_code_generation/04_generating_code_for_processing_images.ipynb
     - file: 50_code_generation/06_system_messages.ipynb
     - file: 50_code_generation/10_reflection.ipynb
+    - file: 50_code_generation/20_bia-bob_demo.ipynb
+    - file: 50_code_generation/21_documenting_code.ipynb
+    - file: 50_code_generation/22_bug_fixing.ipynb
+    - file: 50_code_generation/23_generate_notebooks.ipynb
+    - file: 50_code_generation/24_vision-microscopy.ipynb
+    
     
   - caption: Retrieval Augmented Generation
     chapters:
