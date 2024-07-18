@@ -373,6 +373,41 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/20_bia-bob_demo.html">
+                        BIA Bob demo
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/21_documenting_code.html">
+                        Documenting code
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/22_bug_fixing.html">
+                        Bug fixing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/23_generate_notebooks.html">
+                        Generating notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/24_vision-microscopy.html">
+                        Vision models for image interpretation and code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../60_rag/10_word-embeddings.html">
                         Word embeddings
                       </a>
@@ -779,6 +814,41 @@ const thebe_selector_output = ".output, .cell_output"
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/20_bia-bob_demo.html">
+                        BIA Bob demo
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/21_documenting_code.html">
+                        Documenting code
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/22_bug_fixing.html">
+                        Bug fixing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/23_generate_notebooks.html">
+                        Generating notebooks
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/24_vision-microscopy.html">
+                        Vision models for image interpretation and code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="../60_rag/10_word-embeddings.html">
                         Word embeddings
                       </a>
@@ -1014,6 +1084,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../50_code_generation/04_generating_code_for_processing_images.html">Generating code for processing images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../50_code_generation/06_system_messages.html">Powerful system messages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../50_code_generation/10_reflection.html">Reflection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_code_generation/20_bia-bob_demo.html">BIA Bob demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_code_generation/21_documenting_code.html">Documenting code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_code_generation/22_bug_fixing.html">Bug fixing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_code_generation/23_generate_notebooks.html">Generating notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_code_generation/24_vision-microscopy.html">Vision models for image interpretation and code generation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Retrieval Augmented Generation</span></p>
 <ul class="nav bd-sidenav">
@@ -1224,7 +1299,7 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="ollama">
 <h1>Ollama<a class="headerlink" href="#ollama" title="Permalink to this heading">#</a></h1>
-<p><a class="reference external" href="https://ollama.com/download">Ollama</a> is a tool that downloads models to our computer and allows us to run them locally. Before executing the following code, you need to run <code class="docutils literal notranslate"><span class="pre">ollama</span> <span class="pre">run</span> <span class="pre">gemma:2b</span></code> once, if you didn’t do this during setup. Also, depending on how you installed ollama, you may have to execute it in a terminal window using this command, before executing this notebook:</p>
+<p><a class="reference external" href="https://ollama.com/download">Ollama</a> is a tool that downloads models to our computer and allows us to run them locally. Before executing the following code, you need to run <code class="docutils literal notranslate"><span class="pre">ollama</span> <span class="pre">run</span> <span class="pre">llama3:8b</span></code> once, if you didn’t do this during setup. Also, depending on how you installed ollama, you may have to execute it in a terminal window using this command, before executing this notebook:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ollam</span> <span class="n">serve</span>
 </pre></div>
 </div>
@@ -1244,13 +1319,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_ollama</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemma:2b&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a message to ollama</span>
-<span class="sd">    and returns only the text response.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">os</span>
-    
-    <span class="c1"># convert message in the right format if necessary</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_ollama</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;llama3:8b&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a message to ollama and returns only the text response.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
         
@@ -1276,117 +1346,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotFoundError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">prompt_ollama</span><span class="p">(</span><span class="s2">&quot;Hi!&quot;</span><span class="p">)</span>
-
-<span class="nn">Cell In[2], line 15,</span> in <span class="ni">prompt_ollama</span><span class="nt">(message, model)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">client</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:11434/v1&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">client</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">messages</span><span class="o">=</span><span class="n">message</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="c1"># extract answer</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
-
-<span class="nn">File ~\miniconda3\envs\genai2\Lib\site-packages\openai\_utils\_utils.py:277,</span> in <span class="ni">required_args.&lt;locals&gt;.inner.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">275</span>             <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Missing required argument: </span><span class="si">{</span><span class="n">quote</span><span class="p">(</span><span class="n">missing</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">276</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">277</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\envs\genai2\Lib\site-packages\openai\resources\chat\completions.py:643,</span> in <span class="ni">Completions.create</span><span class="nt">(self, messages, model, frequency_penalty, function_call, functions, logit_bias, logprobs, max_tokens, n, parallel_tool_calls, presence_penalty, response_format, seed, service_tier, stop, stream, stream_options, temperature, tool_choice, tools, top_logprobs, top_p, user, extra_headers, extra_query, extra_body, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">609</span> <span class="nd">@required_args</span><span class="p">([</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="k">def</span> <span class="nf">create</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">611</span>     <span class="bp">self</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">641</span>     <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Timeout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">NotGiven</span> <span class="o">=</span> <span class="n">NOT_GIVEN</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatCompletion</span> <span class="o">|</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ChatCompletionChunk</span><span class="p">]:</span>
-<span class="ne">--&gt; </span><span class="mi">643</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">644</span>         <span class="s2">&quot;/chat/completions&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">645</span>         <span class="n">body</span><span class="o">=</span><span class="n">maybe_transform</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">646</span>             <span class="p">{</span>
-<span class="g g-Whitespace">    </span><span class="mi">647</span>                 <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">messages</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">648</span>                 <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">649</span>                 <span class="s2">&quot;frequency_penalty&quot;</span><span class="p">:</span> <span class="n">frequency_penalty</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">650</span>                 <span class="s2">&quot;function_call&quot;</span><span class="p">:</span> <span class="n">function_call</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">651</span>                 <span class="s2">&quot;functions&quot;</span><span class="p">:</span> <span class="n">functions</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">652</span>                 <span class="s2">&quot;logit_bias&quot;</span><span class="p">:</span> <span class="n">logit_bias</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">653</span>                 <span class="s2">&quot;logprobs&quot;</span><span class="p">:</span> <span class="n">logprobs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">654</span>                 <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="n">max_tokens</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">655</span>                 <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="n">n</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">656</span>                 <span class="s2">&quot;parallel_tool_calls&quot;</span><span class="p">:</span> <span class="n">parallel_tool_calls</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">657</span>                 <span class="s2">&quot;presence_penalty&quot;</span><span class="p">:</span> <span class="n">presence_penalty</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">658</span>                 <span class="s2">&quot;response_format&quot;</span><span class="p">:</span> <span class="n">response_format</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">659</span>                 <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">660</span>                 <span class="s2">&quot;service_tier&quot;</span><span class="p">:</span> <span class="n">service_tier</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">661</span>                 <span class="s2">&quot;stop&quot;</span><span class="p">:</span> <span class="n">stop</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">662</span>                 <span class="s2">&quot;stream&quot;</span><span class="p">:</span> <span class="n">stream</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">663</span>                 <span class="s2">&quot;stream_options&quot;</span><span class="p">:</span> <span class="n">stream_options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">664</span>                 <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span>                 <span class="s2">&quot;tool_choice&quot;</span><span class="p">:</span> <span class="n">tool_choice</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span>                 <span class="s2">&quot;tools&quot;</span><span class="p">:</span> <span class="n">tools</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">667</span>                 <span class="s2">&quot;top_logprobs&quot;</span><span class="p">:</span> <span class="n">top_logprobs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">668</span>                 <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="n">top_p</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">669</span>                 <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">670</span>             <span class="p">},</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span>             <span class="n">completion_create_params</span><span class="o">.</span><span class="n">CompletionCreateParams</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span>         <span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span>         <span class="n">options</span><span class="o">=</span><span class="n">make_request_options</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span>             <span class="n">extra_headers</span><span class="o">=</span><span class="n">extra_headers</span><span class="p">,</span> <span class="n">extra_query</span><span class="o">=</span><span class="n">extra_query</span><span class="p">,</span> <span class="n">extra_body</span><span class="o">=</span><span class="n">extra_body</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>         <span class="n">cast_to</span><span class="o">=</span><span class="n">ChatCompletion</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">677</span>         <span class="n">stream</span><span class="o">=</span><span class="n">stream</span> <span class="ow">or</span> <span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="n">stream_cls</span><span class="o">=</span><span class="n">Stream</span><span class="p">[</span><span class="n">ChatCompletionChunk</span><span class="p">],</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\envs\genai2\Lib\site-packages\openai\_base_client.py:1266,</span> in <span class="ni">SyncAPIClient.post</span><span class="nt">(self, path, cast_to, body, options, files, stream, stream_cls)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1252</span> <span class="k">def</span> <span class="nf">post</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1253</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1254</span>     <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1261</span>     <span class="n">stream_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_StreamT</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1262</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResponseT</span> <span class="o">|</span> <span class="n">_StreamT</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1263</span>     <span class="n">opts</span> <span class="o">=</span> <span class="n">FinalRequestOptions</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1264</span>         <span class="n">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">json_data</span><span class="o">=</span><span class="n">body</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">to_httpx_files</span><span class="p">(</span><span class="n">files</span><span class="p">),</span> <span class="o">**</span><span class="n">options</span>
-<span class="g g-Whitespace">   </span><span class="mi">1265</span>     <span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1266</span>     <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">ResponseT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">cast_to</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="n">stream_cls</span><span class="o">=</span><span class="n">stream_cls</span><span class="p">))</span>
-
-<span class="nn">File ~\miniconda3\envs\genai2\Lib\site-packages\openai\_base_client.py:942,</span> in <span class="ni">SyncAPIClient.request</span><span class="nt">(self, cast_to, options, remaining_retries, stream, stream_cls)</span>
-<span class="g g-Whitespace">    </span><span class="mi">933</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">934</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span>     <span class="n">cast_to</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResponseT</span><span class="p">],</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">940</span>     <span class="n">stream_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_StreamT</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">941</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResponseT</span> <span class="o">|</span> <span class="n">_StreamT</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">942</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">943</span>         <span class="n">cast_to</span><span class="o">=</span><span class="n">cast_to</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>         <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span>         <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span>         <span class="n">stream_cls</span><span class="o">=</span><span class="n">stream_cls</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">947</span>         <span class="n">remaining_retries</span><span class="o">=</span><span class="n">remaining_retries</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">948</span>     <span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\envs\genai2\Lib\site-packages\openai\_base_client.py:1046,</span> in <span class="ni">SyncAPIClient._request</span><span class="nt">(self, cast_to, options, remaining_retries, stream, stream_cls)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1043</span>         <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1045</span>     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Re-raising status error&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1046</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_status_error_from_response</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1048</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_response</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>     <span class="n">cast_to</span><span class="o">=</span><span class="n">cast_to</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>     <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>     <span class="n">stream_cls</span><span class="o">=</span><span class="n">stream_cls</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1054</span> <span class="p">)</span>
-
-<span class="ne">NotFoundError</span>: Error code: 404 - {&#39;error&#39;: {&#39;message&#39;: &quot;model &#39;gemma:2b&#39; not found, try pulling it first&quot;, &#39;type&#39;: &#39;api_error&#39;, &#39;param&#39;: None, &#39;code&#39;: None}}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_blablador</span><span class="p">(</span><span class="s2">&quot;Hi!&quot;</span><span class="p">)</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Hello! It&#39;s nice to meet you. Is there something I can help you with, or would you like to chat?&quot;
 </pre></div>
 </div>
 </div>
