@@ -43,7 +43,7 @@ conda activate genai2
 
 Install some additional packaged via pip:
 ```
-pip install python-pptx bia-bob blablado llama-index
+pip install python-pptx bia-bob blablado llama-index google-generativeai
 ```
 
 The used conda environment is also available for download as [environment.yml](environment.yml) file.

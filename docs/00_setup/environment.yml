@@ -346,11 +346,22 @@ dependencies:
   - pip:
       - bia-bob==0.20.0
       - blablado==0.1.2
+      - cachetools==5.4.0
       - click==8.1.7
       - dataclasses-json==0.6.7
       - deprecated==1.2.14
       - dirtyjson==1.0.8
+      - google-ai-generativelanguage==0.6.6
+      - google-api-core==2.19.1
+      - google-api-python-client==2.137.0
+      - google-auth==2.32.0
+      - google-auth-httplib2==0.2.0
+      - google-generativeai==0.7.2
+      - googleapis-common-protos==1.63.2
+      - grpcio==1.65.1
+      - grpcio-status==1.62.2
       - gtts==2.5.1
+      - httplib2==0.22.0
       - ipynbname==2024.1.0.0
       - langchain-openai==0.1.17
       - llama-cloud==0.0.9
@@ -374,17 +385,23 @@ dependencies:
       - mypy-extensions==1.0.0
       - nltk==3.8.1
       - pexpect==4.9.0
+      - proto-plus==1.24.0
+      - protobuf==4.25.3
       - ptyprocess==0.7.0
+      - pyasn1==0.6.0
+      - pyasn1-modules==0.4.0
       - pyaudio==0.2.14
       - pydub==0.25.1
       - pypdf==4.3.0
       - python-pptx==0.6.23
+      - rsa==4.9
       - speechrecognition==3.10.4
       - striprtf==0.0.26
       - tiktoken==0.7.0
       - torchaudio==2.3.1
       - torchvision==0.18.1
       - typing-inspect==0.9.0
+      - uritemplate==4.1.1
       - wrapt==1.16.0
       - xlsxwriter==3.2.0
 prefix: C:\Users\haase\miniconda3\envs\genai2
