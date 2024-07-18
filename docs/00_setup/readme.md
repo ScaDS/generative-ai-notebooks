@@ -4,7 +4,7 @@ This chapter provides instructions for setting up your computer.
 
 ## Computer hardware
 
-To execute the notebooks in this collection, it is highly recommended to use a computer with a CUDA compatible NVidia Graphics card with at least 4GB of memory. 
+To execute the notebooks in this collection, it is highly recommended to use a computer with a CUDA compatible NVidia Graphics card with at least 4GB of memory. These notebooks were tests on a Windows 10 Laptop with an NVidia RTX 3050 Mobile GPU.
 
 ## Setting up Python and Conda environments
 
@@ -45,6 +45,8 @@ Install some additional packaged via pip:
 ```
 pip install python-pptx bia-bob blablado llama-index
 ```
+
+The used conda environment is also available for download as [environment.yml](environment.yml) file.
 
 ## Installing ollama
 
