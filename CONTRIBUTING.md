@@ -21,9 +21,7 @@ The content focuses on applied data science answering general questions such as:
 
 If you want to contribute new content to this collection, please make sure that
 
-1. Notebooks are written in simple language. Try to use common terms such as "table" instead of "DataFrame". 
-  It makes sense though to mention terms such as DataFrames in the relevant context and explain what they mean. 
-  Add new technical terms to the [glossary](https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/blob/main/docs/01_introduction/glossary.md).
+1. Notebooks are written in simple language. Try to avoid technical language or explain new terms before using them. 
 2. Keep the notebooks short and concise. 
   Add links to other resources where algorithms are explained.
   Ideally, every notebook explains just one aspect and can be read in about 10 minutes. 
@@ -47,8 +45,6 @@ Out of scope topics are
   Libraries which are not distributed via `pip` and/or `conda` should not be demonstrated here.
 3. Detailed explanations of specific algorithms should not be part of this collection.
   Link to online documentation and scientific publications instead.
-4. Demonstration of closed-source / commercial libraries are not welcome here. 
-  This repository aims presenting open-source software that is free to use for everyone.
 
 ## Project organization / management
 
@@ -70,7 +66,7 @@ This is necessary to maintain the resource long-term.
 ## Copyright
 
 All contents of this Jupyter book and the corresponding Github repository are licensed [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) and 
-BSD3 by the [authors and contributors](https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/contributors), unless mentioned otherwise.
+BSD3 by the [authors and contributors](https://github.com/scads/generative-ai-notebooks/contributors), unless mentioned otherwise.
 Please make sure your contribution can be shared under the same conditions.
 
 ## Changes to these conditions
