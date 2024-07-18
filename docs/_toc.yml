@@ -14,12 +14,17 @@ parts:
     - file: 10_prompting_basics/01_prompting.ipynb
     - file: 10_prompting_basics/02_use_cases.ipynb
     - file: 10_prompting_basics/03_prompt_engineering.ipynb
+    
+  - caption: Accessing LLMs
+    chapters:
+    - file: 15_endpoint_apis/01_openai_api.ipynb
+    - file: 15_endpoint_apis/02_ollama_endpoint.ipynb
+    - file: 15_endpoint_apis/03_blablador_endpoint.ipynb
+    - file: 15_endpoint_apis/10_anthropic_api.ipynb
 
   - caption: Chatbots
     chapters:
-    - file: 20_chatbots/01_openai_api.ipynb
     - file: 20_chatbots/02_chatbot.ipynb
-    - file: 20_chatbots/10_anthropic_api.ipynb
     - file: 20_chatbots/gui.ipynb
 
   - caption: Function Calling
@@ -29,7 +34,8 @@ parts:
     - file: 30_function_calling/30_langchain_bia.ipynb
     - file: 30_function_calling/50_blablado.ipynb
     - file: 30_function_calling/55_microscope_stage_demo.ipynb
-    - file: 33_pptx_generation/prompting_rdm.ipynb
+
+  
 
   - caption: Image Generation
     chapters:
@@ -47,6 +53,11 @@ parts:
     - file: 41_image_generation_huggingface/60_image_variations_huggingface.ipynb
     - file: 41_image_generation_huggingface/60_image_variations_pix2pix.ipynb
 
+  - caption: Generating content
+    chapters:
+    - file: 44_generating_jupyter_books/generator.ipynb
+    - file: 45_pptx_generation/prompting_rdm.ipynb
+
   - caption: Vision Language Models
     chapters:
     - file: 47_vision/10_vision_CLIP.ipynb
@@ -59,12 +70,15 @@ parts:
     - file: 50_code_generation/04_generating_code_for_processing_images.ipynb
     - file: 50_code_generation/06_system_messages.ipynb
     - file: 50_code_generation/10_reflection.ipynb
-    - file: 50_code_generation/20_book_generation.ipynb
     
   - caption: Retrieval Augmented Generation
     chapters:
     - file: 60_rag/10_word-embeddings.ipynb
     - file: 60_rag/20-simple-rag.ipynb
+    
+  - caption: Chat with PDFs!
+    chapters:
+    - file: 63_chat_with_docs/readme.md
     - file: 63_chat_with_docs/chat-with-docs.ipynb
 
   - caption: Model Fine-Tuning
