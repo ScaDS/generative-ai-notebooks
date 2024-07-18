@@ -15,15 +15,22 @@ The notebook collection aims covering these topics:
 * Prompt Engineering
 * Model fine-tuning
 
-## Covered Python libraries
+## Covered Python libraries and software
 
 In these notebooks we use non-standard libraries from the GenAI field. Installation instructions can be found either in the first chapter or in the readme of the respective subchapter.
 
 * openai
 * anthropic
-* google.generativeai
+* pytorch
+* pytorch-lightning
+* torchmetrics 
 * transformers
+* langchain
 * llama-index
+* bia-bob
+* blablado
+* ollama
+* huggingface_hub 
 
 ## Related resources
 
