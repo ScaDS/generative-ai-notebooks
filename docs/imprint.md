@@ -13,7 +13,8 @@ E-Mail: robert.haase (at] uni-leipzig.de
 
 ### Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
 Dr. rer. medic. Robert Haase\
-Universität Leipzig
+ScaDS.AI Dresden / Leipzig\
+Universität Leipzig\
 Humboldstraße 25\
 04105 Leipzig
 
