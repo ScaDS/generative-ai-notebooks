@@ -348,6 +348,7 @@ dependencies:
       - blablado==0.1.2
       - cachetools==5.4.0
       - click==8.1.7
+      - cryptography==43.0.0
       - dataclasses-json==0.6.7
       - deprecated==1.2.14
       - dirtyjson==1.0.8
@@ -392,6 +393,9 @@ dependencies:
       - pyasn1-modules==0.4.0
       - pyaudio==0.2.14
       - pydub==0.25.1
+      - pygithub==2.3.0
+      - pyjwt==2.8.0
+      - pynacl==1.5.0
       - pypdf==4.3.0
       - python-pptx==0.6.23
       - rsa==4.9
