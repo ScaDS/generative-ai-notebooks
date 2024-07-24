@@ -36,7 +36,7 @@ parts:
     - file: 30_function_calling/30_langchain_bia.ipynb
     - file: 30_function_calling/50_blablado.ipynb
     - file: 30_function_calling/55_microscope_stage_demo.ipynb
-
+    - file: 64_github_interaction/solving_github_issues.ipynb
   
 
   - caption: Image Generation
