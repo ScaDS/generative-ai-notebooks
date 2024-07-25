@@ -1307,6 +1307,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#setting-up-a-conda-environment">
    Setting up a conda environment
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gpu-version-recommended">
+     GPU version (recommended)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cpu-only-version">
+     CPU-only version
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activating-the-environment">
+     Activating the environment
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#installing-ollama">
@@ -1357,29 +1374,39 @@ If a Conda environment breaks, e.g. incompatible software was installed, you can
 </section>
 <section id="setting-up-a-conda-environment">
 <h2>Setting up a conda environment<a class="headerlink" href="#setting-up-a-conda-environment" title="Permalink to this heading">#</a></h2>
-<p>You can create a conda environment using this command from the terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">genai2</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.11</span> <span class="n">jupyterlab</span> <span class="n">pytorch</span> <span class="n">torchvision</span> <span class="n">torchaudio</span> <span class="n">pytorch</span><span class="o">-</span><span class="n">cuda</span><span class="o">=</span><span class="mf">11.8</span> <span class="n">cudatoolkit</span><span class="o">=</span><span class="mf">11.8</span> <span class="n">huggingface_hub</span> <span class="n">diffusers</span> <span class="n">transformers</span> <span class="n">accelerate</span> <span class="n">anthropic</span> <span class="n">openai</span> <span class="n">langchain</span> <span class="n">stackview</span> <span class="n">voila</span> <span class="n">pandas</span> <span class="n">torchmetrics</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">seaborn</span> <span class="o">-</span><span class="n">c</span> <span class="n">pytorch</span> <span class="o">-</span><span class="n">c</span> <span class="n">nvidia</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+<p>You can create a conda environment using this commands from the terminal. It is highly recommended to install the GPU-version on a computer with an NVidia graphics card. The CPU version should work too, but some image-generation and -vision notebooks require a powerful GPU.</p>
+<section id="gpu-version-recommended">
+<h3>GPU version (recommended)<a class="headerlink" href="#gpu-version-recommended" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ScaDS</span><span class="o">/</span><span class="n">generative</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">notebooks</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="mi">00</span><span class="n">_setup</span><span class="o">/</span><span class="n">environment</span><span class="o">-</span><span class="n">gpu</span><span class="o">.</span><span class="n">yml</span>
 </pre></div>
 </div>
+</section>
+<section id="cpu-only-version">
+<h3>CPU-only version<a class="headerlink" href="#cpu-only-version" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ScaDS</span><span class="o">/</span><span class="n">generative</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">notebooks</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="mi">00</span><span class="n">_setup</span><span class="o">/</span><span class="n">environment</span><span class="o">-</span><span class="n">cpu</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</section>
+<section id="activating-the-environment">
+<h3>Activating the environment<a class="headerlink" href="#activating-the-environment" title="Permalink to this heading">#</a></h3>
 <p>Activate the environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">genai2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">genai</span>
 </pre></div>
 </div>
-<p>Install some additional packaged via pip:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">pptx</span> <span class="n">bia</span><span class="o">-</span><span class="n">bob</span> <span class="n">blablado</span> <span class="n">llama</span><span class="o">-</span><span class="n">index</span> <span class="n">google</span><span class="o">-</span><span class="n">generativeai</span> <span class="n">pygithub</span>
-</pre></div>
-</div>
-<p>The used conda environment is also available for download as <a class="reference download internal" download="" href="../_downloads/a92ee46d495ad8cb68215ee686159e48/environment.yml"><span class="xref download myst">environment.yml</span></a> file.</p>
+<p>The recently used conda environment is also available for download as <a class="reference download internal" download="" href="../_downloads/a92ee46d495ad8cb68215ee686159e48/environment.yml"><span class="xref download myst">environment.yml</span></a> file. This was tested on a laptop with an NVidia RTX 3050 mobile GPU.</p>
+</section>
 </section>
 <section id="installing-ollama">
 <h2>Installing ollama<a class="headerlink" href="#installing-ollama" title="Permalink to this heading">#</a></h2>
 <p>To make use of the ollama-based models, please install <a class="reference external" href="https://ollama.com/download">ollama</a>. The notebooks in this folder were tested with ollama version 0.1.39</p>
 <p>Furthermore, consider downloading these models:</p>
-<p><a class="reference external" href="https://ollama.com/library/llava">llava 1.6</a>, <a class="reference external" href="https://ollama.com/library/mistral:v0.3">mistral:v0.3</a> and
-<a class="reference external" href="https://ollama.com/library/gemma">gemma</a></p>
+<p><a class="reference external" href="https://ollama.com/library/llava">llava 1.6</a>, <a class="reference external" href="https://ollama.com/library/mistral:v0.3">mistral:v0.3</a>,
+<a class="reference external" href="https://ollama.com/library/gemma">gemma</a> and
+<a class="reference external" href="https://ollama.com/library/llama3.1">llama3.1</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ollama</span> <span class="n">run</span> <span class="n">llava</span>
 <span class="n">ollama</span> <span class="n">run</span> <span class="n">mistral</span><span class="p">:</span><span class="n">v0</span><span class="mf">.3</span>
 <span class="n">ollama</span> <span class="n">run</span> <span class="n">gemma</span>
+<span class="n">ollama</span> <span class="n">run</span> <span class="n">llama3</span><span class="mf">.1</span>
 </pre></div>
 </div>
 <p>Note: You can print out which models you have downloaded like this:</p>
@@ -1393,6 +1420,8 @@ If a Conda environment breaks, e.g. incompatible software was installed, you can
 <ul class="simple">
 <li><p><a class="reference external" href="https://openai.com/blog/openai-api">OpenAI (gpt)</a></p></li>
 <li><p><a class="reference external" href="https://www.anthropic.com/api">Anthropic (claude)</a></p></li>
+<li><p><a class="reference external" href="https://cloud.google.com/docs/authentication/api-keys">Google AI</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/docs/hub/en/security-tokens">Huggingface hub</a></p></li>
 </ul>
 <p>If you are German academic, you may also be eligible to acquire a free API key from <a class="reference external" href="http://Helmholtz.AI">Helmholtz.AI</a> for the blablador infrastructure:</p>
 <ul class="simple">
@@ -1479,6 +1508,23 @@ If a Conda environment breaks, e.g. incompatible software was installed, you can
   <a class="reference internal nav-link" href="#setting-up-a-conda-environment">
    Setting up a conda environment
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gpu-version-recommended">
+     GPU version (recommended)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cpu-only-version">
+     CPU-only version
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activating-the-environment">
+     Activating the environment
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#installing-ollama">

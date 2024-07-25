@@ -555,6 +555,10 @@ const thebe_selector_output = ".output, .cell_output"
   
 
   
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
 
 </div>
   </nav>
@@ -1272,7 +1276,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -1285,6 +1291,19 @@ title="Print to PDF"
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -1306,7 +1325,7 @@ title="Print to PDF"
             <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;torch_dtype&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">},</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
         <span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span><span class="p">(</span><span class="s2">&quot;Hey how are you doing today?&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span><span class="p">(</span><span class="n">request</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
 <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -1324,10 +1343,13 @@ title="Print to PDF"
   r = torch._C._cuda_getDeviceCount() if nvml_count &lt; 0 else nvml_count
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "75430d1a95914bf9930bd8238055a367", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some parameters are on the meta device device because they were offloaded to the cpu and disk.
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0c206a5866874d5c8a9112ab7ee9d193", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Some parameters are on the meta device device because they were offloaded to the disk and cpu.
 Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
 C:\Users\rober\miniconda3\envs\genai-cpu\Lib\site-packages\transformers\generation\utils.py:1259: UserWarning: Using the model-agnostic default `max_length` (=20) to control the generation length. We recommend setting `max_new_tokens` to control the maximum length of the generation.
   warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;What is the capital of France? New York City\nA. Paris\nB. Philadelphia\n&#39;
 </pre></div>
 </div>
 </div>
@@ -1339,7 +1361,19 @@ C:\Users\rober\miniconda3\envs\genai-cpu\Lib\site-packages\transformers\generati
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+</pre></div>
 </div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;What is the capital of the Czech Republic? Prague\n...the Czech Republic? Prague\n...&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>Explore the <a class="reference external" href="https://huggingface.co/models?pipeline_tag=text-generation&amp;sort=trending">HuggingFace hub for more text-generation models</a>. Download one and test it using the function above. Also read its documentation and consider updating the function above according to the recommendations and examples.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1376,6 +1410,27 @@ C:\Users\rober\miniconda3\envs\genai-cpu\Lib\site-packages\transformers\generati
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>
