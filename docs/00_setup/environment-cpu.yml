@@ -1,0 +1,34 @@
+name: genai-cpu
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11 
+  - jupyterlab 
+  - pytorch 
+  - torchvision 
+  - torchaudio 
+  - huggingface_hub 
+  - diffusers 
+  - transformers 
+  - accelerate 
+  - anthropic 
+  - openai 
+  - langchain 
+  - stackview 
+  - voila 
+  - pandas 
+  - torchmetrics 
+  - scikit-learn 
+  - seaborn
+  - pip
+  - pip:
+      - python-pptx 
+      - bia-bob 
+      - blablado 
+      - llama-index 
+      - google-generativeai 
+      - pygithub
+prefix: C:\Users\haase\miniconda3\envs\genai-cpu
