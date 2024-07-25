@@ -30,23 +30,25 @@ For ease-of-use, it is recommended to install it for your use only and to add Co
 
 ## Setting up a conda environment
 
-You can create a conda environment using this command from the terminal:
+You can create a conda environment using this commands from the terminal. It is highly recommended to install the GPU-version on a computer with an NVidia graphics card. The CPU version should work too, but some image-generation and -vision notebooks require a powerful GPU.
 
+### GPU version (recommended)
 ```
-conda create --name genai2 python=3.11 jupyterlab pytorch torchvision torchaudio pytorch-cuda=11.8 cudatoolkit=11.8 huggingface_hub diffusers transformers accelerate anthropic openai langchain stackview voila pandas torchmetrics scikit-learn seaborn -c pytorch -c nvidia -c conda-forge
+conda env create -f https://raw.githubusercontent.com/ScaDS/generative-ai-notebooks/main/docs/00_setup/environment-gpu.yml
 ```
 
+### CPU-only version
+```
+conda env create -f https://raw.githubusercontent.com/ScaDS/generative-ai-notebooks/main/docs/00_setup/environment-cpu.yml
+```
+
+### Activating the environment
 Activate the environment:
 ```
-conda activate genai2
+conda activate genai
 ```
 
-Install some additional packaged via pip:
-```
-pip install python-pptx bia-bob blablado llama-index google-generativeai pygithub
-```
-
-The used conda environment is also available for download as [environment.yml](environment.yml) file.
+The recently used conda environment is also available for download as [environment.yml](environment.yml) file. This was tested on a laptop with an NVidia RTX 3050 mobile GPU.
 
 ## Installing ollama
 
@@ -54,12 +56,14 @@ To make use of the ollama-based models, please install [ollama](https://ollama.c
 
 Furthermore, consider downloading these models:
 
-[llava 1.6](https://ollama.com/library/llava), [mistral:v0.3](https://ollama.com/library/mistral:v0.3) and
-[gemma](https://ollama.com/library/gemma)
+[llava 1.6](https://ollama.com/library/llava), [mistral:v0.3](https://ollama.com/library/mistral:v0.3),
+[gemma](https://ollama.com/library/gemma) and
+[llama3.1](https://ollama.com/library/llama3.1)
 ```
 ollama run llava
 ollama run mistral:v0.3
 ollama run gemma
+ollama run llama3.1
 ```
 
 Note: You can print out which models you have downloaded like this:
@@ -72,6 +76,8 @@ ollama list
 If you plan to use the commercial language models, you need to register at their websites and acquire so called API keys. You do not need to get these keys for all exercises, but for some they might be useful.
 * [OpenAI (gpt)](https://openai.com/blog/openai-api)
 * [Anthropic (claude)](https://www.anthropic.com/api)
+* [Google AI](https://cloud.google.com/docs/authentication/api-keys)
+* [Huggingface hub](https://huggingface.co/docs/hub/en/security-tokens)
 
 If you are German academic, you may also be eligible to acquire a free API key from Helmholtz.AI for the blablador infrastructure:
 * (blablador[https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/]
