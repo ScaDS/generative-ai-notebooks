@@ -84,6 +84,7 @@ parts:
   - caption: Retrieval Augmented Generation
     chapters:
     - file: 60_rag/10_word-embeddings.ipynb
+    - file: 60_rag/05_tokenization.ipynb
     - file: 60_rag/20-simple-rag.ipynb
     
   - caption: Chat with PDFs!
