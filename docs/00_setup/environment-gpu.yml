@@ -33,7 +33,7 @@ dependencies:
       - llama-index 
       - google-generativeai 
       - pygithub
-      - bitsandbytes==0.43.2
+      - bitsandbytes>=0.43.2
       - peft
       - trl
 prefix: C:\Users\haase\miniconda3\envs\genai-gpu
