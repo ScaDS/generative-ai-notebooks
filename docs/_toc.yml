@@ -92,13 +92,20 @@ parts:
     - file: 63_chat_with_docs/readme.md
     - file: 63_chat_with_docs/chat-with-docs.ipynb
 
-  - caption: Model Fine-Tuning
+  - caption: Model Fine-Tuning in the cloud
     chapters:
     - file: 70_fine_tuning/10_generate_qa.ipynb
     - file: 70_fine_tuning/40_fine_tuning.ipynb
     - file: 70_fine_tuning/50_model_testing.ipynb
     - file: 70_fine_tuning/checking_job_status.ipynb
     - file: 70_fine_tuning/list_available_models.ipynb
+
+  - caption: Model Fine-Tuning locally
+    chapters:
+    - file: 71_fine_tuning_hf/fine-tune-gemma.ipynb
+    - file: 71_fine_tuning_hf/merging_model.ipynb
+    - file: 71_fine_tuning_hf/test_model.ipynb
+    - file: 71_fine_tuning_hf/hf_data_upload.ipynb
     
   - caption: Benchmarking
     chapters:
