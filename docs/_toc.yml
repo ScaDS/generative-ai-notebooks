@@ -56,6 +56,10 @@ parts:
     - file: 41_image_generation_huggingface/60_image_variations_huggingface.ipynb
     - file: 41_image_generation_huggingface/60_image_variations_pix2pix.ipynb
 
+  - caption: Video generation
+    chapters:
+    - file: 42_video_generation/videogen.ipynb
+
   - caption: Generating content
     chapters:
     - file: 44_generating_jupyter_books/generator.ipynb

@@ -36,4 +36,5 @@ dependencies:
       - bitsandbytes>=0.43.2
       - peft
       - trl
+      - opencv-python
 prefix: C:\Users\haase\miniconda3\envs\genai-gpu
