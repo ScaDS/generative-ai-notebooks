@@ -31,4 +31,5 @@ dependencies:
       - llama-index 
       - google-generativeai 
       - pygithub
+      - opencv-python
 prefix: C:\Users\haase\miniconda3\envs\genai-cpu
