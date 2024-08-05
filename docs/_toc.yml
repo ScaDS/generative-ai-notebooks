@@ -37,7 +37,6 @@ parts:
     - file: 30_function_calling/30_langchain_bia.ipynb
     - file: 30_function_calling/50_blablado.ipynb
     - file: 30_function_calling/55_microscope_stage_demo.ipynb
-    - file: 64_github_interaction/solving_github_issues.ipynb
   
 
   - caption: Image Generation
@@ -64,6 +63,7 @@ parts:
     chapters:
     - file: 44_generating_jupyter_books/generator.ipynb
     - file: 45_pptx_generation/prompting_rdm.ipynb
+    - file: 64_github_interaction/solving_github_issues.ipynb
 
   - caption: Vision Language Models
     chapters:
