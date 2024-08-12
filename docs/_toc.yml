@@ -5,119 +5,118 @@ format: jb-book
 root: intro
 
 parts:
-  - caption: Installation
+  - caption: Setup
     chapters:
     - file: 00_setup/readme.md
-    - file: 00_setup/install_paula.md
+      sections:
+      - file: 00_setup/install_paula.md
     
-  - caption: Prompting basics
+  - caption: LLM basics
     chapters:
-    - file: 10_prompting_basics/01_prompting.ipynb
-    - file: 10_prompting_basics/02_use_cases.ipynb
-    - file: 10_prompting_basics/03_prompt_engineering.ipynb
+    - file: 10_prompting_basics/readme.md
+      sections:
+      - file: 10_prompting_basics/01_prompting.ipynb
+      - file: 10_prompting_basics/02_use_cases.ipynb
+      - file: 10_prompting_basics/03_prompt_engineering.ipynb
     
-  - caption: Accessing LLMs
-    chapters:
-    - file: 15_endpoint_apis/01_openai_api.ipynb
-    - file: 15_endpoint_apis/02_ollama_endpoint.ipynb
-    - file: 15_endpoint_apis/03_blablador_endpoint.ipynb
-    - file: 15_endpoint_apis/10_anthropic_api.ipynb
-    - file: 15_endpoint_apis/20_google_gemini.ipynb
-    - file: 15_endpoint_apis/30_huggingface.ipynb
+    - file: 15_endpoint_apis/readme.md
+      sections:
+      - file: 15_endpoint_apis/01_openai_api.ipynb
+      - file: 15_endpoint_apis/02_ollama_endpoint.ipynb
+      - file: 15_endpoint_apis/03_blablador_endpoint.ipynb
+      - file: 15_endpoint_apis/10_anthropic_api.ipynb
+      - file: 15_endpoint_apis/20_google_gemini.ipynb
+      - file: 15_endpoint_apis/30_huggingface.ipynb
 
-  - caption: Chatbots
-    chapters:
-    - file: 20_chatbots/10_chatbot.ipynb
-    - file: 20_chatbots/gui.ipynb
+    - file: 20_chatbots/readme.md
+      sections:
+      - file: 20_chatbots/10_chatbot.ipynb
+      - file: 20_chatbots/gui.ipynb
             
+    - file: 30_function_calling/readme.md
+      sections:
+      - file: 30_function_calling/10_function_calling.ipynb
+      - file: 30_function_calling/20_langchain.ipynb
+      - file: 30_function_calling/30_langchain_bia.ipynb
+      - file: 30_function_calling/50_blablado.ipynb
+      - file: 30_function_calling/55_microscope_stage_demo.ipynb
 
-  - caption: Function Calling
+  - caption: Multi-Modal LLMs
     chapters:
-    - file: 30_function_calling/10_function_calling.ipynb
-    - file: 30_function_calling/20_langchain.ipynb
-    - file: 30_function_calling/30_langchain_bia.ipynb
-    - file: 30_function_calling/50_blablado.ipynb
-    - file: 30_function_calling/55_microscope_stage_demo.ipynb
-  
 
-  - caption: Image Generation
-    chapters:
-    - file: 40_image_generation_openai/10_generating_images_dall_e.ipynb
-    - file: 40_image_generation_openai/20_generating_mri_images_dall_e.ipynb
-    - file: 41_image_generation_huggingface/30_generating_images_using_huggingface.ipynb
+    - file: 40_image_generation_openai/readme.md
+      sections:
+      - file: 40_image_generation_openai/10_generating_images_dall_e.ipynb
+      - file: 40_image_generation_openai/20_generating_mri_images_dall_e.ipynb
+      - file: 41_image_generation_huggingface/30_generating_images_using_huggingface.ipynb
 
-  - caption: Image Manipulation
-    chapters:
-    - file: 40_image_generation_openai/51_inpainting_dall-e.ipynb
-    - file: 41_image_generation_huggingface/50_inpainting_huggingface.ipynb
+    - file: 40_image_generation_openai/readme_manipulation.md
+      sections:
+      - file: 40_image_generation_openai/51_inpainting_dall-e.ipynb
+      - file: 41_image_generation_huggingface/50_inpainting_huggingface.ipynb
+      - file: 41_image_generation_huggingface/60_image_variations_huggingface.ipynb
+      - file: 41_image_generation_huggingface/60_image_variations_pix2pix.ipynb
+      
+    - file: 42_video_generation/readme.md
+      sections:
+      - file: 42_video_generation/videogen.ipynb
+      - file: 44_generating_jupyter_books/generator.ipynb
+      - file: 45_pptx_generation/prompting_rdm.ipynb
+      - file: 64_github_interaction/solving_github_issues.ipynb
 
-  - caption: Image Variation
-    chapters:
-    - file: 41_image_generation_huggingface/60_image_variations_huggingface.ipynb
-    - file: 41_image_generation_huggingface/60_image_variations_pix2pix.ipynb
+    - file: 50_code_generation/readme.md
+      sections:
+      - file: 50_code_generation/03_generating_code.ipynb
+      - file: 50_code_generation/04_generating_code_for_processing_images.ipynb
+      - file: 50_code_generation/06_system_messages.ipynb
+      - file: 50_code_generation/10_reflection.ipynb
+      - file: 50_code_generation/20_bia-bob_demo.ipynb
+      - file: 50_code_generation/21_documenting_code.ipynb
+      - file: 50_code_generation/22_bug_fixing.ipynb
+      - file: 50_code_generation/23_generate_notebooks.ipynb
+      - file: 50_code_generation/24_vision-microscopy.ipynb
 
-  - caption: Video generation
-    chapters:
-    - file: 42_video_generation/videogen.ipynb
+    - file: 47_vision/readme.md
+      sections:
+      - file: 47_vision/10_vision_CLIP.ipynb
+      - file: 47_vision/20_vision_ollama.ipynb
+      - file: 47_vision/21_vision_openai.ipynb
+      - file: 47_vision/30_vision_models_structred_output.ipynb
 
-  - caption: Generating content
+  - caption: Advanced Prompt Engineering
     chapters:
-    - file: 44_generating_jupyter_books/generator.ipynb
-    - file: 45_pptx_generation/prompting_rdm.ipynb
-    - file: 64_github_interaction/solving_github_issues.ipynb
-
-  - caption: Vision Language Models
-    chapters:
-    - file: 47_vision/10_vision_CLIP.ipynb
-    - file: 47_vision/20_vision_ollama.ipynb
-    - file: 47_vision/21_vision_openai.ipynb
-    - file: 47_vision/30_vision_models_structred_output.ipynb
-
-  - caption: Code Generation
-    chapters:
-    - file: 50_code_generation/03_generating_code.ipynb
-    - file: 50_code_generation/04_generating_code_for_processing_images.ipynb
-    - file: 50_code_generation/06_system_messages.ipynb
-    - file: 50_code_generation/10_reflection.ipynb
-    - file: 50_code_generation/20_bia-bob_demo.ipynb
-    - file: 50_code_generation/21_documenting_code.ipynb
-    - file: 50_code_generation/22_bug_fixing.ipynb
-    - file: 50_code_generation/23_generate_notebooks.ipynb
-    - file: 50_code_generation/24_vision-microscopy.ipynb
     
-    
-  - caption: Retrieval Augmented Generation
-    chapters:
-    - file: 60_rag/10_word-embeddings.ipynb
-    - file: 60_rag/05_tokenization.ipynb
-    - file: 60_rag/20-simple-rag.ipynb
-    
-  - caption: Chat with PDFs!
-    chapters:
+    - file: 60_rag/readme.md
+      sections:
+      - file: 60_rag/10_word-embeddings.ipynb
+      - file: 60_rag/05_tokenization.ipynb
+      - file: 60_rag/20-simple-rag.ipynb
+        
     - file: 63_chat_with_docs/readme.md
-    - file: 63_chat_with_docs/chat-with-docs.ipynb
+      sections:
+      - file: 63_chat_with_docs/chat-with-docs.ipynb
 
-  - caption: Model Fine-Tuning in the cloud
-    chapters:
-    - file: 70_fine_tuning/10_generate_qa.ipynb
-    - file: 70_fine_tuning/40_fine_tuning.ipynb
-    - file: 70_fine_tuning/50_model_testing.ipynb
-    - file: 70_fine_tuning/checking_job_status.ipynb
-    - file: 70_fine_tuning/list_available_models.ipynb
+    - file: 70_fine_tuning/readme.md
+      sections:
+      - file: 70_fine_tuning/10_generate_qa.ipynb
+      - file: 70_fine_tuning/40_fine_tuning.ipynb
+      - file: 70_fine_tuning/50_model_testing.ipynb
+      - file: 70_fine_tuning/checking_job_status.ipynb
+      - file: 70_fine_tuning/list_available_models.ipynb
 
-  - caption: Model Fine-Tuning locally
-    chapters:
-    - file: 71_fine_tuning_hf/fine-tune-gemma.ipynb
-    - file: 71_fine_tuning_hf/merging_model.ipynb
-    - file: 71_fine_tuning_hf/test_model.ipynb
-    - file: 71_fine_tuning_hf/hf_data_upload.ipynb
+    - file: 71_fine_tuning_hf/readme.md
+      sections:
+      - file: 71_fine_tuning_hf/fine-tune-gemma.ipynb
+      - file: 71_fine_tuning_hf/merging_model.ipynb
+      - file: 71_fine_tuning_hf/test_model.ipynb
+      - file: 71_fine_tuning_hf/hf_data_upload.ipynb
     
-  - caption: Benchmarking
-    chapters:
-    - file: 80_benchmarking_llms/10_CLIP_scores.ipynb
-    - file: 80_benchmarking_llms/20_vision_models.ipynb
-    - file: 80_benchmarking_llms/30_measuring_executability.ipynb
-    - file: 80_benchmarking_llms/40_summarize_error_messages.ipynb
+    - file: 80_benchmarking_llms/readme.md
+      sections:
+      - file: 80_benchmarking_llms/10_CLIP_scores.ipynb
+      - file: 80_benchmarking_llms/20_vision_models.ipynb
+      - file: 80_benchmarking_llms/30_measuring_executability.ipynb
+      - file: 80_benchmarking_llms/40_summarize_error_messages.ipynb
 
     
   - caption: Links
