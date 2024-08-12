@@ -8,6 +8,7 @@ parts:
   - caption: Installation
     chapters:
     - file: 00_setup/readme.md
+    - file: 00_setup/install_paula.md
     
   - caption: Prompting basics
     chapters:
