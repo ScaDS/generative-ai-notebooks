@@ -118,6 +118,14 @@ parts:
     - file: 80_benchmarking_llms/30_measuring_executability.ipynb
     - file: 80_benchmarking_llms/40_summarize_error_messages.ipynb
 
+
+  - caption: Variational Auto-Encoders
+    chapters:
+    - file: 90_variational_auto_encoders/01_intro_to_vae.ipynb
+    - file: 90_variational_auto_encoders/02_vae_architecture.ipynb
+    - file: 90_variational_auto_encoders/03_vae_training.ipynb
+    - file: 90_variational_auto_encoders/04_vae_applications.ipynb
+
     
   - caption: Links
     chapters:
