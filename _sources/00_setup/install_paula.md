@@ -12,13 +12,17 @@ module load Anaconda3
 ```
 
 ```
+module load Mamba
+```
+
+```
 conda init bash
 ```
 
 At this point, we need to reopen the terminal. Afterwards, create a conda environment with one specific python version only.
 
 ```
-conda env create -f https://raw.githubusercontent.com/ScaDS/generative-ai-notebooks/main/docs/00_setup/environment-gpu.yml
+mamba env create -f https://raw.githubusercontent.com/ScaDS/generative-ai-notebooks/main/docs/00_setup/environment-gpu.yml
 ```
 
 ```
