@@ -37,4 +37,5 @@ dependencies:
       - peft
       - trl
       - opencv-python
+      - pooch
 prefix: C:\Users\haase\miniconda3\envs\genai-gpu
