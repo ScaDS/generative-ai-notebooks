@@ -75,6 +75,7 @@ parts:
       - file: 50_code_generation/22_bug_fixing.ipynb
       - file: 50_code_generation/23_generate_notebooks.ipynb
       - file: 50_code_generation/24_vision-microscopy.ipynb
+      - file: 50_code_generation/25_vision-microscopy-hints.ipynb
 
     - file: 47_vision/readme.md
       sections:
