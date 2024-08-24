@@ -106,7 +106,7 @@ parts:
 
   - caption: Model Fine-Tuning locally
     chapters:
-    - file: 71_fine_tuning_hf/fine-tune-gemma.ipynb
+    - file: 71_fine_tuning_hf/fine-tune.ipynb
     - file: 71_fine_tuning_hf/merging_model.ipynb
     - file: 71_fine_tuning_hf/test_model.ipynb
     - file: 71_fine_tuning_hf/hf_data_upload.ipynb
