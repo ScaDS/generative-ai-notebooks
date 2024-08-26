@@ -26,7 +26,7 @@ mamba env create -f https://raw.githubusercontent.com/ScaDS/generative-ai-notebo
 ```
 
 ```
-conda activate genai-gpu
+conda activate genai-paula
 ```
 
 Make this conda environment available to Jupyter hub like this:
@@ -47,7 +47,7 @@ pip install stackview --user
 
 Just in case you want to install more packages later, reopen the terminal, activate the environment and install them:
 ```
-conda activate genai-gpu
+conda activate genai-paula
 pip install other-package 
 ```
 
