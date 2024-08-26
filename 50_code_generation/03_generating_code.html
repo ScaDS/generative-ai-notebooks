@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Generating code &#8212; Generative Artificial Intelligence Notebooks</title>
+    <title>Prompt engineering for code generation &#8212; Generative Artificial Intelligence Notebooks</title>
   
   
   
@@ -62,7 +62,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Generating code for processing images" href="04_generating_code_for_processing_images.html" />
-    <link rel="prev" title="Code generation" href="readme.html" />
+    <link rel="prev" title="Code generation" href="02_generating_code.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -541,6 +541,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../30_function_calling/10_function_calling.html">Function calling using ollama</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../30_function_calling/20_langchain.html">Prompting tasks using LangChain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../30_function_calling/30_langchain_bia.html">Prompting bio-image analysis tasks using LangChain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/35_langchain_bia_choosing_algorithms.html">Allowing language models to choose the right algorithm</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../30_function_calling/50_blablado.html"><code class="docutils literal notranslate"><span class="pre">blablado</span></code> calls functions for you</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../30_function_calling/55_microscope_stage_demo.html">Demo: Controlling a simulated microscope</a></li>
 
@@ -572,7 +574,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="readme.html">Code generation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Generating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_generating_code.html">Code generation</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Prompt engineering for code generation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_generating_code_for_processing_images.html">Generating code for processing images</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_system_messages.html">Powerful system messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_reflection.html">Reflection</a></li>
@@ -783,7 +787,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Generating code</h1>
+    <h1>Prompt engineering for code generation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -794,8 +798,8 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <section id="generating-code">
-<h1>Generating code<a class="headerlink" href="#generating-code" title="Permalink to this heading">#</a></h1>
+  <section id="prompt-engineering-for-code-generation">
+<h1>Prompt engineering for code generation<a class="headerlink" href="#prompt-engineering-for-code-generation" title="Permalink to this heading">#</a></h1>
 <p>In this notebook we will produce some image processing Python code and execute it to see if it works. We will build up the query gradually to demonstrate that short concise high quality code depends on the details we present in the prompt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -991,7 +995,7 @@ Only write Python code and short comments are ok.</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="readme.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="02_generating_code.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
