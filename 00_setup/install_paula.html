@@ -790,6 +790,11 @@ title="Print to PDF"
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#troubleshooting">
+   Troubleshooting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#read-more">
    Read more
   </a>
@@ -826,7 +831,7 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>Make this conda environment available to Jupyter hub like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ipykernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span> <span class="s1">&#39;genai-gpu&#39;</span> <span class="o">--</span><span class="n">display</span><span class="o">-</span><span class="n">name</span> <span class="s2">&quot;ScaDS.AI genai-gpu&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ipykernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span> <span class="s1">&#39;genai&#39;</span> <span class="o">--</span><span class="n">display</span><span class="o">-</span><span class="n">name</span> <span class="s2">&quot;ScaDS.AI genai&quot;</span>
 </pre></div>
 </div>
 <p>To make stackview work, install it outside the conda environment:</p>
@@ -842,6 +847,17 @@ title="Print to PDF"
 <span class="n">pip</span> <span class="n">install</span> <span class="n">other</span><span class="o">-</span><span class="n">package</span> 
 </pre></div>
 </div>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">#</a></h2>
+<p>In case the Jupyter Kernel doesn’t work and/or needs to be removed, you can check if it’s installed by printing out the list of installed kernels:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">kernelspec</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<p>And you can uninstall them using this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">kernelspec</span> <span class="n">uninstall</span> <span class="n">genai</span>
+</pre></div>
+</div>
+</section>
 <section id="read-more">
 <h2>Read more<a class="headerlink" href="#read-more" title="Permalink to this heading">#</a></h2>
 <p>These instructions were derived/modified from <a class="reference external" href="https://www.sc.uni-leipzig.de/05_Instructions/Jupyter/#how-to-use-your-own-environments-and-kernels">this page</a>.</p>
@@ -907,6 +923,11 @@ title="Print to PDF"
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#troubleshooting">
+   Troubleshooting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#read-more">
    Read more
   </a>
@@ -939,7 +960,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2024-08-25.<br>
+Last updated on 2024-08-26.<br>
 </p>
   </div>
   

@@ -31,7 +31,7 @@ conda activate genai-gpu
 
 Make this conda environment available to Jupyter hub like this:
 ```
-python -m ipykernel install --user --name 'genai-gpu' --display-name "ScaDS.AI genai-gpu"
+python -m ipykernel install --user --name 'genai' --display-name "ScaDS.AI genai"
 ```
 
 To make stackview work, install it outside the conda environment:
@@ -49,6 +49,20 @@ Just in case you want to install more packages later, reopen the terminal, activ
 ```
 conda activate genai-gpu
 pip install other-package 
+```
+
+## Troubleshooting
+
+In case the Jupyter Kernel doesn't work and/or needs to be removed, you can check if it's installed by printing out the list of installed kernels:
+
+```
+jupyter kernelspec list
+```
+
+And you can uninstall them using this command:
+
+```
+jupyter kernelspec uninstall genai
 ```
 
 ## Read more
