@@ -38,6 +38,7 @@ parts:
       - file: 30_function_calling/10_function_calling.ipynb
       - file: 30_function_calling/20_langchain.ipynb
       - file: 30_function_calling/30_langchain_bia.ipynb
+      - file: 30_function_calling/35_langchain_bia_choosing_algorithms.ipynb
       - file: 30_function_calling/50_blablado.ipynb
       - file: 30_function_calling/55_microscope_stage_demo.ipynb
 
@@ -66,6 +67,7 @@ parts:
 
     - file: 50_code_generation/readme.md
       sections:
+      - file: 50_code_generation/02_generating_code.ipynb
       - file: 50_code_generation/03_generating_code.ipynb
       - file: 50_code_generation/04_generating_code_for_processing_images.ipynb
       - file: 50_code_generation/06_system_messages.ipynb
