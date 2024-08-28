@@ -19,14 +19,14 @@ See also
 * [Scientific Data Analysis with Python](https://youtu.be/MOEPe9TGBK0)
 * [Getting started with Mambaforge and Python](https://biapol.github.io/blog/mara_lampert/getting_started_with_mambaforge_and_python/readme.html)
 
-## Install Mini-conda
-Download and install mamba/conda. We recommend the distribution [mini-conda](https://docs.anaconda.com/miniconda/). If you already have an old Anaconda installation you haven't touched for a while, it is highly recommended to uninstall it and install mini-conda instead.
+## Install Mini-Forge
+Download and install miniforge. We recommend the distribution [miniforge of conda](https://conda-forge.org/download/). If you already have an old [Ana]conda installation you haven't touched for a while, it is recommended to uninstall it and install mini-forge instead.
 
 For ease-of-use, it is recommended to install it for your use only and to add Conda to the PATH variable during installation.
 
-![img.png](install_mini-conda.png)
+![img.png](miniforge1.png)
 
-![img.png](install_mini-conda2.png)
+![img.png](miniforge2.png)
 
 ## Setting up a conda environment
 
