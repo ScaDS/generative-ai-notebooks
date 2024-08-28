@@ -23,6 +23,7 @@ parts:
       sections:
       - file: 15_endpoint_apis/01_openai_api.ipynb
       - file: 15_endpoint_apis/02_ollama_endpoint.ipynb
+      - file: 15_endpoint_apis/04_scadsai_llm_endpoint.ipynb
       - file: 15_endpoint_apis/03_blablador_endpoint.ipynb
       - file: 15_endpoint_apis/10_anthropic_api.ipynb
       - file: 15_endpoint_apis/20_google_gemini.ipynb
