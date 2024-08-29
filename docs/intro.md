@@ -14,6 +14,7 @@ The notebook collection aims covering these topics:
 * Prompt Engineering
 * Retrieval-augmented-generation
 * Model fine-tuning
+* Variational Auto-Encoders (VAEs)
 
 ## Covered Python libraries and software
 
