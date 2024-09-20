@@ -38,4 +38,5 @@ dependencies:
       - trl
       - opencv-python
       - pooch
+      - azure-ai-inference
 prefix: C:\Users\haase\miniconda3\envs\genai-gpu
