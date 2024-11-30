@@ -34,4 +34,5 @@ dependencies:
       - opencv-python
       - pooch
       - azure-ai-inference
+      - mistralai
 prefix: C:\Users\haase\miniconda3\envs\genai-cpu
