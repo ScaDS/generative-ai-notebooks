@@ -41,6 +41,7 @@ parts:
     - file: 30_function_calling/readme.md
       sections:
       - file: 30_function_calling/10_function_calling.ipynb
+      - file: 30_function_calling/12_function_calling_scadsai_llm.ipynb
       - file: 30_function_calling/20_langchain.ipynb
       - file: 30_function_calling/30_langchain_bia.ipynb
       - file: 30_function_calling/35_langchain_bia_choosing_algorithms.ipynb
