@@ -5,3 +5,4 @@ Agents are virtual implementations of assistants which can solve tasks instructe
 There are a couple for agentic frameworks available which aim at simplifying working with agents.
 * [langchain](https://github.com/langchain-ai/langchain)
 * [autogen](https://github.com/microsoft/autogen)
+* [llama-index](https://docs.llamaindex.ai/)
