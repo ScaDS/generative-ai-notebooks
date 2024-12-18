@@ -51,6 +51,7 @@ parts:
       - file: 30_function_calling/50_blablado.ipynb
       - file: 30_function_calling/55_microscope_stage_demo.ipynb
       - file: 35_agents/autogen_agentchat.ipynb
+      - file: 35_agents/react_agent_llama_index.ipynb
 
   - caption: Multi-Modal LLMs
     chapters:
