@@ -74,7 +74,7 @@ def call_function_from_response(tool_calls, named_tools, verbose=False):
 
 def prompt_scadsai_llm(message, tool_dicts, endpoint:str= "https://llm.scads.ai/v1", model:str="meta-llama/Llama-3.3-70B-Instruct", verbose=False):
     """
-    Submit a prompt to a locally running ollama model and returns the response.
+    Submit a prompt to a remotely running model and returns the response.
     """
     import os
     

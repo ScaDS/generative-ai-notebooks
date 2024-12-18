@@ -44,4 +44,7 @@ dependencies:
       - autogen-core==0.4.0.dev11
       - autogen-agentchat==0.4.0.dev11
       - autogen-core==0.4.0.dev11
+      - llama-index-llms-ollama
+      - llama-index-llms-openai-like
+      - tokenizers==0.21.0
 prefix: C:\Users\haase\miniconda3\envs\genai-gpu
