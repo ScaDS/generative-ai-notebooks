@@ -40,4 +40,7 @@ dependencies:
       - pooch
       - azure-ai-inference
       - mistralai
+      - autogen-core==0.4.0.dev11
+      - autogen-agentchat==0.4.0.dev11
+      - autogen-core==0.4.0.dev11
 prefix: C:\Users\haase\miniconda3\envs\genai-gpu

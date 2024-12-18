@@ -78,9 +78,8 @@ If you plan to use the commercial language models, you need to register at their
 * [Anthropic (claude)](https://www.anthropic.com/api)
 * [Google AI](https://cloud.google.com/docs/authentication/api-keys)
 * [Huggingface hub](https://huggingface.co/docs/hub/en/security-tokens)
-
-If you are German academic, you may also be eligible to acquire a free API key from Helmholtz.AI for the blablador infrastructure:
-* (blablador[https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/]
+* [KISSKI (GWDG)](https://kisski.gwdg.de/en/leistungen/2-02-llm-service/)
+* [blablador (Helmholtz)](https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/)
 
 You can then save these keys in the environment variables of your computer as explained [on this page](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
 
