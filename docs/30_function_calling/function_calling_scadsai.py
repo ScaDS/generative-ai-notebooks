@@ -20,8 +20,20 @@ def function_to_dict(func):
     
     for name, param in sig.parameters.items():
         param_type = str(param.annotation) if param.annotation != inspect._empty else "unknown"
+        
+        if param_type == "<class 'str'>":
+            param_type = "string" 
+        elif param_type == "<class 'int'>":
+            param_type = "integer" 
+        elif param_type == "<class 'float'>":
+            param_type = "number" 
+        elif param_type == "<class 'bool'>":
+            param_type = "boolean" 
+        else:
+            param_type = str(param_type).lower()
+        
         params["properties"][name] = {
-            "type": "string" if isinstance(param_type, str) else str(param_type).lower()
+            "type": param_type
         }
         if param.default == inspect._empty:
             params["required"].append(name)
@@ -60,7 +72,7 @@ def call_function_from_response(tool_calls, named_tools, verbose=False):
         # Todo: What if multiple functions should be called?
     
 
-def prompt_scadsai_llm(message, tool_dicts, endpoint:str= "https://llm.scads.ai/v1", model:str="Qwen/QwQ-32B-Preview", verbose=False):
+def prompt_scadsai_llm(message, tool_dicts, endpoint:str= "https://llm.scads.ai/v1", model:str="meta-llama/Llama-3.3-70B-Instruct", verbose=False):
     """
     Submit a prompt to a locally running ollama model and returns the response.
     """
