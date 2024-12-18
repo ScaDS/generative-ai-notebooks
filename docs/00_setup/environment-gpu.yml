@@ -19,6 +19,7 @@ dependencies:
   - anthropic 
   - openai 
   - langchain 
+  - langgraph
   - stackview 
   - voila 
   - pandas 
