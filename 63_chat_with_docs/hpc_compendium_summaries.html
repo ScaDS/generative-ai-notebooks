@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; Generative Artificial Intelligence Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '63_chat_with_docs/hpc_compendium_summaries';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/readme.html">
+                        Prompting basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../15_endpoint_apis/readme.html">
+                        Accessing LLMs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/readme.html">
+                        Chatbots
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/readme.html">
+                        Function / Tool calling
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme.html">
+                        Image generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme_manipulation.html">
+                        Image manipulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../42_video_generation/readme.html">
+                        Generating Videos, Books, Slides and online content
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/readme.html">
+                        Code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/readme.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/readme.html">
+                        Retrieval Augmented Generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="readme.html">
+                        Chat with Docs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/readme.html">
+                        Model Fine-Tuning in the cloud
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../71_fine_tuning_hf/readme.html">
+                        Model Fine-Tuning locally
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/readme.html">
+                        Benchmarking
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/readme.html">
+                        Prompting basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../15_endpoint_apis/readme.html">
+                        Accessing LLMs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/readme.html">
+                        Chatbots
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/readme.html">
+                        Function / Tool calling
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme.html">
+                        Image generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme_manipulation.html">
+                        Image manipulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../42_video_generation/readme.html">
+                        Generating Videos, Books, Slides and online content
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/readme.html">
+                        Code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/readme.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/readme.html">
+                        Retrieval Augmented Generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="readme.html">
+                        Chat with Docs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/readme.html">
+                        Model Fine-Tuning in the cloud
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../71_fine_tuning_hf/readme.html">
+                        Model Fine-Tuning locally
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/readme.html">
+                        Benchmarking
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Generative Artificial Intelligence Notebooks
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../00_setup/readme.html">Setting up your computer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../00_setup/install_paula.html">Installation instructions for Scientific Computing Uni Leipzig (paula)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLM basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10_prompting_basics/readme.html">Prompting basics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/01_prompting.html">Prompting basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/02_use_cases.html">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/03_prompt_engineering.html">Basic prompt Engineering</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../15_endpoint_apis/readme.html">Accessing LLMs</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/01_openai_api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/02_ollama_endpoint.html">Ollama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/04_scadsai_llm_endpoint.html">ScaDS.AI LLM endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/20_google_gemini.html">Gemini API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/30_huggingface.html">Huggingface API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/31_huggingface_serverless_inference_api.html">Huggingface Serverless Inference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../20_chatbots/readme.html">Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../20_chatbots/10_chatbot.html">Programming an LLM-based chatbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../20_chatbots/gui.html">A Chatbot GUI</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../30_function_calling/readme.html">Function / Tool calling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/10_function_calling.html">Function calling using ollama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/12_function_calling_scadsai_llm.html">Function calling using ScaDS.AI’s LLM service</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multi-Modal LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_image_generation_openai/readme.html">Image generation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/10_generating_images_dall_e.html">Generating images using DALL-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/20_generating_mri_images_dall_e.html">Generating Magnetic Resonance images using DALL-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/30_generating_images_using_huggingface.html">Generating images using Stable Diffusion</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_image_generation_openai/readme_manipulation.html">Image manipulation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/51_inpainting_dall-e.html">Inpainting using Dall-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/50_inpainting_huggingface.html">Inpainting using Stable Diffusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_huggingface.html">Image variations using Stable Diffusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_pix2pix.html">Image editing using instruct-pix2pix</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../42_video_generation/readme.html">Generating Videos, Books, Slides and online content</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../42_video_generation/videogen.html">Video generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../44_generating_jupyter_books/generator.html">Generating Jupyter books</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../45_pptx_generation/prompting_rdm.html">Auto-generating PowerPoint files with chatGPT and Dall-E</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../64_github_interaction/solving_github_issues.html">Solving github issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../50_code_generation/readme.html">Code generation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/02_generating_code.html">Code generation</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/03_generating_code.html">Prompt engineering for code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/04_generating_code_for_processing_images.html">Generating code for processing images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/06_system_messages.html">Powerful system messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/10_reflection.html">Reflection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/20_bia-bob_demo.html">BIA Bob demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/21_documenting_code.html">Documenting code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/22_bug_fixing.html">Bug fixing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/23_generate_notebooks.html">Generating notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/24_vision-microscopy.html">Vision models for image interpretation and code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/25_vision-microscopy-hints.html">Precise prompting for code</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../47_vision/readme.html">Vision language models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/10_vision_CLIP.html">CLIP transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/20_vision_ollama.html">LLAVA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/21_vision_openai.html">GPT4-omni VLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/22_vision_qwen.html">Qwen2-VL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/30_vision_models_structred_output.html">Vision models with structured output</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Prompt Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../60_rag/readme.html">Retrieval Augmented Generation</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/10_text-embeddings.html">Text embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/11_text-embeedings-openai.html">OpenAI Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/05_tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/20-simple-rag.html">Simple retrieval augmented generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="readme.html">Chat with Docs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="chat-with-docs.html">Chat with your PDFs!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hpc-compendium-prepare-data.html">Chat with documentation about HPC systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="long-context-prompting.html">Long context prompting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chat-with-hpc-compendium.html">Ask about the HPC compendium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="llm-based-rag.html">LLM-based Retrieval Augmented Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../70_fine_tuning/readme.html">Model Fine-Tuning in the cloud</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/10_generate_qa.html">Turning knowledge into a list of question and answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/40_fine_tuning.html">Fine-tuning an OpenAI GPT from questions and answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/50_model_testing.html">Test fine-tuned models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/checking_job_status.html">Checking a fine-tuning job status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/list_available_models.html">Listing available models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../71_fine_tuning_hf/readme.html">Model Fine-Tuning locally</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/fine-tune-gemma.html">Fine-tuning Gemma on local hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/merging_model.html">Merging fine-tuned models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/test_model.html">Testing the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/hf_data_upload.html">Uploading training data to the Huggingface Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../80_benchmarking_llms/readme.html">Benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/10_CLIP_scores.html">Optimizing image generation prompting using CLIP scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/20_vision_models.html">Vision Large Language Models for Counting objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/30_measuring_executability.html">Measuring code executability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/40_summarize_error_messages.html">Summarizing generated code failure reasons</a></li>
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../imprint.html">Imprint</a></li>
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks/issues/new?title=Issue%20on%20page%20%2F63_chat_with_docs/hpc_compendium_summaries.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/63_chat_with_docs/hpc_compendium_summaries.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <ul class="simple">
+<li><p><a class="reference external" href="http://accessibility.md">accessibility.md</a>:
+This document is an accessibility statement for the Technische Universität Dresden’s websites, outlining the university’s efforts to make its online presence barrier-free in accordance with German law, and providing contact information for reporting accessibility issues and seeking redress.</p></li>
+<li><p>data_protection_declaration.md:
+This document outlines a data protection policy, stating that only IP addresses are collected for error analysis and not shared with third parties unless required by law, and users have the right to request information about their personal data and contact relevant authorities.</p></li>
+<li><p><a class="reference external" href="http://index.md">index.md</a>:
+This documentation provides information on the High-Performance Computing (HPC) systems and services offered at the Center for Information Services and High-Performance Computing (ZIH) of the Technical University of Dresden, including user guides, contribution guidelines, news, training courses, and support options.</p></li>
+<li><p>legal_notice.md:
+This document provides a legal notice for a website or repository associated with the Technische Universität Dresden, including contact information and licensing details for documentation and software components.</p></li>
+<li><p>access/desktop_cloud_visualization.md:
+The NICE Desktop Cloud Visualization (DCV) tool allows users to remotely access OpenGL 3D applications running on ZIH systems using the server’s GPUs, with access options including JupyterHub and troubleshooting tips for GPU support.</p></li>
+<li><p>access/graphical_applications_with_webvnc.md:
+This document provides instructions on how to run graphical applications on ZIH systems using WebVNC, a web-based client that allows users to access graphical user interfaces through a browser, with setup options available via JupyterHub or terminal access.</p></li>
+<li><p>access/jupyterhub.md:
+The ZIH (Zentrum für Informationsdienste und Hochleistungsrechnen) at TU Dresden provides a JupyterHub service, offering users a simple way to work with Jupyter notebooks on their systems, with features including customizable environments, access to various clusters, and support for multiple programming languages, all accessible through a web-based interface.</p></li>
+<li><p>access/jupyterhub_custom_environments.md:
+This document provides a step-by-step guide on creating custom environments for JupyterHub, including using Python virtualenv and conda environments, and installing kernels to use preferred Python packages in Jupyter notebooks on various architectures at ZIH systems.</p></li>
+<li><p>access/jupyterhub_for_teaching.md:
+This document introduces useful features for using JupyterHub in a teaching setting, including cloning repositories with a link, passing spawn options through URL parameters, creating a shared Python environment, and automatically opening notebooks with a single link.</p></li>
+<li><p>access/jupyterhub_teaching_example.md:
+This document provides a step-by-step guide for lecturers on setting up a Jupyter Lab course using JupyterHub, including creating custom Python environments, cloning repositories, and activating environments for students to use during the course.</p></li>
+<li><p>access/jupyterlab.md:
+This document provides step-by-step instructions on how to access JupyterLab on various high-performance computing (HPC) clusters, including Alpha Centauri, Barnard, Capella, Romeo, and Visualization, using either port forwarding or X11 forwarding methods.</p></li>
+<li><p>access/jupyterlab_user.md:
+This document provides instructions on how to install a custom JupyterLab instance on a specific system, noting that support for custom installations will not be provided by the technicians and is currently only supported at “barnard”.</p></li>
+<li><p>access/key_fingerprints.md:
+This document provides a list of valid SSH key fingerprints for various high-performance computing (HPC) clusters and dataport nodes at TU Dresden, which users should verify when connecting to ensure they are accessing the correct server.</p></li>
+<li><p>access/overview.md:
+The ZIH systems can be accessed through various methods, including SSH, Desktop Cloud Visualization, WebVNC, and JupyterHub, but require a HPC project, login, and often a Virtual Private Network (VPN) connection, particularly when accessing from outside the campus networks.</p></li>
+<li><p>access/security_restrictions.md:
+The German HPC sites in Gauß Alliance, including ZIH systems, have implemented new security restrictions, such as password changes, updated SSH key requirements, and limited network access, in response to a recent security incident.</p></li>
+<li><p>access/ssh_login.md:
+This document provides a step-by-step guide on how to connect to the ZIH systems via terminal on Linux, Mac, and Windows operating systems, including setting up SSH keys, configuring default parameters, and enabling X11-forwarding for graphical applications.</p></li>
+<li><p>access/ssh_mobaxterm.md:
+This document provides a step-by-step guide on how to connect to a remote server using MobaXterm, a terminal emulator for Windows, including downloading and installing the software, configuring local settings, and starting a new SSH session.</p></li>
+<li><p>access/ssh_putty.md:
+This document provides a step-by-step guide on how to connect to a remote server using PuTTY, a free and open-source terminal emulator, on a Windows system, including downloading and installing PuTTY, starting a new SSH session, and configuring connection details such as SSH keys and X-forwarding.</p></li>
+<li><p>application/acknowledgement.md:
+The document requests that users of the NHR center at TU Dresden’s high-performance computing (HPC) resources acknowledge the usage of these resources in the acknowledgement section of their publications, providing examples of standard acknowledgement phrases in both English and German.</p></li>
+<li><p>application/overview.md:
+This document provides information and guidelines for researchers to apply for high-performance computing (HPC) resources at the ZIH, including application procedures, terms of use, and eligibility criteria, particularly for those with doctorates from German universities.</p></li>
+<li><p>application/project_management.md:
+This document provides a guide for HPC project leaders on how to manage their projects, including adding and removing users, monitoring resources, and viewing statistics, through the project management site, which also allows them to appoint a project administrator to handle these technical details.</p></li>
+<li><p>application/terms_of_use.md:
+The Terms of Use document outlines the rules and guidelines for using the High-Performance Computing (HPC) resources at the Centre for Information Services and High-Performance Computing (ZIH), including data storage, project management, and user responsibilities, with the German version being the only binding version.</p></li>
+<li><p>contrib/content_rules.md:
+This markdown document outlines the rules and guidelines for creating and contributing to a documentation project, covering aspects such as writing style, markdown syntax, code blocks, and search customization to ensure consistency and quality.</p></li>
+<li><p>contrib/contribute_browser.md:
+This document outlines the step-by-step process for contributing to the HPC documentation of TU Dresden/ZIH via GitLab’s web interface, including preparation, creating a branch, editing and adding articles, submitting for publication, and revision.</p></li>
+<li><p>contrib/contribute_container.md:
+This markdown document provides a step-by-step guide on how to contribute to the HPC documentation of TU Dresden/ZIH via a local clone of the Git repository, including initial setup, working with the local clone, merging forked repositories, and using tools to ensure quality, such as Docker containers and automated checks for links, spelling, and text format.</p></li>
+<li><p>contrib/howto_contribute.md:
+This documentation provides guidance on how to contribute to an open-source project, including its technical setup, content rules, Git workflow, and various methods of contribution, such as via issue, web IDE, or local clone, to ensure collaborative and consistent documentation.</p></li>
+<li><p>data_lifecycle/data_sharing.md:
+This markdown document provides instructions and commands for sharing data with other users or projects, including granting access to files or directories, using Access Control Lists (ACLs), and managing permissions for workspaces.</p></li>
+<li><p>data_lifecycle/file_systems.md:
+This document provides an overview of the different filesystems available on ZIH systems, including permanent and working filesystems, and offers recommendations for efficient usage, troubleshooting tips, and commands for debugging filesystem issues.</p></li>
+<li><p>data_lifecycle/longterm_preservation.md:
+This markdown document discusses the importance of long-term preservation of research data, including why it’s necessary, what data should be preserved, the role of metadata, and provides guidance on how to archive research data safely at the ZIH (Center for Information Services and High-Performance Computing) of TU Dresden.</p></li>
+<li><p>data_lifecycle/lustre.md:
+This document provides guidance on good practices for using Lustre filesystems, including minimizing metadata operations, using optimized commands such as <code class="docutils literal notranslate"><span class="pre">lfs</span> <span class="pre">df</span></code> and <code class="docutils literal notranslate"><span class="pre">lfs</span> <span class="pre">find</span></code>, and monitoring filesystem usage and striping information to maintain optimal performance.</p></li>
+<li><p>data_lifecycle/overview.md:
+This document outlines best practices for data life cycle management in high-performance computing (HPC) projects, including guidelines for data storage, backup, organization, metadata, data hygiene, and access rights to ensure efficient collaboration and data preservation.</p></li>
+<li><p>data_lifecycle/permanent.md:
+This document provides guidance on the use of permanent filesystems on a high-performance computing (HPC) system, including rules for usage, quotas, backup policies, and troubleshooting tips to help users manage their data effectively.</p></li>
+<li><p>data_lifecycle/working.md:
+This document provides an overview of the various filesystems available on ZIH systems, including their capacities, performances, and recommended uses, as well as tips for efficient usage and troubleshooting common filesystem issues.</p></li>
+<li><p>data_lifecycle/workspaces.md:
+This document discusses the concept of “workspaces” in a high-performance computing (HPC) environment, specifically at the ZIH (Center for Information Services and High Performance Computing) at TU Dresden. A workspace is a temporary directory with an associated expiration date, created on behalf of a user in a certain filesystem, allowing for better management of HPC data by providing a mechanism to allocate and manage storage space for temporary data, with features such as automatic expiration, extension, and restoration of workspaces.</p></li>
+<li><p>data_transfer/datamover.md:
+The Datamover is a special data transfer machine provided by ZIH for transferring data between ZIH filesystems at high speeds, and it can be utilized through specific commands such as <code class="docutils literal notranslate"><span class="pre">dtcp</span></code>, <code class="docutils literal notranslate"><span class="pre">dtmv</span></code>, and <code class="docutils literal notranslate"><span class="pre">dtrsync</span></code> after logging in to any ZIH HPC system.</p></li>
+<li><p>data_transfer/dataport_nodes.md:
+This document provides instructions on how to transfer large amounts of data to and from ZIH systems using dataport nodes, which offer higher bandwidth and are accessible via tools such as SCP, SFTP, and Rsync, with guidance for both Linux and Windows users.</p></li>
+<li><p>data_transfer/object_storage.md:
+This document provides a step-by-step guide on how to transfer data between ZIH systems and object storage (S3) using the <code class="docutils literal notranslate"><span class="pre">rclone</span></code> module, including initial configuration, copying data, and accessing stored files.</p></li>
+<li><p>data_transfer/overview.md:
+This document provides guidance on data transfer methods at ZIH systems, recommending the use of dataport nodes for external transfers and the Datamover for internal transfers, with references to detailed documentation for each tool.</p></li>
+<li><p>jobs_and_resources/alpha_centauri.md:
+The Alpha Centauri GPU cluster is a high-performance computing system designed for AI-related computations, featuring 48 physical cores, 8 NVIDIA A100-SXM4 GPUs, and 1 TB RAM per node, with access to various file systems, modules, and tools, including Python virtual environments, JupyterHub, and Singularity containers.</p></li>
+<li><p>jobs_and_resources/arm_hpc_devkit.md:
+The NVIDIA Arm HPC Developer Kit is a system provided by ZIH for experimentation with Arm-based systems, featuring a GIGABYTE server, Ampere Altra Q80-30 processor, and NVIDIA A100 GPUs, among other components, and can be accessed via SSH for testing and development purposes.</p></li>
+<li><p>jobs_and_resources/binding_and_distribution_of_tasks.md:
+This document provides guidance on using Slurm’s binding and distribution strategies to optimize the placement of tasks and threads on cores, sockets, and nodes, which can significantly impact the execution time of applications.</p></li>
+<li><p>jobs_and_resources/capella.md:
+The Lenovo multi-GPU cluster “Capella” is a high-performance computing system installed for AI-related computations and traditional HPC simulations, fully integrated into the ZIH HPC infrastructure and featuring advanced hardware, software, and storage capabilities.</p></li>
+<li><p>jobs_and_resources/checkpoint_restart.md:
+This markdown document discusses the concept of checkpointing in high-performance computing (HPC) systems, which involves saving the state of a running process to a file so that it can be restarted from where it left off in case of a failure, and provides instructions on how to use the Distributed Multi-Threaded Check-Pointing (DMTCP) tool to implement checkpointing on certain HPC systems.</p></li>
+<li><p>jobs_and_resources/hardware_overview.md:
+The ZIH systems offer high-performance computing (HPC) resources, comprising six homogeneous clusters with over 100,000 CPU cores and a peak performance of more than 1.5 quadrillion floating-point operations per second, tailored to support data-intensive computing, Big Data analytics, and artificial intelligence methods.</p></li>
+<li><p>jobs_and_resources/julia.md:
+The SMP Cluster Julia is a high-performance computing resource featuring a large shared memory node, specifically the HPE Superdome Flex, which is well-suited for data-intensive applications and equipped with fast NVMe storage for optimal performance.</p></li>
+<li><p>jobs_and_resources/mpi_issues.md:
+This document outlines known issues with Message Passing Interface (MPI) implementations, specifically with Open MPI, including performance losses, incorrect resource distribution, and segmentation faults, along with workarounds and solutions for these problems.</p></li>
+<li><p>jobs_and_resources/nvme_storage.md:
+This document describes the configuration of 90 NVMe storage nodes, each equipped with Intel NVMe SSDs, InfiniBand links, Intel Xeon processors, and RAM, capable of high-speed data transfer.</p></li>
+<li><p>jobs_and_resources/overview.md:
+This markdown document provides an introduction to the high-performance computing (HPC) resources and jobs at the ZIH, including an overview of the available hardware, how to select suitable hardware for specific applications, and guidelines for submitting jobs, managing memory and runtime limits, and utilizing software and data processing capabilities.</p></li>
+<li><p>jobs_and_resources/power9.md:
+The GPU Cluster Power9 is a standalone cluster, originally installed in 2018, that has been re-engineered with its own Slurm batch system and login nodes, featuring Power9 architecture and NVIDIA Tesla V100 GPUs, designed for AI, analytics, and data-intensive workloads.</p></li>
+<li><p>jobs_and_resources/romeo.md:
+The CPU Cluster Romeo is a general-purpose cluster based on AMD Rome CPUs, now a standalone system with its own Slurm batch system and login nodes, offering 128 physical cores and 512 GB of main memory per node, with specific usage guidelines and notes on compatibility with Intel compilers and optimization flags.</p></li>
+<li><p>jobs_and_resources/slurm.md:
+Here is a one-sentence summary of the markdown document in English:</p></li>
+</ul>
+<p>The document provides a comprehensive guide on using the Slurm batch system for resource management and job scheduling at the ZIH, covering topics such as job submission, interactive and batch jobs, job files, and managing and controlling jobs.</p>
+<ul class="simple">
+<li><p>jobs_and_resources/slurm_examples.md:
+This markdown document provides examples and guidelines for submitting various types of jobs, including parallel jobs, exclusive jobs, array jobs, and chain jobs, to a Slurm workload manager, along with explanations of the necessary options and parameters to use in each case.</p></li>
+<li><p>jobs_and_resources/slurm_examples_with_gpu.md:
+This document provides guidance on requesting and utilizing GPU resources through the Slurm batch system, including examples of job scripts for requesting GPUs, limitations on GPU job allocations, and running multiple GPU applications simultaneously in a batch job.</p></li>
+<li><p>jobs_and_resources/slurm_generator.md:
+This markdown document describes a Slurm Job File Generator, a tool that helps users create job files for submitting jobs to a High-Performance Computing (HPC) cluster using the Slurm workflow manager.</p></li>
+<li><p>jobs_and_resources/slurm_limits.md:
+The ZIH systems have resource limits, including runtime and memory limits, to ensure efficient use of compute nodes, and users are advised to submit jobs with estimated runtime and memory requirements to avoid automatic killing or cancellation of their jobs.</p></li>
+<li><p>quickstart/getting_started.md:
+This markdown document provides a comprehensive guide for new users to get started with using the High Performance Computing (HPC) systems at the ZIH, including applying for a login, accessing the systems, transferring code and data, accessing software, and running parallel HPC jobs.</p></li>
+<li><p>software/big_data_frameworks.md:
+This document provides a guide on using Big Data analytics frameworks, including Apache Spark, Apache Flink, and Apache Hadoop, on the ZIH systems, covering topics such as loading software modules, configuring and starting clusters, running interactive and batch jobs, and using Jupyter notebooks.</p></li>
+<li><p>software/building_software.md:
+To build software efficiently, it’s recommended to use a job with a separate build directory in the <code class="docutils literal notranslate"><span class="pre">/data/horse</span></code> filesystem, rather than compiling directly in the read-only <code class="docutils literal notranslate"><span class="pre">/projects</span></code> filesystem, and then install the software back to <code class="docutils literal notranslate"><span class="pre">/projects</span></code> from the login node.</p></li>
+<li><p>software/cfd.md:
+This document provides an overview of Computational Fluid Dynamics (CFD) applications available on a system, including OpenFOAM, Ansys CFX, Ansys Fluent, ICEM CFD, and STAR-CCM+, along with examples of job scripts and usage instructions for each application.</p></li>
+<li><p>software/cicd.md:
+The ZIH systems provide a GitLab Runner that enables users to run GitLab pipelines on their HPC infrastructure, allowing for continuous building, testing, and benchmarking of HPC software in its target environment.</p></li>
+<li><p>software/compilers.md:
+This document provides an overview of the compilers and flags available on the ZIH system, including GNU, Clang, Intel, and PGI compilers, and explains how to use various flags to optimize code for performance, debugging, and specific architectures.</p></li>
+<li><p>software/containers.md:
+This markdown document describes the use of Singularity, a containerization platform, on ZIH systems, including its benefits, installation, container creation, and usage, with the goal of allowing users to run their applications in a consistent and controlled environment without requiring root privileges.</p></li>
+<li><p>software/custom_easy_build_environment.md:
+This document provides a step-by-step guide on how to use EasyBuild to install custom software modules on a cluster, including setting up a workspace, loading the necessary modules, configuring EasyBuild, searching for and building EasyConfigs, and troubleshooting common issues.</p></li>
+<li><p>software/data_analytics.md:
+This document provides an overview of the data analytics tools and resources available on ZIH systems, including various software packages, frameworks, and environments, as well as guidance on data transfer, storage, and collaborative work.</p></li>
+<li><p>software/data_analytics_with_python.md:
+This markdown document provides a comprehensive guide to using Python for data analytics on the ZIH system, covering topics such as setting up Python environments, using Jupyter notebooks, parallel computing with libraries like Pandas and Dask, and utilizing MPI for Python (mpi4py) for message passing and parallel computing.</p></li>
+<li><p>software/data_analytics_with_r.md:
+This markdown document provides a comprehensive guide to data analytics with R, covering topics such as R console, JupyterHub, RStudio, package installation, deep learning, and parallel computing, with examples and code snippets to help users get started with data analysis using R.</p></li>
+<li><p>software/data_analytics_with_rstudio.md:
+This document provides an overview of using RStudio, an integrated development environment for R, on ZIH systems, including the option to run it directly in the browser through JupyterHub.</p></li>
+<li><p>software/debuggers.md:
+This document provides an overview of debugging techniques and tools available at ZIH systems, including GNU Debugger (GDB) and Arm DDT, with specific guidance on debugging serial, multi-threaded, and MPI-parallel programs, as well as memory debugging using tools like Valgrind.</p></li>
+<li><p>software/distributed_training.md:
+This markdown document discusses distributed training for machine learning models, including data parallelism and model parallelism, and provides examples and guides for implementing distributed training using TensorFlow, PyTorch, and Horovod on high-performance computing systems.</p></li>
+<li><p>software/energy_measurement.md:
+The Intel Haswell nodes of the ZIH system are equipped with power instrumentation that allows for the recording and accounting of power dissipation and energy consumption data, which can be accessed through various interfaces, including command line tools, Slurm tools, and a C API.</p></li>
+<li><p>software/fem_software.md:
+This markdown document provides an overview of various finite element method (FEM) software packages available on ZIH systems, including Abaqus, Ansys, COMSOL Multiphysics, and LS-DYNA, with instructions on how to use them interactively or in batch mode, along with examples and tips for efficient utilization.</p></li>
+<li><p>software/gpu_programming.md:
+This markdown document provides a comprehensive guide to GPU programming on a high-performance computing (HPC) system, covering topics such as available GPUs, using GPUs with Slurm, directive-based GPU programming with OpenACC and OpenMP, native GPU programming with CUDA, and performance analysis using various NVIDIA tools, including nvprof, Visual Profiler, Nsight Systems, and Nsight Compute.</p></li>
+<li><p>software/hyperparameter_optimization.md:
+Here is a one-sentence summary of the markdown document in English:</p></li>
+</ul>
+<p>The OmniOpt tool is a hyperparameter optimization software that can be used to optimize the performance of various applications, including classical simulations and machine learning algorithms, and is demonstrated through a example use case of optimizing a neural network on the MNIST fashion dataset.</p>
+<ul class="simple">
+<li><p>software/licenses.md:
+This document provides information and guidelines for users who want to install and use their own software licenses on ZIH systems, including how to configure the license server and adjust license settings using environment variables.</p></li>
+<li><p>software/lo2s.md:
+The lightweight node-level performance monitoring tool <code class="docutils literal notranslate"><span class="pre">lo2s</span></code> creates parallel OTF2 traces, providing a comprehensive view of both application and system performance, and can operate in either process monitoring or system monitoring mode to track thread execution, system metrics, and other relevant data.</p></li>
+<li><p>software/machine_learning.md:
+This document provides an introduction to running machine learning applications on ZIH systems, covering topics such as recommended GPU clusters, loading modules, using Python and R for machine learning, working with Jupyter Notebooks, using containers, and accessing additional libraries and datasets for machine learning tasks.</p></li>
+<li><p>software/mathematics.md:
+This document provides an overview of the applications of mathematics, specifically focusing on the computing environments Mathematica and MATLAB, including their installation, configuration, and usage on a high-performance computing system, as well as examples of how to use them for parallel computing and batch processing.</p></li>
+<li><p>software/math_libraries.md:
+This document provides an overview of various high-quality mathematics libraries available for use, including BLAS, LAPACK, ScaLAPACK, AOCL, MKL, and others, which offer efficient and optimized implementations of linear algebra and other mathematical functions for different hardware architectures.</p></li>
+<li><p>software/modules.md:
+The document describes the environment modules system used on High-Performance Computing (HPC) systems at ZIH, which manages software usage by providing a dynamic modification of a user’s environment, allowing for easy switching between different versions of installed software packages and libraries.</p></li>
+<li><p>software/mpi_usage_error_detection.md:
+The document describes how to use the MUST (MPI Incorrect Usage Checker) tool to check the correctness of MPI (Message Passing Interface) applications, which is a standard for parallel computing, and provides a step-by-step guide on how to set up and run MUST on an HPC system to detect MPI usage errors.</p></li>
+<li><p>software/nanoscale_simulations.md:
+This markdown document provides an overview of various nanoscale simulation software packages available on a high-performance computing system, including ABINIT, CP2K, CPMD, GAMESS, Gaussian, GROMACS, LAMMPS, NAMD, ORCA, Siesta, and VASP, along with instructions on how to access and use each package.</p></li>
+<li><p>software/ngc_containers.md:
+This document describes how to use NVIDIA GPU-accelerated containers (NGC containers) for deep learning on the ZIH system, including how to run containers on a single GPU, multiple GPUs, and multiple nodes, as well as the advantages and limitations of using NGC containers.</p></li>
+<li><p>software/overview.md:
+This document provides an overview of the environment and software used on ZIH systems, including the user environment, software environment, and various options for working with software, such as modules, Jupyter Notebook, and containers.</p></li>
+<li><p>software/papi.md:
+This document provides an introduction to using the Performance Application Programming Interface (PAPI) to read CPU performance counters, including its basic usage, high-level and low-level APIs, and examples of how to instrument applications and use PAPI tools on ZIH systems.</p></li>
+<li><p>software/performance_engineering_overview.md:
+This document provides an overview of performance engineering, a process of ensuring that computing systems meet the expected performance requirements, and describes various tools and techniques used in this field, including instrumentation, measurement, analysis, and presentation of performance data.</p></li>
+<li><p>software/perf_tools.md:
+This document provides an overview of the Linux <code class="docutils literal notranslate"><span class="pre">perf</span></code> command, a performance analysis tool that allows users to sample applications, read performance counters, and identify performance bottlenecks, with tutorials and examples for users and administrators on how to use <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">stat</span></code>, <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">record</span></code>, <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">report</span></code>, <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">script</span></code>, and <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">top</span></code> commands.</p></li>
+<li><p>software/pika.md:
+This document describes how to use PIKA, a hardware performance monitoring stack, to track and analyze Slurm jobs on high-performance computing systems, providing a web interface to visualize and understand job efficiency and performance metrics.</p></li>
+<li><p>software/power_ai.md:
+This document provides an overview of the PowerAI framework for machine learning, including links to various documentation sources, user guides for specific technologies such as TensorFlow and PyTorch, and information on the PowerAI container, all specific to version 1.5.4 and applicable only to the Power9 cluster.</p></li>
+<li><p>software/private_modules.md:
+This document describes how to set up and use private modules, which allow users to load their own installed software packages into their environment and manage different versions without conflicts, for either individual users or project groups.</p></li>
+<li><p>software/python_virtual_environments.md:
+This markdown document provides guidance on using Python virtual environments on the ZIH system, including creating and managing environments with <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> and <code class="docutils literal notranslate"><span class="pre">conda</span></code>, as well as persisting environments for future use.</p></li>
+<li><p>software/pytorch.md:
+This document provides an overview of using PyTorch, an open-source machine learning framework, on a cluster, including how to load modules, create virtual environments, import PyTorch, and migrate scripts from CPU to GPU, as well as troubleshooting tips and caveats to consider when working with PyTorch.</p></li>
+<li><p>software/scorep.md:
+The Score-P measurement infrastructure is a scalable tool suite for profiling, event tracing, and online analysis of HPC applications, which can be easily used by prepending the Score-P wrapper to compile and link commands, and allows for configuration of various parameters via environment variables to record profiles and/or event traces.</p></li>
+<li><p>software/singularity_power9.md:
+This document provides guidance on building and using Singularity containers on the Power9 architecture at ZIH systems, including a recommended workflow, command-line tools, and troubleshooting tips for common issues like filesystem access and SSH key management.</p></li>
+<li><p>software/singularity_recipe_hints.md:
+This markdown document provides a collection of recipes and hints for working with Singularity, a container platform, including example definitions for creating containers, running GUI applications, using hardware acceleration, and managing temporary and cache directories.</p></li>
+<li><p>software/software_development_overview.md:
+This markdown document provides an overview of software development and tools on the ZIH systems, covering topics such as compiling code, using libraries, debugging, and optimizing performance, along with helpful hints and questions to consider for ensuring reliable and efficient code.</p></li>
+<li><p>software/spec.md:
+This document provides guidance on using the SPEChpc 2021 benchmark suite to evaluate the performance of various high-performance computing (HPC) systems, including instructions on installation, configuration, execution, and troubleshooting of common issues.</p></li>
+<li><p>software/tensorboard.md:
+This document provides a guide on how to use TensorBoard, a visualization toolkit for TensorFlow, to inspect model training, either through JupyterHub or by loading the TensorFlow module environment on a compute node, and accessing it via a web interface.</p></li>
+<li><p>software/tensorflow.md:
+This document provides an overview of using neural networks with TensorFlow, a free open-source software library, on a cluster, including installation, usage, and compatibility information, as well as examples of working with TensorFlow in various environments such as JupyterHub, containers, and with programming languages like Python and R.</p></li>
+<li><p>software/utilities.md:
+This document provides an overview of various utilities and tools available on the ZIH systems to make working with them more comfortable, including tmux, lstopo for architecture information, and tools for working with large archives and compressed files, such as rapidgzip and ratarmount.</p></li>
+<li><p>software/vampir.md:
+This markdown document provides a comprehensive guide on using Vampir, a graphical analysis framework for studying the course of events in parallel programs, including its introduction, setup, usage, and advanced features such as VampirServer and port forwarding.</p></li>
+<li><p>software/virtual_desktops.md:
+This document provides a guide on how to use WebVNC or DCV to run GUI applications on high-performance computing (HPC) resources, including steps to launch and reconnect to virtual desktops, as well as terminate remote sessions.</p></li>
+<li><p>software/virtual_machines.md:
+This markdown document provides instructions and guidelines for users to create and access virtual machines (VMs) on ZIH systems, specifically for building Singularity containers on Power9 and x86 architectures.</p></li>
+<li><p>software/visualization.md:
+This document provides a guide on using ParaView, an open-source data analysis and visualization application, on the ZIH systems at TU Dresden, covering both interactive and batch modes, as well as the use of GPUs for offscreen rendering.</p></li>
+<li><p>software/zsh.md:
+This document introduces ZSH (z-shell) as an alternative shell to Bash, highlighting its convenience features, such as themes, auto-completion, syntax highlighting, and typo correction, and provides examples of useful plugins and configurations, particularly for use on ZIH systems.</p></li>
+<li><p>support/support.md:
+The user support document outlines the process for requesting help with HPC systems at TU Dresden, including how to create a ticket via email and attend open Q&amp;A sessions for troubleshooting and guidance.</p></li>
+</ul>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./63_chat_with_docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on 2024-12-23.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+Contributions and feedback are welcome.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
