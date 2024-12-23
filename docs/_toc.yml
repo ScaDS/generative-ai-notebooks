@@ -43,16 +43,6 @@ parts:
       - file: 30_function_calling/10_function_calling.ipynb
       - file: 30_function_calling/12_function_calling_scadsai_llm.ipynb
 
-    - file: 35_agents/readme
-      sections:
-      - file: 30_function_calling/20_langchain.ipynb
-      - file: 30_function_calling/30_langchain_bia.ipynb
-      - file: 30_function_calling/35_langchain_bia_choosing_algorithms.ipynb
-      - file: 30_function_calling/50_blablado.ipynb
-      - file: 30_function_calling/55_microscope_stage_demo.ipynb
-      - file: 35_agents/autogen_agentchat.ipynb
-      - file: 35_agents/react_agent_llama_index.ipynb
-
   - caption: Multi-Modal LLMs
     chapters:
 
@@ -103,13 +93,25 @@ parts:
     
     - file: 60_rag/readme.md
       sections:
-      - file: 60_rag/10_word-embeddings.ipynb
+      - file: 60_rag/10_text-embeddings.ipynb
+      - file: 60_rag/11_text-embeedings-openai.ipynb
       - file: 60_rag/05_tokenization.ipynb
       - file: 60_rag/20-simple-rag.ipynb
         
     - file: 63_chat_with_docs/readme.md
       sections:
       - file: 63_chat_with_docs/chat-with-docs.ipynb
+
+    - file: 65_agents/readme
+      sections:
+      - file: 30_function_calling/20_langchain.ipynb
+      - file: 30_function_calling/30_langchain_bia.ipynb
+      - file: 30_function_calling/35_langchain_bia_choosing_algorithms.ipynb
+      - file: 30_function_calling/50_blablado.ipynb
+      - file: 30_function_calling/55_microscope_stage_demo.ipynb
+      - file: 65_agents/autogen_agentchat.ipynb
+      - file: 65_agents/react_agent_llama_index.ipynb
+      - file: 66_arxiv_agent/arxiv_powerpoint_karaoke.ipynb
 
     - file: 70_fine_tuning/readme.md
       sections:
