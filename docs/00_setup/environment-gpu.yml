@@ -49,5 +49,4 @@ dependencies:
       - llama-index-embeddings-huggingface
       - tokenizers==0.21.0
       - pypdf
-      - arxiv
 prefix: C:\Users\haase\miniconda3\envs\genai-gpu
