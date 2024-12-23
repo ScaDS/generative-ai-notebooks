@@ -101,6 +101,11 @@ parts:
     - file: 63_chat_with_docs/readme.md
       sections:
       - file: 63_chat_with_docs/chat-with-docs.ipynb
+      - file: 63_chat_with_docs/hpc-compendium-prepare-data.ipynb
+      - file: 63_chat_with_docs/long-context-prompting.ipynb
+      - file: 63_chat_with_docs/chat-with-hpc-compendium.ipynb
+      - file: 63_chat_with_docs/llm-based-rag.ipynb
+      
 
     - file: 65_agents/readme
       sections:
