@@ -917,12 +917,14 @@ This documentation provides information on the High-Performan ...
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>access/jupyterhub.md
 access/overview.md
+access/jupyterlab.md
+quickstart/getting_started.md
+software/big_data_frameworks.md
+software/data_analytics_with_python.md
+software/data_analytics_with_r.md
+software/data_analytics_with_rstudio.md
 access/desktop_cloud_visualization.md
 access/graphical_applications_with_webvnc.md
-access/jupyterlab.md
-software/data_analytics_with_python.md
-software/jupyterhub_for_teaching.md
-software/jupyterhub_teaching_example.md
 </pre></div>
 </div>
 </div>
@@ -942,25 +944,7 @@ software/jupyterhub_teaching_example.md
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">full_texts</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">relevant_file_paths</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">docs_root_folder</span> <span class="o">+</span> <span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">full_texts</span><span class="p">[</span><span class="n">compendium_url</span> <span class="o">+</span> <span class="n">file</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="nn">      7 documents = &quot;\n&quot;.join([f&quot;### {file} \n\n```\n{content}\n```\n&quot; for file, content</span> in <span class="ni">full_texts.items</span><span class="nt">()])</span>
-
-<span class="nn">File ~\miniforge3\envs\genai-gpu\Lib\site-packages\IPython\core\interactiveshell.py:324,</span> in <span class="ni">_modified_open</span><span class="nt">(file, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">if</span> <span class="n">file</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}:</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="sa">f</span><span class="s2">&quot;IPython won&#39;t let you open fd=</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2"> by default &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span>         <span class="s2">&quot;as it is likely to crash IPython. If you know what you are doing, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="s2">&quot;you can use builtins&#39; open.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">324</span> <span class="k">return</span> <span class="n">io_open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;hpc-compendium/doc.zih.tu-dresden.de/docs/software/jupyterhub_for_teaching.md&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;### https://compendium.hpc.tu-dresden.de/access/jupyterhub \n\n```\n# JupyterHub\n\nWith our JupyterHub service, we offer you a quick and easy way to work with\nJupyter notebooks on ZIH systems. This page covers starting and stopping\nJupyterHub sessions, error handling and customizing the environment.\n\nWe also provide a comprehensive documentation on how to use\n[JupyterHub for Teaching (git-pull feature, quickstart links, direct links to notebook files)](jupyterhub_for_teaching.md).\n\n## Disclaimer\n\n!!&#39;
 </pre></div>
 </div>
 </div>
@@ -985,6 +969,13 @@ software/jupyterhub_teaching_example.md
 <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<p>To access the Jupyter Hub on the HPC system, you can visit the <a class="reference external" href="https://compendium.hpc.tu-dresden.de/access/jupyterhub">JupyterHub</a> page and follow the instructions provided. According to the <a class="reference external" href="https://compendium.hpc.tu-dresden.de/access/jupyterhub">https://compendium.hpc.tu-dresden.de/access/jupyterhub</a> document, you can access JupyterHub at <a class="reference external" href="https://jupyterhub.hpc.tu-dresden.de">https://jupyterhub.hpc.tu-dresden.de</a> and log in with your ZIH credentials.</p>
+<p>Additionally, you can also find more information on how to access JupyterHub in other documents such as <a class="reference external" href="https://compendium.hpc.tu-dresden.de/access/overview">https://compendium.hpc.tu-dresden.de/access/overview</a> and <a class="reference external" href="https://compendium.hpc.tu-dresden.de/quickstart/getting_started">https://compendium.hpc.tu-dresden.de/quickstart/getting_started</a>.</p>
+<p>Please note that you need to have a ZIH HPC login to access JupyterHub, and you can apply for it via the <a class="reference external" href="https://selfservice.zih.tu-dresden.de/index.php/hpclogin/noLogin">HPC login application form</a> as mentioned in the <a class="reference external" href="https://compendium.hpc.tu-dresden.de/quickstart/getting_started">https://compendium.hpc.tu-dresden.de/quickstart/getting_started</a> document.</p>
+<p>It is also worth mentioning that JupyterHub is available on other clusters such as <code class="docutils literal notranslate"><span class="pre">vis</span></code> as mentioned in the <a class="reference external" href="https://compendium.hpc.tu-dresden.de/access/desktop_cloud_visualization">https://compendium.hpc.tu-dresden.de/access/desktop_cloud_visualization</a> document.</p>
+<p>Please let me know if you need further assistance!</p>
 </div>
 </div>
 </section>
