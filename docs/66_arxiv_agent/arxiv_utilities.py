@@ -66,6 +66,23 @@ def check_if_arxiv_paper_is_cc_by_40(link):
     license_response = requests.get(link)        
     return license_response.status_code == 200 and "https://arxiv.org/icons/licenses/by-4.0.png" in license_response.text
 
+def get_arxiv_metadata(arxiv_id):
+    import arxiv
+    search = arxiv.Search(id_list=[arxiv_id])
+    paper = next(search.results())
+    
+    metadata = {
+        'title': paper.title,
+        'authors': [author.name for author in paper.authors],
+        'published': paper.published,
+        'summary': paper.summary,
+        'doi': paper.doi,
+        'primary_category': paper.primary_category,
+        'categories': paper.categories,
+        'pdf_url': paper.pdf_url
+    }
+    return metadata
+    
 def convert_to_markdown(papers):
     md_content = "# Search Results\n\n"
     for idx, paper in enumerate(papers, start=1):
@@ -223,4 +240,25 @@ def make_powerpoint_slides(slides:str, filename="slides.pptx"):
 
     return f"The Powerpoint Presentation was saved as [{filename}]({filename})"
 
-
+def prompt_scadsai_llm(message:str, model="meta-llama/Llama-3.3-70B-Instruct"):
+    """A prompt helper function that sends a message to ScaDS.AI LLM server at 
+    ZIH TU Dresden and returns only the text response.
+    """
+    import os
+    import openai
+    
+    # convert message in the right format if necessary
+    if isinstance(message, str):
+        message = [{"role": "user", "content": message}]
+    
+    # setup connection to the LLM
+    client = openai.OpenAI(base_url="https://llm.scads.ai/v1",
+                           api_key=os.environ.get('SCADSAI_API_KEY')
+    )
+    response = client.chat.completions.create(
+        model=model,
+        messages=message
+    )
+    
+    # extract answer
+    return response.choices[0].message.content
