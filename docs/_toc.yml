@@ -107,7 +107,7 @@ parts:
       - file: 63_chat_with_docs/llm-based-rag.ipynb
       
 
-    - file: 65_agents/readme
+    - file: 35_agents/readme
       sections:
       - file: 30_function_calling/20_langchain.ipynb
       - file: 30_function_calling/30_langchain_bia.ipynb
