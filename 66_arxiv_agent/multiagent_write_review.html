@@ -1,0 +1,1449 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>A multi-agent system writing a manuscript &#8212; Generative Artificial Intelligence Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '66_arxiv_agent/multiagent_write_review';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/readme.html">
+                        Prompting basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../15_endpoint_apis/readme.html">
+                        Accessing LLMs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/readme.html">
+                        Chatbots
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/readme.html">
+                        Function / Tool calling
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme.html">
+                        Image generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme_manipulation.html">
+                        Image manipulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../42_video_generation/readme.html">
+                        Generating Videos, Books, Slides and online content
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/readme.html">
+                        Code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/readme.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/readme.html">
+                        Retrieval Augmented Generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../63_chat_with_docs/readme.html">
+                        Chat with Docs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/readme.html">
+                        Model Fine-Tuning in the cloud
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../71_fine_tuning_hf/readme.html">
+                        Model Fine-Tuning locally
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/readme.html">
+                        Benchmarking
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/readme.html">
+                        Prompting basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../15_endpoint_apis/readme.html">
+                        Accessing LLMs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/readme.html">
+                        Chatbots
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/readme.html">
+                        Function / Tool calling
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme.html">
+                        Image generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme_manipulation.html">
+                        Image manipulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../42_video_generation/readme.html">
+                        Generating Videos, Books, Slides and online content
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/readme.html">
+                        Code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/readme.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/readme.html">
+                        Retrieval Augmented Generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../63_chat_with_docs/readme.html">
+                        Chat with Docs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/readme.html">
+                        Model Fine-Tuning in the cloud
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../71_fine_tuning_hf/readme.html">
+                        Model Fine-Tuning locally
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/readme.html">
+                        Benchmarking
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Generative Artificial Intelligence Notebooks
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../00_setup/readme.html">Setting up your computer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../00_setup/install_paula.html">Installation instructions for Scientific Computing Uni Leipzig (paula)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLM basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10_prompting_basics/readme.html">Prompting basics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/01_prompting.html">Prompting basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/02_use_cases.html">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/03_prompt_engineering.html">Basic prompt Engineering</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../15_endpoint_apis/readme.html">Accessing LLMs</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/01_openai_api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/02_ollama_endpoint.html">Ollama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/04_scadsai_llm_endpoint.html">ScaDS.AI LLM endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/20_google_gemini.html">Gemini API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/30_huggingface.html">Huggingface API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/31_huggingface_serverless_inference_api.html">Huggingface Serverless Inference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../20_chatbots/readme.html">Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../20_chatbots/10_chatbot.html">Programming an LLM-based chatbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../20_chatbots/gui.html">A Chatbot GUI</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../30_function_calling/readme.html">Function / Tool calling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/10_function_calling.html">Function calling using ollama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/12_function_calling_scadsai_llm.html">Function calling using ScaDS.AI’s LLM service</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multi-Modal LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_image_generation_openai/readme.html">Image generation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/10_generating_images_dall_e.html">Generating images using DALL-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/20_generating_mri_images_dall_e.html">Generating Magnetic Resonance images using DALL-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/30_generating_images_using_huggingface.html">Generating images using Stable Diffusion</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_image_generation_openai/readme_manipulation.html">Image manipulation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/51_inpainting_dall-e.html">Inpainting using Dall-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/50_inpainting_huggingface.html">Inpainting using Stable Diffusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_huggingface.html">Image variations using Stable Diffusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_pix2pix.html">Image editing using instruct-pix2pix</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../42_video_generation/readme.html">Generating Videos, Books, Slides and online content</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../42_video_generation/videogen.html">Video generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../44_generating_jupyter_books/generator.html">Generating Jupyter books</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../45_pptx_generation/prompting_rdm.html">Auto-generating PowerPoint files with chatGPT and Dall-E</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../64_github_interaction/solving_github_issues.html">Solving github issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../50_code_generation/readme.html">Code generation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/02_generating_code.html">Code generation</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/03_generating_code.html">Prompt engineering for code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/04_generating_code_for_processing_images.html">Generating code for processing images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/06_system_messages.html">Powerful system messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/10_reflection.html">Reflection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/20_bia-bob_demo.html">BIA Bob demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/21_documenting_code.html">Documenting code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/22_bug_fixing.html">Bug fixing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/23_generate_notebooks.html">Generating notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/24_vision-microscopy.html">Vision models for image interpretation and code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/25_vision-microscopy-hints.html">Precise prompting for code</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../47_vision/readme.html">Vision language models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/10_vision_CLIP.html">CLIP transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/20_vision_ollama.html">LLAVA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/21_vision_openai.html">GPT4-omni VLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/22_vision_qwen.html">Qwen2-VL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/30_vision_models_structred_output.html">Vision models with structured output</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Prompt Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../60_rag/readme.html">Retrieval Augmented Generation</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/10_text-embeddings.html">Text embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/11_text-embeedings-openai.html">OpenAI Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/05_tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/20-simple-rag.html">Simple retrieval augmented generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../63_chat_with_docs/readme.html">Chat with Docs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/chat-with-docs.html">Chat with your PDFs!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/hpc-compendium-prepare-data.html">Chat with documentation about HPC systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/long-context-prompting.html">Long context prompting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/chat-with-hpc-compendium.html">Ask about the HPC compendium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/llm-based-rag.html">LLM-based Retrieval Augmented Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../70_fine_tuning/readme.html">Model Fine-Tuning in the cloud</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/10_generate_qa.html">Turning knowledge into a list of question and answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/40_fine_tuning.html">Fine-tuning an OpenAI GPT from questions and answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/50_model_testing.html">Test fine-tuned models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/checking_job_status.html">Checking a fine-tuning job status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/list_available_models.html">Listing available models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../71_fine_tuning_hf/readme.html">Model Fine-Tuning locally</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/fine-tune-gemma.html">Fine-tuning Gemma on local hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/merging_model.html">Merging fine-tuned models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/test_model.html">Testing the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/hf_data_upload.html">Uploading training data to the Huggingface Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../80_benchmarking_llms/readme.html">Benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/10_CLIP_scores.html">Optimizing image generation prompting using CLIP scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/20_vision_models.html">Vision Large Language Models for Counting objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/30_measuring_executability.html">Measuring code executability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/40_summarize_error_messages.html">Summarizing generated code failure reasons</a></li>
+
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../imprint.html">Imprint</a></li>
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks/issues/new?title=Issue%20on%20page%20%2F66_arxiv_agent/multiagent_write_review.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/66_arxiv_agent/multiagent_write_review.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>A multi-agent system writing a manuscript</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#research-assistant-agent">
+   Research-assistant agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scientific-writer">
+   Scientific writer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reviewer-agent">
+   Reviewer agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#printer-agent">
+   Printer agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scheduler-agent">
+   Scheduler agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-a-manuscript">
+   Writing a manuscript
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="a-multi-agent-system-writing-a-manuscript">
+<h1>A multi-agent system writing a manuscript<a class="headerlink" href="#a-multi-agent-system-writing-a-manuscript" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we will use a multi-agent system to write a review about some arxiv papers. We will use <a class="reference external" href="https://github.com/huggingface/smolagents">smolagents</a> to define agents with different responsibilities:</p>
+<ul class="simple">
+<li><p>A research assistant which can read arxiv papers and write manuscript sumaries.</p></li>
+<li><p>A reviewer which will provide constructive feedback given a text.</p></li>
+<li><p>A scientific writer which will incorporate the feedback and write a final manuscript.</p></li>
+<li><p>A printer which will print the final manuscript.</p></li>
+<li><p>A scheduler which distributes tasks to the other agents.</p></li>
+</ul>
+<p><strong>Note:</strong> For technical reasons, we only read the abstract.
+Of course, as in read life, it would be better to read the entire paper, but this exceeds token limits of SOTA open-weight LLMs.</p>
+<p>This notebook will only work with an upcoming release of smolagents (&gt; 0.1.3), after this PR is merged: <a class="github reference external" href="https://github.com/huggingface/smolagents/pull/12">huggingface/smolagents#12</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">from</span> <span class="nn">smolagents.agents</span> <span class="kn">import</span> <span class="n">ToolCallingAgent</span><span class="p">,</span> <span class="n">CodeAgent</span>
+<span class="kn">from</span> <span class="nn">smolagents</span> <span class="kn">import</span> <span class="n">tool</span><span class="p">,</span> <span class="n">LiteLLMModel</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># these functions are defined in arxiv_utilities.py</span>
+<span class="kn">from</span> <span class="nn">arxiv_utilities</span> <span class="kn">import</span> <span class="n">prompt_scadsai_llm</span><span class="p">,</span> <span class="n">get_arxiv_metadata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\miniforge3\envs\genai-gpu\Lib\site-packages\pydantic\_internal\_config.py:345: UserWarning: Valid config keys have changed in V2:
+* &#39;fields&#39; has been removed
+  warnings.warn(message, UserWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We configure to use a model provided on our institutional LLM server.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span>    <span class="s2">&quot;openai/meta-llama/Llama-3.3-70B-Instruct&quot;</span>
+<span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;https://llm.scads.ai/v1&quot;</span>
+<span class="n">api_key</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt_scadsai_llm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comment this to show detailed output</span>
+<span class="kn">from</span> <span class="nn">smolagents.utils</span> <span class="kn">import</span> <span class="n">console</span>
+<span class="n">console</span><span class="o">.</span><span class="n">quiet</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, we define a function that generates a new agent with given name, description, system message, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_agent</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">api_base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_message</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create an agent that uses a given list of tools according to its system message.&quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span><span class="n">model_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
+                         <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
+                         <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">system_prompt</span><span class="o">=</span><span class="n">system_message</span><span class="p">)</span>
+    <span class="n">agent</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="n">agent</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+
+    <span class="k">return</span> <span class="n">agent</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example we use a <a class="reference external" href="https://en.wikipedia.org/wiki/Factory_method_pattern">factory pattern</a> for agents, to ensure that for every task, a new agent is created. This avoids very long prompts with former, irrelevant conversations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">agent_factory</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">create_instance</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">create_agent</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">create_instance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="research-assistant-agent">
+<h2>Research-assistant agent<a class="headerlink" href="#research-assistant-agent" title="Permalink to this heading">#</a></h2>
+<p>We now define tools that can be called by the agent and an agent factory for the research-assistant. This agent can read arxiv meta-data, such as paper titles, authors and summaries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read the abstract of an arxiv-paper and return most important contents in markdown format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        arxiv_url: url of the Arxiv paper</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;read_arxiv_paper(</span><span class="si">{</span><span class="n">arxiv_url</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="n">arxiv_id</span> <span class="o">=</span> <span class="n">arxiv_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_arxiv_metadata</span><span class="p">(</span><span class="n">arxiv_id</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;summary&quot;</span><span class="p">]</span>
+    <span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;## </span><span class="si">{</span><span class="n">title</span><span class="si">}</span>
+<span class="s2">By </span><span class="si">{</span><span class="n">authors</span><span class="si">}</span>
+
+<span class="si">{</span><span class="n">summary</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">research_agent_factory</span> <span class="o">=</span> <span class="n">agent_factory</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;research-assistant&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scientific assistant who can read a paper and provide a summary of it.&quot;</span><span class="p">,</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;You will be tasked to read paper(s) and provide a summary. </span>
+<span class="s2">    Write a very detailed manuscript about 1000 words outlining the major messages and limitations of a given paper.&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">read_arxiv_paper</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
+    <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scientific-writer">
+<h2>Scientific writer<a class="headerlink" href="#scientific-writer" title="Permalink to this heading">#</a></h2>
+<p>We also define a scientific writer agent which can rewrite a manuscript by incorporating given feedback.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">improve_manuscript</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Can improve a given manuscript text according to defined feedback.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        manuscript: The complete manuscript text to improve</span>
+<span class="sd">        feedback: feedback to incorporate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">short</span> <span class="o">=</span> <span class="n">manuscript</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+        <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="p">)</span>
+        <span class="n">num_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="n">short_feedback</span> <span class="o">=</span> <span class="n">feedback</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+        <span class="n">num_chars_feedback</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">short_feedback</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;improve_manuscript(</span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars, </span><span class="si">{</span><span class="n">num_lines</span><span class="si">}</span><span class="s2"> lines], </span><span class="si">{</span><span class="n">short_feedback</span><span class="si">}</span><span class="s2">)... [</span><span class="si">{</span><span class="n">num_chars_feedback</span><span class="si">}</span><span class="s2"> chars]&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;Improve a manuscript by incorporating given feedback.</span>
+
+<span class="s2">## Manuscript</span>
+
+<span class="si">{</span><span class="n">manuscript</span><span class="si">}</span>
+
+<span class="s2">## Feedback</span>
+
+<span class="si">{</span><span class="n">feedback</span><span class="si">}</span>
+
+<span class="s2">## Your task</span>
+
+<span class="s2">Improve the manuscript above by incorporating the feedback. </span>
+<span class="s2">Do not shorten it! </span>
+<span class="s2">Do not remove important details! </span>
+<span class="s2">Use markdown links to cite sources.</span>
+<span class="s2">Do not make up references!</span>
+<span class="s2">Return the updated manuscript in markdown format only.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">scientific_writer_factory</span> <span class="o">=</span> <span class="n">agent_factory</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scientific-writer&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scientific writer who improves manuscripts.&quot;</span><span class="p">,</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;You will be tasked to rewrite a text by incorporating given feedback.&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">improve_manuscript</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
+    <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## for testing:</span>
+<span class="c1">#research_agent_factory().run(&quot;Read arxiv paper 2211.11501 and tell me the most important content in one sentence.&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reviewer-agent">
+<h2>Reviewer agent<a class="headerlink" href="#reviewer-agent" title="Permalink to this heading">#</a></h2>
+<p>Next we define an LLM-based tool that can generate feedback for a given manuscript. Note: We are using the same LLM/server here as the agents use under the hood. This not necessary. One might use different LLMs for different tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">review_text</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reviews text and provides constructive feedback</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        manuscript: complete original manuscript text to review.    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">short</span> <span class="o">=</span> <span class="n">manuscript</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+        <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="p">)</span>
+        <span class="n">num_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;review_text(</span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars, </span><span class="si">{</span><span class="n">num_lines</span><span class="si">}</span><span class="s2"> lines])&quot;</span><span class="p">)</span>
+    <span class="n">feedback</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are a great reviewer and you like to provide constructive feedback. </span>
+<span class="s2">If you are provided with a manuscript, you formulate feedback specifically for this manuscript. </span>
+<span class="s2">Your goal is to guide the author towards writing</span>
+<span class="s2">* a scientific text with a short and descriptive title,</span>
+<span class="s2">* a scientific text with markdown sub-sections (# title, ## headlines, ...) avoiding bullet points,</span>
+<span class="s2">* structured in sub-sections by content, e.g. introduction, recent developments, methods, results, discussion, future work, ...</span>
+<span class="s2">* text using high-quality scientific language,</span>
+<span class="s2">* proper citations using markdown links to original paper urls (do not make up references!),</span>
+<span class="s2">* a clear abstract at the beginning of the text, and conclusions at the end</span>
+
+<span class="s2">## Manuscript</span>
+<span class="s2">This is the manuscript you are asked to review:</span>
+
+<span class="si">{</span><span class="n">manuscript</span><span class="si">}</span>
+
+<span class="s2">## Your task</span>
+<span class="s2">Provide constructive feedback to the manuscript above.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">feedback</span>
+
+<span class="n">reviewer_agent_factory</span>  <span class="o">=</span> <span class="n">agent_factory</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reviewer&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A reviewer who gives constructive feedback&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">review_text</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
+    <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="printer-agent">
+<h2>Printer agent<a class="headerlink" href="#printer-agent" title="Permalink to this heading">#</a></h2>
+<p>As it was hard to make the system return the final manuscript, we define an agent who is supposed to print the final manuscript. We can use this strategy to secretly also write the manuscript to a file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">print_manuscript</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a manuscript out provided in markdown format.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        manuscript: An original manuscript text to print in markdown format containing all line breaks, headlines, etc</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">manuscript</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;manuscript.md&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">manuscript</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s2">&quot;The manuscript was printed.&quot;</span>
+
+<span class="n">printer_agent_factory</span>  <span class="o">=</span> <span class="n">agent_factory</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;printer&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A professional printing expert who will print markdown-formatted text.&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">print_manuscript</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
+    <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scheduler-agent">
+<h2>Scheduler agent<a class="headerlink" href="#scheduler-agent" title="Permalink to this heading">#</a></h2>
+<p>The scheduler is given a team of agents and can choose between them. For every task, it creates a new agent using the respective factory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">team</span> <span class="o">=</span> <span class="p">[</span><span class="n">research_agent_factory</span><span class="p">,</span> <span class="n">reviewer_agent_factory</span><span class="p">,</span> <span class="n">scientific_writer_factory</span><span class="p">,</span> <span class="n">printer_agent_factory</span><span class="p">]</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">distribute_sub_task</span><span class="p">(</span><span class="n">task_description</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">assistant</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prompt an assistant to solve a certain task. </span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        task_description: Detailed task description, to make sure to provide all necessary details. When handling text, hand over the complete original text, unmodified, containing all line-breaks, headlines, etc.</span>
+<span class="sd">        assistant: name of the assistant that should take care of the task.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">t_factory</span> <span class="ow">in</span> <span class="n">team</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">t_factory</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">assistant</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">80</span><span class="p">))</span>
+                <span class="n">short</span> <span class="o">=</span> <span class="n">task_description</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+                <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">task_description</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| I am asking </span><span class="si">{</span><span class="n">assistant</span><span class="si">}</span><span class="s2"> to take care of: </span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars]&quot;</span><span class="p">)</span>
+
+            <span class="c1"># execute the task</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task_description</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="n">short</span> <span class="o">=</span> <span class="n">result</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+                <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| Response was: </span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars]&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">80</span><span class="p">))</span>
+
+            <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">return</span> <span class="s2">&quot;Assistant unknown&quot;</span>
+
+<span class="n">team_description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;* </span><span class="si">{</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">team</span><span class="p">])</span>
+    
+<span class="n">scheduler</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scheduler&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">distribute_sub_task</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scheduler splits tasks into sub-tasks and distributes them.&quot;</span><span class="p">,</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">You are an editor who has a team of assistants. Your task is to write a manuscript together with your team.</span>
+
+<span class="s2"># Team</span>
+<span class="s2">Your assistants can either read and summarize papers for you, or review text you wrote and provide feedback.</span>
+
+<span class="s2">Your team members are:</span>
+<span class="si">{</span><span class="n">team_description</span><span class="si">}</span>
+
+<span class="s2"># Typical workflow</span>
+<span class="s2">A typical workflow is like this:</span>
+<span class="s2">* Read papers</span>
+<span class="s2">* Summarize them in a first manuscript draft</span>
+<span class="s2">* Review the manuscript</span>
+<span class="s2">* Incorporate review feedback to improve the manuscript</span>
+<span class="s2">* Print the final manuscript in markdown format.</span>
+
+<span class="s2"># Hints</span>
+<span class="s2">When distributing tasks, make sure to provide all necessary details to the assistants. </span>
+<span class="s2">Never shorten text when giving tasks to assistants. Provided them with the full manuscript text.</span>
+
+<span class="s2"># Your task</span>
+<span class="s2">Distribute tasks to your team. Goal is to have a great scientific manuscript.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
+    <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
+    <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="writing-a-manuscript">
+<h2>Writing a manuscript<a class="headerlink" href="#writing-a-manuscript" title="Permalink to this heading">#</a></h2>
+<p>Finally, we can ask the scheduler to distribute sub-tasks to the agents and produce the final result. Note that the task description is generic. It does not mention what the manuscript should be about. The system has to figure this out by reading the online resources.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">manuscript</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Please take care of ALL the following tasks:</span>
+<span class="s2">* Read these papers and summarize them individually.</span>
+<span class="s2">  * https://arxiv.org/abs/2211.11501</span>
+<span class="s2">  * https://arxiv.org/abs/2308.16458</span>
+<span class="s2">  * https://arxiv.org/abs/2411.07781</span>
+<span class="s2">  * https://arxiv.org/abs/2408.13204</span>
+<span class="s2">  * https://arxiv.org/abs/2406.15877</span>
+<span class="s2">* write a manuscript text about the papers, </span>
+<span class="s2">* review the manuscript to get constructive feedback</span>
+<span class="s2">* improve the manuscript </span>
+<span class="s2">* print the final manuscript</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
+| I am asking research-assistant to take care of: Read the paper https://arxiv.org/abs/2211.11501 and provide a summary of it....[76 chars]
+read_arxiv_paper(https://arxiv.org/abs/2211.11501)
+| Response was: The paper introduces the DS-1000 benchmark, which consists of 1000 data science problems spanning 7 ...[371 chars]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+| I am asking research-assistant to take care of: Read the paper https://arxiv.org/abs/2308.16458 and provide a summary of it....[76 chars]
+read_arxiv_paper(https://arxiv.org/abs/2308.16458)
+| Response was: The paper introduces BioCoder, a benchmark for evaluating large language models (LLMs) in generating...[1825 chars]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+| I am asking research-assistant to take care of: Read the paper https://arxiv.org/abs/2411.07781 and provide a summary of it....[76 chars]
+read_arxiv_paper(https://arxiv.org/abs/2411.07781)
+| Response was: The paper proposes a benchmark for evaluating the safety of code agents, highlighting the need for s...[152 chars]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+| I am asking research-assistant to take care of: Read the paper https://arxiv.org/abs/2408.13204 and provide a summary of it....[76 chars]
+read_arxiv_paper(https://arxiv.org/abs/2408.13204)
+| Response was: The paper &#39;DOMAINEVAL: An Auto-Constructed Benchmark for Multi-Domain Code Generation&#39; introduces a ...[356 chars]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+| I am asking research-assistant to take care of: Read the paper https://arxiv.org/abs/2406.15877 and provide a summary of it....[76 chars]
+read_arxiv_paper(https://arxiv.org/abs/2406.15877)
+| Response was: The paper introduces BigCodeBench, a benchmark that challenges LLMs to invoke multiple function call...[458 chars]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+| I am asking reviewer to take care of: Review the manuscript draft: Introduction:
+The recent papers https://arxiv.org/abs/2211.11501, https...[3533 chars]
+review_text(
+Introduction:
+The recent papers https://arxiv.org/abs/2211.11501, https://arxiv.org/abs/2308.16458,...[3506 chars, 15 lines])
+| Response was: The manuscript draft has been reviewed, and the feedback suggests several improvements to enhance it...[244 chars]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+| I am asking scientific-writer to take care of: Improve the manuscript draft: Introduction:
+The recent papers https://arxiv.org/abs/2211.11501, http...[3809 chars]
+improve_manuscript(
+Introduction:
+The recent papers https://arxiv.org/abs/2211.11501, https://arxiv.org/abs/2308.16458,...[3506 chars, 15 lines], 
+The manuscript draft has been reviewed, and the feedback suggests several improvements to enhance i)... [100 chars]
+| Response was: 
+### Introduction
+The recent papers [https://arxiv.org/abs/2211.11501](https://arxiv.org/abs/2211.11...[5696 chars]
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+| I am asking printer to take care of: Print the manuscript: 
+### Introduction
+The recent papers [https://arxiv.org/abs/2211.11501](https:/...[5718 chars]
+</pre></div>
+</div>
+<p class="rubric">Introduction</p>
+<p>The recent papers <a class="reference external" href="https://arxiv.org/abs/2211.11501">https://arxiv.org/abs/2211.11501</a>, <a class="reference external" href="https://arxiv.org/abs/2308.16458">https://arxiv.org/abs/2308.16458</a>, <a class="reference external" href="https://arxiv.org/abs/2411.07781">https://arxiv.org/abs/2411.07781</a>, <a class="reference external" href="https://arxiv.org/abs/2408.13204">https://arxiv.org/abs/2408.13204</a>, and <a class="reference external" href="https://arxiv.org/abs/2406.15877">https://arxiv.org/abs/2406.15877</a> introduce new benchmarks and evaluate the performance of large language models (LLMs) on fine-grained tasks.</p>
+<p class="rubric">Summary of Papers</p>
+<p>The paper introduces the DS-1000 benchmark, which consists of 1000 data science problems spanning 7 Python libraries. The benchmark has three core features: realistic and practical use cases, reliable automatic evaluation, and defense against memorization. The current best public system, Codex-002, achieves 43.3% accuracy on the benchmark, leaving room for improvement.</p>
+<p>The paper introduces <a class="reference external" href="https://arxiv.org/abs/2308.16458">BioCoder</a>, a benchmark for evaluating large language models (LLMs) in generating bioinformatics-specific code. The benchmark consists of 1,026 Python functions and 1,243 Java methods extracted from GitHub, as well as 253 examples from the Rosalind Project. The paper also presents the results of evaluating various models using BioCoder, including InCoder, CodeGen, and GPT-3.5. The results show that successful models accommodate long prompts with full context and contain domain-specific knowledge of bioinformatics. One of the major contributions of the paper is the development of the BioCoder benchmark, which provides a comprehensive evaluation of LLMs in generating bioinformatics code. The benchmark covers a wide range of bioinformatics calculations and includes a fuzz-testing framework for evaluation. The paper also demonstrates the effectiveness of fine-tuning a model (StarCoder) on the BioCoder dataset, resulting in a significant improvement in performance. However, the paper also highlights some limitations of the study. One of the limitations is that the BioCoder benchmark is limited to bioinformatics-specific code and may not be generalizable to other domains. Another limitation is that the evaluation of the models is based on a specific set of metrics (Pass&#64;K), which may not capture all aspects of the models’ performance. In conclusion, the paper provides a significant contribution to the field of bioinformatics and natural language processing. The development of the BioCoder benchmark and the evaluation of various models provide valuable insights into the capabilities and limitations of LLMs in generating bioinformatics code. However, further research is needed to address the limitations of the study and to explore the generalizability of the results to other domains.</p>
+<p>The paper proposes a benchmark for evaluating the safety of code agents, highlighting the need for stringent safety evaluations for diverse code agents.</p>
+<p>The paper ‘<a class="reference external" href="https://arxiv.org/abs/2411.07781">DOMAINEVAL: An Auto-Constructed Benchmark for Multi-Domain Code Generation</a>’ introduces a new benchmark for evaluating LLMs’ coding capabilities in multiple domains. The results show that LLMs have strengths and weaknesses in different domains, and highlight the importance of generating more samples and developing more comprehensive benchmarks.</p>
+<p>The paper introduces <a class="reference external" href="https://arxiv.org/abs/2408.13204">BigCodeBench</a>, a benchmark that challenges LLMs to invoke multiple function calls as tools from various libraries and domains for fine-grained tasks. The evaluation of 60 LLMs shows that they are not yet capable of following complex instructions to use function calls precisely, with scores up to 60% compared to human performance of 97%. This highlights the limitations of current LLMs and the need for further advancements in this area.</p>
+<p class="rubric">Conclusion</p>
+<p>The manuscripts discussed above provide a comprehensive overview of the current state of large language models in fine-grained tasks. By introducing new benchmarks such as DS-1000, BioCoder, DOMAINEVAL, and BigCodeBench, these papers highlight the strengths and limitations of current LLMs and provide valuable insights into their capabilities and limitations. The results of the evaluations demonstrate the need for further research to address the limitations of current LLMs and to develop more comprehensive benchmarks that can accurately assess their performance. Overall, the papers contribute significantly to the field of natural language processing and provide a foundation for future research in this area.</p>
+<p class="rubric">Future Work</p>
+<p>To further improve the performance of LLMs on fine-grained tasks, future research should focus on developing more comprehensive benchmarks that can accurately assess their capabilities and limitations. Additionally, the development of new models that can accommodate long prompts with full context and contain domain-specific knowledge is crucial. The evaluation of models using a wide range of metrics is also essential to capture all aspects of their performance. By addressing the limitations of current LLMs and developing more comprehensive benchmarks, future research can lead to significant advancements in the field of natural language processing.</p>
+<p class="rubric">References</p>
+<p>The recent papers <a class="reference external" href="https://arxiv.org/abs/2211.11501">https://arxiv.org/abs/2211.11501</a>, <a class="reference external" href="https://arxiv.org/abs/2308.16458">https://arxiv.org/abs/2308.16458</a>, <a class="reference external" href="https://arxiv.org/abs/2411.07781">https://arxiv.org/abs/2411.07781</a>, <a class="reference external" href="https://arxiv.org/abs/2408.13204">https://arxiv.org/abs/2408.13204</a>, and <a class="reference external" href="https://arxiv.org/abs/2406.15877">https://arxiv.org/abs/2406.15877</a> provide a comprehensive overview of the current state of large language models in fine-grained tasks.</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| Response was: The manuscript has been printed....[32 chars]
+--------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>Modify the task above and challenge the system. Provide URLs to arxiv papers of different topic, e.g. to papers you know well. Also provide urls to paper which don’t exist.</p>
+<p>Question the output: How much of the text is made up, how much was actually content of the paper (abstracts)?</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./66_arxiv_agent"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#research-assistant-agent">
+   Research-assistant agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scientific-writer">
+   Scientific writer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reviewer-agent">
+   Reviewer agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#printer-agent">
+   Printer agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scheduler-agent">
+   Scheduler agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-a-manuscript">
+   Writing a manuscript
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on 2024-12-30.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+Contributions and feedback are welcome.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
