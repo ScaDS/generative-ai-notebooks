@@ -16,3 +16,23 @@ def print_messages(message_list):
                     display(Markdown(f" = {c.content}\n\n"))    
                 else:
                     display(Markdown(f"'{c}' \n\n"))
+
+
+
+def get_arxiv_metadata(arxiv_id):
+    import arxiv
+    search = arxiv.Search(id_list=[arxiv_id])
+    paper = next(search.results())
+    
+    metadata = {
+        'title': paper.title,
+        'authors': [author.name for author in paper.authors],
+        'published': paper.published,
+        'summary': paper.summary,
+        'doi': paper.doi,
+        'primary_category': paper.primary_category,
+        'categories': paper.categories,
+        'pdf_url': paper.pdf_url
+    }
+    return metadata
+    
