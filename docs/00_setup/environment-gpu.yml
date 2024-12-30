@@ -43,7 +43,7 @@ dependencies:
       - mistralai
       - autogen-core==0.4.0.dev11
       - autogen-agentchat==0.4.0.dev11
-      - autogen-core==0.4.0.dev11
+      - autogen-ext==0.4.0.dev11
       - llama-index-llms-ollama
       - llama-index-llms-openai-like
       - llama-index-embeddings-huggingface
