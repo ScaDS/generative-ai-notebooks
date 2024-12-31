@@ -119,6 +119,7 @@ parts:
       - file: 66_arxiv_agent/arxiv_powerpoint_karaoke.ipynb
       - file: 35_agents/smolagents.ipynb
       - file: 66_arxiv_agent/multiagent_write_review.ipynb
+      - file: 66_arxiv_agent/simplifying_agentic_workflows.ipynb
 
     - file: 70_fine_tuning/readme.md
       sections:
