@@ -836,6 +836,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="ask-about-the-hpc-compendium">
 <h1>Ask about the HPC compendium<a class="headerlink" href="#ask-about-the-hpc-compendium" title="Permalink to this heading">#</a></h1>
 <p>In this RAG example, we will use the <a class="reference external" href="https://compendium.hpc.tu-dresden.de/">HPC compendium</a> which is licensed under <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> by TU Dresden ZIH.</p>
+<p>Hint: Execute this notebook from the terminal using <code class="docutils literal notranslate"><span class="pre">voila</span> <span class="pre">chat-with-hpc-compendium.ipynb</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llama_index.core</span> <span class="kn">import</span> <span class="n">VectorStoreIndex</span><span class="p">,</span> <span class="n">SimpleDirectoryReader</span>
@@ -857,7 +858,10 @@ title="Print to PDF"
 <span class="n">Settings</span><span class="o">.</span><span class="n">embed_model</span> <span class="o">=</span> <span class="n">HuggingFaceEmbedding</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;BAAI/bge-base-en-v1.5&quot;</span><span class="p">)</span>
 
 <span class="c1"># ollama</span>
-<span class="n">Settings</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAILike</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;meta-llama/Llama-3.3-70B-Instruct&quot;</span><span class="p">,</span> <span class="n">request_timeout</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span> <span class="n">api_base</span><span class="o">=</span><span class="s2">&quot;https://llm.scads.ai/v1&quot;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">))</span>
+<span class="n">Settings</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAILike</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;meta-llama/Llama-3.3-70B-Instruct&quot;</span><span class="p">,</span> 
+                          <span class="n">request_timeout</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span> 
+                          <span class="n">api_base</span><span class="o">=</span><span class="s2">&quot;https://llm.scads.ai/v1&quot;</span><span class="p">,</span> 
+                          <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -934,9 +938,7 @@ title="Print to PDF"
 <span class="n">submit_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_submit</span><span class="p">)</span>
 <span class="n">submit_button</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;loading...&quot;</span><span class="p">)</span>
 <span class="n">on_load</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
 
 <span class="c1"># Arrange the widgets for display</span>
 <span class="n">display</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">docs_input</span><span class="p">,</span> <span class="n">load_button</span><span class="p">]),</span> <span class="n">output_label</span><span class="p">,</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">text_input</span><span class="p">,</span> <span class="n">submit_button</span><span class="p">]))</span>
@@ -944,11 +946,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loading...
-done
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ace6d726a7ca4a28a77d029163a79796", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "4b00739f19124736991d8ba6f0e27990", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "56f3f485ddfd421ab13be2d992696bfc", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "223a27c7fcec4c64b0ba72195c77f5d3", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "96bbc04e28734a0ab1c24d26066c992c", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "2efd218694d64686bb009db9918ead64", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 
