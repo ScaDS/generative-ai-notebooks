@@ -848,9 +848,9 @@ The image shows cell nuclei stained in blue.
 The goal is to segment the nuclei objects in the blue channel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">io</span>
 
 <span class="c1"># Read in the image file</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;hela-cells-8bit.tif&#39;</span><span class="p">)</span>
@@ -918,7 +918,7 @@ The goal is to segment the nuclei objects in the blue channel.</p>
 <span class="c1"># But there are still some small noise objects.</span>
 <span class="c1"># We can remove those with some morphological operations.</span>
 
-<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">remove_small_objects</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.morphology</span><span class="w"> </span><span class="kn">import</span> <span class="n">remove_small_objects</span>
 
 <span class="c1"># Remove objects smaller than 100 pixels</span>
 <span class="n">nuclei_mask_cleaned</span> <span class="o">=</span> <span class="n">remove_small_objects</span><span class="p">(</span><span class="n">nuclei_mask</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
@@ -937,7 +937,7 @@ The goal is to segment the nuclei objects in the blue channel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For visualization, let&#39;s outline the detected nuclei on the original image</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">find_boundaries</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.segmentation</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_boundaries</span>
 
 <span class="n">boundaries</span> <span class="o">=</span> <span class="n">find_boundaries</span><span class="p">(</span><span class="n">nuclei_mask_cleaned</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
 <span class="n">image_with_boundaries</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1038,7 +1038,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

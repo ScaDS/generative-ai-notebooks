@@ -838,11 +838,11 @@ title="Print to PDF"
 <p>The <a class="reference external" href="https://github.com/run-llama/llama_index">Llama-Index</a> library and its submodules such as for <a class="reference external" href="https://docs.llamaindex.ai/en/stable/api_reference/llms/ollama/">Ollama</a> and <a class="reference external" href="https://docs.llamaindex.ai/en/stable/api_reference/llms/openai_like/">OpenAI-like</a> allow building agentic workflows using open-weight models. In such workflows the LLM decides which functions to call and it can call multiple functions in a row to answer a question.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llama_index.core.agent</span> <span class="kn">import</span> <span class="n">ReActAgent</span>
-<span class="kn">from</span> <span class="nn">llama_index.llms.ollama</span> <span class="kn">import</span> <span class="n">Ollama</span>
-<span class="kn">from</span> <span class="nn">llama_index.llms.openai_like</span> <span class="kn">import</span> <span class="n">OpenAILike</span>
-<span class="kn">from</span> <span class="nn">llama_index.core.tools</span> <span class="kn">import</span> <span class="n">FunctionTool</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReActAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.llms.ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ollama</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.llms.openai_like</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAILike</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionTool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </pre></div>
 </div>
 </div>
@@ -864,7 +864,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tools</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
-<span class="k">def</span> <span class="nf">estimate_delivery_date_of_order</span><span class="p">(</span><span class="n">order_id</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">estimate_delivery_date_of_order</span><span class="p">(</span><span class="n">order_id</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate the delivery date of a package identified by its order id.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">order_id</span> <span class="o">==</span> <span class="s2">&quot;292123&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;Friday&quot;</span>
@@ -875,7 +875,7 @@ title="Print to PDF"
     <span class="k">return</span> <span class="s2">&quot;Unknown&quot;</span>
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
-<span class="k">def</span> <span class="nf">get_recent_order_id</span><span class="p">(</span><span class="n">customer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_recent_order_id</span><span class="p">(</span><span class="n">customer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the most recent order id for a given customer&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;robert&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;292123&quot;</span>
@@ -894,7 +894,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
-<span class="k">def</span> <span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the current weather in a given city.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="s2">&quot;sunny&quot;</span>
 </pre></div>
@@ -1027,7 +1027,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

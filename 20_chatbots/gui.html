@@ -847,7 +847,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llm_utilities</span> <span class="kn">import</span> <span class="n">prompt_chatgpt</span><span class="p">,</span> <span class="n">prompt_ollama</span><span class="p">,</span> <span class="n">prompt_blablador</span><span class="p">,</span> <span class="n">prompt_claude</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llm_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_chatgpt</span><span class="p">,</span> <span class="n">prompt_ollama</span><span class="p">,</span> <span class="n">prompt_blablador</span><span class="p">,</span> <span class="n">prompt_claude</span>
 </pre></div>
 </div>
 </div>
@@ -863,7 +863,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chat_history</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">def</span> <span class="nf">prompt_with_memory</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prompt_with_memory</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     
     <span class="c1"># convert message in the right format and store it in memory</span>
     <span class="n">question</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
@@ -898,15 +898,15 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 
 <span class="c1"># Create widgets</span>
 <span class="n">output_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 <span class="n">text_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Type something here...&quot;</span><span class="p">)</span>
 <span class="n">submit_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">on_submit</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_submit</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
     <span class="n">question</span> <span class="o">=</span> <span class="n">text_input</span><span class="o">.</span><span class="n">value</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">question</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span>
@@ -1004,7 +1004,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

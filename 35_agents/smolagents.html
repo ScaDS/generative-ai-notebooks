@@ -863,10 +863,10 @@ title="Print to PDF"
 <p>Hints: To make the second agent work, you need to configure an <code class="docutils literal notranslate"><span class="pre">SERPAPI_API_KEY</span></code> environment variable. You can create such a key on <a class="reference external" href="https://serpapi.com/">https://serpapi.com/</a> - for free at the time of writing this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">smolagents.agents</span> <span class="kn">import</span> <span class="n">ToolCallingAgent</span>
-<span class="kn">from</span> <span class="nn">smolagents</span> <span class="kn">import</span> <span class="n">tool</span><span class="p">,</span> <span class="n">LiteLLMModel</span>
-<span class="kn">from</span> <span class="nn">smolagents.default_tools</span> <span class="kn">import</span> <span class="n">GoogleSearchTool</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">smolagents.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolCallingAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span><span class="p">,</span> <span class="n">LiteLLMModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents.default_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">GoogleSearchTool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </pre></div>
 </div>
 </div>
@@ -904,13 +904,13 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read the abstract of an arxiv-paper and return most important contents as markdown.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        arxiv_url: url of the arxiv paper to read.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">agent_tools</span> <span class="kn">import</span> <span class="n">get_arxiv_metadata</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">agent_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_arxiv_metadata</span>
     <span class="n">arxiv_id</span> <span class="o">=</span> <span class="n">arxiv_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_arxiv_metadata</span><span class="p">(</span><span class="n">arxiv_id</span><span class="p">)</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
@@ -1202,7 +1202,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

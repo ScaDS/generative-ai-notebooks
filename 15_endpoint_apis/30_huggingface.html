@@ -857,10 +857,10 @@ title="Print to PDF"
 <p>The <a class="reference external" href="https://huggingface.co">Huggingface</a> API make open source/weight models available locally. As the model is loaded into memory, we can reuse it, and do not have to reload it entirely. This might be beneficial in scenarios where we want to prompt the same model many times.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_hf</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;meta-llama/Meta-Llama-3.1-8B&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_hf</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;meta-llama/Meta-Llama-3.1-8B&quot;</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">prompt_hf</span>
-    <span class="kn">import</span> <span class="nn">transformers</span>
-    <span class="kn">import</span> <span class="nn">torch</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">transformers</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
     
     <span class="k">if</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>    
         <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span>
@@ -1009,7 +1009,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

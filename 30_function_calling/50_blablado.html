@@ -881,7 +881,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">blablado</span> <span class="kn">import</span> <span class="n">Assistant</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">blablado</span><span class="w"> </span><span class="kn">import</span> <span class="n">Assistant</span>
 <span class="n">assistant</span> <span class="o">=</span> <span class="n">Assistant</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -892,7 +892,7 @@ title="Print to PDF"
 <p>The assistant supports calling functions with multiple parameters and common types. Just register the function you would like it to be aware of and then run a prompt with a task that could be solved using the mentioned funciton.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_sum</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_sum</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Sums two numbers&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;summing </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
@@ -921,7 +921,7 @@ The sum of 5 plus 4 is 9.
 <p>You can also specify multiple functions/tools and ask to execute them in order.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">multiply_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiply two numbers&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Multiplying </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
@@ -951,10 +951,10 @@ The result of adding 2 and 4, and then multiplying the result by 3 is 18.
 <p>The assistant can also call functions with more complex and yet python standard types such as datetime.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="nd">@assistant</span><span class="o">.</span><span class="n">register_tool</span>
-<span class="k">def</span> <span class="nf">book_room</span><span class="p">(</span><span class="n">room</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">author</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">datetime</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span><span class="n">datetime</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">book_room</span><span class="p">(</span><span class="n">room</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">author</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">datetime</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span><span class="n">datetime</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Book a room for a specific person from start to end time.&quot;&quot;&quot;</span>
     
     <span class="n">result</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
@@ -1140,7 +1140,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

@@ -867,8 +867,8 @@ title="Print to PDF"
 <p>Agentic workflows suffer from non-deterministic model outputs and error propagation. If just a single LLM prompt fails in a long agentic workflow, the overall result may be compromised. As checking intermediate results is not always easy, it might make sense to trade flexibility of agentic workflow with determinism by exchanging parts of the agentic workflow with classical text processing approaches. This notebook demonstrates that the entire agentic workflow for writing a scientific review, shown before, can also be implemented with a single prompt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
-<span class="kn">from</span> <span class="nn">arxiv_utilities</span> <span class="kn">import</span> <span class="n">prompt_scadsai_llm</span><span class="p">,</span> <span class="n">get_arxiv_metadata</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">arxiv_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_scadsai_llm</span><span class="p">,</span> <span class="n">get_arxiv_metadata</span>
 </pre></div>
 </div>
 </div>
@@ -887,7 +887,7 @@ title="Print to PDF"
 <p>Here we use a for-loop to collect paper contents in a string. As mentioned before, we are just collecting paper abstracts due to technical limitations of state-of-the-art LLMs. Token limits prevent us from collecting entire papers in one long string.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read the abstract of an arxiv-paper and return most important contents in markdown format.</span>
 
 <span class="sd">    Args:</span>
@@ -1095,7 +1095,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

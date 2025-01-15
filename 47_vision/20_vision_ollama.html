@@ -862,12 +862,12 @@ title="Print to PDF"
 <p>In this notebook we will use <a class="reference external" href="https://llava-vl.github.io/">LLAVA</a>, a vision language model, to inspect a natural image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openai</span>
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">import</span> <span class="nn">stackview</span>
-<span class="kn">from</span> <span class="nn">image_utilities</span> <span class="kn">import</span> <span class="n">numpy_to_bytestream</span>
-<span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">from</span> <span class="nn">stackview._image_widget</span> <span class="kn">import</span> <span class="n">_img_to_rgb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">stackview</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">image_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">numpy_to_bytestream</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">stackview._image_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">_img_to_rgb</span>
 </pre></div>
 </div>
 </div>
@@ -878,7 +878,7 @@ title="Print to PDF"
 <p>The LLava model is capable of describing images via the <a class="reference external" href="https://ollama.com/">ollama</a> API.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_ollama</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;llava&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_ollama</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;llava&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a message to ollama</span>
 <span class="sd">    and returns only the text response.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1053,7 +1053,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

@@ -888,10 +888,10 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">blablado</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">blablado</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
 </pre></div>
 </div>
 </div>
@@ -942,35 +942,35 @@ title="Print to PDF"
 Key is that the functions we would like to use later on have a meaningful docstring. The LLM will use this docstring to select the right function for a given task.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimulatedMicroscope</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SimulatedMicroscope</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
 
-    <span class="k">def</span> <span class="nf">move_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the current view to the left&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">step</span>
         <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved left by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="nf">move_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the current view to the right&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">step</span>
         <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved right by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="nf">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the current view up&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">step</span>
         <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved up by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the current view down&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">step</span>
         <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved down by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="nf">show_current_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_current_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show the current view&quot;&quot;&quot;</span>
         <span class="n">crop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)]</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
@@ -979,11 +979,11 @@ Key is that the functions we would like to use later on have a meaningful docstr
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="s2">&quot;the current view is shown&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tell_position</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tell_position</span><span class="p">():</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current position of the view&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;x: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, y: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LOG:&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">text</span>
 </pre></div>
@@ -1013,7 +1013,7 @@ Key is that the functions we would like to use later on have a meaningful docstr
 <p>We now setup a <code class="docutils literal notranslate"><span class="pre">blablado.Assistant</span></code> and call it <code class="docutils literal notranslate"><span class="pre">microscopist</span></code>. We then tell the microscopist which actions it can do using given tools.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">blablado</span> <span class="kn">import</span> <span class="n">Assistant</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">blablado</span><span class="w"> </span><span class="kn">import</span> <span class="n">Assistant</span>
 
 <span class="n">microscopist</span> <span class="o">=</span> <span class="n">Assistant</span><span class="p">()</span>
 <span class="n">microscopist</span><span class="o">.</span><span class="n">register_tool</span><span class="p">(</span><span class="n">microscope</span><span class="o">.</span><span class="n">move_left</span><span class="p">)</span>
@@ -1108,7 +1108,7 @@ I have moved the view up, shown the current view, moved the view left, and shown
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># disable logging</span>
-<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">text</span>
 </pre></div>
 </div>
@@ -1281,7 +1281,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

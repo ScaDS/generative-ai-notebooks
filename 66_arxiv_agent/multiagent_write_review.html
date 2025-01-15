@@ -896,14 +896,14 @@ title="Print to PDF"
 Of course, as in read life, it would be better to read the entire paper, but this exceeds token limits of SOTA open-weight LLMs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
-<span class="kn">from</span> <span class="nn">smolagents.agents</span> <span class="kn">import</span> <span class="n">ToolCallingAgent</span><span class="p">,</span> <span class="n">CodeAgent</span>
-<span class="kn">from</span> <span class="nn">smolagents.prompts</span> <span class="kn">import</span> <span class="n">CODE_SYSTEM_PROMPT</span>
-<span class="kn">from</span> <span class="nn">smolagents</span> <span class="kn">import</span> <span class="n">tool</span><span class="p">,</span> <span class="n">LiteLLMModel</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolCallingAgent</span><span class="p">,</span> <span class="n">CodeAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">CODE_SYSTEM_PROMPT</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span><span class="p">,</span> <span class="n">LiteLLMModel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1"># these functions are defined in arxiv_utilities.py</span>
-<span class="kn">from</span> <span class="nn">arxiv_utilities</span> <span class="kn">import</span> <span class="n">prompt_scadsai_llm</span><span class="p">,</span> <span class="n">get_arxiv_metadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">arxiv_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_scadsai_llm</span><span class="p">,</span> <span class="n">get_arxiv_metadata</span>
 </pre></div>
 </div>
 </div>
@@ -935,7 +935,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comment this to show detailed output</span>
-<span class="kn">from</span> <span class="nn">smolagents.utils</span> <span class="kn">import</span> <span class="n">console</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">smolagents.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">console</span>
 <span class="n">console</span><span class="o">.</span><span class="n">quiet</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
@@ -951,7 +951,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <p>First, we define a function that generates a new agent with given name, description, system message, etc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_agent</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">api_base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_message</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_agent</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">api_base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_message</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create an agent that uses a given list of tools according to its system message.&quot;&quot;&quot;</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span><span class="n">model_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
                          <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
@@ -974,8 +974,8 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <p>In this example we use a <a class="reference external" href="https://en.wikipedia.org/wiki/Factory_method_pattern">factory pattern</a> for agents, to ensure that for every task, a new agent is created. This avoids very long prompts with former, irrelevant conversations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">agent_factory</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">create_instance</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">agent_factory</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_instance</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">create_agent</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">create_instance</span>
 </pre></div>
@@ -988,7 +988,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Read the abstract of an arxiv-paper and return most important contents in markdown format.</span>
 
 <span class="sd">    Args:</span>
@@ -1029,7 +1029,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">improve_manuscript</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">improve_manuscript</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Can improve a given manuscript text according to defined feedback.</span>
 
 <span class="sd">    Args:</span>
@@ -1091,7 +1091,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">review_text</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">review_text</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reviews text and provides constructive feedback</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -1144,13 +1144,13 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">print_manuscript</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_manuscript</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a manuscript out provided in markdown format.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        manuscript: An original manuscript text to print in markdown format containing all line breaks, headlines, etc</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
     <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">manuscript</span><span class="p">))</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;manuscript.md&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
@@ -1179,7 +1179,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">team</span> <span class="o">=</span> <span class="p">[</span><span class="n">research_agent_factory</span><span class="p">,</span> <span class="n">reviewer_agent_factory</span><span class="p">,</span> <span class="n">scientific_writer_factory</span><span class="p">,</span> <span class="n">printer_agent_factory</span><span class="p">]</span>
 
 <span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">distribute_sub_task</span><span class="p">(</span><span class="n">task_description</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">assistant</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">distribute_sub_task</span><span class="p">(</span><span class="n">task_description</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">assistant</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Prompt an assistant to solve a certain task. </span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
@@ -1453,7 +1453,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

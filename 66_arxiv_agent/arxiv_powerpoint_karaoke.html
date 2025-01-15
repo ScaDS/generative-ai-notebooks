@@ -858,13 +858,13 @@ title="Print to PDF"
 <p>We will use the <a class="reference external" href="https://llm.scads.ai/">ScaDS.AI LLM infrastructure</a> infrastructure at the <a class="reference external" href="https://tu-dresden.de/zih">Center for Information Services and High Performance Computing (ZIH) of TU Dresden</a>. To use it, you must be connected via <a class="reference external" href="https://tu-dresden.de/zih/dienste/service-katalog/arbeitsumgebung/zugang_datennetz/vpn">TU Dresden VPN</a> and have your API key stored in a <code class="docutils literal notranslate"><span class="pre">SCADSAI_API_KEY</span></code> environment variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">llama_index.core.agent</span> <span class="kn">import</span> <span class="n">ReActAgent</span>
-<span class="kn">from</span> <span class="nn">llama_index.llms.ollama</span> <span class="kn">import</span> <span class="n">Ollama</span>
-<span class="kn">from</span> <span class="nn">llama_index.llms.openai_like</span> <span class="kn">import</span> <span class="n">OpenAILike</span>
-<span class="kn">from</span> <span class="nn">llama_index.core.tools</span> <span class="kn">import</span> <span class="n">FunctionTool</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
-<span class="kn">from</span> <span class="nn">arxiv_utilities</span> <span class="kn">import</span> <span class="n">convert_to_markdown</span><span class="p">,</span> <span class="n">search_arxiv</span><span class="p">,</span> <span class="n">download_pdf</span><span class="p">,</span> <span class="n">pdf_to_markdown</span><span class="p">,</span> <span class="n">make_powerpoint_slides</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReActAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.llms.ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ollama</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.llms.openai_like</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAILike</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionTool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">arxiv_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_to_markdown</span><span class="p">,</span> <span class="n">search_arxiv</span><span class="p">,</span> <span class="n">download_pdf</span><span class="p">,</span> <span class="n">pdf_to_markdown</span><span class="p">,</span> <span class="n">make_powerpoint_slides</span>
 </pre></div>
 </div>
 </div>
@@ -886,14 +886,14 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tools</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
-<span class="k">def</span> <span class="nf">search_publications</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search_publications</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Searches the arxiv for papers using a query, selects papers from given authors and/or by year.&quot;&quot;&quot;</span>
     <span class="n">papers</span> <span class="o">=</span> <span class="n">search_arxiv</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">max_results</span><span class="p">)</span>
     <span class="n">markdown</span> <span class="o">=</span> <span class="n">convert_to_markdown</span><span class="p">(</span><span class="n">papers</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">markdown</span>
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
-<span class="k">def</span> <span class="nf">download_paper</span><span class="p">(</span><span class="n">paper_link</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">download_paper</span><span class="p">(</span><span class="n">paper_link</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Downloads a paper and return its contents as markdown.&quot;&quot;&quot;</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">download_pdf</span><span class="p">(</span><span class="n">paper_link</span><span class="p">)</span>
 
@@ -917,7 +917,7 @@ title="Print to PDF"
 <p>Using this small helper function, we can ask the agent and will read its output as properly formatted markdown.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">chat</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">response</span><span class="p">))</span>
 </pre></div>
@@ -952,7 +952,7 @@ E.g. run the prompt above for every LLM 10 times and count how often a pptx file
 <p>Available models are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openai</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://llm.scads.ai/v1&quot;</span><span class="p">,</span>
                        <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">))</span>
 
@@ -1067,7 +1067,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

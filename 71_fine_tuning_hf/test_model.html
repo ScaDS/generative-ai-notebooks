@@ -838,10 +838,10 @@ title="Print to PDF"
 <p>Here we just test our fine-tuned model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prompt_hf</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;haesleinhuepf/gemma-2b-it-bia-proof-of-concept2&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_hf</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;haesleinhuepf/gemma-2b-it-bia-proof-of-concept2&quot;</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">prompt_hf</span>
-    <span class="kn">import</span> <span class="nn">transformers</span>
-    <span class="kn">import</span> <span class="nn">torch</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">transformers</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
     
     <span class="k">if</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>    
         <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span>
@@ -857,7 +857,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">prompt_hf</span><span class="p">(</span><span class="s2">&quot;Write Python code for cropping an image in X and Y to coordinates 10-20 and 30-50&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
 </pre></div>
@@ -876,7 +876,7 @@ C:\Users\rober\miniconda3\envs\genai-gpu\Lib\site-packages\transformers\models\g
 </pre></div>
 </div>
 <p>Write Python code for cropping an image in X and Y to coordinates 10-20 and 30-50 respectively.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
 
 <span class="c1"># Load the image</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;image.jpg&quot;</span><span class="p">)</span>
@@ -972,7 +972,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

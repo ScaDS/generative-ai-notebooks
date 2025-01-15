@@ -862,16 +862,16 @@ title="Print to PDF"
 <p>In this notebook we enable a language model to choose for the right algorithm. We define multiple segmentation algorithms / tools and then give the language model the choice which one to use given different inputs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.memory</span> <span class="kn">import</span> <span class="n">ConversationBufferMemory</span>
-<span class="kn">from</span> <span class="nn">langchain.chat_models</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
-<span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">initialize_agent</span>
-<span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">AgentType</span>
-<span class="kn">from</span> <span class="nn">langchain.tools</span> <span class="kn">import</span> <span class="n">tool</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.memory</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConversationBufferMemory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">initialize_agent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>
 
-<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="kn">from</span> <span class="nn">bia_utilities</span> <span class="kn">import</span> <span class="n">voronoi_otsu_labeling</span><span class="p">,</span> <span class="n">local_minima_seeded_watershed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bia_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">voronoi_otsu_labeling</span><span class="p">,</span> <span class="n">local_minima_seeded_watershed</span>
 
-<span class="kn">import</span> <span class="nn">stackview</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">stackview</span>
 </pre></div>
 </div>
 </div>
@@ -889,7 +889,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_image</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Useful for loading an image file and storing it.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;loading&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
@@ -904,7 +904,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">segment_bright_objects</span><span class="p">(</span><span class="n">image_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">segment_bright_objects</span><span class="p">(</span><span class="n">image_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Useful for segmenting bright objects (such as nuclei) in an image </span>
 <span class="sd">    that has been loaded and stored before.</span>
@@ -926,7 +926,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">segment_dark_objects</span><span class="p">(</span><span class="n">image_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">segment_dark_objects</span><span class="p">(</span><span class="n">image_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Useful for segmenting dark objects with bright border (e.g. cells with marked membranes) in an image </span>
 <span class="sd">    that has been loaded and stored before.</span>
@@ -948,7 +948,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">show_image</span><span class="p">(</span><span class="n">image_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">show_image</span><span class="p">(</span><span class="n">image_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Useful for showing an image that has been loaded and stored before.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;showing&quot;</span><span class="p">,</span> <span class="n">image_name</span><span class="p">)</span>
     
@@ -1209,7 +1209,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

@@ -17390,7 +17390,7 @@ Dask computations on the cluster and avoid using a Single machine scheduler.</p>
 <p>There are a variety of ways to set Distributed scheduler.
 However, <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code> scheduler will be used for many of them.
 To use the <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code> scheduler you must set up a Client:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dask.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># Connect to distributed cluster and override default</span>
 <span class="n">df</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>  <span class="c1"># This now runs on the distributed system</span>
 </pre></div>
@@ -17438,7 +17438,7 @@ creates a Dask Scheduler in the Python process
 where the cluster object is instantiated.
 Please check the example of a definition of the cluster object
 for the cluster <code class="docutils literal notranslate"><span class="pre">Alpha</span></code> (queue at the dask terms) on the ZIH system:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask_jobqueue</span> <span class="kn">import</span> <span class="n">SLURMCluster</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dask_jobqueue</span><span class="w"> </span><span class="kn">import</span> <span class="n">SLURMCluster</span>
 
 <span class="n">cluster</span> <span class="o">=</span> <span class="n">SLURMCluster</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span>
   <span class="n">cores</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
@@ -17457,9 +17457,9 @@ For the full computation, you will then ask for a number of
 jobs using the scale command, e.g : <code class="docutils literal notranslate"><span class="pre">cluster.scale(2)</span></code>.
 Thus, you have to specify a <code class="docutils literal notranslate"><span class="pre">SLURMCluster</span></code> by <code class="docutils literal notranslate"><span class="pre">dask_jobqueue</span></code>,
 scale it and use it for your computations. There is an example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">distributed</span> <span class="kn">import</span> <span class="n">Client</span>
-<span class="kn">from</span> <span class="nn">dask_jobqueue</span> <span class="kn">import</span> <span class="n">SLURMCluster</span>
-<span class="kn">from</span> <span class="nn">dask</span> <span class="kn">import</span> <span class="n">delayed</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dask_jobqueue</span><span class="w"> </span><span class="kn">import</span> <span class="n">SLURMCluster</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dask</span><span class="w"> </span><span class="kn">import</span> <span class="n">delayed</span>
 
 <span class="n">cluster</span> <span class="o">=</span> <span class="n">SLURMCluster</span><span class="p">(</span>
   <span class="n">cores</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
@@ -17640,7 +17640,7 @@ Mpi4py provides optimized communication of NumPy arrays.</p>
 environment.</p>
 <p>The example of mpi4py usage for the verification that
 mpi4py is running correctly can be found below:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
 <span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">(),</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()))</span>
 </pre></div>
@@ -18639,9 +18639,9 @@ To have better performance it is recommended to use NCCL instead of Open MPI.</p
 </section>
 <section id="verify-horovod-works">
 <h5>Verify Horovod Works<a class="headerlink" href="#verify-horovod-works" title="Permalink to this heading">#</a></h5>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tensorflow</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span>
 <span class="go">2021-10-07 16:38:55.694445: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">horovod.tensorflow</span> <span class="k">as</span> <span class="nn">hvd</span>                      <span class="c1">#import horovod</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">horovod.tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hvd</span>                      <span class="c1">#import horovod</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hvd</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>                                       <span class="c1">#initialize horovod</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hvd</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 <span class="go">1</span>
@@ -23341,32 +23341,32 @@ e.g., <code class="docutils literal notranslate"><span class="pre">1.4.lua</span
 </pre></div>
 </div>
 <p>A template module file is:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s">[[</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span>help([[
 
-<span class="s">Description</span>
-<span class="s">===========</span>
-<span class="s">&lt;sw_name&gt; is ...</span>
+Description
+===========
+&lt;sw_name&gt; is ...
 
-<span class="s">More Information</span>
-<span class="s">================</span>
-<span class="s">For detailed instructions, go to:</span>
-<span class="s">   https://...</span>
+More Information
+================
+For detailed instructions, go to:
+   https://...
 
-<span class="s">]]</span><span class="p">)</span>
+]])
 
-<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;Version: 1.4&quot;</span><span class="p">)</span>
-<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;Keywords: [System, Utility, ...]&quot;</span><span class="p">)</span>
-<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;URL: &lt;...&gt;&quot;</span><span class="p">)</span>
-<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;Description: &lt;...&gt;&quot;</span><span class="p">)</span>
+whatis(&quot;Version: 1.4&quot;)
+whatis(&quot;Keywords: [System, Utility, ...]&quot;)
+whatis(&quot;URL: &lt;...&gt;&quot;)
+whatis(&quot;Description: &lt;...&gt;&quot;)
 
-<span class="n">conflict</span><span class="p">(</span><span class="s2">&quot;&lt;sw_name&gt;&quot;</span><span class="p">)</span>
+conflict(&quot;&lt;sw_name&gt;&quot;)
 
-<span class="kd">local</span> <span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;&lt;/path/to/installation&gt;&quot;</span>
-<span class="n">prepend_path</span><span class="p">(</span> <span class="s2">&quot;PATH&quot;</span><span class="p">,</span>            <span class="n">pathJoin</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;bin&quot;</span><span class="p">))</span>
-<span class="n">prepend_path</span><span class="p">(</span> <span class="s2">&quot;LD_LIBRARY_PATH&quot;</span><span class="p">,</span> <span class="n">pathJoin</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">))</span>
-<span class="n">prepend_path</span><span class="p">(</span> <span class="s2">&quot;LIBRARY_PATH&quot;</span><span class="p">,</span> <span class="n">pathJoin</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">))</span>
+local root = &quot;&lt;/path/to/installation&gt;&quot;
+prepend_path( &quot;PATH&quot;,            pathJoin(root, &quot;bin&quot;))
+prepend_path( &quot;LD_LIBRARY_PATH&quot;, pathJoin(root, &quot;lib&quot;))
+prepend_path( &quot;LIBRARY_PATH&quot;, pathJoin(root, &quot;lib&quot;))
 
-<span class="n">setenv</span><span class="p">(</span>       <span class="s2">&quot;&lt;SOME_ENV&gt;&quot;</span><span class="p">,</span>        <span class="s2">&quot;&lt;value&gt;&quot;</span><span class="p">)</span>
+setenv(       &quot;&lt;SOME_ENV&gt;&quot;,        &quot;&lt;value&gt;&quot;)
 </pre></div>
 </div>
 <p>The most important functions to adjust the environment are listed and described in the following
@@ -23772,7 +23772,7 @@ with a PyTorch support.</p>
 <p>It is recommended to use GPUs when using large training data sets. While TensorFlow automatically
 uses GPUs if they are available, in PyTorch you have to move your tensors manually.</p>
 <p>First, you need to import <code class="docutils literal notranslate"><span class="pre">torch.CUDA</span></code>:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.CUDA</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch.CUDA</span>
 </pre></div>
 </div>
 <p>Then you define a <code class="docutils literal notranslate"><span class="pre">device</span></code>-variable, which is set to ‘CUDA’ automatically when a GPU is available
@@ -24993,7 +24993,7 @@ changing default values for parameters. Thus in some cases, it makes code writte
 there may be little or no action you need to take to make your code fully
 <a class="reference external" href="https://www.tensorflow.org/guide/migrate">TensorFlow 2.0</a> compatible. It is still possible to
 run 1.X code, unmodified (except for <code class="docutils literal notranslate"><span class="pre">contrib</span></code>), in TensorFlow 2.0:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow.compat.v1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
 <span class="n">tf</span><span class="o">.</span><span class="n">disable_v2_behavior</span><span class="p">()</span>    <span class="c1">#instead of &quot;import tensorflow as tf&quot;</span>
 </pre></div>
 </div>
@@ -30977,7 +30977,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

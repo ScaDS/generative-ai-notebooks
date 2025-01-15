@@ -896,7 +896,7 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">AutoModelForCausalLM</span><span class="p">,</span>
     <span class="n">AutoTokenizer</span><span class="p">,</span>
     <span class="n">BitsAndBytesConfig</span><span class="p">,</span>
@@ -905,16 +905,16 @@ title="Print to PDF"
     <span class="n">pipeline</span><span class="p">,</span>
     <span class="n">logging</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">peft</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">LoraConfig</span><span class="p">,</span>
     <span class="n">PeftModel</span><span class="p">,</span>
     <span class="n">prepare_model_for_kbit_training</span><span class="p">,</span>
     <span class="n">get_peft_model</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-<span class="kn">from</span> <span class="nn">trl</span> <span class="kn">import</span> <span class="n">SFTTrainer</span><span class="p">,</span> <span class="n">setup_chat_format</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">trl</span><span class="w"> </span><span class="kn">import</span> <span class="n">SFTTrainer</span><span class="p">,</span> <span class="n">setup_chat_format</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
 </pre></div>
 </div>
 </div>
@@ -1029,7 +1029,7 @@ See https://github.com/huggingface/transformers/pull/29402 for more details.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_raw</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">format_chat_template</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_chat_template</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
     <span class="n">row_json</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]},</span>
                <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">]}]</span>
     <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">apply_chat_template</span><span class="p">(</span><span class="n">row_json</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1400,7 +1400,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   

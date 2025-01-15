@@ -838,7 +838,7 @@ title="Print to PDF"
 <p>Bob can be used to document code. If you put the <code class="docutils literal notranslate"><span class="pre">%%doc</span></code> magic at the beginning of a cell…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bia_bob</span> <span class="kn">import</span> <span class="n">bob</span><span class="p">,</span> <span class="n">doc</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">bia_bob</span><span class="w"> </span><span class="kn">import</span> <span class="n">bob</span><span class="p">,</span> <span class="n">doc</span>
 <span class="n">bob</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 </div>
@@ -864,8 +864,8 @@ labels = label(binary)
 <p>… the cell will get updated when executing it. Note: In case there is <code class="docutils literal notranslate"><span class="pre">%%doc</span></code> at the beginning of a cell, the code will not be executed, it will just be replaced. For example the code above could be replaced with this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_otsu</span>  <span class="c1"># Import threshold_otsu function</span>
-<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">label</span>  <span class="c1"># Import label function</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">skimage.filters</span><span class="w"> </span><span class="kn">import</span> <span class="n">threshold_otsu</span>  <span class="c1"># Import threshold_otsu function</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.measure</span><span class="w"> </span><span class="kn">import</span> <span class="n">label</span>  <span class="c1"># Import label function</span>
 
 <span class="c1"># Calculate the Otsu threshold value for the input image</span>
 <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_otsu</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -953,7 +953,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-01-02.<br>
+Last updated on 2025-01-15.<br>
 </p>
   </div>
   
