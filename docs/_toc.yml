@@ -135,6 +135,7 @@ parts:
       - file: 71_fine_tuning_hf/merging_model.ipynb
       - file: 71_fine_tuning_hf/test_model.ipynb
       - file: 71_fine_tuning_hf/hf_data_upload.ipynb
+      - file: 72_quantization/quantization.ipynb
     
     - file: 80_benchmarking_llms/readme.md
       sections:
