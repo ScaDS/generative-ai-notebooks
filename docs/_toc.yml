@@ -63,9 +63,13 @@ parts:
     - file: 42_video_generation/readme.md
       sections:
       - file: 42_video_generation/videogen.ipynb
-      - file: 44_generating_jupyter_books/generator.ipynb
-      - file: 45_pptx_generation/prompting_rdm.ipynb
-      - file: 64_github_interaction/solving_github_issues.ipynb
+    
+    - file: 43_generating_data/readme.md
+      sections:
+      - file: 43_generating_data/synthetic_customer_data_llms.ipynb
+      - file: 43_generating_data/synthetic_customer_data_rnd_generators.ipynb
+    
+
 
     - file: 50_code_generation/readme.md
       sections:
@@ -80,6 +84,7 @@ parts:
       - file: 50_code_generation/23_generate_notebooks.ipynb
       - file: 50_code_generation/24_vision-microscopy.ipynb
       - file: 50_code_generation/25_vision-microscopy-hints.ipynb
+      - file: 44_generating_jupyter_books/generator.ipynb
 
     - file: 47_vision/readme.md
       sections:
@@ -91,7 +96,9 @@ parts:
 
   - caption: Advanced Prompt Engineering
     chapters:
-    
+
+    - file: 45_pptx_generation/prompting_rdm.ipynb
+
     - file: 60_rag/readme.md
       sections:
       - file: 60_rag/10_text-embeddings.ipynb
@@ -107,7 +114,7 @@ parts:
       - file: 63_chat_with_docs/chat-with-hpc-compendium.ipynb
       - file: 63_chat_with_docs/llm-based-rag.ipynb
       
-
+    - file: 64_github_interaction/solving_github_issues.ipynb
     - file: 35_agents/readme
       sections:
       - file: 30_function_calling/20_langchain.ipynb
