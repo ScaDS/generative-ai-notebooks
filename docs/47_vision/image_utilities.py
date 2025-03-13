@@ -39,4 +39,10 @@ def images_from_url_responses(response, input_shape = None):
     else:
         # Otherwise return a list of images as numpy array / image stack
         return np.asarray(images)
-    
+
+def extract_json(text:str):
+    import re
+
+    # Extract the JSON content using re.DOTALL to make '.' match newlines as well
+    pattern = r"(?<=```json)(.*?)(?=```)"
+    return re.findall(pattern, text, re.DOTALL)[0]
