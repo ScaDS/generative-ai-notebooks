@@ -92,6 +92,7 @@ parts:
       - file: 47_vision/20_vision_ollama.ipynb
       - file: 47_vision/21_vision_openai.ipynb
       - file: 47_vision/22_vision_qwen.ipynb
+      - file: 47_vision/23_vision_claude.ipynb
       - file: 47_vision/30_vision_models_structred_output.ipynb
 
   - caption: Advanced Prompt Engineering
