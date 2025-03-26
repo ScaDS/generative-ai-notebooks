@@ -24,3 +24,10 @@ data/S-BIAD634
 docs/71_fine_tuning_hf/haesleinhuepf
 
 hpc-compendium
+
+docs/47_vision/data/spots/*
+docs/47_vision/data/annotated_spots/*
+docs/47_vision/*.mf
+docs/47_vision/*.mf.gz
+docs/81_benchmarking_vlms_counting/*.mf
+
