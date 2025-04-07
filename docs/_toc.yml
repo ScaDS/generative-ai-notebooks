@@ -160,6 +160,7 @@ parts:
       - file: 81_benchmarking_vlms_counting/limits_of_vision_moondream.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision-claude.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision-gpt.ipynb
+      - file: 81_benchmarking_vlms_counting/vlms_guess_library.ipynb
 
     
   - caption: Links
