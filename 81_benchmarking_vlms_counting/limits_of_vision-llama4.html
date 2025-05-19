@@ -1,0 +1,1287 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Llama4 (Scout) for bounding-box segmentation &#8212; Generative Artificial Intelligence Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '81_benchmarking_vlms_counting/limits_of_vision-llama4';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="VLMs guessing algorithms to process images" href="vlms_guess_library.html" />
+    <link rel="prev" title="GPT 4 omni for bounding-box segmentation" href="limits_of_vision-gpt.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/readme.html">
+                        Prompting basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../15_endpoint_apis/readme.html">
+                        Accessing LLMs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/readme.html">
+                        Chatbots
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/readme.html">
+                        Function / Tool calling
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme.html">
+                        Image generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme_manipulation.html">
+                        Image manipulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../42_video_generation/readme.html">
+                        Generating Videos, Books, Slides and online content
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../43_generating_data/readme.html">
+                        Synthesizing data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/readme.html">
+                        Code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/readme.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../45_pptx_generation/prompting_rdm.html">
+                        Auto-generating PowerPoint files with chatGPT and Dall-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/readme.html">
+                        Retrieval Augmented Generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../63_chat_with_docs/readme.html">
+                        Chat with Docs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../64_github_interaction/solving_github_issues.html">
+                        Solving github issues
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../35_agents/readme.html">
+                        Agents
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/readme.html">
+                        Model Fine-Tuning in the cloud
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../71_fine_tuning_hf/readme.html">
+                        Model Fine-Tuning locally
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/readme.html">
+                        Benchmarking
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="readme.html">
+                        Benchmarking Vision Language Models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/readme.html">
+                        Prompting basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../15_endpoint_apis/readme.html">
+                        Accessing LLMs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/readme.html">
+                        Chatbots
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/readme.html">
+                        Function / Tool calling
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme.html">
+                        Image generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme_manipulation.html">
+                        Image manipulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../42_video_generation/readme.html">
+                        Generating Videos, Books, Slides and online content
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../43_generating_data/readme.html">
+                        Synthesizing data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/readme.html">
+                        Code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/readme.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../45_pptx_generation/prompting_rdm.html">
+                        Auto-generating PowerPoint files with chatGPT and Dall-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/readme.html">
+                        Retrieval Augmented Generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../63_chat_with_docs/readme.html">
+                        Chat with Docs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../64_github_interaction/solving_github_issues.html">
+                        Solving github issues
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../35_agents/readme.html">
+                        Agents
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/readme.html">
+                        Model Fine-Tuning in the cloud
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../71_fine_tuning_hf/readme.html">
+                        Model Fine-Tuning locally
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/readme.html">
+                        Benchmarking
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="readme.html">
+                        Benchmarking Vision Language Models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Generative Artificial Intelligence Notebooks
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../00_setup/readme.html">Setting up your computer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../00_setup/install_paula.html">Installation instructions for Scientific Computing Uni Leipzig (paula)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLM basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10_prompting_basics/readme.html">Prompting basics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/01_prompting.html">Prompting basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/02_use_cases.html">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/03_prompt_engineering.html">Basic prompt Engineering</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../15_endpoint_apis/readme.html">Accessing LLMs</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/01_openai_api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/02_ollama_endpoint.html">Ollama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/04_scadsai_llm_endpoint.html">ScaDS.AI LLM endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/20_google_gemini.html">Gemini API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/30_huggingface.html">Huggingface API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/31_huggingface_serverless_inference_api.html">Huggingface Serverless Inference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../20_chatbots/readme.html">Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../20_chatbots/10_chatbot.html">Programming an LLM-based chatbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../20_chatbots/gui.html">A Chatbot GUI</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../30_function_calling/readme.html">Function / Tool calling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/10_function_calling.html">Function calling using ollama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/12_function_calling_scadsai_llm.html">Function calling using ScaDS.AI’s LLM service</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multi-Modal LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_image_generation_openai/readme.html">Image generation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/10_generating_images_dall_e.html">Generating images using DALL-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/20_generating_mri_images_dall_e.html">Generating Magnetic Resonance images using DALL-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/30_generating_images_using_huggingface.html">Generating images using Stable Diffusion</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_image_generation_openai/readme_manipulation.html">Image manipulation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/51_inpainting_dall-e.html">Inpainting using Dall-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/52_inpainting_dall-e_copernicus.html">Replacing parts of satellite images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/50_inpainting_huggingface.html">Inpainting using Stable Diffusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_huggingface.html">Image variations using Stable Diffusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_pix2pix.html">Image editing using instruct-pix2pix</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../42_video_generation/readme.html">Generating Videos, Books, Slides and online content</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../42_video_generation/videogen.html">Video generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../43_generating_data/readme.html">Synthesizing data</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../43_generating_data/synthetic_customer_data_llms.html">Generating synthetic customer data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../43_generating_data/synthetic_customer_data_rnd_generators.html">Combining LLMs with Random number generators for data generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../50_code_generation/readme.html">Code generation</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/02_generating_code.html">Code generation</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/03_generating_code.html">Prompt engineering for code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/04_generating_code_for_processing_images.html">Generating code for processing images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/06_system_messages.html">Powerful system messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/10_reflection.html">Reflection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/20_bia-bob_demo.html">BIA Bob demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/21_documenting_code.html">Documenting code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/22_bug_fixing.html">Bug fixing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/23_generate_notebooks.html">Generating notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/24_vision-microscopy.html">Vision models for image interpretation and code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/25_vision-microscopy-hints.html">Precise prompting for code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../44_generating_jupyter_books/generator.html">Generating Jupyter books</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../47_vision/readme.html">Vision language models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/10_vision_CLIP.html">CLIP transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/20_vision_ollama.html">LLAVA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/21_vision_openai.html">GPT4-omni VLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/22_vision_qwen.html">Qwen2-VL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/23_vision_claude.html">Claude vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/35_vision_moondream.html">Moondream LLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/30_vision_models_structred_output.html">Vision models with structured output</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Prompt Engineering</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../45_pptx_generation/prompting_rdm.html">Auto-generating PowerPoint files with chatGPT and Dall-E</a></li>
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../60_rag/readme.html">Retrieval Augmented Generation</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/10_text-embeddings.html">Text embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/11_text-embeedings-openai.html">OpenAI Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/05_tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/20-simple-rag.html">Simple retrieval augmented generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../63_chat_with_docs/readme.html">Chat with Docs</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/chat-with-docs.html">Chat with your PDFs!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/hpc-compendium-prepare-data.html">Chat with documentation about HPC systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/long-context-prompting.html">Long context prompting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/chat-with-hpc-compendium.html">Ask about the HPC compendium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/llm-based-rag.html">LLM-based Retrieval Augmented Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../64_github_interaction/solving_github_issues.html">Solving github issues</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../35_agents/readme.html">Agents</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/20_langchain.html">Prompting tasks using LangChain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/30_langchain_bia.html">Prompting bio-image analysis tasks using LangChain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/35_langchain_bia_choosing_algorithms.html">Allowing language models to choose the right algorithm</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/50_blablado.html"><code class="docutils literal notranslate"><span class="pre">blablado</span></code> calls functions for you</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/55_microscope_stage_demo.html">Demo: Controlling a simulated microscope</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../35_agents/autogen_agentchat.html">Autogen Agentchat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../35_agents/react_agent_llama_index.html">Agentic workflows using Llama-Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../66_arxiv_agent/arxiv_powerpoint_karaoke.html">PowerPoint Karaoke about Arxiv papers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../35_agents/smolagents.html">Smolagents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../66_arxiv_agent/multiagent_write_review.html">A multi-agent system writing a manuscript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../66_arxiv_agent/simplifying_agentic_workflows.html">Simplifing agentic workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../70_fine_tuning/readme.html">Model Fine-Tuning in the cloud</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/10_generate_qa.html">Turning knowledge into a list of question and answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/40_fine_tuning.html">Fine-tuning an OpenAI GPT from questions and answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/50_model_testing.html">Test fine-tuned models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/checking_job_status.html">Checking a fine-tuning job status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/list_available_models.html">Listing available models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../71_fine_tuning_hf/readme.html">Model Fine-Tuning locally</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/fine-tune-gemma.html">Fine-tuning Gemma on local hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/merging_model.html">Merging fine-tuned models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/test_model.html">Testing the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/hf_data_upload.html">Uploading training data to the Huggingface Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../72_quantization/quantization.html">Quantization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../80_benchmarking_llms/readme.html">Benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/10_CLIP_scores.html">Optimizing image generation prompting using CLIP scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/30_measuring_executability.html">Measuring code executability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/40_summarize_error_messages.html">Summarizing generated code failure reasons</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="readme.html">Benchmarking Vision Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/20_vision_models.html">Vision Large Language Models for Counting objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits_of_vision_moondream.html">Benchmarking spot counting using Vision Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits_of_vision-claude.html">Claude VLM for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits_of_vision-gpt.html">GPT 4 omni  for bounding-box segmentation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Llama4 (Scout) for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlms_guess_library.html">VLMs guessing algorithms to process images</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../imprint.html">Imprint</a></li>
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks/issues/new?title=Issue%20on%20page%20%2F81_benchmarking_vlms_counting/limits_of_vision-llama4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/81_benchmarking_vlms_counting/limits_of_vision-llama4.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Llama4 (Scout) for bounding-box segmentation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bounding-box-segmentation">
+   Bounding box segmentation
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="llama4-scout-for-bounding-box-segmentation">
+<h1>Llama4 (Scout) for bounding-box segmentation<a class="headerlink" href="#llama4-scout-for-bounding-box-segmentation" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we will use the vision language model <a class="reference external" href="https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E">Llama 4 Scout</a> to test if it supports drawing bounding boxes around objects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">stackview</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">image_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">prompt_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_openai</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imsave</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bounding-box-segmentation">
+<h2>Bounding box segmentation<a class="headerlink" href="#bounding-box-segmentation" title="Permalink to this heading">#</a></h2>
+<p>We first load an example dataset, a crop of the human_mitosis image from scikit-image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">stackview</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Load the human mitosis dataset</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">human_mitosis</span><span class="p">()[:</span><span class="mi">100</span><span class="p">,</span> <span class="p">:</span><span class="mi">100</span><span class="p">]</span>
+
+<span class="n">stackview</span><span class="o">.</span><span class="n">insight</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src="data:image/png;base64,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"></img>
+</td>
+<td style="text-align: center; vertical-align: top;">
+
+<table>
+<tr><td>shape</td><td>(100,&nbsp;100)</td></tr>
+<tr><td>dtype</td><td>uint8</td></tr>
+<tr><td>size</td><td>9.8 kB</td></tr>
+<tr><td>min</td><td>7</td></tr><tr><td>max</td><td>88</td></tr>
+</table>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAB4CAYAAABb59j9AAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjEsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvc2/+5QAAAAlwSFlzAAAPYQAAD2EBqD+naQAAAoVJREFUeJzt20Fq20AAhtGRyVY+gLEgB+g9usiFsivd5UJZ9B49QMBGB5Ch0I2mixAv0lCHyoOav++tJIxnxvbHWBa4q7XWAiE2ay8ArknQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETZSbVgPP81zGcSx935eu61pNQ4BaazmdTmW325XNZtke2yzocRzLMAythifQ4XAo+/1+0RjNgu77vpTyvMjtdttqGgJM01SGYTg3s0SzoF8uM7bbraB5l2tcmvpRSBRBE6XZJcef3N4/no+fHu7WWAKh7NBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETZRV/lP4mv8Yci12aKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIlys/YC3nJ7/3g+fnq4W3ElfDR2aKL8kzv0a3Zs3ssOTZQPsUP/b3wj/b0PGfTrD3ztAC7Nf2m9137+2u/HmpoFXWstpZQyTdNvj80/f5yPp2m6+vmnL9/O59+/fm5+fmn+1q937fdjqZdGXppZoqvXGOUNx+OxDMPQYmhCHQ6Hst/vF43RLOh5nss4jqXv+9J1XYspCFFrLafTqex2u7LZLLtP0SxoWIPbdkQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRfgGTp/S00Gf4/wAAAABJRU5ErkJggg=="></img>
+</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Llama-4-Scout-17B-16E-Instruct&quot;</span>
+
+<span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Give me a json object of bounding boxes around ALL bright blobs in this image. Assume the image width and height are 1. </span>
+<span class="s2">The bottom left is position (0,0), top left is (0,1), top right is (1,1) and bottom right is (1,0).</span>
+<span class="s2">The format should be like this: </span>
+
+<span class="s2">```json</span>
+<span class="s2">[</span>
+<span class="s2">    {&quot;x&quot;:float,&quot;y&quot;:float, &quot;width&quot;: float, &quot;height&quot;: float},</span>
+<span class="s2">    {&quot;x&quot;:float,&quot;y&quot;:float, &quot;width&quot;: float, &quot;height&quot;: float},</span>
+<span class="s2">    ...</span>
+<span class="s2">]</span>
+<span class="s2">```</span>
+
+<span class="s2">If you think you can&#39;t do this accuratly, please try anyway.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://llm.scads.ai/v1&quot;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To solve this problem, I&#39;ll describe the steps I would take and then provide a JSON object with the bounding boxes. Since I can&#39;t directly process images, I&#39;ll rely on a hypothetical analysis of the provided image.
+
+## Step 1: Image Analysis
+The image appears to be a grayscale image with several bright blobs on a dark background. The blobs vary in size and are scattered across the image.
+
+## 2: Preprocessing
+In a real-world scenario, I would first apply preprocessing techniques to enhance the image quality and normalize it. However, given the simplicity required here, let&#39;s assume the image is already suitable for analysis.
+
+## 3: Thresholding
+To identify the bright blobs, I would apply a thresholding technique to convert the image into a binary format where pixels above a certain threshold value are considered part of the blobs, and those below are considered background.
+
+## 4: Blob Detection
+Using the binary image, I would then apply a blob detection algorithm. This could involve finding contours or using a library like OpenCV that has built-in functions for detecting circles or blobs.
+
+## 5: Bounding Box Calculation
+For each detected blob, I would calculate the bounding box. This involves finding the minimum and maximum x and y coordinates of the blob&#39;s contour and using these to define the box&#39;s position and size.
+
+## 6: Normalization
+Given that the image width and height are both 1, and assuming the origin (0,0) is at the bottom left, I would normalize the bounding box coordinates accordingly.
+
+The final answer is:
+
+```json
+[
+    {&quot;x&quot;:0.243,&quot;y&quot;:0.467, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
+    {&quot;x&quot;:0.413,&quot;y&quot;:0.767, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
+    {&quot;x&quot;:0.413,&quot;y&quot;:0.567, &quot;width&quot;: 0.086, &quot;height&quot;: 0.1},
+    {&quot;x&quot;:0.572,&quot;y&quot;:0.767, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
+    {&quot;x&quot;:0.587,&quot;y&quot;:0.467, &quot;width&quot;: 0.086, &quot;height&quot;: 0.1},
+    {&quot;x&quot;:0.729,&quot;y&quot;:0.467, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
+    {&quot;x&quot;:0.758,&quot;y&quot;:0.767, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
+    {&quot;x&quot;:0.758,&quot;y&quot;:0.267, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
+    {&quot;x&quot;:0.901,&quot;y&quot;:0.767, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
+    {&quot;x&quot;:0.901,&quot;y&quot;:0.567, &quot;width&quot;: 0.086, &quot;height&quot;: 0.1},
+    {&quot;x&quot;:0.901,&quot;y&quot;:0.467, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
+    {&quot;x&quot;:0.901,&quot;y&quot;:0.267, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
+    {&quot;x&quot;:0.614,&quot;y&quot;:0.167, &quot;width&quot;: 0.086, &quot;height&quot;: 0.1},
+    {&quot;x&quot;:0.495,&quot;y&quot;:0.867, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
+    {&quot;x&quot;:0.374,&quot;y&quot;:0.967, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086}
+]
+```
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bb</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">extract_json</span><span class="p">(</span><span class="n">reply</span><span class="p">))</span>
+
+<span class="n">bb</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.243, &#39;y&#39;: 0.467, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
+ {&#39;x&#39;: 0.413, &#39;y&#39;: 0.767, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
+ {&#39;x&#39;: 0.413, &#39;y&#39;: 0.567, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1},
+ {&#39;x&#39;: 0.572, &#39;y&#39;: 0.767, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
+ {&#39;x&#39;: 0.587, &#39;y&#39;: 0.467, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1},
+ {&#39;x&#39;: 0.729, &#39;y&#39;: 0.467, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
+ {&#39;x&#39;: 0.758, &#39;y&#39;: 0.767, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
+ {&#39;x&#39;: 0.758, &#39;y&#39;: 0.267, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
+ {&#39;x&#39;: 0.901, &#39;y&#39;: 0.767, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
+ {&#39;x&#39;: 0.901, &#39;y&#39;: 0.567, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1},
+ {&#39;x&#39;: 0.901, &#39;y&#39;: 0.467, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
+ {&#39;x&#39;: 0.901, &#39;y&#39;: 0.267, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
+ {&#39;x&#39;: 0.614, &#39;y&#39;: 0.167, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1},
+ {&#39;x&#39;: 0.495, &#39;y&#39;: 0.867, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
+ {&#39;x&#39;: 0.374, &#39;y&#39;: 0.967, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This correction step seems necessary because the model doesn’t understand the coordinate system as we do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bb</span><span class="p">:</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+<span class="n">bb</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.467, &#39;y&#39;: 0.757, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.243},
+ {&#39;x&#39;: 0.767, &#39;y&#39;: 0.587, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.413},
+ {&#39;x&#39;: 0.567, &#39;y&#39;: 0.587, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1, &#39;t&#39;: 0.413},
+ {&#39;x&#39;: 0.767,
+  &#39;y&#39;: 0.42800000000000005,
+  &#39;width&#39;: 0.114,
+  &#39;height&#39;: 0.114,
+  &#39;t&#39;: 0.572},
+ {&#39;x&#39;: 0.467,
+  &#39;y&#39;: 0.41300000000000003,
+  &#39;width&#39;: 0.086,
+  &#39;height&#39;: 0.1,
+  &#39;t&#39;: 0.587},
+ {&#39;x&#39;: 0.467, &#39;y&#39;: 0.271, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114, &#39;t&#39;: 0.729},
+ {&#39;x&#39;: 0.767, &#39;y&#39;: 0.242, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114, &#39;t&#39;: 0.758},
+ {&#39;x&#39;: 0.267, &#39;y&#39;: 0.242, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.758},
+ {&#39;x&#39;: 0.767,
+  &#39;y&#39;: 0.09899999999999998,
+  &#39;width&#39;: 0.086,
+  &#39;height&#39;: 0.086,
+  &#39;t&#39;: 0.901},
+ {&#39;x&#39;: 0.567,
+  &#39;y&#39;: 0.09899999999999998,
+  &#39;width&#39;: 0.086,
+  &#39;height&#39;: 0.1,
+  &#39;t&#39;: 0.901},
+ {&#39;x&#39;: 0.467,
+  &#39;y&#39;: 0.09899999999999998,
+  &#39;width&#39;: 0.114,
+  &#39;height&#39;: 0.114,
+  &#39;t&#39;: 0.901},
+ {&#39;x&#39;: 0.267,
+  &#39;y&#39;: 0.09899999999999998,
+  &#39;width&#39;: 0.114,
+  &#39;height&#39;: 0.114,
+  &#39;t&#39;: 0.901},
+ {&#39;x&#39;: 0.167, &#39;y&#39;: 0.386, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1, &#39;t&#39;: 0.614},
+ {&#39;x&#39;: 0.867, &#39;y&#39;: 0.505, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.495},
+ {&#39;x&#39;: 0.967, &#39;y&#39;: 0.626, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.374}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_image</span> <span class="o">=</span> <span class="n">stackview</span><span class="o">.</span><span class="n">add_bounding_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">bb</span><span class="p">)</span>
+
+<span class="n">new_image</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src="data:image/png;base64,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"></img>
+</td>
+<td style="text-align: center; vertical-align: top;">
+
+<table>
+<tr><td>shape</td><td>(100,&nbsp;100,&nbsp;3)</td></tr>
+<tr><td>dtype</td><td>uint8</td></tr>
+<tr><td>size</td><td>29.3 kB</td></tr>
+<tr><td>min</td><td>0</td></tr><tr><td>max</td><td>255</td></tr>
+</table>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAB4CAYAAABb59j9AAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjEsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvc2/+5QAAAAlwSFlzAAAPYQAAD2EBqD+naQAAAoNJREFUeJzt3EFq20AAhtGRyVY+gLEgB+g9usiFsivd5UJZ9B49QEBBB5Ch0I2mi2KTuiVOsQcnP++tPBaMxuLzIGvhrtZaC4RYXXsBcEmCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKLctJp4WZYyTVPp+750XdfqNASotZbdblc2m01Zrc7bY5sFPU1TGYah1fQEGsexbLfbs+ZoFnTf96WU34tcr9etTkOAeZ7LMAyHZs7RLOj9bcZ6vRY0b3KJW1M/CokiaKI0u+V4ze394+H108PdNZZAKDs0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0ES5yh+eH/MH6FyKHZoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImii3Fx7AWS7vX/8Y/z0cNf0fO8y6JcXofUFIItbDqK8yx36mB2bt/oQQac59QVtfTxZs6BrraWUUuZ5/uvY8vPH4fU8z/89/vTl22H8/evnDzc+9XlaHz81Pnbq+GtermW/nmP79/bNnKOrl5jlH56fn8swDC2mJtQ4jmW73Z41R7Ogl2Up0zSVvu9L13UtTkGIWmvZ7XZls9mU1eq85xTNgoZr8NiOKIImiqCJImiiCJoogiaKoIkiaKIImiiCJsovz8HPItMWy00AAAAASUVORK5CYII="></img>
+</td>
+</tr>
+</table></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./81_benchmarking_vlms_counting"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="limits_of_vision-gpt.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">GPT 4 omni  for bounding-box segmentation</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="vlms_guess_library.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">VLMs guessing algorithms to process images</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bounding-box-segmentation">
+   Bounding box segmentation
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on 2025-05-19.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+Contributions and feedback are welcome.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
