@@ -39,7 +39,7 @@ def image_to_message_claude(image, prompt):
             ]
         }
 
-def prompt_openai(prompt:str, image, model="gpt-4o"):
+def prompt_openai(prompt:str, image, model="gpt-4o", base_url=None, api_key=None):
     """A prompt helper function that sends a message to openAI
     and returns only the text response.
     """
@@ -63,6 +63,11 @@ def prompt_openai(prompt:str, image, model="gpt-4o"):
             
     # setup connection to the LLM
     client = openai.OpenAI()
+    if base_url is not None:
+        client.base_url = base_url
+
+    if api_key is not None:
+        client.api_key = api_key
     
     # submit prompt
     response = client.chat.completions.create(
