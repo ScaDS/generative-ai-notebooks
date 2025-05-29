@@ -158,6 +158,7 @@ parts:
       sections:
       - file: 80_benchmarking_llms/20_vision_models.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision_moondream.ipynb
+      - file: 81_benchmarking_vlms_counting/limits_of_vision_moondream_bb.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision-claude.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision-gpt.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision-llama4.ipynb
