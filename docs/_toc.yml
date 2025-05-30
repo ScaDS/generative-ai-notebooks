@@ -163,6 +163,8 @@ parts:
       - file: 81_benchmarking_vlms_counting/limits_of_vision-claude.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision-gpt.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision-llama4.ipynb
+      - file: 81_benchmarking_vlms_counting/limits_of_vision-gemma3.ipynb
+      - file: 81_benchmarking_vlms_counting/limits_of_vision-qwen.ipynb
       - file: 81_benchmarking_vlms_counting/vlms_guess_library.ipynb
 
     
