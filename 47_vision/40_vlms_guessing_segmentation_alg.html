@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>VLM prompt engineering &#8212; Generative Artificial Intelligence Notebooks</title>
+    <title>VLMs guessing image segmentation strategies &#8212; Generative Artificial Intelligence Notebooks</title>
   
   
   
@@ -332,6 +332,10 @@ const thebe_selector_output = ".output, .cell_output"
     </div>
   
 
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
   
 
 </div>
@@ -669,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="23_vision_claude.html">Claude vision</a></li>
 <li class="toctree-l2"><a class="reference internal" href="35_vision_moondream.html">Moondream LLM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="30_vision_models_structred_output.html">Vision models with structured output</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">VLM prompt engineering</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">VLMs guessing image segmentation strategies</a></li>
 </ul>
 </li>
 </ul>
@@ -893,7 +897,9 @@ title="Print to PDF"
       
   </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
             </div>
@@ -901,19 +907,33 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>VLM prompt engineering</h1>
+    <h1>VLMs guessing image segmentation strategies</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
 
             <article class="bd-article" role="main">
               
-  <section class="tex2jax_ignore mathjax_ignore" id="vlm-prompt-engineering">
-<h1>VLM prompt engineering<a class="headerlink" href="#vlm-prompt-engineering" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="vlms-guessing-image-segmentation-strategies">
+<h1>VLMs guessing image segmentation strategies<a class="headerlink" href="#vlms-guessing-image-segmentation-strategies" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we present images to VLMs and ask them which algorithm to use for segmenting the image. One could expect that depending on the image, the VLM suggests different strategies. In a second example, we demonstrate how a list of rules can be used to guide the VLM in guiding us.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
@@ -1000,7 +1020,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>This is the example image we will be using.</p>
+<p>These are the example images we will be using.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">membrane_image</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cells3d</span><span class="p">()[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -1105,7 +1125,7 @@ title="Print to PDF"
 </tr>
 </table></div></div>
 </div>
-<p>This is the prompt we submit to the server.</p>
+<p>This helper function will send the image together with a prompt to the LLM service provider and display a word cloud of the suggested algorithms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">determine_algorithm</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
@@ -1124,6 +1144,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>This is the simple prompt we submit to the server.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a bioimage-analysis expert.</span>
@@ -1174,6 +1195,7 @@ title="Print to PDF"
 <img alt="../_images/0c96bf33891fa90743a972d9668403f858c7e4c7fe791306448cc46e66d86c38.png" src="../_images/0c96bf33891fa90743a972d9668403f858c7e4c7fe791306448cc46e66d86c38.png" />
 </div>
 </div>
+<p>Next, we try the same strategy using a more complex prompt containing a list of rules to guide the VLM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a bioimage-analysis expert. You have a rule-book what alogrithms to use for specific images.</span>
@@ -1234,6 +1256,10 @@ title="Print to PDF"
 <img alt="../_images/14183ef7a8be9cd4b05b4726da990c80ef70a18ff64d9bfbd824302b14aa0d12.png" src="../_images/14183ef7a8be9cd4b05b4726da990c80ef70a18ff64d9bfbd824302b14aa0d12.png" />
 </div>
 </div>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>Load a natural picture, e.g. showing of a cat, and ask the LLM how to process the image using both prompts above.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1284,6 +1310,27 @@ title="Print to PDF"
           </div>
           
           
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
           
           
         </div>
