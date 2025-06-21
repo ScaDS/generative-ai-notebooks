@@ -1132,7 +1132,8 @@ title="Print to PDF"
     <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_samples</span><span class="p">):</span>
         <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prompt_with_image</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">image</span><span class="p">))</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+    <span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;algorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;segmentation&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">]</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
 
     <span class="c1"># Generate word cloud</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">wordcloud</span><span class="o">.</span><span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
@@ -1142,6 +1143,21 @@ title="Print to PDF"
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+</div>
+<p>First, we prompt for microscopy image segmentation algorithms with no details and no image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a bioimage-analysis expert.</span>
+<span class="s2">What is the best image processing algorithm to segment microscopy images?</span>
+<span class="s2">Answer the algorithm name only. No explanations.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">determine_algorithm</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/45fd74f770a1587e1591b74129f543932aa569a6d22451ad196aeca180d888e6.png" src="../_images/45fd74f770a1587e1591b74129f543932aa569a6d22451ad196aeca180d888e6.png" />
 </div>
 </div>
 <p>This is the simple prompt we submit to the server.</p>
@@ -1162,7 +1178,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c91efa90c45b8608a45ff5375ef3bc136afb417275f80caf74bfa12753138b64.png" src="../_images/c91efa90c45b8608a45ff5375ef3bc136afb417275f80caf74bfa12753138b64.png" />
+<img alt="../_images/df5905754a4a31b4eed474d09e321bd213915e4e316a03615639daf8e2b1ab2c.png" src="../_images/df5905754a4a31b4eed474d09e321bd213915e4e316a03615639daf8e2b1ab2c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1172,7 +1188,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0e1446f225c8f997794c9505f6bd1de757da4216f6da84042e8ed855f1173ba3.png" src="../_images/0e1446f225c8f997794c9505f6bd1de757da4216f6da84042e8ed855f1173ba3.png" />
+<img alt="../_images/407b4690f622568b4c1c24204002c5a5863a3a730a245e8ff454c9bb29e72121.png" src="../_images/407b4690f622568b4c1c24204002c5a5863a3a730a245e8ff454c9bb29e72121.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1182,7 +1198,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c4a54c5e95953df1f03ee3fcb76cda861810df0c6702769e0c44959a4e0a0fd4.png" src="../_images/c4a54c5e95953df1f03ee3fcb76cda861810df0c6702769e0c44959a4e0a0fd4.png" />
+<img alt="../_images/d8701cbdcdecc1760299f768c337ca493b6e912b2b3ee433090c382979f31aed.png" src="../_images/d8701cbdcdecc1760299f768c337ca493b6e912b2b3ee433090c382979f31aed.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1192,7 +1208,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0c96bf33891fa90743a972d9668403f858c7e4c7fe791306448cc46e66d86c38.png" src="../_images/0c96bf33891fa90743a972d9668403f858c7e4c7fe791306448cc46e66d86c38.png" />
+<img alt="../_images/6e30aa90a2c05a850b77487a035cb378b05d7515909674a19646e18c237aeaad.png" src="../_images/6e30aa90a2c05a850b77487a035cb378b05d7515909674a19646e18c237aeaad.png" />
 </div>
 </div>
 <p>Next, we try the same strategy using a more complex prompt containing a list of rules to guide the VLM.</p>
@@ -1223,7 +1239,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1789935b445bf533e3d09ee62e96aff44ebc6139f5c3558463694469515d0e77.png" src="../_images/1789935b445bf533e3d09ee62e96aff44ebc6139f5c3558463694469515d0e77.png" />
+<img alt="../_images/480f5e1d30ff38517b31a056975aec77c6ae3f57703ea12bfe5e2aab300db643.png" src="../_images/480f5e1d30ff38517b31a056975aec77c6ae3f57703ea12bfe5e2aab300db643.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1233,7 +1249,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/26e1484bbe574b8300cd640241c9d7b01ba8a060693812a769f60a33c257ffba.png" src="../_images/26e1484bbe574b8300cd640241c9d7b01ba8a060693812a769f60a33c257ffba.png" />
+<img alt="../_images/f9a69f3c03975caae2dda197cc51333fe57029dfa0dd6f80d11cfafcb2bde967.png" src="../_images/f9a69f3c03975caae2dda197cc51333fe57029dfa0dd6f80d11cfafcb2bde967.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1243,7 +1259,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/551b49cd530297bdde9791ce30f7ab8e65121d49959e59c9390bf55c81adac67.png" src="../_images/551b49cd530297bdde9791ce30f7ab8e65121d49959e59c9390bf55c81adac67.png" />
+<img alt="../_images/912fe6678c6de52e599519662ce7174c6d44a84ebe279819ce30438eec92fba8.png" src="../_images/912fe6678c6de52e599519662ce7174c6d44a84ebe279819ce30438eec92fba8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1253,7 +1269,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14183ef7a8be9cd4b05b4726da990c80ef70a18ff64d9bfbd824302b14aa0d12.png" src="../_images/14183ef7a8be9cd4b05b4726da990c80ef70a18ff64d9bfbd824302b14aa0d12.png" />
+<img alt="../_images/7633d5777213fee3a829f33cd023e0edfabce39b0b6db4d93a8ddc23044065f2.png" src="../_images/7633d5777213fee3a829f33cd023e0edfabce39b0b6db4d93a8ddc23044065f2.png" />
 </div>
 </div>
 <section id="exercise">
