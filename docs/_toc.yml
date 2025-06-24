@@ -158,7 +158,7 @@ parts:
     - file: 81_benchmarking_vlms_counting/readme.md
       sections:
       - file: 80_benchmarking_llms/20_vision_models.ipynb
-      - file: 80_benchmarking_llms/21_open_weight_vlms.ipynb
+      - file: 82_benchmarking_vlms/open_weight_llms_counting.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision_moondream.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision_moondream_bb.ipynb
       - file: 81_benchmarking_vlms_counting/limits_of_vision-claude.ipynb
