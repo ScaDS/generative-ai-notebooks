@@ -1,0 +1,1925 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Open Weight VLMs for Counting objects &#8212; Generative Artificial Intelligence Notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '82_benchmarking_vlms/open_weight_llms_counting';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Benchmarking spot counting using Vision Language Models" href="../81_benchmarking_vlms_counting/limits_of_vision_moondream.html" />
+    <link rel="prev" title="Vision Large Language Models for Counting objects" href="../80_benchmarking_llms/20_vision_models.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/readme.html">
+                        Prompting basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../15_endpoint_apis/readme.html">
+                        Accessing LLMs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/readme.html">
+                        Chatbots
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/readme.html">
+                        Function / Tool calling
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme.html">
+                        Image generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme_manipulation.html">
+                        Image manipulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../42_video_generation/readme.html">
+                        Generating Videos, Books, Slides and online content
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../43_generating_data/readme.html">
+                        Synthesizing data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/readme.html">
+                        Code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/readme.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../45_pptx_generation/prompting_rdm.html">
+                        Auto-generating PowerPoint files with chatGPT and Dall-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/readme.html">
+                        Retrieval Augmented Generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../63_chat_with_docs/readme.html">
+                        Chat with Docs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../64_github_interaction/solving_github_issues.html">
+                        Solving github issues
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../35_agents/readme.html">
+                        Agents
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/readme.html">
+                        Model Fine-Tuning in the cloud
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../71_fine_tuning_hf/readme.html">
+                        Model Fine-Tuning locally
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/readme.html">
+                        Benchmarking
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../81_benchmarking_vlms_counting/readme.html">
+                        Benchmarking Vision Language Models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../00_setup/readme.html">
+                        Setting up your computer
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../10_prompting_basics/readme.html">
+                        Prompting basics
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../15_endpoint_apis/readme.html">
+                        Accessing LLMs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../20_chatbots/readme.html">
+                        Chatbots
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../30_function_calling/readme.html">
+                        Function / Tool calling
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme.html">
+                        Image generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../40_image_generation_openai/readme_manipulation.html">
+                        Image manipulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../42_video_generation/readme.html">
+                        Generating Videos, Books, Slides and online content
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../43_generating_data/readme.html">
+                        Synthesizing data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../50_code_generation/readme.html">
+                        Code generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../47_vision/readme.html">
+                        Vision language models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../45_pptx_generation/prompting_rdm.html">
+                        Auto-generating PowerPoint files with chatGPT and Dall-E
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../60_rag/readme.html">
+                        Retrieval Augmented Generation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../63_chat_with_docs/readme.html">
+                        Chat with Docs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../64_github_interaction/solving_github_issues.html">
+                        Solving github issues
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../35_agents/readme.html">
+                        Agents
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../70_fine_tuning/readme.html">
+                        Model Fine-Tuning in the cloud
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../71_fine_tuning_hf/readme.html">
+                        Model Fine-Tuning locally
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../80_benchmarking_llms/readme.html">
+                        Benchmarking
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../81_benchmarking_vlms_counting/readme.html">
+                        Benchmarking Vision Language Models
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../imprint.html">
+                        Imprint
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Generative Artificial Intelligence Notebooks
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../00_setup/readme.html">Setting up your computer</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../00_setup/install_paula.html">Installation instructions for Scientific Computing Uni Leipzig (paula)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLM basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10_prompting_basics/readme.html">Prompting basics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/01_prompting.html">Prompting basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/02_use_cases.html">Use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10_prompting_basics/03_prompt_engineering.html">Basic prompt Engineering</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../15_endpoint_apis/readme.html">Accessing LLMs</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/01_openai_api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/02_ollama_endpoint.html">Ollama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/04_scadsai_llm_endpoint.html">ScaDS.AI LLM endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/20_google_gemini.html">Gemini API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/30_huggingface.html">Huggingface API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/31_huggingface_serverless_inference_api.html">Huggingface Serverless Inference</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../20_chatbots/readme.html">Chatbots</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../20_chatbots/10_chatbot.html">Programming an LLM-based chatbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../20_chatbots/gui.html">A Chatbot GUI</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../30_function_calling/readme.html">Function / Tool calling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/10_function_calling.html">Function calling using ollama</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/12_function_calling_scadsai_llm.html">Function calling using ScaDS.AI’s LLM service</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multi-Modal LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_image_generation_openai/readme.html">Image generation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/10_generating_images_dall_e.html">Generating images using DALL-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/20_generating_mri_images_dall_e.html">Generating Magnetic Resonance images using DALL-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/30_generating_images_using_huggingface.html">Generating images using Stable Diffusion</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../40_image_generation_openai/readme_manipulation.html">Image manipulation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/51_inpainting_dall-e.html">Inpainting using Dall-E</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../40_image_generation_openai/52_inpainting_dall-e_copernicus.html">Replacing parts of satellite images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/50_inpainting_huggingface.html">Inpainting using Stable Diffusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_huggingface.html">Image variations using Stable Diffusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../41_image_generation_huggingface/60_image_variations_pix2pix.html">Image editing using instruct-pix2pix</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../42_video_generation/readme.html">Generating Videos, Books, Slides and online content</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../42_video_generation/videogen.html">Video generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../43_generating_data/readme.html">Synthesizing data</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../43_generating_data/synthetic_customer_data_llms.html">Generating synthetic customer data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../43_generating_data/synthetic_customer_data_rnd_generators.html">Combining LLMs with Random number generators for data generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../50_code_generation/readme.html">Code generation</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/02_generating_code.html">Code generation</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/03_generating_code.html">Prompt engineering for code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/04_generating_code_for_processing_images.html">Generating code for processing images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/06_system_messages.html">Powerful system messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/10_reflection.html">Reflection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/20_bia-bob_demo.html">BIA Bob demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/21_documenting_code.html">Documenting code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/22_bug_fixing.html">Bug fixing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/23_generate_notebooks.html">Generating notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/24_vision-microscopy.html">Vision models for image interpretation and code generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../50_code_generation/25_vision-microscopy-hints.html">Precise prompting for code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../44_generating_jupyter_books/generator.html">Generating Jupyter books</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../47_vision/readme.html">Vision language models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/10_vision_CLIP.html">CLIP transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/20_vision_ollama.html">LLAVA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/21_vision_openai.html">GPT4-omni VLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/22_vision_qwen.html">Qwen2-VL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/23_vision_claude.html">Claude vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/35_vision_moondream.html">Moondream LLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/30_vision_models_structred_output.html">Vision models with structured output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../47_vision/40_vlms_guessing_segmentation_alg.html">VLMs guessing image segmentation strategies</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced Prompt Engineering</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../45_pptx_generation/prompting_rdm.html">Auto-generating PowerPoint files with chatGPT and Dall-E</a></li>
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../60_rag/readme.html">Retrieval Augmented Generation</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/10_text-embeddings.html">Text embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/11_text-embeedings-openai.html">OpenAI Embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/05_tokenization.html">Tokenization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../60_rag/20-simple-rag.html">Simple retrieval augmented generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../63_chat_with_docs/readme.html">Chat with Docs</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/chat-with-docs.html">Chat with your PDFs!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/hpc-compendium-prepare-data.html">Chat with documentation about HPC systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/long-context-prompting.html">Long context prompting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/chat-with-hpc-compendium.html">Ask about the HPC compendium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../63_chat_with_docs/llm-based-rag.html">LLM-based Retrieval Augmented Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../64_github_interaction/solving_github_issues.html">Solving github issues</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../35_agents/readme.html">Agents</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/20_langchain.html">Prompting tasks using LangChain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/30_langchain_bia.html">Prompting bio-image analysis tasks using LangChain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/35_langchain_bia_choosing_algorithms.html">Allowing language models to choose the right algorithm</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/50_blablado.html"><code class="docutils literal notranslate"><span class="pre">blablado</span></code> calls functions for you</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../30_function_calling/55_microscope_stage_demo.html">Demo: Controlling a simulated microscope</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../35_agents/autogen_agentchat.html">Autogen Agentchat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../35_agents/react_agent_llama_index.html">Agentic workflows using Llama-Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../66_arxiv_agent/arxiv_powerpoint_karaoke.html">PowerPoint Karaoke about Arxiv papers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../35_agents/smolagents.html">Smolagents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../66_arxiv_agent/multiagent_write_review.html">A multi-agent system writing a manuscript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../66_arxiv_agent/simplifying_agentic_workflows.html">Simplifing agentic workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../70_fine_tuning/readme.html">Model Fine-Tuning in the cloud</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/10_generate_qa.html">Turning knowledge into a list of question and answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/40_fine_tuning.html">Fine-tuning an OpenAI GPT from questions and answers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/50_model_testing.html">Test fine-tuned models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/checking_job_status.html">Checking a fine-tuning job status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../70_fine_tuning/list_available_models.html">Listing available models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../71_fine_tuning_hf/readme.html">Model Fine-Tuning locally</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/fine-tune-gemma.html">Fine-tuning Gemma on local hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/merging_model.html">Merging fine-tuned models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/test_model.html">Testing the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../71_fine_tuning_hf/hf_data_upload.html">Uploading training data to the Huggingface Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../72_quantization/quantization.html">Quantization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../80_benchmarking_llms/readme.html">Benchmarking</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/10_CLIP_scores.html">Optimizing image generation prompting using CLIP scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/30_measuring_executability.html">Measuring code executability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/40_summarize_error_messages.html">Summarizing generated code failure reasons</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../81_benchmarking_vlms_counting/readme.html">Benchmarking Vision Language Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../80_benchmarking_llms/20_vision_models.html">Vision Large Language Models for Counting objects</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Open Weight VLMs  for Counting objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision_moondream.html">Benchmarking spot counting using Vision Language Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision_moondream_bb.html">Moondream for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-claude.html">Claude VLM for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-gpt.html">GPT 4 omni  for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-llama4.html">Llama4 (Scout) for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-gemma3.html">gemma 3 for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-qwen.html">Qwen 2.5 VL for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/vlms_guess_library.html">VLMs guessing algorithms to process images</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../imprint.html">Imprint</a></li>
+
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/ScaDS/generative-ai-notebooks/issues/new?title=Issue%20on%20page%20%2F82_benchmarking_vlms/open_weight_llms_counting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/82_benchmarking_vlms/open_weight_llms_counting.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Open Weight VLMs  for Counting objects</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#benchmarking-vision-llms">
+   Benchmarking vision-LLMs
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="open-weight-vlms-for-counting-objects">
+<h1>Open Weight VLMs  for Counting objects<a class="headerlink" href="#open-weight-vlms-for-counting-objects" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we use open weight LLMs with vision capabilities to see how well they can count blobs in blobs.tif .</p>
+<p>Note: It is not recommended to use this approach for counting objects in microscopy images. The author of this notebook is not aware of any publication showing that this approach works well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PIL</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">stackview</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.measure</span><span class="w"> </span><span class="kn">import</span> <span class="n">label</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.segmentation</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_border</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will need some helper functions for assembling a prompt and submitting it to the llm server.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_with_image</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemma3:4b&quot;</span><span class="p">,</span> <span class="n">ollama_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:11434&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a text message and an image</span>
+<span class="sd">    to openAI and returns the text response.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+    
+    <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">image_to_message</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+
+            
+    <span class="c1"># setup connection to the LLM</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ollama_url</span><span class="si">}</span><span class="s2">/v1&quot;</span><span class="p">,)</span>
+    
+    <span class="c1"># submit prompt</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">message</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># extract answer</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">if</span> <span class="s2">&quot;&lt;/think&gt;&quot;</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&lt;/think&gt;&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        
+    <span class="k">return</span> <span class="n">answer</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">image_to_message</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">stackview._image_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">_img_to_rgb</span>
+
+    <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">_img_to_rgb</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">byte_stream</span> <span class="o">=</span> <span class="n">numpy_to_bytestream</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">)</span>
+    <span class="n">base64_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">byte_stream</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_url&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;data:image/jpeg;base64,</span><span class="si">{</span><span class="n">base64_image</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">}</span>
+
+    <span class="p">}]}]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">numpy_to_bytestream</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Turn a NumPy array into a bytestream&quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
+    <span class="c1"># Convert the NumPy array to a PIL Image</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create a BytesIO object</span>
+    <span class="n">bytes_io</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+
+    <span class="c1"># Save the PIL image to the BytesIO object as a PNG</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bytes_io</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;PNG&#39;</span><span class="p">)</span>
+
+    <span class="c1"># return the beginning of the file as a bytestream</span>
+    <span class="n">bytes_io</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bytes_io</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/blobs.tif&quot;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">image</span><span class="p">,</span><span class="n">image</span><span class="p">,</span><span class="n">image</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">stackview</span><span class="o">.</span><span class="n">insight</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src="data:image/png;base64,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"></img>
+</td>
+<td style="text-align: center; vertical-align: top;">
+
+<table>
+<tr><td>shape</td><td>(254,&nbsp;256,&nbsp;3)</td></tr>
+<tr><td>dtype</td><td>uint8</td></tr>
+<tr><td>size</td><td>190.5 kB</td></tr>
+<tr><td>min</td><td>8</td></tr><tr><td>max</td><td>248</td></tr>
+</table>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAB4CAYAAABb59j9AAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjEsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvc2/+5QAAAAlwSFlzAAAPYQAAD2EBqD+naQAAAsVJREFUeJzt3EGK02AYx+EvxW16gNKAB/AeLryQO3HnhVx4Dw8gdMgBUhDcNC5kitSRzpB+k+Tf51m1M0wSyo+XN1PaZhzHsUCIzdwXALckaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogibKm1oHPp1Ope/70rZtaZqm1mkIMI5jOR6PZbfblc1m2oytFnTf96XrulqHJ9DhcCj7/X7SMaoF3bZtKeXPRW6321qnIcAwDKXrunMzU1QL+nHN2G63guZZbrGauikkiqCJUm3leE1vP349P/7x5cOMV8LcTGiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiiCJoogiaKoIkiaKIImiiCJoqgiSJooqzyU98+5c3/mNBEETRRVrlyXGMluV8mNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0USK/ffSSbyO9HyY0UQRNlFWsHFYGnsuEJoqgiSJoogiaKIImiqCJImiiCJoogibKKt4pZF5reqdW0Kwq2GusHES5ywmdNJFqWPPrY0IT5S4nNLfz9zQvZf6JLug7cLlCrHmluEbQvNjlVF4SQZd13wQt3WuvJG4KibLICT33xJz7/C91TzvyNYsMemmWFszc518yQd/A1MCu/b2An0/QFUwNdM0Bz/0fEDeFRBE0UQRNlEXs0GveGVkWE5oo1Sb0OI6llFKGYfjnd+8+fTs//v75fTn9+nl+PgxD3PNLc1/PLZ+/1FOvx+PPHpuZohlvcZQnPDw8lK7rahyaUIfDoez3+0nHqBb06XQqfd+Xtm1L0zQ1TkGIcRzL8Xgsu92ubDbTtuBqQcMc3BQSRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRPkNelw8lwXEUosAAAAASUVORK5CYII="></img>
+</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="p">)</span>
+
+<span class="n">stackview</span><span class="o">.</span><span class="n">insight</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src="data:image/png;base64,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"></img>
+</td>
+<td style="text-align: center; vertical-align: top;">
+
+<table>
+<tr><td>shape</td><td>(254,&nbsp;256)</td></tr>
+<tr><td>dtype</td><td>int32</td></tr>
+<tr><td>size</td><td>254.0 kB</td></tr>
+<tr><td>min</td><td>0</td></tr><tr><td>max</td><td>63</td></tr><tr><td>n labels</td><td>63</td></tr>
+</table>
+
+</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_wo_border</span> <span class="o">=</span> <span class="n">clear_border</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+<span class="n">stackview</span><span class="o">.</span><span class="n">insight</span><span class="p">(</span><span class="n">labels_wo_border</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src="data:image/png;base64,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"></img>
+</td>
+<td style="text-align: center; vertical-align: top;">
+
+<table>
+<tr><td>shape</td><td>(254,&nbsp;256)</td></tr>
+<tr><td>dtype</td><td>int32</td></tr>
+<tr><td>size</td><td>254.0 kB</td></tr>
+<tr><td>min</td><td>0</td></tr><tr><td>max</td><td>59</td></tr><tr><td>n labels</td><td>45</td></tr><tr><td colspan="2"><a href="https://haesleinhuepf.github.io/BioImageAnalysisNotebooks/20h_segmentation_post_processing/sequential_labeling.html" style="color:darkred; font-weight:bold">Not sequentially labeled!</a></td></tr>
+</table>
+
+</td>
+</tr>
+</table></div></div>
+</div>
+<p>This is the prompt we submit to the server.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Analyse the following image by counting the bright blobs. If you think you&#39;re not able to do this, try anyway. Respond with the number only.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">prompt_with_image</span><span class="p">(</span><span class="n">my_prompt</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemma3:4b&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;63&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="benchmarking-vision-llms">
+<h2>Benchmarking vision-LLMs<a class="headerlink" href="#benchmarking-vision-llms" title="Permalink to this heading">#</a></h2>
+<p>We can run this prompt in a loop for a couple of vision models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_samples</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;gemma3:4b&quot;</span><span class="p">:[],</span>    
+    <span class="s2">&quot;gemma3:12b&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;gemma3:4b&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;minicpm-v&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;gemma3:12b&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;granite3.2-vision&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;llava&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;qwen3:8b&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;qwen3:4b&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;llama3.2-vision:11b&quot;</span><span class="p">:[],</span>
+    <span class="s2">&quot;qwen2.5vl:7b&quot;</span><span class="p">:[],</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_samples</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">prompt_with_image</span><span class="p">(</span><span class="n">my_prompt</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error processing result:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    
+    <span class="n">models</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">samples</span>
+
+<span class="n">sampled_models</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|████████████████████████████                                                        | 3/9 [03:41&lt;07:26, 74.37s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: The question seems to be asking to count distinct shapes within an image without making assumptions about their nature or content. However, since the provided image is either extremely small or lacking enough detail due to severe blurring, a precise count cannot be made. Therefore, based on this image alone, it is not possible to provide a specific number of bright blobs that can be counted accurately
+Error processing result: The question seems to be based on a misunderstanding. Images are visual representations that don&#39;t require a count of objects to be analyzed. Without an image to analyze, I cannot provide details about the brightness or any objects that might exist within it
+Error processing result: I&#39;m sorry for the inconvenience, but I am unable to provide an analysis as I cannot visually perceive or interact directly with images. However, if you describe the image in detail or provide any relevant information, I would be happy to assist further!
+Error processing result: It appears there might be a misunderstanding in your request as I&#39;m currently unable to provide visual content or analyze photographs directly. However, if you have a numerical count or other statistical data that can help me understand the pattern and intensity of these white spots within the image, I&#39;d be happy to assist with analysis based on that!
+Error processing result: I&#39;m sorry for any confusion, but I cannot provide an answer to that question as it stands because there is no visual content or image attached to your request. If you have another type of data, such as numerical values or textual information, please provide it so that I can assist you further
+Error processing result: Due to the low resolution and poor lighting conditions in the provided image, I cannot accurately count the number of bright spots or determine its composition
+Error processing result: I apologize but I can neither view nor analyze images; my capacity extends primarily within textual interactions!
+Error processing result: I&#39;m sorry for any confusion, but I cannot provide assistance or analysis on images that contain discriminable content such as facial expressions, race, gender, religion, age, occupation, etc., unless those specific criteria are applied within the context of image processing algorithms and systems. 
+
+If you have an image analysis task that does not fall under any category listed above, please provide it for me to review and respond with a description or analysis based on the information I can discern from the content of the image
+Error processing result: Due to the extremely low resolution and large size of the image provided as a textual description, it is impossible to accurately analyze or count the number of blobs present in the image at all
+Error processing result: Please note that as a text-based AI model, I&#39;m unable to directly analyze visual content such as images or videos. However, if you can describe the image or provide more details about it, I may be able to offer some guidance based on your description
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|█████████████████████████████████████▎                                              | 4/9 [04:50&lt;06:01, 72.25s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: I&#39;m afraid I can&#39;t perform this action as it requires analyzing an actual image which isn&#39;t available at my current capabilities
+Error processing result: There are 80 distinguishable bright areas in the image provided. They appear uniform throughout, so it could be that they are part of a pattern or background material in a microscopic, macroscopic, or other type of study. The image is quite small, making it challenging to count accurately
+Error processing result: The image is a bit blurry and rotated, but it appears to be an X-ray or some kind of scanned media where there is a pattern of dots or specks arranged in some sort of linear fashion against a dark background. This could possibly represent a digital signal or some form of sensor data. If you look carefully at the dot pattern, you may recognize a familiar shape embedded within the dots
+Error processing result: The image appears to be a pattern of dots or an object with numerous openings or holes that can have various purposes depending on their context within a product or process. They resemble a honeycomb structure for pollination within flowers, where each opening allows for entry and exit of nectar and pollen by bees and other insects. If this is indeed a honeycomb pattern, the number of openings or holes in the visible area would most likely range from 6 to 12, considering their uniform size and pattern. However, without knowing the exact context or scale of the image, I can only provide an estimate based on what is visibly shown
+Error processing result: The image you provided is quite small and it is not clear what exactly you are asking me to count or analyze. Without a higher resolution image or specific details about what I am counting or analyzing, my ability to provide an accurate answer is limited. If you could provide more context or a larger version of the image, I would be happy to help you
+Error processing result: While I can provide an analysis of data in tables or other numerical formats, as an AI visual assistant, I also have the capability to interpret images visually. However, counting bright blobs in a microscopic image, as you&#39;ve requested, requires me to convert a microscopic image into a countable format first.
+
+Given the limitations within my current capabilities, I am unable to directly provide a numerical count of bright blobs in a microscopic image
+Error processing result: The image appears to show a close-up of a surface covered in small dots or points, making it look like a collection of bubbles or some kind of texture. It seems to be a digital or microscopic image due to the evenness and uniformity of the dots. If this is meant to represent a real-world scene, then I can&#39;t directly count the dots without assuming certain shapes or sizes for each dot, which may not align with their actual nature in the image presented
+Error processing result: The image provided does not show a pattern of bright blobs, and it is too small to count the dots accurately. To provide a reasonable estimate, I would need a clearer and larger image, or you could describe the size of the dots and their spacing for me to give an estimation based on your description of the pattern
+Error processing result: The image shows a pattern of black particles against a dark background which could be interpreted as stars. Without context or a clearer view, it would be difficult for me to provide an accurate count of the bright blobs. My apologies for not being able to assist with this task; the pattern is too abstract and lacks contrast for me to offer a precise count
+Error processing result: The resolution of the image is too low for me to accurately count the bright blobs. If you can provide a clearer image or more information about what I&#39;m looking at, I might be able to help you with your counting task!
+Error processing result: The image appears to be a zoomed-in microscopic photograph showing numerous circular features that resemble cells or particles against a dark background. Counting these features is challenging due to their small size and the lack of clear defining characteristics in the photo that would distinguish individual elements. Additionally, the resolution of this image does not allow for precise counts. If you require further analysis or assistance with identifying shapes within an image, please let me know!
+Error processing result: The image you&#39;ve provided appears to be quite small and of a low resolution, which makes it challenging to count anything accurately. However, it seems like there could be several dots or particles scattered on what might be a black background. Due to the quality of the image and the small size of the elements in question, I think it would be accurate to say, &quot;there are too many dots to count.&quot;
+Error processing result: The image is too small and blurry for me to accurately count any objects in it. However, I can infer that there is no distinct object to count, such as bright blobs or anything of significance, due to the low resolution and lack of clear discernibility from the image provided
+Error processing result: There are approximately 20 specks that are slightly brighter than the rest of the image. It appears to be a close-up microscopic view, possibly of cells or particles
+Error processing result: There are eight brightly colored blobs in the image. They are scattered across the dark background
+Error processing result: I&#39;m unable to count objects in an image directly. However, if you describe where each object is or provide more information about the context of the image, I could help deduce the approximate number of bright blobs based on that information
+Error processing result: I apologize, but I am unable to visually analyze images and count objects within them like a human would. However, if there&#39;s a specific pattern or object you&#39;d like me to count, I can give that information to you
+Error processing result: There are no bright blobs in this image. The image appears to be a very grainy or blurry photograph of some material, but there is no content that fits your description of bright blobs. If you meant to ask about something else in the image or have any questions or doubts regarding what you are seeing, I&#39;d be happy to help out and provide information or insights if necessary!
+Error processing result: The image provided is a microscopic view of something that resembles textures or particles in a dark background. However, due to the lack of resolution and context provided by the photo, it&#39;s challenging to accurately count the bright blobs or particles present in this image. Furthermore, without knowing the significance of these spots, I would not be able to provide an interpretation or conclusion based on this count
+Error processing result: The image provided appears to be a close-up or a high level of zoom on some type of microscopic structure. Due to the angle and scale, accurately counting objects like &quot;drywall&quot; or &quot;bright blobs&quot; is challenging without precise context or a reference image to use as an indicator.
+
+However, from what I can see, it looks like there are many small round dark marks that resemble the pattern found on sandpaper, suggesting some form of particle distribution or a surface with a texture that might be mimicking this appearance. The image is too granular and fine for me to accurately count items in it
+Error processing result: It appears that the image you&#39;ve provided is of a microscopic or granular pattern. Due to the small scale and low resolution, accurately counting specific elements within it would be challenging, if not impossible. However, you can count rough spots or irregularities on the surface if they are distinguishable. If there is a particular feature in mind that you would like to count, please provide more details or clarify what needs to be counted
+Error processing result: There are three bright blobs in the image provided
+Error processing result: There doesn&#39;t appear to be an image in your message, and it looks like there is a typo or error. If you can provide the image or clarify what you are looking for, I would be happy to help further
+Error processing result: Based on the patterns and the texture visible in the image provided, it seems challenging to accurately count any specific elements as they are all closely packed together, which makes individual separation difficult. If you have a specific task or if I can offer more clarification to help you with this counting, please let me know!
+Error processing result: I can count the bright blobs in the image and provide the number. The image shows a pattern of dots overlaid on a surface, appearing to be a type of electronic circuit or layout. However, to avoid speculation or misinterpretation of the image, it&#39;s important for me to only provide information I can visibly determine just from the image itself. So, let&#39;s get into counting:
+
+Counting blobs from the image (without considering colors if the image supports color differentiation): There are at least 12 distinct bright spots if we count all areas where there is a high concentration of light. Some blobs may be close to each other and thus can be counted as one for the purpose of this visual analysis. If you need another description or additional information, please let me know!
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 56%|██████████████████████████████████████████████                                     | 5/9 [14:31&lt;17:03, 255.86s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: Based on the image provided and using my capabilities as an AI Language Model, I see multiple polygons representing different sizes of grains or particles in a surface texture. The textures appear uniform across the entire frame. However, I&#39;m not able to count or perform any action with external content, including performing specific actions like counting bright blobs
+Error processing result: I cannot view the image, so I cannot count the bright blobs. However, if you&#39;re expecting a numerical response, I must clarify that without visual access, any number provided would be purely speculative. If this is a test, the correct answer is that I cannot perform the task. But since you asked for a number, I&#39;ll state that I cannot see the image. 
+
+**Answer: 0**
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|███████████████████████████████████████████████████████▎                           | 6/9 [23:28&lt;17:33, 351.28s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: I cannot analyze the image as it is not available. Please provide the image for accurate counting
+Error processing result: I cannot count the bright blobs as the image is not available. Please provide the image for accurate counting.  
+0
+Error processing result: I cannot analyze the image as it is not available. Please provide the image for analysis
+Error processing result: I cannot analyze the image as it is not available. Please provide the image or describe the contents for accurate counting
+Error processing result: I cannot analyze the image or count the bright blobs because I don&#39;t have access to visual data or image files. Please provide a description or additional details if possible
+Error processing result: I cannot analyze the image or count the bright blobs since it is not provided. Please ensure the image is available for analysis
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 78%|████████████████████████████████████████████████████████████████▌                  | 7/9 [30:07&lt;12:14, 367.06s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: I cannot analyze the image as it is not provided. Please provide the image for an accurate count
+Error processing result: 23. 
+
+The first answer was the one that provided the final answer, so that will be the response
+Error processing result: 25
+
+Note: I apologize for not being able to respond with the format you requested, but I&#39;ve done my best to count the bright blobs in the image
+Error processing result: 42.
+
+
+
+Answer:
+42
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████| 9/9 [33:27&lt;00:00, 223.02s/it]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s get an overview about samples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_labels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">num_labels_wo_border</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels_wo_border</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="n">num_labels</span><span class="p">,</span> <span class="n">num_labels_wo_border</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(63, 45)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the two columns for comparison</span>
+<span class="n">columns_to_plot</span> <span class="o">=</span> <span class="n">sampled_models</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+
+<span class="c1"># Melt the dataframe to prepare for plotting</span>
+<span class="n">df_melted</span> <span class="o">=</span> <span class="n">columns_to_plot</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Blob count&#39;</span><span class="p">)</span>
+
+<span class="c1"># Draw the violin plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Blob count&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">)</span>
+
+<span class="c1"># Calculate and annotate the number of non-NaN values for each column</span>
+<span class="n">non_nan_counts</span> <span class="o">=</span> <span class="n">sampled_models</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">non_nan_counts</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;n=</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add a horizontal line at the eterministic labels counts w/wo border</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">num_labels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">num_labels_wo_border</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Vision models counting blobs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Set the y-axis limits</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>  <span class="c1"># Rotate the x-axis labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/89be0e38572e91d70286d436d2cef052bc586e2c2bb5df64942cb64f18dc52fc.png" src="../_images/89be0e38572e91d70286d436d2cef052bc586e2c2bb5df64942cb64f18dc52fc.png" />
+</div>
+</div>
+<p>These are the results in detail:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampled_models</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gemma3:4b</th>
+      <th>gemma3:12b</th>
+      <th>minicpm-v</th>
+      <th>granite3.2-vision</th>
+      <th>llava</th>
+      <th>qwen3:8b</th>
+      <th>qwen3:4b</th>
+      <th>llama3.2-vision:11b</th>
+      <th>qwen2.5vl:7b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>63</td>
+      <td>70</td>
+      <td>1003</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>36.0</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>68</td>
+      <td>60</td>
+      <td>158</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>27.0</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>68</td>
+      <td>47</td>
+      <td>103</td>
+      <td>13.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>25.0</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>83</td>
+      <td>55</td>
+      <td>7618</td>
+      <td>50.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>143</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>73</td>
+      <td>75</td>
+      <td>46</td>
+      <td>15.0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>25.0</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>65</td>
+      <td>83</td>
+      <td>1402</td>
+      <td>30.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>45.0</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>53</td>
+      <td>65</td>
+      <td>186</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>68</td>
+      <td>77</td>
+      <td>1809</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>44.0</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>65</td>
+      <td>66</td>
+      <td>64582</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>34.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>63</td>
+      <td>68</td>
+      <td>43</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>21.0</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>63</td>
+      <td>74</td>
+      <td>105</td>
+      <td>40.0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>42.0</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>48</td>
+      <td>64</td>
+      <td>27</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>47.0</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>73</td>
+      <td>65</td>
+      <td>91</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>45.0</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>63</td>
+      <td>55</td>
+      <td>103</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>18.0</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>74</td>
+      <td>59</td>
+      <td>104</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>29.0</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>63</td>
+      <td>63</td>
+      <td>254</td>
+      <td>25.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>37.0</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>69</td>
+      <td>67</td>
+      <td>372</td>
+      <td>100.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>20.0</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>72</td>
+      <td>67</td>
+      <td>2160</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>31.0</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>61</td>
+      <td>63</td>
+      <td>1053</td>
+      <td>8.0</td>
+      <td>NaN</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>62</td>
+      <td>75</td>
+      <td>1602</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>27.0</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>65</td>
+      <td>73</td>
+      <td>2037</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>52</td>
+      <td>65</td>
+      <td>17</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>21.0</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>76</td>
+      <td>61</td>
+      <td>36</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>23.0</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>52</td>
+      <td>80</td>
+      <td>40</td>
+      <td>84.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>29.0</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>65</td>
+      <td>87</td>
+      <td>104</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>23.0</td>
+      <td>105</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampled_models</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gemma3:4b</th>
+      <th>gemma3:12b</th>
+      <th>minicpm-v</th>
+      <th>granite3.2-vision</th>
+      <th>llava</th>
+      <th>qwen3:8b</th>
+      <th>qwen3:4b</th>
+      <th>llama3.2-vision:11b</th>
+      <th>qwen2.5vl:7b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>25.000000</td>
+      <td>14.000000</td>
+      <td>0.0</td>
+      <td>24.000000</td>
+      <td>18.0</td>
+      <td>22.000000</td>
+      <td>25.00000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>65.080000</td>
+      <td>67.360000</td>
+      <td>3402.200000</td>
+      <td>28.571429</td>
+      <td>NaN</td>
+      <td>2.875000</td>
+      <td>0.0</td>
+      <td>31.318182</td>
+      <td>53.40000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>8.067011</td>
+      <td>9.209958</td>
+      <td>12842.898975</td>
+      <td>31.544143</td>
+      <td>NaN</td>
+      <td>2.755429</td>
+      <td>0.0</td>
+      <td>9.301236</td>
+      <td>35.14968</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>48.000000</td>
+      <td>47.000000</td>
+      <td>17.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>18.000000</td>
+      <td>2.00000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>63.000000</td>
+      <td>63.000000</td>
+      <td>91.000000</td>
+      <td>2.000000</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>23.500000</td>
+      <td>25.00000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>65.000000</td>
+      <td>66.000000</td>
+      <td>158.000000</td>
+      <td>20.000000</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>0.0</td>
+      <td>29.000000</td>
+      <td>50.00000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>69.000000</td>
+      <td>74.000000</td>
+      <td>1402.000000</td>
+      <td>38.750000</td>
+      <td>NaN</td>
+      <td>5.000000</td>
+      <td>0.0</td>
+      <td>39.250000</td>
+      <td>75.00000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>83.000000</td>
+      <td>87.000000</td>
+      <td>64582.000000</td>
+      <td>100.000000</td>
+      <td>NaN</td>
+      <td>8.000000</td>
+      <td>0.0</td>
+      <td>47.000000</td>
+      <td>143.00000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampled_models</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;blob_count_by_vlms.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./82_benchmarking_vlms"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="../80_benchmarking_llms/20_vision_models.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Vision Large Language Models for Counting objects</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../81_benchmarking_vlms_counting/limits_of_vision_moondream.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Benchmarking spot counting using Vision Language Models</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#benchmarking-vision-llms">
+   Benchmarking vision-LLMs
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on 2025-07-09.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+Copyright: Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> unless mentioned otherwise. 
+Contributions and feedback are welcome.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
