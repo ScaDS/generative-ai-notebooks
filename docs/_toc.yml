@@ -99,7 +99,8 @@ parts:
       - file: 47_vision/35_vision_moondream.ipynb
       - file: 47_vision/30_vision_models_structred_output.ipynb
       - file: 47_vision/40_vlms_guessing_segmentation_alg.ipynb
-      - file: 47_vision/40_vlms_guessing_processing_code.ipynb
+      - file: 47_vision/41_vlms_guessing_processing_code.ipynb
+      
 
   - caption: Advanced Prompt Engineering
     chapters:
