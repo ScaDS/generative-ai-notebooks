@@ -48,7 +48,10 @@ def extract_json(text:str):
     
     # Extract the JSON content using re.DOTALL to make '.' match newlines as well
     pattern = r"(?<=```json)(.*?)(?=```)"
-    return re.findall(pattern, text, re.DOTALL)[0]
+    temp = re.findall(pattern, text, re.DOTALL)
+    if len(temp) > 0:
+        return temp[0]
+    return text
 
 def generate_spots(n, image_size=256, sigma=10):
     """
