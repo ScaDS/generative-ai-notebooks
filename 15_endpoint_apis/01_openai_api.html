@@ -745,7 +745,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision_moondream.html">Benchmarking spot counting using Vision Language Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision_moondream_bb.html">Moondream for bounding-box segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-claude.html">Claude VLM for bounding-box segmentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-gpt.html">GPT 4 omni  for bounding-box segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-gpt.html">GPT 5 for bounding-box segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-llama4.html">Llama4 (Scout) for bounding-box segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-gemma3.html">gemma 3 for bounding-box segmentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../81_benchmarking_vlms_counting/limits_of_vision-qwen.html">Qwen 2.5 VL for bounding-box segmentation</a></li>
@@ -946,7 +946,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.35.14&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.102.0&#39;
 </pre></div>
 </div>
 </div>
@@ -960,7 +960,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;openai.OpenAI at 0x2aaf62d7d90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;openai.OpenAI at 0x19431b333d0&gt;
 </pre></div>
 </div>
 </div>
@@ -988,7 +988,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="c1"># or: </span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-5&quot;</span><span class="p">,</span> <span class="c1"># or: </span>
         <span class="n">messages</span><span class="o">=</span><span class="n">my_messages</span>
     <span class="p">)</span>
 <span class="n">response</span>
@@ -996,7 +996,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ChatCompletion(id=&#39;chatcmpl-9mKZtUlo8l2NUTwGzF9AwXe1pcIMD&#39;, choices=[Choice(finish_reason=&#39;stop&#39;, index=0, logprobs=None, message=ChatCompletionMessage(content=&#39;The capital of France is Paris.&#39;, role=&#39;assistant&#39;, function_call=None, tool_calls=None))], created=1721305873, model=&#39;gpt-3.5-turbo-0125&#39;, object=&#39;chat.completion&#39;, service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=7, prompt_tokens=14, total_tokens=21))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ChatCompletion(id=&#39;chatcmpl-CCRczXAO5C4YgK7gf6Rbi11J9sUQA&#39;, choices=[Choice(finish_reason=&#39;stop&#39;, index=0, logprobs=None, message=ChatCompletionMessage(content=&#39;Paris.&#39;, refusal=None, role=&#39;assistant&#39;, annotations=[], audio=None, function_call=None, tool_calls=None))], created=1757082173, model=&#39;gpt-5-2025-08-07&#39;, object=&#39;chat.completion&#39;, service_tier=&#39;default&#39;, system_fingerprint=None, usage=CompletionUsage(completion_tokens=11, prompt_tokens=12, total_tokens=23, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=0, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cached_tokens=0)))
 </pre></div>
 </div>
 </div>
@@ -1009,7 +1009,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Choice(finish_reason=&#39;stop&#39;, index=0, logprobs=None, message=ChatCompletionMessage(content=&#39;The capital of France is Paris.&#39;, role=&#39;assistant&#39;, function_call=None, tool_calls=None))]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Choice(finish_reason=&#39;stop&#39;, index=0, logprobs=None, message=ChatCompletionMessage(content=&#39;Paris.&#39;, refusal=None, role=&#39;assistant&#39;, annotations=[], audio=None, function_call=None, tool_calls=None))]
 </pre></div>
 </div>
 </div>
@@ -1022,7 +1022,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The capital of France is Paris.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Paris.&#39;
 </pre></div>
 </div>
 </div>
@@ -1063,7 +1063,133 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;There are a total of six &quot;o&quot; in the word &quot;Woolloomoloo.&quot;&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;There are five &#39;o&#39;s in Woolloomoloo.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>babbage-002
+chatgpt-4o-latest
+codex-mini-latest
+computer-use-preview
+computer-use-preview-2025-03-11
+dall-e-2
+dall-e-3
+davinci-002
+ft:gpt-3.5-turbo-0125:leipzig-university::9VNFya3H:ckpt-step-77
+ft:gpt-3.5-turbo-0125:leipzig-university::9VNFz3h3
+ft:gpt-3.5-turbo-0125:leipzig-university::9VNFzOv6:ckpt-step-88
+ft:gpt-3.5-turbo-0125:leipzig-university::9WlQiTl6:ckpt-step-77
+ft:gpt-3.5-turbo-0125:leipzig-university::9WlQjtjc
+ft:gpt-3.5-turbo-0125:leipzig-university::9WlQjz24:ckpt-step-88
+ft:gpt-3.5-turbo-0125:leipzig-university::9Wmaf1H6:ckpt-step-77
+ft:gpt-3.5-turbo-0125:leipzig-university::9Wmag9S6:ckpt-step-88
+ft:gpt-3.5-turbo-0125:leipzig-university::9WmagblR
+ft:gpt-3.5-turbo-0125:leipzig-university::9X70LxDH:ckpt-step-77
+ft:gpt-3.5-turbo-0125:leipzig-university::9X70M36A
+ft:gpt-3.5-turbo-0125:leipzig-university::9X70MopH:ckpt-step-88
+ft:gpt-3.5-turbo-0125:leipzig-university::9X7CCAiE:ckpt-step-77
+ft:gpt-3.5-turbo-0125:leipzig-university::9X7CCBSR:ckpt-step-88
+ft:gpt-3.5-turbo-0125:leipzig-university::9X7CCzv4
+ft:gpt-3.5-turbo-0125:leipzig-university::9X7PEBEk:ckpt-step-84
+ft:gpt-3.5-turbo-0125:leipzig-university::9X7PEoLV:ckpt-step-72
+ft:gpt-3.5-turbo-0125:leipzig-university::9X7PFVgP
+ft:gpt-4o-2024-08-06:leipzig-university::9ydjMDl7:ckpt-step-45
+ft:gpt-4o-2024-08-06:leipzig-university::9ydjNWWH
+ft:gpt-4o-2024-08-06:leipzig-university::9ydjNinx:ckpt-step-90
+gpt-3.5-turbo
+gpt-3.5-turbo-0125
+gpt-3.5-turbo-1106
+gpt-3.5-turbo-16k
+gpt-3.5-turbo-instruct
+gpt-3.5-turbo-instruct-0914
+gpt-4
+gpt-4-0125-preview
+gpt-4-0613
+gpt-4-1106-preview
+gpt-4-turbo
+gpt-4-turbo-2024-04-09
+gpt-4-turbo-preview
+gpt-4.1
+gpt-4.1-2025-04-14
+gpt-4.1-mini
+gpt-4.1-mini-2025-04-14
+gpt-4.1-nano
+gpt-4.1-nano-2025-04-14
+gpt-4o
+gpt-4o-2024-05-13
+gpt-4o-2024-08-06
+gpt-4o-2024-11-20
+gpt-4o-audio-preview
+gpt-4o-audio-preview-2024-10-01
+gpt-4o-audio-preview-2024-12-17
+gpt-4o-audio-preview-2025-06-03
+gpt-4o-mini
+gpt-4o-mini-2024-07-18
+gpt-4o-mini-audio-preview
+gpt-4o-mini-audio-preview-2024-12-17
+gpt-4o-mini-realtime-preview
+gpt-4o-mini-realtime-preview-2024-12-17
+gpt-4o-mini-search-preview
+gpt-4o-mini-search-preview-2025-03-11
+gpt-4o-mini-transcribe
+gpt-4o-mini-tts
+gpt-4o-realtime-preview
+gpt-4o-realtime-preview-2024-10-01
+gpt-4o-realtime-preview-2024-12-17
+gpt-4o-realtime-preview-2025-06-03
+gpt-4o-search-preview
+gpt-4o-search-preview-2025-03-11
+gpt-4o-transcribe
+gpt-5
+gpt-5-2025-08-07
+gpt-5-chat-latest
+gpt-5-mini
+gpt-5-mini-2025-08-07
+gpt-5-nano
+gpt-5-nano-2025-08-07
+gpt-audio
+gpt-audio-2025-08-28
+gpt-image-1
+gpt-realtime
+gpt-realtime-2025-08-28
+o1
+o1-2024-12-17
+o1-mini
+o1-mini-2024-09-12
+o1-pro
+o1-pro-2025-03-19
+o3
+o3-2025-04-16
+o3-deep-research
+o3-deep-research-2025-06-26
+o3-mini
+o3-mini-2025-01-31
+o3-pro
+o3-pro-2025-06-10
+o4-mini
+o4-mini-2025-04-16
+o4-mini-deep-research
+o4-mini-deep-research-2025-06-26
+omni-moderation-2024-09-26
+omni-moderation-latest
+text-embedding-3-large
+text-embedding-3-small
+text-embedding-ada-002
+tts-1
+tts-1-1106
+tts-1-hd
+tts-1-hd-1106
+whisper-1
 </pre></div>
 </div>
 </div>
@@ -1162,7 +1288,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2025-08-07.<br>
+Last updated on 2025-09-07.<br>
 </p>
   </div>
   
