@@ -28,7 +28,8 @@ parts:
       - file: 15_endpoint_apis/09_kiara_llm_endpoint.ipynb
       - file: 15_endpoint_apis/06_kisski_endpoint.ipynb
       - file: 15_endpoint_apis/03_blablador_endpoint.ipynb
-      - file: 15_endpoint_apis/05_azure_endpoints.ipynb
+      - file: 15_endpoint_apis/12_openrouter_endpoint.ipynb
+      #- file: 15_endpoint_apis/05_azure_endpoints.ipynb
       - file: 15_endpoint_apis/07_mistral_endpoint.ipynb
       - file: 15_endpoint_apis/08_deepseek_endpoint.ipynb
       - file: 15_endpoint_apis/10_anthropic_api.ipynb
