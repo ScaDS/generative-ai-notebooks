@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -956,7 +956,7 @@ title="Print to PDF"
 <p>First we setup the pipeline for the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">DiffusionPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;damo-vilab/text-to-video-ms-1.7b&quot;</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span> <span class="n">variant</span><span class="o">=</span><span class="s2">&quot;fp16&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">DiffusionPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">"damo-vilab/text-to-video-ms-1.7b"</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span> <span class="n">variant</span><span class="o">=</span><span class="s2">"fp16"</span><span class="p">)</span>
 <span class="n">pipe</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">DPMSolverMultistepScheduler</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 <span class="n">pipe</span><span class="o">.</span><span class="n">enable_model_cpu_offload</span><span class="p">()</span>
 </pre></div>
@@ -968,7 +968,7 @@ title="Print to PDF"
 <p>Next, we define the prompt, and can configure the number of frames.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;A cat running through a park.&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">"A cat running through a park."</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">num_inference_steps</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">num_frames</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">frames</span>
 </pre></div>
 </div>
@@ -1026,19 +1026,19 @@ title="Print to PDF"
 <p>We can also store the video, e.g. as mp4 file or animated gif:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">export_to_video</span><span class="p">(</span><span class="n">video_frames</span><span class="p">,</span> <span class="s2">&quot;video.mp4&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">export_to_video</span><span class="p">(</span><span class="n">video_frames</span><span class="p">,</span> <span class="s2">"video.mp4"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;video.mp4&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'video.mp4'
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stackview</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="n">video_frames</span><span class="o">*</span><span class="mi">255</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;animation.gif&quot;</span><span class="p">,</span> <span class="n">frame_delay_ms</span><span class="o">=</span><span class="mi">200</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stackview</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="n">video_frames</span><span class="o">*</span><span class="mi">255</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">"animation.gif"</span><span class="p">,</span> <span class="n">frame_delay_ms</span><span class="o">=</span><span class="mi">200</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1150,7 +1150,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

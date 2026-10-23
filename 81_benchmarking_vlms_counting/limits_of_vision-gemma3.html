@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -991,23 +991,23 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;gemma3:12b&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">"gemma3:12b"</span>
 
-<span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">Give me a json object of bounding boxes around ALL bright blobs in this image. Assume the image width and height are 1. </span>
 <span class="s2">The bottom left is position (0,0), top left is (0,1), top right is (1,1) and bottom right is (1,0).</span>
 <span class="s2">The format should be like this: </span>
 
 <span class="s2">```json</span>
 <span class="s2">[</span>
-<span class="s2">    {&quot;x&quot;:float,&quot;y&quot;:float, &quot;width&quot;: float, &quot;height&quot;: float},</span>
-<span class="s2">    {&quot;x&quot;:float,&quot;y&quot;:float, &quot;width&quot;: float, &quot;height&quot;: float},</span>
+<span class="s2">    {"x":float,"y":float, "width": float, "height": float},</span>
+<span class="s2">    {"x":float,"y":float, "width": float, "height": float},</span>
 <span class="s2">    ...</span>
 <span class="s2">]</span>
 <span class="s2">```</span>
 
-<span class="s2">If you think you can&#39;t do this accuratly, please try anyway.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:11434/v1&quot;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="s2">If you think you can't do this accuratly, please try anyway.</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">"http://localhost:11434/v1"</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1015,20 +1015,20 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>```json
 [
-    {&quot;x&quot;:0.11, &quot;y&quot;:0.16, &quot;width&quot;: 0.08, &quot;height&quot;: 0.06},
-    {&quot;x&quot;:0.31, &quot;y&quot;:0.26, &quot;width&quot;: 0.07, &quot;height&quot;: 0.06},
-    {&quot;x&quot;:0.48, &quot;y&quot;:0.10, &quot;width&quot;: 0.08, &quot;height&quot;: 0.07},
-    {&quot;x&quot;:0.18, &quot;y&quot;:0.64, &quot;width&quot;: 0.07, &quot;height&quot;: 0.07},
-    {&quot;x&quot;:0.67, &quot;y&quot;:0.29, &quot;width&quot;: 0.05, &quot;height&quot;: 0.06},
-    {&quot;x&quot;:0.80, &quot;y&quot;:0.47, &quot;width&quot;: 0.07, &quot;height&quot;: 0.05},
-    {&quot;x&quot;:0.37, &quot;y&quot;:0.85, &quot;width&quot;: 0.09, &quot;height&quot;: 0.08},
-    {&quot;x&quot;:0.60, &quot;y&quot;:0.72, &quot;width&quot;: 0.05, &quot;height&quot;: 0.07},
-    {&quot;x&quot;:0.02, &quot;y&quot;:0.36, &quot;width&quot;: 0.06, &quot;height&quot;: 0.06},
-    {&quot;x&quot;:0.77, &quot;y&quot;:0.85, &quot;width&quot;: 0.07, &quot;height&quot;: 0.08},
-    {&quot;x&quot;:0.42, &quot;y&quot;:0.48, &quot;width&quot;: 0.07, &quot;height&quot;: 0.07},
-    {&quot;x&quot;:0.85, &quot;y&quot;:0.14, &quot;width&quot;: 0.07, &quot;height&quot;: 0.06},
-    {&quot;x&quot;:0.24, &quot;y&quot;:0.08, &quot;width&quot;: 0.06, &quot;height&quot;: 0.05},
-    {&quot;x&quot;:0.58, &quot;y&quot;:0.55, &quot;width&quot;: 0.06, &quot;height&quot;: 0.07}
+    {"x":0.11, "y":0.16, "width": 0.08, "height": 0.06},
+    {"x":0.31, "y":0.26, "width": 0.07, "height": 0.06},
+    {"x":0.48, "y":0.10, "width": 0.08, "height": 0.07},
+    {"x":0.18, "y":0.64, "width": 0.07, "height": 0.07},
+    {"x":0.67, "y":0.29, "width": 0.05, "height": 0.06},
+    {"x":0.80, "y":0.47, "width": 0.07, "height": 0.05},
+    {"x":0.37, "y":0.85, "width": 0.09, "height": 0.08},
+    {"x":0.60, "y":0.72, "width": 0.05, "height": 0.07},
+    {"x":0.02, "y":0.36, "width": 0.06, "height": 0.06},
+    {"x":0.77, "y":0.85, "width": 0.07, "height": 0.08},
+    {"x":0.42, "y":0.48, "width": 0.07, "height": 0.07},
+    {"x":0.85, "y":0.14, "width": 0.07, "height": 0.06},
+    {"x":0.24, "y":0.08, "width": 0.06, "height": 0.05},
+    {"x":0.58, "y":0.55, "width": 0.06, "height": 0.07}
 ]
 ```
 </pre></div>
@@ -1044,20 +1044,20 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.11, &#39;y&#39;: 0.16, &#39;width&#39;: 0.08, &#39;height&#39;: 0.06},
- {&#39;x&#39;: 0.31, &#39;y&#39;: 0.26, &#39;width&#39;: 0.07, &#39;height&#39;: 0.06},
- {&#39;x&#39;: 0.48, &#39;y&#39;: 0.1, &#39;width&#39;: 0.08, &#39;height&#39;: 0.07},
- {&#39;x&#39;: 0.18, &#39;y&#39;: 0.64, &#39;width&#39;: 0.07, &#39;height&#39;: 0.07},
- {&#39;x&#39;: 0.67, &#39;y&#39;: 0.29, &#39;width&#39;: 0.05, &#39;height&#39;: 0.06},
- {&#39;x&#39;: 0.8, &#39;y&#39;: 0.47, &#39;width&#39;: 0.07, &#39;height&#39;: 0.05},
- {&#39;x&#39;: 0.37, &#39;y&#39;: 0.85, &#39;width&#39;: 0.09, &#39;height&#39;: 0.08},
- {&#39;x&#39;: 0.6, &#39;y&#39;: 0.72, &#39;width&#39;: 0.05, &#39;height&#39;: 0.07},
- {&#39;x&#39;: 0.02, &#39;y&#39;: 0.36, &#39;width&#39;: 0.06, &#39;height&#39;: 0.06},
- {&#39;x&#39;: 0.77, &#39;y&#39;: 0.85, &#39;width&#39;: 0.07, &#39;height&#39;: 0.08},
- {&#39;x&#39;: 0.42, &#39;y&#39;: 0.48, &#39;width&#39;: 0.07, &#39;height&#39;: 0.07},
- {&#39;x&#39;: 0.85, &#39;y&#39;: 0.14, &#39;width&#39;: 0.07, &#39;height&#39;: 0.06},
- {&#39;x&#39;: 0.24, &#39;y&#39;: 0.08, &#39;width&#39;: 0.06, &#39;height&#39;: 0.05},
- {&#39;x&#39;: 0.58, &#39;y&#39;: 0.55, &#39;width&#39;: 0.06, &#39;height&#39;: 0.07}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'x': 0.11, 'y': 0.16, 'width': 0.08, 'height': 0.06},
+ {'x': 0.31, 'y': 0.26, 'width': 0.07, 'height': 0.06},
+ {'x': 0.48, 'y': 0.1, 'width': 0.08, 'height': 0.07},
+ {'x': 0.18, 'y': 0.64, 'width': 0.07, 'height': 0.07},
+ {'x': 0.67, 'y': 0.29, 'width': 0.05, 'height': 0.06},
+ {'x': 0.8, 'y': 0.47, 'width': 0.07, 'height': 0.05},
+ {'x': 0.37, 'y': 0.85, 'width': 0.09, 'height': 0.08},
+ {'x': 0.6, 'y': 0.72, 'width': 0.05, 'height': 0.07},
+ {'x': 0.02, 'y': 0.36, 'width': 0.06, 'height': 0.06},
+ {'x': 0.77, 'y': 0.85, 'width': 0.07, 'height': 0.08},
+ {'x': 0.42, 'y': 0.48, 'width': 0.07, 'height': 0.07},
+ {'x': 0.85, 'y': 0.14, 'width': 0.07, 'height': 0.06},
+ {'x': 0.24, 'y': 0.08, 'width': 0.06, 'height': 0.05},
+ {'x': 0.58, 'y': 0.55, 'width': 0.06, 'height': 0.07}]
 </pre></div>
 </div>
 </div>
@@ -1066,28 +1066,28 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bb</span><span class="p">:</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'t'</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">'x'</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'x'</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">'t'</span><span class="p">]</span>
 <span class="n">bb</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.16, &#39;y&#39;: 0.11, &#39;width&#39;: 0.08, &#39;height&#39;: 0.06, &#39;t&#39;: 0.11},
- {&#39;x&#39;: 0.26, &#39;y&#39;: 0.31, &#39;width&#39;: 0.07, &#39;height&#39;: 0.06, &#39;t&#39;: 0.31},
- {&#39;x&#39;: 0.1, &#39;y&#39;: 0.48, &#39;width&#39;: 0.08, &#39;height&#39;: 0.07, &#39;t&#39;: 0.48},
- {&#39;x&#39;: 0.64, &#39;y&#39;: 0.18, &#39;width&#39;: 0.07, &#39;height&#39;: 0.07, &#39;t&#39;: 0.18},
- {&#39;x&#39;: 0.29, &#39;y&#39;: 0.67, &#39;width&#39;: 0.05, &#39;height&#39;: 0.06, &#39;t&#39;: 0.67},
- {&#39;x&#39;: 0.47, &#39;y&#39;: 0.8, &#39;width&#39;: 0.07, &#39;height&#39;: 0.05, &#39;t&#39;: 0.8},
- {&#39;x&#39;: 0.85, &#39;y&#39;: 0.37, &#39;width&#39;: 0.09, &#39;height&#39;: 0.08, &#39;t&#39;: 0.37},
- {&#39;x&#39;: 0.72, &#39;y&#39;: 0.6, &#39;width&#39;: 0.05, &#39;height&#39;: 0.07, &#39;t&#39;: 0.6},
- {&#39;x&#39;: 0.36, &#39;y&#39;: 0.02, &#39;width&#39;: 0.06, &#39;height&#39;: 0.06, &#39;t&#39;: 0.02},
- {&#39;x&#39;: 0.85, &#39;y&#39;: 0.77, &#39;width&#39;: 0.07, &#39;height&#39;: 0.08, &#39;t&#39;: 0.77},
- {&#39;x&#39;: 0.48, &#39;y&#39;: 0.42, &#39;width&#39;: 0.07, &#39;height&#39;: 0.07, &#39;t&#39;: 0.42},
- {&#39;x&#39;: 0.14, &#39;y&#39;: 0.85, &#39;width&#39;: 0.07, &#39;height&#39;: 0.06, &#39;t&#39;: 0.85},
- {&#39;x&#39;: 0.08, &#39;y&#39;: 0.24, &#39;width&#39;: 0.06, &#39;height&#39;: 0.05, &#39;t&#39;: 0.24},
- {&#39;x&#39;: 0.55, &#39;y&#39;: 0.58, &#39;width&#39;: 0.06, &#39;height&#39;: 0.07, &#39;t&#39;: 0.58}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'x': 0.16, 'y': 0.11, 'width': 0.08, 'height': 0.06, 't': 0.11},
+ {'x': 0.26, 'y': 0.31, 'width': 0.07, 'height': 0.06, 't': 0.31},
+ {'x': 0.1, 'y': 0.48, 'width': 0.08, 'height': 0.07, 't': 0.48},
+ {'x': 0.64, 'y': 0.18, 'width': 0.07, 'height': 0.07, 't': 0.18},
+ {'x': 0.29, 'y': 0.67, 'width': 0.05, 'height': 0.06, 't': 0.67},
+ {'x': 0.47, 'y': 0.8, 'width': 0.07, 'height': 0.05, 't': 0.8},
+ {'x': 0.85, 'y': 0.37, 'width': 0.09, 'height': 0.08, 't': 0.37},
+ {'x': 0.72, 'y': 0.6, 'width': 0.05, 'height': 0.07, 't': 0.6},
+ {'x': 0.36, 'y': 0.02, 'width': 0.06, 'height': 0.06, 't': 0.02},
+ {'x': 0.85, 'y': 0.77, 'width': 0.07, 'height': 0.08, 't': 0.77},
+ {'x': 0.48, 'y': 0.42, 'width': 0.07, 'height': 0.07, 't': 0.42},
+ {'x': 0.14, 'y': 0.85, 'width': 0.07, 'height': 0.06, 't': 0.85},
+ {'x': 0.08, 'y': 0.24, 'width': 0.06, 'height': 0.05, 't': 0.24},
+ {'x': 0.55, 'y': 0.58, 'width': 0.06, 'height': 0.07, 't': 0.58}]
 </pre></div>
 </div>
 </div>
@@ -1213,7 +1213,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

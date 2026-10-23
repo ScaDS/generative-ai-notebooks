@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -960,20 +960,20 @@ title="Print to PDF"
 <p>We will need some helper functions for assembling a prompt and submitting it to the llm server.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_with_image</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemma3:4b&quot;</span><span class="p">,</span> <span class="n">ollama_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:11434&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a text message and an image</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_with_image</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"gemma3:4b"</span><span class="p">,</span> <span class="n">ollama_url</span><span class="o">=</span><span class="s2">"http://localhost:11434"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A prompt helper function that sends a text message and an image</span>
 <span class="sd">    to openAI and returns the text response.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
     
     <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">message</span> <span class="o">=</span> <span class="n">image_to_message</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
 
             
     <span class="c1"># setup connection to the LLM</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ollama_url</span><span class="si">}</span><span class="s2">/v1&quot;</span><span class="p">,)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ollama_url</span><span class="si">}</span><span class="s2">/v1"</span><span class="p">,)</span>
     
     <span class="c1"># submit prompt</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -983,8 +983,8 @@ title="Print to PDF"
     
     <span class="c1"># extract answer</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
-    <span class="k">if</span> <span class="s2">&quot;&lt;/think&gt;&quot;</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&lt;/think&gt;&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s2">"&lt;/think&gt;"</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"&lt;/think&gt;"</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         
     <span class="k">return</span> <span class="n">answer</span>
 
@@ -996,32 +996,32 @@ title="Print to PDF"
 
     <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">_img_to_rgb</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
     <span class="n">byte_stream</span> <span class="o">=</span> <span class="n">numpy_to_bytestream</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">)</span>
-    <span class="n">base64_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">byte_stream</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">base64_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">byte_stream</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_url&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;data:image/jpeg;base64,</span><span class="si">{</span><span class="n">base64_image</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"text"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"image_url"</span><span class="p">,</span>
+        <span class="s2">"image_url"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"url"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"data:image/jpeg;base64,</span><span class="si">{</span><span class="n">base64_image</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">}</span>
 
     <span class="p">}]}]</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">numpy_to_bytestream</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Turn a NumPy array into a bytestream&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Turn a NumPy array into a bytestream"""</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
 
     <span class="c1"># Convert the NumPy array to a PIL Image</span>
-    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">"RGBA"</span><span class="p">)</span>
 
     <span class="c1"># Create a BytesIO object</span>
     <span class="n">bytes_io</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
 
     <span class="c1"># Save the PIL image to the BytesIO object as a PNG</span>
-    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bytes_io</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;PNG&#39;</span><span class="p">)</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bytes_io</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'PNG'</span><span class="p">)</span>
 
     <span class="c1"># return the beginning of the file as a bytestream</span>
     <span class="n">bytes_io</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -1032,7 +1032,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/blobs.tif&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">"data/blobs.tif"</span><span class="p">)</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">image</span><span class="p">,</span><span class="n">image</span><span class="p">,</span><span class="n">image</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">stackview</span><span class="o">.</span><span class="n">insight</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
@@ -1114,16 +1114,16 @@ title="Print to PDF"
 <p>This is the prompt we submit to the server.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">Analyse the following image by counting the bright blobs. If you think you&#39;re not able to do this, try anyway. Respond with the number only.</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_prompt</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">Analyse the following image by counting the bright blobs. If you think you're not able to do this, try anyway. Respond with the number only.</span>
+<span class="s2">"""</span>
 
-<span class="n">prompt_with_image</span><span class="p">(</span><span class="n">my_prompt</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemma3:4b&quot;</span><span class="p">)</span>
+<span class="n">prompt_with_image</span><span class="p">(</span><span class="n">my_prompt</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"gemma3:4b"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;63&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'63'
 </pre></div>
 </div>
 </div>
@@ -1136,30 +1136,30 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_samples</span> <span class="o">=</span> <span class="mi">25</span>
 
 <span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;gemma3:4b&quot;</span><span class="p">:[],</span>    
-    <span class="s2">&quot;gemma3:12b&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;gemma3:4b&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;minicpm-v&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;gemma3:12b&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;granite3.2-vision&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;llava&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;qwen3:8b&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;qwen3:4b&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;llama3.2-vision:11b&quot;</span><span class="p">:[],</span>
-    <span class="s2">&quot;qwen2.5vl:7b&quot;</span><span class="p">:[],</span>
+    <span class="s2">"gemma3:4b"</span><span class="p">:[],</span>    
+    <span class="s2">"gemma3:12b"</span><span class="p">:[],</span>
+    <span class="s2">"gemma3:4b"</span><span class="p">:[],</span>
+    <span class="s2">"minicpm-v"</span><span class="p">:[],</span>
+    <span class="s2">"gemma3:12b"</span><span class="p">:[],</span>
+    <span class="s2">"granite3.2-vision"</span><span class="p">:[],</span>
+    <span class="s2">"llava"</span><span class="p">:[],</span>
+    <span class="s2">"qwen3:8b"</span><span class="p">:[],</span>
+    <span class="s2">"qwen3:4b"</span><span class="p">:[],</span>
+    <span class="s2">"llama3.2-vision:11b"</span><span class="p">:[],</span>
+    <span class="s2">"qwen2.5vl:7b"</span><span class="p">:[],</span>
 <span class="p">}</span>
 <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
     <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_samples</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">prompt_with_image</span><span class="p">(</span><span class="n">my_prompt</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"."</span><span class="p">):</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error processing result:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Error processing result:"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
             <span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
     
     <span class="n">models</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">=</span> <span class="n">samples</span>
@@ -1173,51 +1173,51 @@ title="Print to PDF"
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: The question seems to be asking to count distinct shapes within an image without making assumptions about their nature or content. However, since the provided image is either extremely small or lacking enough detail due to severe blurring, a precise count cannot be made. Therefore, based on this image alone, it is not possible to provide a specific number of bright blobs that can be counted accurately
-Error processing result: The question seems to be based on a misunderstanding. Images are visual representations that don&#39;t require a count of objects to be analyzed. Without an image to analyze, I cannot provide details about the brightness or any objects that might exist within it
-Error processing result: I&#39;m sorry for the inconvenience, but I am unable to provide an analysis as I cannot visually perceive or interact directly with images. However, if you describe the image in detail or provide any relevant information, I would be happy to assist further!
-Error processing result: It appears there might be a misunderstanding in your request as I&#39;m currently unable to provide visual content or analyze photographs directly. However, if you have a numerical count or other statistical data that can help me understand the pattern and intensity of these white spots within the image, I&#39;d be happy to assist with analysis based on that!
-Error processing result: I&#39;m sorry for any confusion, but I cannot provide an answer to that question as it stands because there is no visual content or image attached to your request. If you have another type of data, such as numerical values or textual information, please provide it so that I can assist you further
+Error processing result: The question seems to be based on a misunderstanding. Images are visual representations that don't require a count of objects to be analyzed. Without an image to analyze, I cannot provide details about the brightness or any objects that might exist within it
+Error processing result: I'm sorry for the inconvenience, but I am unable to provide an analysis as I cannot visually perceive or interact directly with images. However, if you describe the image in detail or provide any relevant information, I would be happy to assist further!
+Error processing result: It appears there might be a misunderstanding in your request as I'm currently unable to provide visual content or analyze photographs directly. However, if you have a numerical count or other statistical data that can help me understand the pattern and intensity of these white spots within the image, I'd be happy to assist with analysis based on that!
+Error processing result: I'm sorry for any confusion, but I cannot provide an answer to that question as it stands because there is no visual content or image attached to your request. If you have another type of data, such as numerical values or textual information, please provide it so that I can assist you further
 Error processing result: Due to the low resolution and poor lighting conditions in the provided image, I cannot accurately count the number of bright spots or determine its composition
 Error processing result: I apologize but I can neither view nor analyze images; my capacity extends primarily within textual interactions!
-Error processing result: I&#39;m sorry for any confusion, but I cannot provide assistance or analysis on images that contain discriminable content such as facial expressions, race, gender, religion, age, occupation, etc., unless those specific criteria are applied within the context of image processing algorithms and systems. 
+Error processing result: I'm sorry for any confusion, but I cannot provide assistance or analysis on images that contain discriminable content such as facial expressions, race, gender, religion, age, occupation, etc., unless those specific criteria are applied within the context of image processing algorithms and systems. 
 
 If you have an image analysis task that does not fall under any category listed above, please provide it for me to review and respond with a description or analysis based on the information I can discern from the content of the image
 Error processing result: Due to the extremely low resolution and large size of the image provided as a textual description, it is impossible to accurately analyze or count the number of blobs present in the image at all
-Error processing result: Please note that as a text-based AI model, I&#39;m unable to directly analyze visual content such as images or videos. However, if you can describe the image or provide more details about it, I may be able to offer some guidance based on your description
+Error processing result: Please note that as a text-based AI model, I'm unable to directly analyze visual content such as images or videos. However, if you can describe the image or provide more details about it, I may be able to offer some guidance based on your description
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|█████████████████████████████████████▎                                              | 4/9 [04:50&lt;06:01, 72.25s/it]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: I&#39;m afraid I can&#39;t perform this action as it requires analyzing an actual image which isn&#39;t available at my current capabilities
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: I'm afraid I can't perform this action as it requires analyzing an actual image which isn't available at my current capabilities
 Error processing result: There are 80 distinguishable bright areas in the image provided. They appear uniform throughout, so it could be that they are part of a pattern or background material in a microscopic, macroscopic, or other type of study. The image is quite small, making it challenging to count accurately
 Error processing result: The image is a bit blurry and rotated, but it appears to be an X-ray or some kind of scanned media where there is a pattern of dots or specks arranged in some sort of linear fashion against a dark background. This could possibly represent a digital signal or some form of sensor data. If you look carefully at the dot pattern, you may recognize a familiar shape embedded within the dots
 Error processing result: The image appears to be a pattern of dots or an object with numerous openings or holes that can have various purposes depending on their context within a product or process. They resemble a honeycomb structure for pollination within flowers, where each opening allows for entry and exit of nectar and pollen by bees and other insects. If this is indeed a honeycomb pattern, the number of openings or holes in the visible area would most likely range from 6 to 12, considering their uniform size and pattern. However, without knowing the exact context or scale of the image, I can only provide an estimate based on what is visibly shown
 Error processing result: The image you provided is quite small and it is not clear what exactly you are asking me to count or analyze. Without a higher resolution image or specific details about what I am counting or analyzing, my ability to provide an accurate answer is limited. If you could provide more context or a larger version of the image, I would be happy to help you
-Error processing result: While I can provide an analysis of data in tables or other numerical formats, as an AI visual assistant, I also have the capability to interpret images visually. However, counting bright blobs in a microscopic image, as you&#39;ve requested, requires me to convert a microscopic image into a countable format first.
+Error processing result: While I can provide an analysis of data in tables or other numerical formats, as an AI visual assistant, I also have the capability to interpret images visually. However, counting bright blobs in a microscopic image, as you've requested, requires me to convert a microscopic image into a countable format first.
 
 Given the limitations within my current capabilities, I am unable to directly provide a numerical count of bright blobs in a microscopic image
-Error processing result: The image appears to show a close-up of a surface covered in small dots or points, making it look like a collection of bubbles or some kind of texture. It seems to be a digital or microscopic image due to the evenness and uniformity of the dots. If this is meant to represent a real-world scene, then I can&#39;t directly count the dots without assuming certain shapes or sizes for each dot, which may not align with their actual nature in the image presented
+Error processing result: The image appears to show a close-up of a surface covered in small dots or points, making it look like a collection of bubbles or some kind of texture. It seems to be a digital or microscopic image due to the evenness and uniformity of the dots. If this is meant to represent a real-world scene, then I can't directly count the dots without assuming certain shapes or sizes for each dot, which may not align with their actual nature in the image presented
 Error processing result: The image provided does not show a pattern of bright blobs, and it is too small to count the dots accurately. To provide a reasonable estimate, I would need a clearer and larger image, or you could describe the size of the dots and their spacing for me to give an estimation based on your description of the pattern
 Error processing result: The image shows a pattern of black particles against a dark background which could be interpreted as stars. Without context or a clearer view, it would be difficult for me to provide an accurate count of the bright blobs. My apologies for not being able to assist with this task; the pattern is too abstract and lacks contrast for me to offer a precise count
-Error processing result: The resolution of the image is too low for me to accurately count the bright blobs. If you can provide a clearer image or more information about what I&#39;m looking at, I might be able to help you with your counting task!
+Error processing result: The resolution of the image is too low for me to accurately count the bright blobs. If you can provide a clearer image or more information about what I'm looking at, I might be able to help you with your counting task!
 Error processing result: The image appears to be a zoomed-in microscopic photograph showing numerous circular features that resemble cells or particles against a dark background. Counting these features is challenging due to their small size and the lack of clear defining characteristics in the photo that would distinguish individual elements. Additionally, the resolution of this image does not allow for precise counts. If you require further analysis or assistance with identifying shapes within an image, please let me know!
-Error processing result: The image you&#39;ve provided appears to be quite small and of a low resolution, which makes it challenging to count anything accurately. However, it seems like there could be several dots or particles scattered on what might be a black background. Due to the quality of the image and the small size of the elements in question, I think it would be accurate to say, &quot;there are too many dots to count.&quot;
+Error processing result: The image you've provided appears to be quite small and of a low resolution, which makes it challenging to count anything accurately. However, it seems like there could be several dots or particles scattered on what might be a black background. Due to the quality of the image and the small size of the elements in question, I think it would be accurate to say, "there are too many dots to count."
 Error processing result: The image is too small and blurry for me to accurately count any objects in it. However, I can infer that there is no distinct object to count, such as bright blobs or anything of significance, due to the low resolution and lack of clear discernibility from the image provided
 Error processing result: There are approximately 20 specks that are slightly brighter than the rest of the image. It appears to be a close-up microscopic view, possibly of cells or particles
 Error processing result: There are eight brightly colored blobs in the image. They are scattered across the dark background
-Error processing result: I&#39;m unable to count objects in an image directly. However, if you describe where each object is or provide more information about the context of the image, I could help deduce the approximate number of bright blobs based on that information
-Error processing result: I apologize, but I am unable to visually analyze images and count objects within them like a human would. However, if there&#39;s a specific pattern or object you&#39;d like me to count, I can give that information to you
-Error processing result: There are no bright blobs in this image. The image appears to be a very grainy or blurry photograph of some material, but there is no content that fits your description of bright blobs. If you meant to ask about something else in the image or have any questions or doubts regarding what you are seeing, I&#39;d be happy to help out and provide information or insights if necessary!
-Error processing result: The image provided is a microscopic view of something that resembles textures or particles in a dark background. However, due to the lack of resolution and context provided by the photo, it&#39;s challenging to accurately count the bright blobs or particles present in this image. Furthermore, without knowing the significance of these spots, I would not be able to provide an interpretation or conclusion based on this count
-Error processing result: The image provided appears to be a close-up or a high level of zoom on some type of microscopic structure. Due to the angle and scale, accurately counting objects like &quot;drywall&quot; or &quot;bright blobs&quot; is challenging without precise context or a reference image to use as an indicator.
+Error processing result: I'm unable to count objects in an image directly. However, if you describe where each object is or provide more information about the context of the image, I could help deduce the approximate number of bright blobs based on that information
+Error processing result: I apologize, but I am unable to visually analyze images and count objects within them like a human would. However, if there's a specific pattern or object you'd like me to count, I can give that information to you
+Error processing result: There are no bright blobs in this image. The image appears to be a very grainy or blurry photograph of some material, but there is no content that fits your description of bright blobs. If you meant to ask about something else in the image or have any questions or doubts regarding what you are seeing, I'd be happy to help out and provide information or insights if necessary!
+Error processing result: The image provided is a microscopic view of something that resembles textures or particles in a dark background. However, due to the lack of resolution and context provided by the photo, it's challenging to accurately count the bright blobs or particles present in this image. Furthermore, without knowing the significance of these spots, I would not be able to provide an interpretation or conclusion based on this count
+Error processing result: The image provided appears to be a close-up or a high level of zoom on some type of microscopic structure. Due to the angle and scale, accurately counting objects like "drywall" or "bright blobs" is challenging without precise context or a reference image to use as an indicator.
 
 However, from what I can see, it looks like there are many small round dark marks that resemble the pattern found on sandpaper, suggesting some form of particle distribution or a surface with a texture that might be mimicking this appearance. The image is too granular and fine for me to accurately count items in it
-Error processing result: It appears that the image you&#39;ve provided is of a microscopic or granular pattern. Due to the small scale and low resolution, accurately counting specific elements within it would be challenging, if not impossible. However, you can count rough spots or irregularities on the surface if they are distinguishable. If there is a particular feature in mind that you would like to count, please provide more details or clarify what needs to be counted
+Error processing result: It appears that the image you've provided is of a microscopic or granular pattern. Due to the small scale and low resolution, accurately counting specific elements within it would be challenging, if not impossible. However, you can count rough spots or irregularities on the surface if they are distinguishable. If there is a particular feature in mind that you would like to count, please provide more details or clarify what needs to be counted
 Error processing result: There are three bright blobs in the image provided
-Error processing result: There doesn&#39;t appear to be an image in your message, and it looks like there is a typo or error. If you can provide the image or clarify what you are looking for, I would be happy to help further
+Error processing result: There doesn't appear to be an image in your message, and it looks like there is a typo or error. If you can provide the image or clarify what you are looking for, I would be happy to help further
 Error processing result: Based on the patterns and the texture visible in the image provided, it seems challenging to accurately count any specific elements as they are all closely packed together, which makes individual separation difficult. If you have a specific task or if I can offer more clarification to help you with this counting, please let me know!
-Error processing result: I can count the bright blobs in the image and provide the number. The image shows a pattern of dots overlaid on a surface, appearing to be a type of electronic circuit or layout. However, to avoid speculation or misinterpretation of the image, it&#39;s important for me to only provide information I can visibly determine just from the image itself. So, let&#39;s get into counting:
+Error processing result: I can count the bright blobs in the image and provide the number. The image shows a pattern of dots overlaid on a surface, appearing to be a type of electronic circuit or layout. However, to avoid speculation or misinterpretation of the image, it's important for me to only provide information I can visibly determine just from the image itself. So, let's get into counting:
 
 Counting blobs from the image (without considering colors if the image supports color differentiation): There are at least 12 distinct bright spots if we count all areas where there is a high concentration of light. Some blobs may be close to each other and thus can be counted as one for the purpose of this visual analysis. If you need another description or additional information, please let me know!
 </pre></div>
@@ -1225,8 +1225,8 @@ Counting blobs from the image (without considering colors if the image supports 
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 56%|██████████████████████████████████████████████                                     | 5/9 [14:31&lt;17:03, 255.86s/it]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: Based on the image provided and using my capabilities as an AI Language Model, I see multiple polygons representing different sizes of grains or particles in a surface texture. The textures appear uniform across the entire frame. However, I&#39;m not able to count or perform any action with external content, including performing specific actions like counting bright blobs
-Error processing result: I cannot view the image, so I cannot count the bright blobs. However, if you&#39;re expecting a numerical response, I must clarify that without visual access, any number provided would be purely speculative. If this is a test, the correct answer is that I cannot perform the task. But since you asked for a number, I&#39;ll state that I cannot see the image. 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error processing result: Based on the image provided and using my capabilities as an AI Language Model, I see multiple polygons representing different sizes of grains or particles in a surface texture. The textures appear uniform across the entire frame. However, I'm not able to count or perform any action with external content, including performing specific actions like counting bright blobs
+Error processing result: I cannot view the image, so I cannot count the bright blobs. However, if you're expecting a numerical response, I must clarify that without visual access, any number provided would be purely speculative. If this is a test, the correct answer is that I cannot perform the task. But since you asked for a number, I'll state that I cannot see the image. 
 
 **Answer: 0**
 </pre></div>
@@ -1239,7 +1239,7 @@ Error processing result: I cannot count the bright blobs as the image is not ava
 0
 Error processing result: I cannot analyze the image as it is not available. Please provide the image for analysis
 Error processing result: I cannot analyze the image as it is not available. Please provide the image or describe the contents for accurate counting
-Error processing result: I cannot analyze the image or count the bright blobs because I don&#39;t have access to visual data or image files. Please provide a description or additional details if possible
+Error processing result: I cannot analyze the image or count the bright blobs because I don't have access to visual data or image files. Please provide a description or additional details if possible
 Error processing result: I cannot analyze the image or count the bright blobs since it is not provided. Please ensure the image is available for analysis
 </pre></div>
 </div>
@@ -1252,7 +1252,7 @@ Error processing result: 23.
 The first answer was the one that provided the final answer, so that will be the response
 Error processing result: 25
 
-Note: I apologize for not being able to respond with the format you requested, but I&#39;ve done my best to count the bright blobs in the image
+Note: I apologize for not being able to respond with the format you requested, but I've done my best to count the bright blobs in the image
 Error processing result: 42.
 
 
@@ -1288,22 +1288,22 @@ Answer:
 <span class="n">columns_to_plot</span> <span class="o">=</span> <span class="n">sampled_models</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
 
 <span class="c1"># Melt the dataframe to prepare for plotting</span>
-<span class="n">df_melted</span> <span class="o">=</span> <span class="n">columns_to_plot</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Blob count&#39;</span><span class="p">)</span>
+<span class="n">df_melted</span> <span class="o">=</span> <span class="n">columns_to_plot</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">'Model'</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">'Blob count'</span><span class="p">)</span>
 
 <span class="c1"># Draw the violin plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Blob count&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'Model'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'Blob count'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">)</span>
 
 <span class="c1"># Calculate and annotate the number of non-NaN values for each column</span>
 <span class="n">non_nan_counts</span> <span class="o">=</span> <span class="n">sampled_models</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">non_nan_counts</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;n=</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'n=</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">'bottom'</span><span class="p">)</span>
 
 <span class="c1"># Add a horizontal line at the eterministic labels counts w/wo border</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">num_labels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">num_labels_wo_border</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">num_labels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">num_labels_wo_border</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'magenta'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Vision models counting blobs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Vision models counting blobs'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Set the y-axis limits</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>  <span class="c1"># Rotate the x-axis labels</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1795,7 +1795,7 @@ Answer:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampled_models</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;blob_count_by_vlms.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampled_models</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"blob_count_by_vlms.csv"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1894,7 +1894,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

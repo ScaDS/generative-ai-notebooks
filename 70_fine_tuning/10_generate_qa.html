@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -952,9 +952,9 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../11a_prompt_engineering/code_snippets.txt&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">'../11a_prompt_engineering/code_snippets.txt'</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="n">content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -963,7 +963,7 @@ title="Print to PDF"
 <p>In the following prompt we ask the chat model to do the content conversion. We provide the data and give an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qa</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qa</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">Convert the following text to a list of questions and answers.</span>
 
 <span class="s2">Text:</span>
@@ -973,7 +973,7 @@ title="Print to PDF"
 
 <span class="s2">Example format:</span>
 
-<span class="se">\&quot;\&quot;\&quot;</span>
+<span class="se">\"\"\"</span>
 <span class="s2">Question: </span>
 <span class="s2">How can I denoise an image using Gaussian blur?</span>
 
@@ -982,17 +982,17 @@ title="Print to PDF"
 <span class="s2">```python</span>
 <span class="s2">skimage.filters.gaussian(image, sigma=5)</span>
 <span class="s2">```</span>
-<span class="se">\&quot;\&quot;\&quot;</span>
+<span class="se">\"\"\"</span>
 
 <span class="s2">Convert the text above sentence-by-sentence in a format as shown in the example.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">qa</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>"""
 Question:
 How can I display an image with a slider and label showing mouse position and intensity?
 
@@ -1001,7 +1001,7 @@ To display an image with a slider and label showing mouse position and intensity
 ```python
 stackview.annotate(image, labels)
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I allow cropping an image along all axes?
@@ -1011,7 +1011,7 @@ You can crop an image along all axes using the following function:
 ```python
 stackview.crop(image)
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I show an image stored in a variable `image` and a segmented image stored in a variable `labels` on top?
@@ -1021,7 +1021,7 @@ To show an image and a segmented image on top, you can use the `curtain` functio
 ```python
 stackview.curtain(image, labels, alpha: float = 1)
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I display an image stored in a variable `image` and enable slicing in three dimensions?
@@ -1031,7 +1031,7 @@ You can display an image and enable slicing in three dimensions using the `ortho
 ```python
 stackview.orthogonal(image)
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I build a user interface with sliders for numeric parameters?
@@ -1041,7 +1041,7 @@ To build a user interface with sliders for numeric parameters, you can use the `
 ```python
 stackview.interact(func, image)
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I display two images side by side, with an additional overlay view of their overlap?
@@ -1051,7 +1051,7 @@ You can display two images side by side with an overlay view by using the `side_
 ```python
 stackview.side_by_side(image1, image2)
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I display an image with a slider to navigate through a stack?
@@ -1061,7 +1061,7 @@ To display an image with a slider for stack navigation, you can use the `slice` 
 ```python
 stackview.slice(image)
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I allow switching between multiple images and displaying them with a slider?
@@ -1071,7 +1071,7 @@ To switch between multiple images and display them with a slider, you can use th
 ```python
 stackview.switch(images:list)
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I perform binary edge detection by setting only surface pixels to 1 in a destination binary image?
@@ -1081,7 +1081,7 @@ You can perform binary edge detection using the `binary_edge_detection` function
 ```python
 cle.binary_edge_detection(source: ndarray, destination: ndarray = None) -&gt; ndarray
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I create a binary image by inverting pixel values in an input image?
@@ -1091,7 +1091,7 @@ To create a binary image by inverting pixel values, you can use the `binary_not`
 ```python
 cle.binary_not(source: ndarray, destination: ndarray = None) -&gt; ndarray
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I determine centroids of all labels in an image and write coordinates in a pointlist image?
@@ -1101,7 +1101,7 @@ You can determine centroids of all labels in an image and write coordinates usin
 ```python
 cle.centroids_of_labels(labels: ndarray, pointlist_destination: ndarray = None, include_background: bool = False) -&gt; ndarray
 ```
-&quot;&quot;&quot;
+"""
 
 Question:
 How can I analyze a label map to ensure all labels are indexed without gaps before returning the relabeled map?
@@ -1110,8 +1110,8 @@ Answer:
 To analyze a label map and ensure all labels are indexed without gaps, you can use the `relabel_sequential` function with source and output arrays as parameters:
 ```python
 cle.relabel_sequential(source: ndarray, output: ndarray = None, blocksize: int = 4096) -&gt; ndarray
-&quot;&quot;&quot;
-&quot;&quot;&quot;
+"""
+"""
 </pre></div>
 </div>
 </div>
@@ -1119,8 +1119,8 @@ cle.relabel_sequential(source: ndarray, output: ndarray = None, blocksize: int =
 <p>We store the result in a text file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;question_answers_generated.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">qa</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&quot;&quot;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'question_answers_generated.txt'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">qa</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"""'</span><span class="p">,</span><span class="s1">''</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1231,7 +1231,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

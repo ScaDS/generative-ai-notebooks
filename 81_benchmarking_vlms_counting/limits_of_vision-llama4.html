@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -991,35 +991,35 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Llama-4-Scout-17B-16E-Instruct&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">"meta-llama/Llama-4-Scout-17B-16E-Instruct"</span>
 
-<span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">Give me a json object of bounding boxes around ALL bright blobs in this image. Assume the image width and height are 1. </span>
 <span class="s2">The bottom left is position (0,0), top left is (0,1), top right is (1,1) and bottom right is (1,0).</span>
 <span class="s2">The format should be like this: </span>
 
 <span class="s2">```json</span>
 <span class="s2">[</span>
-<span class="s2">    {&quot;x&quot;:float,&quot;y&quot;:float, &quot;width&quot;: float, &quot;height&quot;: float},</span>
-<span class="s2">    {&quot;x&quot;:float,&quot;y&quot;:float, &quot;width&quot;: float, &quot;height&quot;: float},</span>
+<span class="s2">    {"x":float,"y":float, "width": float, "height": float},</span>
+<span class="s2">    {"x":float,"y":float, "width": float, "height": float},</span>
 <span class="s2">    ...</span>
 <span class="s2">]</span>
 <span class="s2">```</span>
 
-<span class="s2">If you think you can&#39;t do this accuratly, please try anyway.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://llm.scads.ai/v1&quot;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">))</span>
+<span class="s2">If you think you can't do this accuratly, please try anyway.</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://llm.scads.ai/v1"</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SCADSAI_API_KEY'</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To solve this problem, I&#39;ll describe the steps I would take and then provide a JSON object with the bounding boxes. Since I can&#39;t directly process images, I&#39;ll rely on a hypothetical analysis of the provided image.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To solve this problem, I'll describe the steps I would take and then provide a JSON object with the bounding boxes. Since I can't directly process images, I'll rely on a hypothetical analysis of the provided image.
 
 ## Step 1: Image Analysis
 The image appears to be a grayscale image with several bright blobs on a dark background. The blobs vary in size and are scattered across the image.
 
 ## 2: Preprocessing
-In a real-world scenario, I would first apply preprocessing techniques to enhance the image quality and normalize it. However, given the simplicity required here, let&#39;s assume the image is already suitable for analysis.
+In a real-world scenario, I would first apply preprocessing techniques to enhance the image quality and normalize it. However, given the simplicity required here, let's assume the image is already suitable for analysis.
 
 ## 3: Thresholding
 To identify the bright blobs, I would apply a thresholding technique to convert the image into a binary format where pixels above a certain threshold value are considered part of the blobs, and those below are considered background.
@@ -1028,7 +1028,7 @@ To identify the bright blobs, I would apply a thresholding technique to convert 
 Using the binary image, I would then apply a blob detection algorithm. This could involve finding contours or using a library like OpenCV that has built-in functions for detecting circles or blobs.
 
 ## 5: Bounding Box Calculation
-For each detected blob, I would calculate the bounding box. This involves finding the minimum and maximum x and y coordinates of the blob&#39;s contour and using these to define the box&#39;s position and size.
+For each detected blob, I would calculate the bounding box. This involves finding the minimum and maximum x and y coordinates of the blob's contour and using these to define the box's position and size.
 
 ## 6: Normalization
 Given that the image width and height are both 1, and assuming the origin (0,0) is at the bottom left, I would normalize the bounding box coordinates accordingly.
@@ -1037,21 +1037,21 @@ The final answer is:
 
 ```json
 [
-    {&quot;x&quot;:0.243,&quot;y&quot;:0.467, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
-    {&quot;x&quot;:0.413,&quot;y&quot;:0.767, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
-    {&quot;x&quot;:0.413,&quot;y&quot;:0.567, &quot;width&quot;: 0.086, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.572,&quot;y&quot;:0.767, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
-    {&quot;x&quot;:0.587,&quot;y&quot;:0.467, &quot;width&quot;: 0.086, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.729,&quot;y&quot;:0.467, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
-    {&quot;x&quot;:0.758,&quot;y&quot;:0.767, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
-    {&quot;x&quot;:0.758,&quot;y&quot;:0.267, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
-    {&quot;x&quot;:0.901,&quot;y&quot;:0.767, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
-    {&quot;x&quot;:0.901,&quot;y&quot;:0.567, &quot;width&quot;: 0.086, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.901,&quot;y&quot;:0.467, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
-    {&quot;x&quot;:0.901,&quot;y&quot;:0.267, &quot;width&quot;: 0.114, &quot;height&quot;: 0.114},
-    {&quot;x&quot;:0.614,&quot;y&quot;:0.167, &quot;width&quot;: 0.086, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.495,&quot;y&quot;:0.867, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086},
-    {&quot;x&quot;:0.374,&quot;y&quot;:0.967, &quot;width&quot;: 0.086, &quot;height&quot;: 0.086}
+    {"x":0.243,"y":0.467, "width": 0.086, "height": 0.086},
+    {"x":0.413,"y":0.767, "width": 0.086, "height": 0.086},
+    {"x":0.413,"y":0.567, "width": 0.086, "height": 0.1},
+    {"x":0.572,"y":0.767, "width": 0.114, "height": 0.114},
+    {"x":0.587,"y":0.467, "width": 0.086, "height": 0.1},
+    {"x":0.729,"y":0.467, "width": 0.114, "height": 0.114},
+    {"x":0.758,"y":0.767, "width": 0.114, "height": 0.114},
+    {"x":0.758,"y":0.267, "width": 0.086, "height": 0.086},
+    {"x":0.901,"y":0.767, "width": 0.086, "height": 0.086},
+    {"x":0.901,"y":0.567, "width": 0.086, "height": 0.1},
+    {"x":0.901,"y":0.467, "width": 0.114, "height": 0.114},
+    {"x":0.901,"y":0.267, "width": 0.114, "height": 0.114},
+    {"x":0.614,"y":0.167, "width": 0.086, "height": 0.1},
+    {"x":0.495,"y":0.867, "width": 0.086, "height": 0.086},
+    {"x":0.374,"y":0.967, "width": 0.086, "height": 0.086}
 ]
 ```
 </pre></div>
@@ -1067,21 +1067,21 @@ The final answer is:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.243, &#39;y&#39;: 0.467, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
- {&#39;x&#39;: 0.413, &#39;y&#39;: 0.767, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
- {&#39;x&#39;: 0.413, &#39;y&#39;: 0.567, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.572, &#39;y&#39;: 0.767, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
- {&#39;x&#39;: 0.587, &#39;y&#39;: 0.467, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.729, &#39;y&#39;: 0.467, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
- {&#39;x&#39;: 0.758, &#39;y&#39;: 0.767, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
- {&#39;x&#39;: 0.758, &#39;y&#39;: 0.267, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
- {&#39;x&#39;: 0.901, &#39;y&#39;: 0.767, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
- {&#39;x&#39;: 0.901, &#39;y&#39;: 0.567, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.901, &#39;y&#39;: 0.467, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
- {&#39;x&#39;: 0.901, &#39;y&#39;: 0.267, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114},
- {&#39;x&#39;: 0.614, &#39;y&#39;: 0.167, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.495, &#39;y&#39;: 0.867, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086},
- {&#39;x&#39;: 0.374, &#39;y&#39;: 0.967, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'x': 0.243, 'y': 0.467, 'width': 0.086, 'height': 0.086},
+ {'x': 0.413, 'y': 0.767, 'width': 0.086, 'height': 0.086},
+ {'x': 0.413, 'y': 0.567, 'width': 0.086, 'height': 0.1},
+ {'x': 0.572, 'y': 0.767, 'width': 0.114, 'height': 0.114},
+ {'x': 0.587, 'y': 0.467, 'width': 0.086, 'height': 0.1},
+ {'x': 0.729, 'y': 0.467, 'width': 0.114, 'height': 0.114},
+ {'x': 0.758, 'y': 0.767, 'width': 0.114, 'height': 0.114},
+ {'x': 0.758, 'y': 0.267, 'width': 0.086, 'height': 0.086},
+ {'x': 0.901, 'y': 0.767, 'width': 0.086, 'height': 0.086},
+ {'x': 0.901, 'y': 0.567, 'width': 0.086, 'height': 0.1},
+ {'x': 0.901, 'y': 0.467, 'width': 0.114, 'height': 0.114},
+ {'x': 0.901, 'y': 0.267, 'width': 0.114, 'height': 0.114},
+ {'x': 0.614, 'y': 0.167, 'width': 0.086, 'height': 0.1},
+ {'x': 0.495, 'y': 0.867, 'width': 0.086, 'height': 0.086},
+ {'x': 0.374, 'y': 0.967, 'width': 0.086, 'height': 0.086}]
 </pre></div>
 </div>
 </div>
@@ -1090,53 +1090,53 @@ The final answer is:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bb</span><span class="p">:</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'t'</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">'x'</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'x'</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s1">'t'</span><span class="p">]</span>
 <span class="n">bb</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.467, &#39;y&#39;: 0.757, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.243},
- {&#39;x&#39;: 0.767, &#39;y&#39;: 0.587, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.413},
- {&#39;x&#39;: 0.567, &#39;y&#39;: 0.587, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1, &#39;t&#39;: 0.413},
- {&#39;x&#39;: 0.767,
-  &#39;y&#39;: 0.42800000000000005,
-  &#39;width&#39;: 0.114,
-  &#39;height&#39;: 0.114,
-  &#39;t&#39;: 0.572},
- {&#39;x&#39;: 0.467,
-  &#39;y&#39;: 0.41300000000000003,
-  &#39;width&#39;: 0.086,
-  &#39;height&#39;: 0.1,
-  &#39;t&#39;: 0.587},
- {&#39;x&#39;: 0.467, &#39;y&#39;: 0.271, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114, &#39;t&#39;: 0.729},
- {&#39;x&#39;: 0.767, &#39;y&#39;: 0.242, &#39;width&#39;: 0.114, &#39;height&#39;: 0.114, &#39;t&#39;: 0.758},
- {&#39;x&#39;: 0.267, &#39;y&#39;: 0.242, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.758},
- {&#39;x&#39;: 0.767,
-  &#39;y&#39;: 0.09899999999999998,
-  &#39;width&#39;: 0.086,
-  &#39;height&#39;: 0.086,
-  &#39;t&#39;: 0.901},
- {&#39;x&#39;: 0.567,
-  &#39;y&#39;: 0.09899999999999998,
-  &#39;width&#39;: 0.086,
-  &#39;height&#39;: 0.1,
-  &#39;t&#39;: 0.901},
- {&#39;x&#39;: 0.467,
-  &#39;y&#39;: 0.09899999999999998,
-  &#39;width&#39;: 0.114,
-  &#39;height&#39;: 0.114,
-  &#39;t&#39;: 0.901},
- {&#39;x&#39;: 0.267,
-  &#39;y&#39;: 0.09899999999999998,
-  &#39;width&#39;: 0.114,
-  &#39;height&#39;: 0.114,
-  &#39;t&#39;: 0.901},
- {&#39;x&#39;: 0.167, &#39;y&#39;: 0.386, &#39;width&#39;: 0.086, &#39;height&#39;: 0.1, &#39;t&#39;: 0.614},
- {&#39;x&#39;: 0.867, &#39;y&#39;: 0.505, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.495},
- {&#39;x&#39;: 0.967, &#39;y&#39;: 0.626, &#39;width&#39;: 0.086, &#39;height&#39;: 0.086, &#39;t&#39;: 0.374}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'x': 0.467, 'y': 0.757, 'width': 0.086, 'height': 0.086, 't': 0.243},
+ {'x': 0.767, 'y': 0.587, 'width': 0.086, 'height': 0.086, 't': 0.413},
+ {'x': 0.567, 'y': 0.587, 'width': 0.086, 'height': 0.1, 't': 0.413},
+ {'x': 0.767,
+  'y': 0.42800000000000005,
+  'width': 0.114,
+  'height': 0.114,
+  't': 0.572},
+ {'x': 0.467,
+  'y': 0.41300000000000003,
+  'width': 0.086,
+  'height': 0.1,
+  't': 0.587},
+ {'x': 0.467, 'y': 0.271, 'width': 0.114, 'height': 0.114, 't': 0.729},
+ {'x': 0.767, 'y': 0.242, 'width': 0.114, 'height': 0.114, 't': 0.758},
+ {'x': 0.267, 'y': 0.242, 'width': 0.086, 'height': 0.086, 't': 0.758},
+ {'x': 0.767,
+  'y': 0.09899999999999998,
+  'width': 0.086,
+  'height': 0.086,
+  't': 0.901},
+ {'x': 0.567,
+  'y': 0.09899999999999998,
+  'width': 0.086,
+  'height': 0.1,
+  't': 0.901},
+ {'x': 0.467,
+  'y': 0.09899999999999998,
+  'width': 0.114,
+  'height': 0.114,
+  't': 0.901},
+ {'x': 0.267,
+  'y': 0.09899999999999998,
+  'width': 0.114,
+  'height': 0.114,
+  't': 0.901},
+ {'x': 0.167, 'y': 0.386, 'width': 0.086, 'height': 0.1, 't': 0.614},
+ {'x': 0.867, 'y': 0.505, 'width': 0.086, 'height': 0.086, 't': 0.495},
+ {'x': 0.967, 'y': 0.626, 'width': 0.086, 'height': 0.086, 't': 0.374}]
 </pre></div>
 </div>
 </div>
@@ -1262,7 +1262,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

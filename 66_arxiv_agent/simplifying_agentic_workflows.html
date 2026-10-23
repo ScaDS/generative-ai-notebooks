@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -958,7 +958,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Llama-3.3-70B-Instruct&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">"meta-llama/Llama-3.3-70B-Instruct"</span>
 <span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt_scadsai_llm</span>
 <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
@@ -971,39 +971,39 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read the abstract of an arxiv-paper and return most important contents in markdown format.</span>
+<span class="w">    </span><span class="sd">"""Read the abstract of an arxiv-paper and return most important contents in markdown format.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        arxiv_url: url of the Arxiv paper</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;read_arxiv_paper(</span><span class="si">{</span><span class="n">arxiv_url</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-    <span class="n">arxiv_id</span> <span class="o">=</span> <span class="n">arxiv_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"read_arxiv_paper(</span><span class="si">{</span><span class="n">arxiv_url</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="n">arxiv_id</span> <span class="o">=</span> <span class="n">arxiv_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_arxiv_metadata</span><span class="p">(</span><span class="n">arxiv_id</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
-    <span class="n">summary</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;summary&quot;</span><span class="p">]</span>
-    <span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">])</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">"summary"</span><span class="p">]</span>
+    <span class="n">authors</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"authors"</span><span class="p">])</span>
     
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;## </span><span class="si">{</span><span class="n">title</span><span class="si">}</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"""## </span><span class="si">{</span><span class="n">title</span><span class="si">}</span>
 <span class="s2">By </span><span class="si">{</span><span class="n">authors</span><span class="si">}</span>
 
 <span class="si">{</span><span class="n">summary</span><span class="si">}</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">paper_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://arxiv.org/abs/2211.11501&quot;</span><span class="p">,</span>
-<span class="s2">&quot;https://arxiv.org/abs/2308.16458&quot;</span><span class="p">,</span>
-<span class="s2">&quot;https://arxiv.org/abs/2411.07781&quot;</span><span class="p">,</span>
-<span class="s2">&quot;https://arxiv.org/abs/2408.13204&quot;</span><span class="p">,</span>
-<span class="s2">&quot;https://arxiv.org/abs/2406.15877&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">paper_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"https://arxiv.org/abs/2211.11501"</span><span class="p">,</span>
+<span class="s2">"https://arxiv.org/abs/2308.16458"</span><span class="p">,</span>
+<span class="s2">"https://arxiv.org/abs/2411.07781"</span><span class="p">,</span>
+<span class="s2">"https://arxiv.org/abs/2408.13204"</span><span class="p">,</span>
+<span class="s2">"https://arxiv.org/abs/2406.15877"</span><span class="p">]</span>
 
-<span class="n">paper_contents</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">paper_contents</span> <span class="o">=</span> <span class="s2">""</span>
 <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">paper_urls</span><span class="p">:</span>
-    <span class="n">paper_contents</span> <span class="o">+=</span> <span class="n">read_arxiv_paper</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">paper_contents</span> <span class="o">+=</span> <span class="n">read_arxiv_paper</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
@@ -1023,7 +1023,7 @@ read_arxiv_paper(https://arxiv.org/abs/2406.15877)
 <p>Here we combine the paper contents with detailed instructions for writing a manuscript reviewing those papers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;You are a great scientific writer. Your task is to write a scientific review manuscript about some papers which are summarized below.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""You are a great scientific writer. Your task is to write a scientific review manuscript about some papers which are summarized below.</span>
 
 <span class="s2"># Content</span>
 
@@ -1042,7 +1042,7 @@ read_arxiv_paper(https://arxiv.org/abs/2406.15877)
 
 <span class="s2"># Your task</span>
 <span class="s2">Write a scientific review manuscript about the content summarized above following the mentioned formatting guidelines.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1178,7 +1178,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_anthropic_api.html">Anthropic Claude</a></li>
@@ -940,11 +940,11 @@ title="Print to PDF"
 <p>In this notebook we use the model Gemini 1.5 Flash</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_gemini</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemini-1.5-flash-001&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Send a prompt to Google Gemini and return the response&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_gemini</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"gemini-1.5-flash-001"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Send a prompt to Google Gemini and return the response"""</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">google</span><span class="w"> </span><span class="kn">import</span> <span class="n">generativeai</span> <span class="k">as</span> <span class="n">genai</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-    <span class="n">genai</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GOOGLE_API_KEY&#39;</span><span class="p">])</span>
+    <span class="n">genai</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'GOOGLE_API_KEY'</span><span class="p">])</span>
     
     <span class="n">client</span> <span class="o">=</span> <span class="n">genai</span><span class="o">.</span><span class="n">GenerativeModel</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -955,12 +955,12 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_gemini</span><span class="p">(</span><span class="s2">&quot;Hello, what is the capital of France?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_gemini</span><span class="p">(</span><span class="s2">"Hello, what is the capital of France?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The capital of France is **Paris**. \n&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'The capital of France is **Paris**. \n'
 </pre></div>
 </div>
 </div>
@@ -977,42 +977,42 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;models/chat-bison-001&#39;,
- &#39;models/text-bison-001&#39;,
- &#39;models/embedding-gecko-001&#39;,
- &#39;models/gemini-1.0-pro-latest&#39;,
- &#39;models/gemini-1.0-pro&#39;,
- &#39;models/gemini-pro&#39;,
- &#39;models/gemini-1.0-pro-001&#39;,
- &#39;models/gemini-1.0-pro-vision-latest&#39;,
- &#39;models/gemini-pro-vision&#39;,
- &#39;models/gemini-1.5-pro-latest&#39;,
- &#39;models/gemini-1.5-pro-001&#39;,
- &#39;models/gemini-1.5-pro-002&#39;,
- &#39;models/gemini-1.5-pro&#39;,
- &#39;models/gemini-1.5-pro-exp-0801&#39;,
- &#39;models/gemini-1.5-pro-exp-0827&#39;,
- &#39;models/gemini-1.5-flash-latest&#39;,
- &#39;models/gemini-1.5-flash-001&#39;,
- &#39;models/gemini-1.5-flash-001-tuning&#39;,
- &#39;models/gemini-1.5-flash&#39;,
- &#39;models/gemini-1.5-flash-exp-0827&#39;,
- &#39;models/gemini-1.5-flash-002&#39;,
- &#39;models/gemini-1.5-flash-8b&#39;,
- &#39;models/gemini-1.5-flash-8b-001&#39;,
- &#39;models/gemini-1.5-flash-8b-latest&#39;,
- &#39;models/gemini-1.5-flash-8b-exp-0827&#39;,
- &#39;models/gemini-1.5-flash-8b-exp-0924&#39;,
- &#39;models/gemini-2.0-flash-exp&#39;,
- &#39;models/gemini-exp-1206&#39;,
- &#39;models/gemini-exp-1121&#39;,
- &#39;models/gemini-exp-1114&#39;,
- &#39;models/gemini-2.0-flash-thinking-exp&#39;,
- &#39;models/gemini-2.0-flash-thinking-exp-1219&#39;,
- &#39;models/learnlm-1.5-pro-experimental&#39;,
- &#39;models/embedding-001&#39;,
- &#39;models/text-embedding-004&#39;,
- &#39;models/aqa&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['models/chat-bison-001',
+ 'models/text-bison-001',
+ 'models/embedding-gecko-001',
+ 'models/gemini-1.0-pro-latest',
+ 'models/gemini-1.0-pro',
+ 'models/gemini-pro',
+ 'models/gemini-1.0-pro-001',
+ 'models/gemini-1.0-pro-vision-latest',
+ 'models/gemini-pro-vision',
+ 'models/gemini-1.5-pro-latest',
+ 'models/gemini-1.5-pro-001',
+ 'models/gemini-1.5-pro-002',
+ 'models/gemini-1.5-pro',
+ 'models/gemini-1.5-pro-exp-0801',
+ 'models/gemini-1.5-pro-exp-0827',
+ 'models/gemini-1.5-flash-latest',
+ 'models/gemini-1.5-flash-001',
+ 'models/gemini-1.5-flash-001-tuning',
+ 'models/gemini-1.5-flash',
+ 'models/gemini-1.5-flash-exp-0827',
+ 'models/gemini-1.5-flash-002',
+ 'models/gemini-1.5-flash-8b',
+ 'models/gemini-1.5-flash-8b-001',
+ 'models/gemini-1.5-flash-8b-latest',
+ 'models/gemini-1.5-flash-8b-exp-0827',
+ 'models/gemini-1.5-flash-8b-exp-0924',
+ 'models/gemini-2.0-flash-exp',
+ 'models/gemini-exp-1206',
+ 'models/gemini-exp-1121',
+ 'models/gemini-exp-1114',
+ 'models/gemini-2.0-flash-thinking-exp',
+ 'models/gemini-2.0-flash-thinking-exp-1219',
+ 'models/learnlm-1.5-pro-experimental',
+ 'models/embedding-001',
+ 'models/text-embedding-004',
+ 'models/aqa']
 </pre></div>
 </div>
 </div>
@@ -1111,7 +1111,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

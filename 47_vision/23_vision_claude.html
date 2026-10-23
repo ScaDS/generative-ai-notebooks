@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -965,7 +965,7 @@ title="Print to PDF"
 <p>First we load a medical tomography image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mri</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/Haase_MRT_tfl3d1.tif&quot;</span><span class="p">)[</span><span class="mi">100</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mri</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">"data/Haase_MRT_tfl3d1.tif"</span><span class="p">)[</span><span class="mi">100</span><span class="p">]</span>
 <span class="n">stackview</span><span class="o">.</span><span class="n">insight</span><span class="p">(</span><span class="n">mri</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -992,15 +992,15 @@ title="Print to PDF"
 <p>We will now send the image to claude and ask it the same questions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_anthropic</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;claude-3-7-sonnet-20250219&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_anthropic</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"claude-3-7-sonnet-20250219"</span><span class="p">):</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">anthropic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Anthropic</span>
 
     <span class="n">client</span> <span class="o">=</span> <span class="n">Anthropic</span><span class="p">()</span>
     
     <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">user_message</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
+                    <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span>
+                    <span class="s2">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
                 <span class="p">}</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">user_message</span> <span class="o">=</span> <span class="n">image_to_message_claude</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
@@ -1023,13 +1023,13 @@ title="Print to PDF"
 
     <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">_img_to_rgb</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
     <span class="n">byte_stream</span> <span class="o">=</span> <span class="n">numpy_to_bytestream</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">)</span>
-    <span class="n">base64_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">byte_stream</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">base64_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">byte_stream</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
-            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;base64&quot;</span><span class="p">,</span> <span class="s2">&quot;media_type&quot;</span><span class="p">:</span> <span class="s2">&quot;image/png&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">base64_image</span><span class="p">}},</span>
-                <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+            <span class="s2">"role"</span><span class="p">:</span> <span class="s1">'user'</span><span class="p">,</span>
+            <span class="s2">"content"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"image"</span><span class="p">,</span> <span class="s2">"source"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"base64"</span><span class="p">,</span> <span class="s2">"media_type"</span><span class="p">:</span> <span class="s2">"image/png"</span><span class="p">,</span> <span class="s2">"data"</span><span class="p">:</span> <span class="n">base64_image</span><span class="p">}},</span>
+                <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"text"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
             <span class="p">]</span>
         <span class="p">}</span>
 </pre></div>
@@ -1038,12 +1038,12 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_anthropic</span><span class="p">(</span><span class="s2">&quot;what&#39;s in this image?&quot;</span><span class="p">,</span> <span class="n">mri</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_anthropic</span><span class="p">(</span><span class="s2">"what's in this image?"</span><span class="p">,</span> <span class="n">mri</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;This image appears to be a sagittal (side view) MRI scan of a human head. The scan shows the brain, skull, nasal cavity, and parts of the upper neck in black and white contrast. In this type of medical imaging, different tissues appear in varying shades of gray, with the brain tissue visible in the upper portion of the skull cavity, showing characteristic folding patterns. This type of medical imaging is commonly used by doctors to examine brain structure, diagnose conditions, and plan treatments without invasive procedures.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'This image appears to be a sagittal (side view) MRI scan of a human head. The scan shows the brain, skull, nasal cavity, and parts of the upper neck in black and white contrast. In this type of medical imaging, different tissues appear in varying shades of gray, with the brain tissue visible in the upper portion of the skull cavity, showing characteristic folding patterns. This type of medical imaging is commonly used by doctors to examine brain structure, diagnose conditions, and plan treatments without invasive procedures.'
 </pre></div>
 </div>
 </div>
@@ -1054,17 +1054,17 @@ title="Print to PDF"
 <p>Models such as claude have some capabilities in bounding-box segmentation of objects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/real_cat.png&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">"data/real_cat.png"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_anthropic</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_anthropic</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">Give me a json object of a bounding boxes around the cat in this image. </span>
-<span class="s2">The format should be like this: {&#39;x&#39;:int,&#39;y&#39;:int,&#39;width&#39;:int,&#39;height&#39;:int}</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">cat_image</span><span class="p">)</span>
+<span class="s2">The format should be like this: {'x':int,'y':int,'width':int,'height':int}</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">cat_image</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
 <span class="n">bb</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">extract_json</span><span class="p">(</span><span class="n">reply</span><span class="p">))</span>
 <span class="n">bb</span>
@@ -1074,10 +1074,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Based on the image, here&#39;s the bounding box for the cat in JSON format:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Based on the image, here's the bounding box for the cat in JSON format:
 
 ```json
-{&quot;x&quot;: 115, &quot;y&quot;: 75, &quot;width&quot;: 185, &quot;height&quot;: 235}
+{"x": 115, "y": 75, "width": 185, "height": 235}
 ```
 
 This is an approximate bounding box that encompasses the black and white cat sitting next to what appears to be a white microscope or similar scientific instrument on a wooden surface. The cat has distinctive black patches on a primarily white coat and is looking off to the side.
@@ -1106,25 +1106,25 @@ This is an approximate bounding box that encompasses the black and white cat sit
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualizations</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;data/pinata.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;data/real_cat.png&quot;</span><span class="p">,</span> <span class="s2">&quot;data/sheeps.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;data/guinea_pig.jpg&quot;</span><span class="p">]:</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"data/pinata.jpg"</span><span class="p">,</span> <span class="s2">"data/real_cat.png"</span><span class="p">,</span> <span class="s2">"data/sheeps.jpg"</span><span class="p">,</span> <span class="s2">"data/guinea_pig.jpg"</span><span class="p">]:</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     
-    <span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_anthropic</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Give me a json object of a list of bounding boxes around each animal in this 512x512 pixel large image. </span>
+    <span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_anthropic</span><span class="p">(</span><span class="s2">"""Give me a json object of a list of bounding boxes around each animal in this 512x512 pixel large image. </span>
 <span class="s2">The format should be like this:</span>
 
 <span class="s2">```json</span>
 <span class="s2">[</span>
 <span class="s2">    {</span>
-<span class="s2">        &#39;x&#39;:int,</span>
-<span class="s2">        &#39;y&#39;:int, </span>
-<span class="s2">        &#39;width&#39;:int, </span>
-<span class="s2">        &#39;height&#39;:int,</span>
-<span class="s2">        &#39;description&#39;:str,</span>
-<span class="s2">        &#39;font_size&#39;:25</span>
+<span class="s2">        'x':int,</span>
+<span class="s2">        'y':int, </span>
+<span class="s2">        'width':int, </span>
+<span class="s2">        'height':int,</span>
+<span class="s2">        'description':str,</span>
+<span class="s2">        'font_size':25</span>
 <span class="s2">    }</span>
 <span class="s2">]</span>
 <span class="s2">```</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
 
     <span class="n">bb</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">extract_json</span><span class="p">(</span><span class="n">reply</span><span class="p">))</span>
 
@@ -1251,7 +1251,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

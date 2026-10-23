@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -937,15 +937,15 @@ title="Print to PDF"
 <p>We will need some helper functions for assembling a prompt and submitting it to the openai server.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_with_image</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4.1-2025-04-14&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a text message and an image</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_with_image</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-4.1-2025-04-14"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A prompt helper function that sends a text message and an image</span>
 <span class="sd">    to openAI and returns the text response.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
     
     <span class="c1"># convert message in the right format if necessary</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
     
     <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">image_message</span> <span class="o">=</span> <span class="n">image_to_message</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -972,31 +972,31 @@ title="Print to PDF"
 
     <span class="n">rgb_image</span> <span class="o">=</span> <span class="n">_img_to_rgb</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
     <span class="n">byte_stream</span> <span class="o">=</span> <span class="n">numpy_to_bytestream</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">)</span>
-    <span class="n">base64_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">byte_stream</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="n">base64_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">byte_stream</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[{</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;image_url&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;data:image/jpeg;base64,</span><span class="si">{</span><span class="n">base64_image</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"image_url"</span><span class="p">,</span>
+        <span class="s2">"image_url"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"url"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"data:image/jpeg;base64,</span><span class="si">{</span><span class="n">base64_image</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">}</span>
 
     <span class="p">}]}]</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">numpy_to_bytestream</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Turn a NumPy array into a bytestream&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Turn a NumPy array into a bytestream"""</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
 
     <span class="c1"># Convert the NumPy array to a PIL Image</span>
-    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">"RGBA"</span><span class="p">)</span>
 
     <span class="c1"># Create a BytesIO object</span>
     <span class="n">bytes_io</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
 
     <span class="c1"># Save the PIL image to the BytesIO object as a PNG</span>
-    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bytes_io</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;PNG&#39;</span><span class="p">)</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">bytes_io</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'PNG'</span><span class="p">)</span>
 
     <span class="c1"># return the beginning of the file as a bytestream</span>
     <span class="n">bytes_io</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -1068,33 +1068,33 @@ title="Print to PDF"
     <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_samples</span><span class="p">):</span>
         <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prompt_with_image</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">image</span><span class="p">))</span>
-    <span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;```&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">]</span>
+    <span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"```"</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">num_samples</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">return</span>
 
-    <span class="c1"># Count occurrences of &quot;watershed&quot; and &quot;stardist&quot;</span>
+    <span class="c1"># Count occurrences of "watershed" and "stardist"</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
 
-    <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;threshold&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;watershed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;stardist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">counts</span><span class="p">[</span><span class="s1">'threshold'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">counts</span><span class="p">[</span><span class="s1">'watershed'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">counts</span><span class="p">[</span><span class="s1">'stardist'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     
     <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s2">&quot;watershed&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
-            <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;watershed&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="s2">&quot;stardist&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
-            <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;stardist&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="s2">&quot;threshold&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
-            <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;threshold&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="s2">&quot;cellpose&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
-            <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;cellpose&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="s2">"watershed"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="s1">'watershed'</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="s2">"stardist"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="s1">'stardist'</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="s2">"threshold"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="s1">'threshold'</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="s2">"cellpose"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="s1">'cellpose'</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># Display bar plot</span>
-    <span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of responses&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Occurrence of algorithm names in code&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">'blue'</span><span class="p">,</span> <span class="s1">'orange'</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">,</span> <span class="s1">'magenta'</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Number of responses'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Occurrence of algorithm names in code'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">)</span>
@@ -1106,9 +1106,9 @@ title="Print to PDF"
 <p>First, we prompt for microscopy image segmentation code using both example images once to see example code that gets generated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a bioimage-analysis expert and excellent Python programmer.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">"""You are a bioimage-analysis expert and excellent Python programmer.</span>
 <span class="s2">First, describe the image in one sentence, then write Python code for segmenting this image. </span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 <span class="n">determine_algorithm</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">sparse_nuclei_image</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1121,12 +1121,12 @@ from skimage.filters import threshold_otsu
 from scipy import ndimage as ndi
 
 # load the image
-image = io.imread(&#39;your_image_filename.png&#39;)  # replace with your file path
+image = io.imread('your_image_filename.png')  # replace with your file path
 
 # apply a gaussian filter to smooth out the noise
 smoothed = filters.gaussian(image, sigma=1)
 
-# compute otsu&#39;s threshold
+# compute otsu's threshold
 thresh = threshold_otsu(smoothed)
 
 # binarize the image
@@ -1143,15 +1143,15 @@ label_image = measure.label(filled)
 
 # display results
 fig, axes = plt.subplots(1, 3, figsize=(12, 4))
-axes[0].imshow(image, cmap=&#39;gray&#39;)
-axes[0].set_title(&#39;original&#39;)
-axes[1].imshow(filled, cmap=&#39;gray&#39;)
-axes[1].set_title(&#39;segmented mask&#39;)
-axes[2].imshow(image, cmap=&#39;gray&#39;)
-axes[2].imshow(label_image, cmap=&#39;nipy_spectral&#39;, alpha=0.5)
-axes[2].set_title(&#39;labels overlay&#39;)
+axes[0].imshow(image, cmap='gray')
+axes[0].set_title('original')
+axes[1].imshow(filled, cmap='gray')
+axes[1].set_title('segmented mask')
+axes[2].imshow(image, cmap='gray')
+axes[2].imshow(label_image, cmap='nipy_spectral', alpha=0.5)
+axes[2].set_title('labels overlay')
 for ax in axes:
-    ax.axis(&#39;off&#39;)
+    ax.axis('off')
 plt.tight_layout()
 plt.show()
 </pre></div>
@@ -1171,8 +1171,8 @@ import matplotlib.pyplot as plt
 from skimage import io, filters, measure, morphology
 from scipy import ndimage as ndi
 
-# load the image (replace &#39;nuclei.png&#39; with your actual filename if needed)
-img = io.imread(&#39;nuclei.png&#39;)
+# load the image (replace 'nuclei.png' with your actual filename if needed)
+img = io.imread('nuclei.png')
 
 # apply gaussian filter to reduce noise
 smoothed = filters.gaussian(img, sigma=1)
@@ -1193,14 +1193,14 @@ labels = morphology.watershed(-distance, markers, mask=cleaned)
 
 # show results
 fig, axes = plt.subplots(1, 3, figsize=(12, 4))
-axes[0].imshow(img, cmap=&#39;gray&#39;)
-axes[0].set_title(&#39;original&#39;)
-axes[1].imshow(cleaned, cmap=&#39;gray&#39;)
-axes[1].set_title(&#39;binary mask&#39;)
-axes[2].imshow(labels, cmap=&#39;nipy_spectral&#39;)
-axes[2].set_title(&#39;segmented nuclei&#39;)
+axes[0].imshow(img, cmap='gray')
+axes[0].set_title('original')
+axes[1].imshow(cleaned, cmap='gray')
+axes[1].set_title('binary mask')
+axes[2].imshow(labels, cmap='nipy_spectral')
+axes[2].set_title('segmented nuclei')
 for ax in axes:
-    ax.axis(&#39;off&#39;)
+    ax.axis('off')
 plt.tight_layout()
 plt.show()
 </pre></div>
@@ -1231,11 +1231,11 @@ plt.show()
 <p>Next, we try the same strategy using a more complex prompt containing a list of rules to guide the VLM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a bioimage-analysis expert and excellent Python programmer.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">"""You are a bioimage-analysis expert and excellent Python programmer.</span>
 <span class="s2">First, describe the image in one sentence, then write Python code for segmenting this image according to given rules:</span>
 <span class="s2">* If an image shows sparse objects such as nuclei, use Otsu-thresholding for segmenting them.</span>
 <span class="s2">* If an image shows dense, partially overlapping objects such as nuclei, use StarDist.</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 </pre></div>
 </div>
 </div>
@@ -1273,8 +1273,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage import io, filters, measure, morphology
 
-# load image (replace &#39;path/to/image.png&#39; with your actual file path if needed)
-image = io.imread(&#39;your_image.png&#39;)  # or use the image array directly if available
+# load image (replace 'path/to/image.png' with your actual file path if needed)
+image = io.imread('your_image.png')  # or use the image array directly if available
 
 # normalize if necessary
 if image.max() &gt; 1:
@@ -1292,13 +1292,13 @@ label_img = measure.label(cleaned)
 
 # display results
 fig, ax = plt.subplots(1, 3, figsize=(12, 4))
-ax[0].imshow(image, cmap=&#39;gray&#39;)
-ax[0].set_title(&#39;original&#39;)
-ax[1].imshow(cleaned, cmap=&#39;gray&#39;)
-ax[1].set_title(&#39;otsu threshold&#39;)
-ax[2].imshow(label_img, cmap=&#39;nipy_spectral&#39;)
-ax[2].set_title(&#39;labeled objects&#39;)
-for a in ax: a.axis(&#39;off&#39;)
+ax[0].imshow(image, cmap='gray')
+ax[0].set_title('original')
+ax[1].imshow(cleaned, cmap='gray')
+ax[1].set_title('otsu threshold')
+ax[2].imshow(label_img, cmap='nipy_spectral')
+ax[2].set_title('labeled objects')
+for a in ax: a.axis('off')
 plt.tight_layout()
 plt.show()
 </pre></div>
@@ -1318,14 +1318,14 @@ from skimage.io import imread
 from stardist.models import stardist2d
 from csbdeep.utils import normalize
 
-# load image (assuming the file is &#39;nuclei.png&#39;)
-img = imread(&quot;nuclei.png&quot;)
+# load image (assuming the file is 'nuclei.png')
+img = imread("nuclei.png")
 
 # normalize image for stardist
 img_norm = normalize(img, 1, 99.8, axis=(0,1))
 
 # load pre-trained stardist model for 2d fluorescent nuclei
-model = stardist2d.from_pretrained(&#39;2d_fluro_nuclei&#39;)
+model = stardist2d.from_pretrained('2d_fluro_nuclei')
 
 # perform prediction
 labels, _ = model.predict_instances(img_norm)
@@ -1333,14 +1333,14 @@ labels, _ = model.predict_instances(img_norm)
 # display results
 plt.figure(figsize=(8,4))
 plt.subplot(1,2,1)
-plt.title(&#39;original&#39;)
-plt.imshow(img, cmap=&#39;gray&#39;)
-plt.axis(&#39;off&#39;)
+plt.title('original')
+plt.imshow(img, cmap='gray')
+plt.axis('off')
 
 plt.subplot(1,2,2)
-plt.title(&#39;stardist segmentation&#39;)
-plt.imshow(labels, cmap=&#39;jet&#39;)
-plt.axis(&#39;off&#39;)
+plt.title('stardist segmentation')
+plt.imshow(labels, cmap='jet')
+plt.axis('off')
 plt.show()
 </pre></div>
 </div>
@@ -1418,7 +1418,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

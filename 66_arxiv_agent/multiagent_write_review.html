@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -992,7 +992,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\rober\miniforge3\envs\genai-gpu\Lib\site-packages\pydantic\_internal\_config.py:345: UserWarning: Valid config keys have changed in V2:
-* &#39;fields&#39; has been removed
+* 'fields' has been removed
   warnings.warn(message, UserWarning)
 </pre></div>
 </div>
@@ -1001,9 +1001,9 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <p>We configure to use a model provided on our institutional LLM server.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span>    <span class="s2">&quot;openai/meta-llama/Llama-3.3-70B-Instruct&quot;</span>
-<span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;https://llm.scads.ai/v1&quot;</span>
-<span class="n">api_key</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span>    <span class="s2">"openai/meta-llama/Llama-3.3-70B-Instruct"</span>
+<span class="n">api_base</span> <span class="o">=</span> <span class="s2">"https://llm.scads.ai/v1"</span>
+<span class="n">api_key</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SCADSAI_API_KEY'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1035,7 +1035,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_agent</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">api_base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_message</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create an agent that uses a given list of tools according to its system message.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Create an agent that uses a given list of tools according to its system message."""</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">LiteLLMModel</span><span class="p">(</span><span class="n">model_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
                          <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
                          <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
@@ -1043,7 +1043,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
     <span class="k">if</span> <span class="n">system_message</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">system_message</span> <span class="o">=</span> <span class="n">CODE_SYSTEM_PROMPT</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">system_message</span> <span class="o">=</span> <span class="n">CODE_SYSTEM_PROMPT</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">system_message</span>
+        <span class="n">system_message</span> <span class="o">=</span> <span class="n">CODE_SYSTEM_PROMPT</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">system_message</span>
         
     <span class="n">agent</span> <span class="o">=</span> <span class="n">CodeAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">system_prompt</span><span class="o">=</span><span class="n">system_message</span><span class="p">)</span>
     <span class="n">agent</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -1072,30 +1072,30 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">read_arxiv_paper</span><span class="p">(</span><span class="n">arxiv_url</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read the abstract of an arxiv-paper and return most important contents in markdown format.</span>
+<span class="w">    </span><span class="sd">"""Read the abstract of an arxiv-paper and return most important contents in markdown format.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        arxiv_url: url of the Arxiv paper</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;read_arxiv_paper(</span><span class="si">{</span><span class="n">arxiv_url</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-    <span class="n">arxiv_id</span> <span class="o">=</span> <span class="n">arxiv_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"read_arxiv_paper(</span><span class="si">{</span><span class="n">arxiv_url</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="n">arxiv_id</span> <span class="o">=</span> <span class="n">arxiv_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_arxiv_metadata</span><span class="p">(</span><span class="n">arxiv_id</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
-    <span class="n">summary</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;summary&quot;</span><span class="p">]</span>
-    <span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;authors&quot;</span><span class="p">])</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">"summary"</span><span class="p">]</span>
+    <span class="n">authors</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"authors"</span><span class="p">])</span>
     
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;## </span><span class="si">{</span><span class="n">title</span><span class="si">}</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"""## </span><span class="si">{</span><span class="n">title</span><span class="si">}</span>
 <span class="s2">By </span><span class="si">{</span><span class="n">authors</span><span class="si">}</span>
 
 <span class="si">{</span><span class="n">summary</span><span class="si">}</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
 <span class="n">research_agent_factory</span> <span class="o">=</span> <span class="n">agent_factory</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;research-assistant&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scientific assistant who can read a paper and provide a summary of it.&quot;</span><span class="p">,</span>
-    <span class="n">system_message</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;You will be tasked to read paper(s) and provide a summary. </span>
-<span class="s2">    Write a very detailed manuscript about 1000 words outlining the major messages and limitations of a given paper.&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"research-assistant"</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"Scientific assistant who can read a paper and provide a summary of it."</span><span class="p">,</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="s2">"""You will be tasked to read paper(s) and provide a summary. </span>
+<span class="s2">    Write a very detailed manuscript about 1000 words outlining the major messages and limitations of a given paper."""</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">read_arxiv_paper</span><span class="p">],</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
     <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
@@ -1113,20 +1113,20 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">improve_manuscript</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Can improve a given manuscript text according to defined feedback.</span>
+<span class="w">    </span><span class="sd">"""Can improve a given manuscript text according to defined feedback.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        manuscript: The complete manuscript text to improve</span>
 <span class="sd">        feedback: feedback to incorporate</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="n">short</span> <span class="o">=</span> <span class="n">manuscript</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
         <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="p">)</span>
-        <span class="n">num_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="n">num_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">))</span>
         <span class="n">short_feedback</span> <span class="o">=</span> <span class="n">feedback</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
         <span class="n">num_chars_feedback</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">short_feedback</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;improve_manuscript(</span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars, </span><span class="si">{</span><span class="n">num_lines</span><span class="si">}</span><span class="s2"> lines], </span><span class="si">{</span><span class="n">short_feedback</span><span class="si">}</span><span class="s2">)... [</span><span class="si">{</span><span class="n">num_chars_feedback</span><span class="si">}</span><span class="s2"> chars]&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;Improve a manuscript by incorporating given feedback.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"improve_manuscript(</span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars, </span><span class="si">{</span><span class="n">num_lines</span><span class="si">}</span><span class="s2"> lines], </span><span class="si">{</span><span class="n">short_feedback</span><span class="si">}</span><span class="s2">)... [</span><span class="si">{</span><span class="n">num_chars_feedback</span><span class="si">}</span><span class="s2"> chars]"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""Improve a manuscript by incorporating given feedback.</span>
 
 <span class="s2">## Manuscript</span>
 
@@ -1144,12 +1144,12 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <span class="s2">Use markdown links to cite sources.</span>
 <span class="s2">Do not make up references!</span>
 <span class="s2">Return the updated manuscript in markdown format only.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 
 <span class="n">scientific_writer_factory</span> <span class="o">=</span> <span class="n">agent_factory</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scientific-writer&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scientific writer who improves manuscripts.&quot;</span><span class="p">,</span>
-    <span class="n">system_message</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;You will be tasked to rewrite a text by incorporating given feedback.&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"scientific-writer"</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"Scientific writer who improves manuscripts."</span><span class="p">,</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="s2">"""You will be tasked to rewrite a text by incorporating given feedback."""</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">improve_manuscript</span><span class="p">],</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
     <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
@@ -1162,7 +1162,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## for testing:</span>
-<span class="c1">#research_agent_factory().run(&quot;Read arxiv paper 2211.11501 and tell me the most important content in one sentence.&quot;)</span>
+<span class="c1">#research_agent_factory().run("Read arxiv paper 2211.11501 and tell me the most important content in one sentence.")</span>
 </pre></div>
 </div>
 </div>
@@ -1175,17 +1175,17 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">review_text</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reviews text and provides constructive feedback</span>
+<span class="w">    </span><span class="sd">"""Reviews text and provides constructive feedback</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        manuscript: complete original manuscript text to review.    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="n">short</span> <span class="o">=</span> <span class="n">manuscript</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
         <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="p">)</span>
-        <span class="n">num_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;review_text(</span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars, </span><span class="si">{</span><span class="n">num_lines</span><span class="si">}</span><span class="s2"> lines])&quot;</span><span class="p">)</span>
-    <span class="n">feedback</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">num_lines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">manuscript</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"review_text(</span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars, </span><span class="si">{</span><span class="n">num_lines</span><span class="si">}</span><span class="s2"> lines])"</span><span class="p">)</span>
+    <span class="n">feedback</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">You are a great reviewer and you like to provide constructive feedback. </span>
 <span class="s2">If you are provided with a manuscript, you formulate feedback specifically for this manuscript. </span>
 <span class="s2">Your goal is to guide the author towards writing a great manuscript. </span>
@@ -1195,7 +1195,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <span class="s2">* structured in sub-sections by content, e.g. introduction, recent developments, methods, results, discussion, future work, ...</span>
 <span class="s2">* text using high-quality scientific language,</span>
 <span class="s2">* proper citations mentioning the first author et al. using markdown links to original paper urls (do not make up references!),</span>
-<span class="s2">* avoid mentioning &quot;the paper&quot; and use proper markdown-link-citations instead,</span>
+<span class="s2">* avoid mentioning "the paper" and use proper markdown-link-citations instead,</span>
 <span class="s2">* a clear abstract at the beginning of the text, and conclusions at the end</span>
 
 <span class="s2">## Manuscript</span>
@@ -1205,12 +1205,12 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 
 <span class="s2">## Your task</span>
 <span class="s2">Provide constructive feedback to the manuscript above.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">feedback</span>
 
 <span class="n">reviewer_agent_factory</span>  <span class="o">=</span> <span class="n">agent_factory</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reviewer&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A reviewer who gives constructive feedback&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"reviewer"</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"A reviewer who gives constructive feedback"</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">review_text</span><span class="p">],</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
     <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
@@ -1228,22 +1228,22 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">print_manuscript</span><span class="p">(</span><span class="n">manuscript</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a manuscript out provided in markdown format.</span>
+<span class="w">    </span><span class="sd">"""Prints a manuscript out provided in markdown format.</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        manuscript: An original manuscript text to print in markdown format containing all line breaks, headlines, etc</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
     <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">manuscript</span><span class="p">))</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;manuscript.md&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"manuscript.md"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">manuscript</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="s2">&quot;The manuscript was printed.&quot;</span>
+    <span class="k">return</span> <span class="s2">"The manuscript was printed."</span>
 
 <span class="n">printer_agent_factory</span>  <span class="o">=</span> <span class="n">agent_factory</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;printer&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A professional printing expert who will print markdown-formatted text.&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"printer"</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"A professional printing expert who will print markdown-formatted text."</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">print_manuscript</span><span class="p">],</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
     <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
@@ -1263,20 +1263,20 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">distribute_sub_task</span><span class="p">(</span><span class="n">task_description</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">assistant</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prompt an assistant to solve a certain task. </span>
+<span class="w">    </span><span class="sd">"""Prompt an assistant to solve a certain task. </span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        task_description: Detailed task description, to make sure to provide all necessary details. When handling text, hand over the complete original text, unmodified, containing all line-breaks, headlines, etc.</span>
 <span class="sd">        assistant: name of the assistant that should take care of the task.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">for</span> <span class="n">t_factory</span> <span class="ow">in</span> <span class="n">team</span><span class="p">:</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">t_factory</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">assistant</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">80</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">"-"</span><span class="p">]</span><span class="o">*</span><span class="mi">80</span><span class="p">))</span>
                 <span class="n">short</span> <span class="o">=</span> <span class="n">task_description</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
                 <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">task_description</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| I am asking </span><span class="si">{</span><span class="n">assistant</span><span class="si">}</span><span class="s2"> to take care of: </span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars]&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"| I am asking </span><span class="si">{</span><span class="n">assistant</span><span class="si">}</span><span class="s2"> to take care of: </span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars]"</span><span class="p">)</span>
 
             <span class="c1"># execute the task</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task_description</span><span class="p">)</span>
@@ -1284,20 +1284,20 @@ Of course, as in read life, it would be better to read the entire paper, but thi
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
                 <span class="n">short</span> <span class="o">=</span> <span class="n">result</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
                 <span class="n">num_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| Response was: </span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars]&quot;</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">80</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"| Response was: </span><span class="si">{</span><span class="n">short</span><span class="si">}</span><span class="s2">...[</span><span class="si">{</span><span class="n">num_chars</span><span class="si">}</span><span class="s2"> chars]"</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">"-"</span><span class="p">]</span><span class="o">*</span><span class="mi">80</span><span class="p">))</span>
 
             <span class="k">return</span> <span class="n">result</span>
 
-    <span class="k">return</span> <span class="s2">&quot;Assistant unknown&quot;</span>
+    <span class="k">return</span> <span class="s2">"Assistant unknown"</span>
 
-<span class="n">team_description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;* </span><span class="si">{</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">team</span><span class="p">])</span>
+<span class="n">team_description</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"* </span><span class="si">{</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">team</span><span class="p">])</span>
     
 <span class="n">scheduler</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scheduler&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"scheduler"</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">distribute_sub_task</span><span class="p">],</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scheduler splits tasks into sub-tasks and distributes them.&quot;</span><span class="p">,</span>
-    <span class="n">system_message</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"Scheduler splits tasks into sub-tasks and distributes them."</span><span class="p">,</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">You are an editor who has a team of assistants. Your task is to write a manuscript together with your team.</span>
 
 <span class="s2"># Team</span>
@@ -1320,7 +1320,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 
 <span class="s2"># Your task</span>
 <span class="s2">Distribute tasks to your team. Goal is to have a great scientific manuscript.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">"""</span><span class="p">,</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
     <span class="n">api_base</span><span class="o">=</span><span class="n">api_base</span><span class="p">,</span> 
     <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
@@ -1335,7 +1335,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <p>Finally, we can ask the scheduler to distribute sub-tasks to the agents and produce the final result. Note that the task description is generic. It does not mention what the manuscript should be about. The system has to figure this out by reading the online resources.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">manuscript</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">manuscript</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">Please take care of ALL the following tasks:</span>
 <span class="s2">* Read these papers and summarize them</span>
 <span class="s2">  * https://arxiv.org/abs/2211.11501</span>
@@ -1347,7 +1347,7 @@ Of course, as in read life, it would be better to read the entire paper, but thi
 <span class="s2">* Afterwards, review the manuscript to get constructive feedback</span>
 <span class="s2">* Use the feedback to improve the manuscript </span>
 <span class="s2">* Print the final manuscript</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1370,12 +1370,12 @@ read_arxiv_paper(https://arxiv.org/abs/2411.07781)
 --------------------------------------------------------------------------------
 | I am asking research-assistant to take care of: Summarize the paper https://arxiv.org/abs/2408.13204...[52 chars]
 read_arxiv_paper(https://arxiv.org/abs/2408.13204)
-| Response was: The paper introduces the DOMAINEVAL benchmark for evaluating LLMs&#39; code generation capabilities acro...[388 chars]
+| Response was: The paper introduces the DOMAINEVAL benchmark for evaluating LLMs' code generation capabilities acro...[388 chars]
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 | I am asking research-assistant to take care of: Summarize the paper https://arxiv.org/abs/2406.15877...[52 chars]
 read_arxiv_paper(https://arxiv.org/abs/2406.15877)
-| Response was: The paper introduces BigCodeBench, a new benchmark for evaluating LLMs&#39; ability to solve challenging...[538 chars]
+| Response was: The paper introduces BigCodeBench, a new benchmark for evaluating LLMs' ability to solve challenging...[538 chars]
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 | I am asking reviewer to take care of: Review the manuscript: The recent papers introduce several new benchmarks for evaluating the perform...[777 chars]
@@ -1536,7 +1536,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

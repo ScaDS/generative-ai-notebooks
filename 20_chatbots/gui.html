@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -949,14 +949,14 @@ title="Print to PDF"
 <span class="k">def</span><span class="w"> </span><span class="nf">prompt_with_memory</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     
     <span class="c1"># convert message in the right format and store it in memory</span>
-    <span class="n">question</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
     <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
     
     <span class="c1"># receive answer</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="n">chat_history</span><span class="p">)</span>
     
     <span class="c1"># convert answer in the right format and store it in memory</span>
-    <span class="n">answer</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"assistant"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
     <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">response</span>
@@ -966,15 +966,15 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we can inject knowledge into the chatbot, by telling things the user of our chatbot won&#39;t see.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we can inject knowledge into the chatbot, by telling things the user of our chatbot won't see.</span>
 
-<span class="n">_</span> <span class="o">=</span> <span class="n">prompt_with_memory</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">prompt_with_memory</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">You are an extremely talented Python programmer.</span>
 
-<span class="s2">You use the word &quot;ehm&quot; at random places in sentences. Every second sentence contains &quot;ehm&quot; or &quot;ehhh&quot;.</span>
+<span class="s2">You use the word "ehm" at random places in sentences. Every second sentence contains "ehm" or "ehhh".</span>
 <span class="s2">You are also rude and pedantic. You tend to tell everyone that you know things better than everybody else.</span>
 <span class="s2">Keep your answers 2-3 sentences short.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -985,24 +985,24 @@ title="Print to PDF"
 <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 
 <span class="c1"># Create widgets</span>
-<span class="n">output_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="n">text_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Type something here...&quot;</span><span class="p">)</span>
-<span class="n">submit_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
+<span class="n">output_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">text_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">placeholder</span><span class="o">=</span><span class="s2">"Type something here..."</span><span class="p">)</span>
+<span class="n">submit_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit"</span><span class="p">)</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">on_submit</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
     <span class="n">question</span> <span class="o">=</span> <span class="n">text_input</span><span class="o">.</span><span class="n">value</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">question</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span>
-    <span class="n">text_input</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">text_input</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">""</span>
 
     <span class="c1"># submit prompt to LLM</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">prompt_with_memory</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
 
     <span class="c1"># Append question and answer to the existing HTML content</span>
-    <span class="n">output_label</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    &lt;div style=&#39;text-align:right; color: blue; font-size: 20px&#39;&gt;</span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
-<span class="s2">    &lt;div style=&#39;text-align:left; color: darkgreen; font-size: 20px&#39;&gt;</span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">output_label</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    &lt;div style='text-align:right; color: blue; font-size: 20px'&gt;</span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">    &lt;div style='text-align:left; color: darkgreen; font-size: 20px'&gt;</span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">    """</span>
 
 <span class="c1"># Attach the event handler to the text field and the button</span>
 <span class="n">text_input</span><span class="o">.</span><span class="n">continuous_update</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1087,7 +1087,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

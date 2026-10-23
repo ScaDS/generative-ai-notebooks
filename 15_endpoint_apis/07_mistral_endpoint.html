@@ -62,7 +62,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="DeepSeek endpoint" href="08_deepseek_endpoint.html" />
-    <link rel="prev" title="Github Models Marketplace" href="05_azure_endpoints.html" />
+    <link rel="prev" title="OpenRouter endpoint" href="12_openrouter_endpoint.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_anthropic_api.html">Anthropic Claude</a></li>
@@ -921,11 +921,11 @@ title="Print to PDF"
 <p>In this notebook we access the <a class="reference external" href="https://console.mistral.ai/api-keys/">Mistral API</a>, a french service that offers free API access with certain limitations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_mistral</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;mistral-medium-2312&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_mistral</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"mistral-medium-2312"</span><span class="p">):</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">mistralai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mistral</span>
     
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">]</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MISTRAL_API_KEY"</span><span class="p">]</span>
     
     <span class="n">client</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
     
@@ -933,8 +933,8 @@ title="Print to PDF"
         <span class="n">model</span><span class="o">=</span> <span class="n">model</span><span class="p">,</span>
         <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
+                <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span>
+                <span class="s2">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">]</span>
     <span class="p">)</span>
@@ -945,12 +945,12 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_mistral</span><span class="p">(</span><span class="s2">&quot;What is the best French cheese? Answer in one sentence.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_mistral</span><span class="p">(</span><span class="s2">"What is the best French cheese? Answer in one sentence."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;It&#39;s subjective, but many consider Époisses de Bourgogne, a soft, pungent, and creamy cheese from Burgundy, to be one of the best French cheeses.&quot;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>"It's subjective, but many consider Époisses de Bourgogne, a soft, pungent, and creamy cheese from Burgundy, to be one of the best French cheeses."
 </pre></div>
 </div>
 </div>
@@ -962,7 +962,7 @@ title="Print to PDF"
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="n">Mistral</span><span class="p">(</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MISTRAL_API_KEY&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"MISTRAL_API_KEY"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
 <span class="p">)</span>
 
 <span class="n">res</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
@@ -977,45 +977,45 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ministral-3b-2410&#39;,
- &#39;ministral-3b-latest&#39;,
- &#39;ministral-8b-2410&#39;,
- &#39;ministral-8b-latest&#39;,
- &#39;open-mistral-7b&#39;,
- &#39;mistral-tiny&#39;,
- &#39;mistral-tiny-2312&#39;,
- &#39;open-mistral-nemo&#39;,
- &#39;open-mistral-nemo-2407&#39;,
- &#39;mistral-tiny-2407&#39;,
- &#39;mistral-tiny-latest&#39;,
- &#39;open-mixtral-8x7b&#39;,
- &#39;mistral-small&#39;,
- &#39;mistral-small-2312&#39;,
- &#39;open-mixtral-8x22b&#39;,
- &#39;open-mixtral-8x22b-2404&#39;,
- &#39;mistral-small-2402&#39;,
- &#39;mistral-small-2409&#39;,
- &#39;mistral-small-latest&#39;,
- &#39;mistral-medium-2312&#39;,
- &#39;mistral-medium&#39;,
- &#39;mistral-medium-latest&#39;,
- &#39;mistral-large-2402&#39;,
- &#39;mistral-large-2407&#39;,
- &#39;mistral-large-2411&#39;,
- &#39;mistral-large-latest&#39;,
- &#39;pixtral-large-2411&#39;,
- &#39;pixtral-large-latest&#39;,
- &#39;codestral-2405&#39;,
- &#39;codestral-latest&#39;,
- &#39;codestral-mamba-2407&#39;,
- &#39;open-codestral-mamba&#39;,
- &#39;codestral-mamba-latest&#39;,
- &#39;pixtral-12b-2409&#39;,
- &#39;pixtral-12b&#39;,
- &#39;pixtral-12b-latest&#39;,
- &#39;mistral-embed&#39;,
- &#39;mistral-moderation-2411&#39;,
- &#39;mistral-moderation-latest&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['ministral-3b-2410',
+ 'ministral-3b-latest',
+ 'ministral-8b-2410',
+ 'ministral-8b-latest',
+ 'open-mistral-7b',
+ 'mistral-tiny',
+ 'mistral-tiny-2312',
+ 'open-mistral-nemo',
+ 'open-mistral-nemo-2407',
+ 'mistral-tiny-2407',
+ 'mistral-tiny-latest',
+ 'open-mixtral-8x7b',
+ 'mistral-small',
+ 'mistral-small-2312',
+ 'open-mixtral-8x22b',
+ 'open-mixtral-8x22b-2404',
+ 'mistral-small-2402',
+ 'mistral-small-2409',
+ 'mistral-small-latest',
+ 'mistral-medium-2312',
+ 'mistral-medium',
+ 'mistral-medium-latest',
+ 'mistral-large-2402',
+ 'mistral-large-2407',
+ 'mistral-large-2411',
+ 'mistral-large-latest',
+ 'pixtral-large-2411',
+ 'pixtral-large-latest',
+ 'codestral-2405',
+ 'codestral-latest',
+ 'codestral-mamba-2407',
+ 'open-codestral-mamba',
+ 'codestral-mamba-latest',
+ 'pixtral-12b-2409',
+ 'pixtral-12b',
+ 'pixtral-12b-latest',
+ 'mistral-embed',
+ 'mistral-moderation-2411',
+ 'mistral-moderation-latest']
 </pre></div>
 </div>
 </div>
@@ -1050,11 +1050,11 @@ title="Print to PDF"
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="05_azure_endpoints.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="12_openrouter_endpoint.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Github Models Marketplace</p>
+          <p class="prev-next-title">OpenRouter endpoint</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="08_deepseek_endpoint.html" title="next page">
@@ -1092,7 +1092,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

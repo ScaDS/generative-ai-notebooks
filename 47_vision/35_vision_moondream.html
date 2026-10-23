@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -970,11 +970,11 @@ title="Print to PDF"
 
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="s2">&quot;vikhyatk/moondream2&quot;</span><span class="p">,</span>
-    <span class="n">revision</span><span class="o">=</span><span class="s2">&quot;2025-01-09&quot;</span><span class="p">,</span>
+    <span class="s2">"vikhyatk/moondream2"</span><span class="p">,</span>
+    <span class="n">revision</span><span class="o">=</span><span class="s2">"2025-01-09"</span><span class="p">,</span>
     <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="c1"># Comment to run on CPU. To use the GPU, you need about 5 GB of GPU Memory.</span>
-    <span class="n">device_map</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="s2">&quot;cuda&quot;</span><span class="p">}</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="p">{</span><span class="s2">""</span><span class="p">:</span> <span class="s2">"cuda"</span><span class="p">}</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -985,7 +985,7 @@ title="Print to PDF"
 <p>We load an example RGB image first.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/real_cat.png&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">"data/real_cat.png"</span><span class="p">)</span>
 
 <span class="c1"># Display the image</span>
 <span class="n">stackview</span><span class="o">.</span><span class="n">insight</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -1027,11 +1027,11 @@ title="Print to PDF"
 <p>We can then ask for coordinates in the image where given objects are.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Mark the animals&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">"Mark the animals"</span>
 
-<span class="n">points</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">encoded_image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)[</span><span class="s2">&quot;points&quot;</span><span class="p">]</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">encoded_image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)[</span><span class="s2">"points"</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span><span class="si">}</span><span class="s2"> bright spot(s)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span><span class="si">}</span><span class="s2"> bright spot(s)"</span><span class="p">)</span>
 <span class="n">points</span>
 </pre></div>
 </div>
@@ -1040,7 +1040,7 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 1 bright spot(s)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.6943359375, &#39;y&#39;: 0.427734375}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'x': 0.6943359375, 'y': 0.427734375}]
 </pre></div>
 </div>
 </div>
@@ -1076,16 +1076,16 @@ title="Print to PDF"
 <p>Better for visualization might be a bounding box surrounding the object of interest.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bb</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">encoded_image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)[</span><span class="s2">&quot;objects&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bb</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">encoded_image</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)[</span><span class="s2">"objects"</span><span class="p">]</span>
 <span class="n">bb</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x_min&#39;: 0.39208984375,
-  &#39;y_min&#39;: 0.041015625,
-  &#39;x_max&#39;: 0.91650390625,
-  &#39;y_max&#39;: 0.796875}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'x_min': 0.39208984375,
+  'y_min': 0.041015625,
+  'x_max': 0.91650390625,
+  'y_max': 0.796875}]
 </pre></div>
 </div>
 </div>
@@ -1093,10 +1093,10 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stackview_bb</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x_min&quot;</span><span class="p">],</span>   
-    <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;y_min&quot;</span><span class="p">],</span>   
-    <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x_max&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;x_min&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;y_max&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;y_min&quot;</span><span class="p">]</span>
+    <span class="s2">"x"</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">"x_min"</span><span class="p">],</span>   
+    <span class="s2">"y"</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">"y_min"</span><span class="p">],</span>   
+    <span class="s2">"width"</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">"x_max"</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s2">"x_min"</span><span class="p">],</span>
+    <span class="s2">"height"</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">"y_max"</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s2">"y_min"</span><span class="p">]</span>
     <span class="p">}</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bb</span>
 <span class="p">]</span>
 
@@ -1238,7 +1238,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

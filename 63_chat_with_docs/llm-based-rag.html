@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -953,14 +953,14 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs_root_folder</span> <span class="o">=</span> <span class="s2">&quot;hpc-compendium/doc.zih.tu-dresden.de/docs/&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docs_root_folder</span> <span class="o">=</span> <span class="s2">"hpc-compendium/doc.zih.tu-dresden.de/docs/"</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compendium_url</span> <span class="o">=</span> <span class="s2">&quot;https://compendium.hpc.tu-dresden.de/&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compendium_url</span> <span class="o">=</span> <span class="s2">"https://compendium.hpc.tu-dresden.de/"</span>
 </pre></div>
 </div>
 </div>
@@ -968,7 +968,7 @@ title="Print to PDF"
 <p>This is again the question we aim to answer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;How can I access the Jupyter Hub on the HPC system?&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">question</span> <span class="o">=</span> <span class="s2">"How can I access the Jupyter Hub on the HPC system?"</span>
 </pre></div>
 </div>
 </div>
@@ -979,19 +979,19 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the content of summaries.md </span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;hpc_compendium_summaries.md&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'hpc_compendium_summaries.md'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">summaries</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
 <span class="c1"># Print first 300 characters to verify</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First part of the content:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">summaries</span><span class="p">[:</span><span class="mi">700</span><span class="p">],</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First part of the content:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summaries</span><span class="p">[:</span><span class="mi">700</span><span class="p">],</span> <span class="s2">"..."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First part of the content:
 * accessibility.md:
-This document is an accessibility statement for the Technische Universität Dresden&#39;s websites, outlining the university&#39;s efforts to make its online presence barrier-free in accordance with German law, and providing contact information for reporting accessibility issues and seeking redress.
+This document is an accessibility statement for the Technische Universität Dresden's websites, outlining the university's efforts to make its online presence barrier-free in accordance with German law, and providing contact information for reporting accessibility issues and seeking redress.
 
 * data_protection_declaration.md:
 This document outlines a data protection policy, stating that only IP addresses are collected for error analysis and not shared with third parties unless required by law, and users have the right to request information about their personal data and contact relevant authorities.
@@ -1004,7 +1004,7 @@ This documentation provides information on the High-Performan ...
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">prompt_scadsai_llm</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">prompt_scadsai_llm</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">Given a question and a list of document summaries, identify documents that might be helpful for answering the question.</span>
 
 <span class="s2">## Question</span>
@@ -1018,7 +1018,7 @@ This documentation provides information on the High-Performan ...
 <span class="s2">Which of the documents above might be relevant for answering this question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span>
 
 <span class="s2">Answer with a list of filenames in JSON format</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 
 <span class="c1"># post-processing of the result to get a proper list</span>
 <span class="n">json</span> <span class="o">=</span> <span class="n">remove_outer_markdown</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -1046,25 +1046,25 @@ access/graphical_applications_with_webvnc.md
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_texts</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">relevant_file_paths</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">docs_root_folder</span> <span class="o">+</span> <span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">docs_root_folder</span> <span class="o">+</span> <span class="n">file</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">full_texts</span><span class="p">[</span><span class="n">compendium_url</span> <span class="o">+</span> <span class="n">file</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
 
-<span class="n">documents</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;### </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2"> </span><span class="se">\n\n</span><span class="s2">```</span><span class="se">\n</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">file</span><span class="p">,</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">full_texts</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"### </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2"> </span><span class="se">\n\n</span><span class="s2">```</span><span class="se">\n</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">"</span> <span class="k">for</span> <span class="n">file</span><span class="p">,</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">full_texts</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
 
 <span class="n">documents</span><span class="p">[:</span><span class="mi">500</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;### https://compendium.hpc.tu-dresden.de/access/jupyterhub \n\n```\n# JupyterHub\n\nWith our JupyterHub service, we offer you a quick and easy way to work with\nJupyter notebooks on ZIH systems. This page covers starting and stopping\nJupyterHub sessions, error handling and customizing the environment.\n\nWe also provide a comprehensive documentation on how to use\n[JupyterHub for Teaching (git-pull feature, quickstart links, direct links to notebook files)](jupyterhub_for_teaching.md).\n\n## Disclaimer\n\n!!&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'### https://compendium.hpc.tu-dresden.de/access/jupyterhub \n\n```\n# JupyterHub\n\nWith our JupyterHub service, we offer you a quick and easy way to work with\nJupyter notebooks on ZIH systems. This page covers starting and stopping\nJupyterHub sessions, error handling and customizing the environment.\n\nWe also provide a comprehensive documentation on how to use\n[JupyterHub for Teaching (git-pull feature, quickstart links, direct links to notebook files)](jupyterhub_for_teaching.md).\n\n## Disclaimer\n\n!!'
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">prompt_scadsai_llm</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">prompt_scadsai_llm</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">Given a question and a list of document summaries, identify documents that might be helpful for answering the question.</span>
 
 <span class="s2">## Question</span>
@@ -1077,7 +1077,7 @@ access/graphical_applications_with_webvnc.md
 <span class="s2">## Your task:</span>
 <span class="s2">Answer question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span>
 <span class="s2">In case you used one of the documents above, cite it using markdown-formatted links to the respective document. Keep the links untouched!</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 
 <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
 </pre></div>
@@ -1195,7 +1195,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

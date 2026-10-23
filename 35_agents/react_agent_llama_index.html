@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -934,9 +934,9 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Use this to play with a local model via ollama</span>
-<span class="c1">#llm = Ollama(model=&quot;llama3.2&quot;, request_timeout=120.0)</span>
+<span class="c1">#llm = Ollama(model="llama3.2", request_timeout=120.0)</span>
 
-<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAILike</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;meta-llama/Llama-3.3-70B-Instruct&quot;</span><span class="p">,</span> <span class="n">request_timeout</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span> <span class="n">api_base</span><span class="o">=</span><span class="s2">&quot;https://llm.scads.ai/v1&quot;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SCADSAI_API_KEY&#39;</span><span class="p">))</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAILike</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">"meta-llama/Llama-3.3-70B-Instruct"</span><span class="p">,</span> <span class="n">request_timeout</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span> <span class="n">api_base</span><span class="o">=</span><span class="s2">"https://llm.scads.ai/v1"</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'SCADSAI_API_KEY'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -948,27 +948,27 @@ title="Print to PDF"
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">estimate_delivery_date_of_order</span><span class="p">(</span><span class="n">order_id</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate the delivery date of a package identified by its order id.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">order_id</span> <span class="o">==</span> <span class="s2">&quot;292123&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;Friday&quot;</span>
-    <span class="k">if</span> <span class="n">order_id</span> <span class="o">==</span> <span class="s2">&quot;292456&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;Thursday&quot;</span>
-    <span class="k">if</span> <span class="n">order_id</span> <span class="o">==</span> <span class="s2">&quot;292789&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;Saturday&quot;</span>
-    <span class="k">return</span> <span class="s2">&quot;Unknown&quot;</span>
+<span class="w">    </span><span class="sd">"""Estimate the delivery date of a package identified by its order id."""</span>
+    <span class="k">if</span> <span class="n">order_id</span> <span class="o">==</span> <span class="s2">"292123"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Friday"</span>
+    <span class="k">if</span> <span class="n">order_id</span> <span class="o">==</span> <span class="s2">"292456"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Thursday"</span>
+    <span class="k">if</span> <span class="n">order_id</span> <span class="o">==</span> <span class="s2">"292789"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Saturday"</span>
+    <span class="k">return</span> <span class="s2">"Unknown"</span>
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_recent_order_id</span><span class="p">(</span><span class="n">customer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the most recent order id for a given customer&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;robert&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;292123&quot;</span>
-    <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;alice&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;292456&quot;</span>
-    <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;ivy&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;292789&quot;</span>
-    <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;dennis&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;2921010&quot;</span>
-    <span class="k">return</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="w">    </span><span class="sd">"""Get the most recent order id for a given customer"""</span>
+    <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"robert"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"292123"</span>
+    <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"alice"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"292456"</span>
+    <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"ivy"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"292789"</span>
+    <span class="k">if</span> <span class="n">customer_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"dennis"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"2921010"</span>
+    <span class="k">return</span> <span class="s2">"unknown"</span>
 </pre></div>
 </div>
 </div>
@@ -978,8 +978,8 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the current weather in a given city.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s2">&quot;sunny&quot;</span>
+<span class="w">    </span><span class="sd">"""Returns the current weather in a given city."""</span>
+    <span class="k">return</span> <span class="s2">"sunny"</span>
 </pre></div>
 </div>
 </div>
@@ -995,7 +995,7 @@ title="Print to PDF"
 <p>We can now ask questions to the agent. In verbose mode, you will see which functions it will call to answer our request.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="s2">&quot;My Name is Robert. I ordered something. And I would like to know when it will arrive.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="s2">"My Name is Robert. I ordered something. And I would like to know when it will arrive."</span><span class="p">)</span>
 <span class="n">response</span><span class="o">.</span><span class="n">response</span>
 </pre></div>
 </div>
@@ -1004,20 +1004,20 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt; Running step 89187412-52e5-43fb-8b04-1b17a14c4477. Step input: My Name is Robert. I ordered something. And I would like to know when it will arrive.
 <span class=" -Color -Color-Bold -Color-Bold-C200">Thought: The current language of the user is: English. I need to use a tool to help me answer the question.</span>
 <span class=" -Color -Color-Bold -Color-Bold-C200">Action: get_recent_order_id</span>
-<span class=" -Color -Color-Bold -Color-Bold-C200">Action Input: {&#39;customer_name&#39;: &#39;Robert&#39;}</span>
+<span class=" -Color -Color-Bold -Color-Bold-C200">Action Input: {'customer_name': 'Robert'}</span>
 <span class=" -Color -Color-Bold -Color-Bold-Blue">Observation: 292123</span>
 &gt; Running step 490db98a-c140-46a6-a139-145656631264. Step input: None
 <span class=" -Color -Color-Bold -Color-Bold-C200">Thought: I have the order id. Now I can use another tool to estimate the delivery date.</span>
 <span class=" -Color -Color-Bold -Color-Bold-C200">Action: estimate_delivery_date_of_order</span>
-<span class=" -Color -Color-Bold -Color-Bold-C200">Action Input: {&#39;order_id&#39;: &#39;292123&#39;}</span>
+<span class=" -Color -Color-Bold -Color-Bold-C200">Action Input: {'order_id': '292123'}</span>
 <span class=" -Color -Color-Bold -Color-Bold-Blue">Observation: Friday</span>
 &gt; Running step 20836298-e613-43e9-a86b-b3f4d80d2e51. Step input: None
-<span class=" -Color -Color-Bold -Color-Bold-C200">Thought: I can answer without using any more tools. I&#39;ll use the user&#39;s language to answer</span>
+<span class=" -Color -Color-Bold -Color-Bold-C200">Thought: I can answer without using any more tools. I'll use the user's language to answer</span>
 <span class=" -Color -Color-Bold -Color-Bold-C200">Answer: Your order will arrive on Friday.</span>
 
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Your order will arrive on Friday.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Your order will arrive on Friday.'
 </pre></div>
 </div>
 </div>
@@ -1027,13 +1027,13 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span> <span class="o">=</span> <span class="n">ReActAgent</span><span class="o">.</span><span class="n">from_tools</span><span class="p">([</span><span class="n">FunctionTool</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tools</span><span class="p">],</span> <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">)</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="s2">&quot;My Name is Alice. I ordered something. And I would like to know when it will arrive.&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="s2">"My Name is Alice. I ordered something. And I would like to know when it will arrive."</span><span class="p">)</span>
 <span class="n">response</span><span class="o">.</span><span class="n">response</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Your order will arrive on Thursday.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Your order will arrive on Thursday.'
 </pre></div>
 </div>
 </div>
@@ -1110,7 +1110,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

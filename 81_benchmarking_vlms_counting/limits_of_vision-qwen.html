@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -991,45 +991,45 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;qwen2.5-vl-72b-instruct&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="s2">"qwen2.5-vl-72b-instruct"</span>
 
-<span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">Give me a json object of bounding boxes around ALL bright blobs in this image. Assume the image width and height are 1. </span>
 <span class="s2">The bottom left is position (0,0), top left is (0,1), top right is (1,1) and bottom right is (1,0).</span>
 <span class="s2">The format should be like this: </span>
 
 <span class="s2">```json</span>
 <span class="s2">[</span>
-<span class="s2">    {&quot;x&quot;:float,&quot;y&quot;:float, &quot;width&quot;: float, &quot;height&quot;: float},</span>
-<span class="s2">    {&quot;x&quot;:float,&quot;y&quot;:float, &quot;width&quot;: float, &quot;height&quot;: float},</span>
+<span class="s2">    {"x":float,"y":float, "width": float, "height": float},</span>
+<span class="s2">    {"x":float,"y":float, "width": float, "height": float},</span>
 <span class="s2">    ...</span>
 <span class="s2">]</span>
 <span class="s2">```</span>
 
-<span class="s2">If you think you can&#39;t do this accuratly, please try anyway.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://chat-ai.academiccloud.de/v1&quot;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;KISSKI_API_KEY&#39;</span><span class="p">))</span>
+<span class="s2">If you think you can't do this accuratly, please try anyway.</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://chat-ai.academiccloud.de/v1"</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'KISSKI_API_KEY'</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Based on the provided image and the specified format, I&#39;ll attempt to estimate the bounding boxes around all the bright blobs. Please note that the positions and dimensions are approximations based on visual inspection:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Based on the provided image and the specified format, I'll attempt to estimate the bounding boxes around all the bright blobs. Please note that the positions and dimensions are approximations based on visual inspection:
 
 ```json
 [
-    {&quot;x&quot;:0.15,&quot;y&quot;:0.75, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.35,&quot;y&quot;:0.65, &quot;width&quot;: 0.15, &quot;height&quot;: 0.15},
-    {&quot;x&quot;:0.55,&quot;y&quot;:0.75, &quot;width&quot;: 0.15, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.75,&quot;y&quot;:0.65, &quot;width&quot;: 0.15, &quot;height&quot;: 0.15},
-    {&quot;x&quot;:0.85,&quot;y&quot;:0.85, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.25,&quot;y&quot;:0.45, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.45,&quot;y&quot;:0.4, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.65,&quot;y&quot;:0.4, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.8, &quot;y&quot;:0.35, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.3, &quot;y&quot;:0.25, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.45,&quot;y&quot;:0.15, &quot;width&quot;: 0.15, &quot;height&quot;: 0.15},
-    {&quot;x&quot;:0.65,&quot;y&quot;:0.2, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1},
-    {&quot;x&quot;:0.85,&quot;y&quot;:0.15, &quot;width&quot;: 0.1, &quot;height&quot;: 0.1}
+    {"x":0.15,"y":0.75, "width": 0.1, "height": 0.1},
+    {"x":0.35,"y":0.65, "width": 0.15, "height": 0.15},
+    {"x":0.55,"y":0.75, "width": 0.15, "height": 0.1},
+    {"x":0.75,"y":0.65, "width": 0.15, "height": 0.15},
+    {"x":0.85,"y":0.85, "width": 0.1, "height": 0.1},
+    {"x":0.25,"y":0.45, "width": 0.1, "height": 0.1},
+    {"x":0.45,"y":0.4, "width": 0.1, "height": 0.1},
+    {"x":0.65,"y":0.4, "width": 0.1, "height": 0.1},
+    {"x":0.8, "y":0.35, "width": 0.1, "height": 0.1},
+    {"x":0.3, "y":0.25, "width": 0.1, "height": 0.1},
+    {"x":0.45,"y":0.15, "width": 0.15, "height": 0.15},
+    {"x":0.65,"y":0.2, "width": 0.1, "height": 0.1},
+    {"x":0.85,"y":0.15, "width": 0.1, "height": 0.1}
 ]
 ```
 
@@ -1047,19 +1047,19 @@ This is an approximation, and the actual values may vary depending on the precis
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.15, &#39;y&#39;: 0.75, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.35, &#39;y&#39;: 0.65, &#39;width&#39;: 0.15, &#39;height&#39;: 0.15},
- {&#39;x&#39;: 0.55, &#39;y&#39;: 0.75, &#39;width&#39;: 0.15, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.75, &#39;y&#39;: 0.65, &#39;width&#39;: 0.15, &#39;height&#39;: 0.15},
- {&#39;x&#39;: 0.85, &#39;y&#39;: 0.85, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.25, &#39;y&#39;: 0.45, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.45, &#39;y&#39;: 0.4, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.65, &#39;y&#39;: 0.4, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.8, &#39;y&#39;: 0.35, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.3, &#39;y&#39;: 0.25, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.45, &#39;y&#39;: 0.15, &#39;width&#39;: 0.15, &#39;height&#39;: 0.15},
- {&#39;x&#39;: 0.65, &#39;y&#39;: 0.2, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1},
- {&#39;x&#39;: 0.85, &#39;y&#39;: 0.15, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'x': 0.15, 'y': 0.75, 'width': 0.1, 'height': 0.1},
+ {'x': 0.35, 'y': 0.65, 'width': 0.15, 'height': 0.15},
+ {'x': 0.55, 'y': 0.75, 'width': 0.15, 'height': 0.1},
+ {'x': 0.75, 'y': 0.65, 'width': 0.15, 'height': 0.15},
+ {'x': 0.85, 'y': 0.85, 'width': 0.1, 'height': 0.1},
+ {'x': 0.25, 'y': 0.45, 'width': 0.1, 'height': 0.1},
+ {'x': 0.45, 'y': 0.4, 'width': 0.1, 'height': 0.1},
+ {'x': 0.65, 'y': 0.4, 'width': 0.1, 'height': 0.1},
+ {'x': 0.8, 'y': 0.35, 'width': 0.1, 'height': 0.1},
+ {'x': 0.3, 'y': 0.25, 'width': 0.1, 'height': 0.1},
+ {'x': 0.45, 'y': 0.15, 'width': 0.15, 'height': 0.15},
+ {'x': 0.65, 'y': 0.2, 'width': 0.1, 'height': 0.1},
+ {'x': 0.85, 'y': 0.15, 'width': 0.1, 'height': 0.1}]
 </pre></div>
 </div>
 </div>
@@ -1068,31 +1068,31 @@ This is an approximation, and the actual values may vary depending on the precis
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bb</span><span class="p">:</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
-    <span class="n">b</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'t'</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">'x'</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'x'</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="s1">'t'</span><span class="p">]</span>
 <span class="n">bb</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;x&#39;: 0.75, &#39;y&#39;: 0.85, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.15},
- {&#39;x&#39;: 0.65, &#39;y&#39;: 0.65, &#39;width&#39;: 0.15, &#39;height&#39;: 0.15, &#39;t&#39;: 0.35},
- {&#39;x&#39;: 0.75,
-  &#39;y&#39;: 0.44999999999999996,
-  &#39;width&#39;: 0.15,
-  &#39;height&#39;: 0.1,
-  &#39;t&#39;: 0.55},
- {&#39;x&#39;: 0.65, &#39;y&#39;: 0.25, &#39;width&#39;: 0.15, &#39;height&#39;: 0.15, &#39;t&#39;: 0.75},
- {&#39;x&#39;: 0.85, &#39;y&#39;: 0.15000000000000002, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.85},
- {&#39;x&#39;: 0.45, &#39;y&#39;: 0.75, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.25},
- {&#39;x&#39;: 0.4, &#39;y&#39;: 0.55, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.45},
- {&#39;x&#39;: 0.4, &#39;y&#39;: 0.35, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.65},
- {&#39;x&#39;: 0.35, &#39;y&#39;: 0.19999999999999996, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.8},
- {&#39;x&#39;: 0.25, &#39;y&#39;: 0.7, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.3},
- {&#39;x&#39;: 0.15, &#39;y&#39;: 0.55, &#39;width&#39;: 0.15, &#39;height&#39;: 0.15, &#39;t&#39;: 0.45},
- {&#39;x&#39;: 0.2, &#39;y&#39;: 0.35, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.65},
- {&#39;x&#39;: 0.15, &#39;y&#39;: 0.15000000000000002, &#39;width&#39;: 0.1, &#39;height&#39;: 0.1, &#39;t&#39;: 0.85}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'x': 0.75, 'y': 0.85, 'width': 0.1, 'height': 0.1, 't': 0.15},
+ {'x': 0.65, 'y': 0.65, 'width': 0.15, 'height': 0.15, 't': 0.35},
+ {'x': 0.75,
+  'y': 0.44999999999999996,
+  'width': 0.15,
+  'height': 0.1,
+  't': 0.55},
+ {'x': 0.65, 'y': 0.25, 'width': 0.15, 'height': 0.15, 't': 0.75},
+ {'x': 0.85, 'y': 0.15000000000000002, 'width': 0.1, 'height': 0.1, 't': 0.85},
+ {'x': 0.45, 'y': 0.75, 'width': 0.1, 'height': 0.1, 't': 0.25},
+ {'x': 0.4, 'y': 0.55, 'width': 0.1, 'height': 0.1, 't': 0.45},
+ {'x': 0.4, 'y': 0.35, 'width': 0.1, 'height': 0.1, 't': 0.65},
+ {'x': 0.35, 'y': 0.19999999999999996, 'width': 0.1, 'height': 0.1, 't': 0.8},
+ {'x': 0.25, 'y': 0.7, 'width': 0.1, 'height': 0.1, 't': 0.3},
+ {'x': 0.15, 'y': 0.55, 'width': 0.15, 'height': 0.15, 't': 0.45},
+ {'x': 0.2, 'y': 0.35, 'width': 0.1, 'height': 0.1, 't': 0.65},
+ {'x': 0.15, 'y': 0.15000000000000002, 'width': 0.1, 'height': 0.1, 't': 0.85}]
 </pre></div>
 </div>
 </div>
@@ -1218,7 +1218,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

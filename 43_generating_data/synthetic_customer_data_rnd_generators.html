@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -987,18 +987,18 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_random_age</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a random age between 18 and 80 with a normal distribution centered at 40&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Generate a random age between 18 and 80 with a normal distribution centered at 40"""</span>
     <span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">age</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">generate_random_income</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a random yearly income between 20000 and 150000 with a log-normal distribution&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Generate a random yearly income between 20000 and 150000 with a log-normal distribution"""</span>
     <span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">income</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">150000</span><span class="p">)</span>
 
 <span class="c1"># Test the functions</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample age: </span><span class="si">{</span><span class="n">generate_random_age</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample income: $</span><span class="si">{</span><span class="n">generate_random_income</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sample age: </span><span class="si">{</span><span class="n">generate_random_age</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sample income: $</span><span class="si">{</span><span class="n">generate_random_income</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1015,16 +1015,16 @@ Sample income: $32425.09
 <p>We’ll create a function that uses the LLM to generate customer data in JSON format, using our random age and income values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_ollama</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;llama3.2&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a message to ollama and returns only the text response.&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_ollama</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"llama3.2"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A prompt helper function that sends a message to ollama and returns only the text response."""</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
         
     <span class="c1"># setup connection to the LLM</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:11434/v1&quot;</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">"http://localhost:11434/v1"</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">"none"</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
         <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
         <span class="n">messages</span><span class="o">=</span><span class="n">message</span>
@@ -1034,21 +1034,21 @@ Sample income: $32425.09
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">prompt</span><span class="p">(</span><span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">income</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">prompt_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Generate one realistic customer profile in valid JSON format with the following structure:</span>
+    <span class="n">prompt_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""Generate one realistic customer profile in valid JSON format with the following structure:</span>
 <span class="s2">    </span><span class="se">{{</span>
-<span class="s2">        &#39;name&#39;: str,</span>
-<span class="s2">        &#39;gender&#39;: str (use only &#39;Male&#39; or &#39;Female&#39; or &#39;Other&#39;),</span>
-<span class="s2">        &#39;age&#39;: </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">,</span>
-<span class="s2">        &#39;income&#39;: </span><span class="si">{</span><span class="n">income</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">,</span>
-<span class="s2">        &#39;household_size&#39;: int,</span>
-<span class="s2">        &#39;grocery_list&#39;: [</span>
-<span class="s2">            </span><span class="se">{{</span><span class="s2">&#39;item&#39;: str, &#39;price&#39;: float</span><span class="se">}}</span><span class="s2">,</span>
+<span class="s2">        'name': str,</span>
+<span class="s2">        'gender': str (use only 'Male' or 'Female' or 'Other'),</span>
+<span class="s2">        'age': </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">        'income': </span><span class="si">{</span><span class="n">income</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">        'household_size': int,</span>
+<span class="s2">        'grocery_list': [</span>
+<span class="s2">            </span><span class="se">{{</span><span class="s2">'item': str, 'price': float</span><span class="se">}}</span><span class="s2">,</span>
 <span class="s2">            ...</span>
 <span class="s2">        ]</span>
 <span class="s2">    </span><span class="se">}}</span>
 <span class="s2">    Include 5-10 grocery items with realistic prices.</span>
 <span class="s2">    </span>
-<span class="s2">    Respond with the JSON data only and no markdown fences.&quot;&quot;&quot;</span>
+<span class="s2">    Respond with the JSON data only and no markdown fences."""</span>
     <span class="k">return</span> <span class="n">prompt_ollama</span><span class="p">(</span><span class="n">prompt_text</span><span class="p">)</span>
 
 <span class="c1"># Test the function</span>
@@ -1058,7 +1058,7 @@ Sample income: $32425.09
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;name&quot;: &quot;John Doe&quot;, &quot;gender&quot;: &quot;Male&quot;, &quot;age&quot;: 24, &quot;income&quot;: 115030.14, &quot;household_size&quot;: 3, &quot;grocery_list&quot;: [{&quot;item&quot;: &quot;Milk&quot;, &quot;price&quot;: 2.9}, {&quot;item&quot;: &quot;Eggs&quot;, &quot;price&quot;: 1.89}, {&quot;item&quot;: &quot;Bread&quot;, &quot;price&quot;: 2.49}, {&quot;item&quot;: &quot;Apples&quot;, &quot;price&quot;: 3.19}, {&quot;item&quot;: &quot;Chicken breasts&quot;, &quot;price&quot;: 8.99}, {&quot;item&quot;: &quot;Oatmeal&quot;, &quot;price&quot;: 4.99}, {&quot;item&quot;: &quot;Granola bars&quot;, &quot;price&quot;: 5.29}, {&quot;item&quot;: &quot;Yogurt&quot;, &quot;price&quot;: 2.7}, {&quot;item&quot;: &quot;Almond milk&quot;, &quot;price&quot;: 3.69}, {&quot;item&quot;: &quot;Salad mix&quot;, &quot;price&quot;: 3.98}]}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{"name": "John Doe", "gender": "Male", "age": 24, "income": 115030.14, "household_size": 3, "grocery_list": [{"item": "Milk", "price": 2.9}, {"item": "Eggs", "price": 1.89}, {"item": "Bread", "price": 2.49}, {"item": "Apples", "price": 3.19}, {"item": "Chicken breasts", "price": 8.99}, {"item": "Oatmeal", "price": 4.99}, {"item": "Granola bars", "price": 5.29}, {"item": "Yogurt", "price": 2.7}, {"item": "Almond milk", "price": 3.69}, {"item": "Salad mix", "price": 3.98}]}
 </pre></div>
 </div>
 </div>
@@ -1080,9 +1080,9 @@ Sample income: $32425.09
         <span class="n">customer_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">customer_records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">customer_data</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid JSON format in record </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid JSON format in record </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Collected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">customer_records</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid customer records&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Collected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">customer_records</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid customer records"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1139,18 +1139,18 @@ Sample income: $32425.09
 <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">customer_records</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Calculate total spending</span>
-        <span class="n">total_spending</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;grocery_list&#39;</span><span class="p">])</span>
+        <span class="n">total_spending</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">'price'</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">record</span><span class="p">[</span><span class="s1">'grocery_list'</span><span class="p">])</span>
         
         <span class="n">customer_info</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;income&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;household_size&#39;</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;household_size&#39;</span><span class="p">],</span>
-            <span class="s1">&#39;weekly_spending&#39;</span><span class="p">:</span> <span class="n">total_spending</span>
+            <span class="s1">'name'</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span>
+            <span class="s1">'gender'</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">'gender'</span><span class="p">],</span>
+            <span class="s1">'age'</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">'age'</span><span class="p">],</span>
+            <span class="s1">'income'</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">'income'</span><span class="p">],</span>
+            <span class="s1">'household_size'</span><span class="p">:</span> <span class="n">record</span><span class="p">[</span><span class="s1">'household_size'</span><span class="p">],</span>
+            <span class="s1">'weekly_spending'</span><span class="p">:</span> <span class="n">total_spending</span>
         <span class="p">})</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error processing record&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Error processing record"</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">customer_info</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -1299,16 +1299,16 @@ Sample income: $32425.09
 <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># Age vs Income</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Age vs Income&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'age'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'income'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Age vs Income'</span><span class="p">)</span>
 
 <span class="c1"># Income vs Weekly Shopping</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;weekly_spending&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Income vs Weekly Spending&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'income'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'weekly_spending'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Income vs Weekly Spending'</span><span class="p">)</span>
 
 <span class="c1"># Household Size vs Weekly Shopping</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;household_size&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;weekly_spending&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Household Size vs Weekly Spending&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'household_size'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'weekly_spending'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Household Size vs Weekly Spending'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1326,8 +1326,8 @@ Sample income: $32425.09
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Box plot of weekly spending by gender</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;weekly_spending&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Weekly Spending Distribution by Gender&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'gender'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'weekly_spending'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Weekly Spending Distribution by Gender'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1465,7 +1465,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

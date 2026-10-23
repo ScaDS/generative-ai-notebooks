@@ -603,7 +603,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -959,19 +959,19 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">upper_case</span><span class="p">(</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Useful for making a text uppercase or capital letters.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Useful for making a text uppercase or capital letters."""</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">lower_case</span><span class="p">(</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Useful for making a text lowercase or small letters.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Useful for making a text lowercase or small letters."""</span>
     <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">reverse</span><span class="p">(</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Useful for making reversing order of a text.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Useful for making reversing order of a text."""</span>
     <span class="k">return</span> <span class="n">text</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -982,9 +982,9 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">llm</span><span class="o">=</span><span class="n">ChatOpenAI</span><span class="p">(</span>
     <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="c1">#model_name=&quot;Qwen/QwQ-32B-Preview&quot;, #&quot;meta-llama/Llama-3.3-70B-Instruct&quot;,</span>
-    <span class="c1">#api_key=os.environ.get(&#39;SCADSAI_API_KEY&#39;),</span>
-    <span class="c1">#base_url=&quot;https://llm.scads.ai/v1&quot;</span>
+    <span class="c1">#model_name="Qwen/QwQ-32B-Preview", #"meta-llama/Llama-3.3-70B-Instruct",</span>
+    <span class="c1">#api_key=os.environ.get('SCADSAI_API_KEY'),</span>
+    <span class="c1">#base_url="https://llm.scads.ai/v1"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1003,7 +1003,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_stream</span><span class="p">(</span><span class="n">stream</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="s2">"messages"</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1028,13 +1028,13 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">memory</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">ask</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">memory</span> <span class="o">+</span> <span class="p">[(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)]}</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">))</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"messages"</span><span class="p">:</span> <span class="n">memory</span> <span class="o">+</span> <span class="p">[(</span><span class="s2">"user"</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)]}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">stream_mode</span><span class="o">=</span><span class="s2">"values"</span><span class="p">))</span>
     <span class="c1">#for r in result:</span>
-    <span class="c1">#    print(len(r[&quot;messages&quot;]))</span>
-    <span class="c1">#memory.extend([r[&quot;messages&quot;][-1] for r in result])</span>
+    <span class="c1">#    print(len(r["messages"]))</span>
+    <span class="c1">#memory.extend([r["messages"][-1] for r in result])</span>
     <span class="n">memory</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-    <span class="n">memory</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;messages&quot;</span><span class="p">])</span>
+    <span class="n">memory</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">"messages"</span><span class="p">])</span>
     <span class="n">print_stream</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1043,7 +1043,7 @@ title="Print to PDF"
 <p>This agent can then respond to prompts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;Hi, I am Robert&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ask</span><span class="p">(</span><span class="s2">"Hi, I am Robert"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1061,14 +1061,14 @@ Hello Robert! How can I assist you today?
 <p>As it has memory, it can remind information we gave it earlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;What&#39;s my name?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ask</span><span class="p">(</span><span class="s2">"What's my name?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>================================<span class=" -Color -Color-Bold"> Human Message </span>=================================
 
-What&#39;s my name?
+What's my name?
 ==================================<span class=" -Color -Color-Bold"> Ai Message </span>==================================
 Tool Calls:
   upper_case (call_GmiYGbwDpR2Fvo5A3ukWS6of)
@@ -1089,7 +1089,7 @@ Your name is ROBERT. How can I assist you further, Robert?
 <p>And we can use English language to apply one of the functions above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;Can you reverse my name?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ask</span><span class="p">(</span><span class="s2">"Can you reverse my name?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1117,7 +1117,7 @@ Your name reversed is TREBOR. Is there anything else you would like to know or d
 <p>Multiple tasks can also be chained.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ask</span><span class="p">(</span><span class="s2">&quot;Do you know my name reversed and upper case?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ask</span><span class="p">(</span><span class="s2">"Do you know my name reversed and upper case?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1229,7 +1229,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -979,27 +979,27 @@ np_image = aics_image.get_image_data("ZYX")
 <p>First, we need to convert the text document into jsonl format representing conversions between user and assistant as required by OpenAI.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qa_text_filename</span> <span class="o">=</span> <span class="s2">&quot;question_answers_generated.txt&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qa_text_filename</span> <span class="o">=</span> <span class="s2">"question_answers_generated.txt"</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">qa_text_filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">qa_text_filename</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
 <span class="c1"># Convert text to list of dictionaries</span>
 <span class="n">training_data</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="n">blocks</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;Question:&quot;</span><span class="p">)</span>
+<span class="n">blocks</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"Question:"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
-    <span class="n">sub_blocks</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;Answer:&quot;</span><span class="p">)</span>
+    <span class="n">sub_blocks</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"Answer:"</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub_blocks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">question</span> <span class="o">=</span> <span class="n">sub_blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="n">answer</span> <span class="o">=</span>   <span class="n">sub_blocks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">question</span> <span class="o">=</span> <span class="n">sub_blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">answer</span> <span class="o">=</span>   <span class="n">sub_blocks</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         
         <span class="n">training_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
             <span class="p">{</span>
-                <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="c1"># {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;&quot;&quot;Enter a smart system message here.&quot;&quot;&quot;},</span>
-                    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">},</span>
-                    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">answer</span><span class="p">}</span>
+                <span class="s2">"messages"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="c1"># {"role": "system", "content": """Enter a smart system message here."""},</span>
+                    <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">question</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"assistant"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">answer</span><span class="p">}</span>
                 <span class="p">]</span>
             <span class="p">})</span>
 
@@ -1008,14 +1008,14 @@ np_image = aics_image.get_image_data("ZYX")
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;messages&#39;: [{&#39;role&#39;: &#39;user&#39;,
-    &#39;content&#39;: &#39;How can I display an image with a slider and label showing mouse position and intensity?&#39;},
-   {&#39;role&#39;: &#39;assistant&#39;,
-    &#39;content&#39;: &#39;To display an image with a slider and label showing mouse position and intensity, you can use the following code:\n```python\nstackview.annotate(image, labels)\n```&#39;}]},
- {&#39;messages&#39;: [{&#39;role&#39;: &#39;user&#39;,
-    &#39;content&#39;: &#39;How can I allow cropping an image along all axes?&#39;},
-   {&#39;role&#39;: &#39;assistant&#39;,
-    &#39;content&#39;: &#39;You can crop an image along all axes using the following function:\n```python\nstackview.crop(image)\n```&#39;}]}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'messages': [{'role': 'user',
+    'content': 'How can I display an image with a slider and label showing mouse position and intensity?'},
+   {'role': 'assistant',
+    'content': 'To display an image with a slider and label showing mouse position and intensity, you can use the following code:\n```python\nstackview.annotate(image, labels)\n```'}]},
+ {'messages': [{'role': 'user',
+    'content': 'How can I allow cropping an image along all axes?'},
+   {'role': 'assistant',
+    'content': 'You can crop an image along all axes using the following function:\n```python\nstackview.crop(image)\n```'}]}]
 </pre></div>
 </div>
 </div>
@@ -1023,7 +1023,7 @@ np_image = aics_image.get_image_data("ZYX")
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save training data to a temporary file</span>
-<span class="n">training_data_file_path</span> <span class="o">=</span> <span class="s2">&quot;training_data.jsonl&quot;</span>
+<span class="n">training_data_file_path</span> <span class="o">=</span> <span class="s2">"training_data.jsonl"</span>
 <span class="n">save_jsonl_file</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">training_data_file_path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1035,15 +1035,15 @@ np_image = aics_image.get_image_data("ZYX")
 
 <span class="c1"># upload and preprocess file</span>
 <span class="n">training_file</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">training_data_file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
-    <span class="n">purpose</span><span class="o">=</span><span class="s1">&#39;fine-tune&#39;</span><span class="p">,</span>
+    <span class="n">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">training_data_file_path</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">),</span>
+    <span class="n">purpose</span><span class="o">=</span><span class="s1">'fine-tune'</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># wait until preprocessing is finished</span>
-<span class="k">while</span> <span class="n">client</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">training_file</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;processed&quot;</span><span class="p">:</span>
+<span class="k">while</span> <span class="n">client</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">training_file</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">"processed"</span><span class="p">:</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uploading / preprocessing done.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Uploading / preprocessing done."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1058,13 +1058,13 @@ np_image = aics_image.get_image_data("ZYX")
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># start fine-tuning</span>
 <span class="n">fine_tuning_job</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">fine_tuning</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
                         <span class="n">training_file</span><span class="o">=</span><span class="n">training_file</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> 
-                        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">)</span>
+                        <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-3.5-turbo"</span><span class="p">)</span>
 <span class="n">fine_tuning_job</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FineTuningJob(id=&#39;ftjob-nSXw9q94peyfTaBatGGahuZN&#39;, created_at=1717680034, error=Error(code=None, message=None, param=None), fine_tuned_model=None, finished_at=None, hyperparameters=Hyperparameters(n_epochs=&#39;auto&#39;, batch_size=&#39;auto&#39;, learning_rate_multiplier=&#39;auto&#39;), model=&#39;gpt-3.5-turbo-0125&#39;, object=&#39;fine_tuning.job&#39;, organization_id=&#39;org-0POmhzyaeDng5lZtM7Cls3vt&#39;, result_files=[], seed=485481089, status=&#39;validating_files&#39;, trained_tokens=None, training_file=&#39;file-v6hGXPsQ2JYLRzgcmWPZvGke&#39;, validation_file=None, estimated_finish=None, integrations=[], user_provided_suffix=None)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FineTuningJob(id='ftjob-nSXw9q94peyfTaBatGGahuZN', created_at=1717680034, error=Error(code=None, message=None, param=None), fine_tuned_model=None, finished_at=None, hyperparameters=Hyperparameters(n_epochs='auto', batch_size='auto', learning_rate_multiplier='auto'), model='gpt-3.5-turbo-0125', object='fine_tuning.job', organization_id='org-0POmhzyaeDng5lZtM7Cls3vt', result_files=[], seed=485481089, status='validating_files', trained_tokens=None, training_file='file-v6hGXPsQ2JYLRzgcmWPZvGke', validation_file=None, estimated_finish=None, integrations=[], user_provided_suffix=None)
 </pre></div>
 </div>
 </div>
@@ -1078,7 +1078,7 @@ np_image = aics_image.get_image_data("ZYX")
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FineTuningJob(id=&#39;ftjob-nSXw9q94peyfTaBatGGahuZN&#39;, created_at=1717680034, error=Error(code=None, message=None, param=None), fine_tuned_model=None, finished_at=None, hyperparameters=Hyperparameters(n_epochs=&#39;auto&#39;, batch_size=&#39;auto&#39;, learning_rate_multiplier=&#39;auto&#39;), model=&#39;gpt-3.5-turbo-0125&#39;, object=&#39;fine_tuning.job&#39;, organization_id=&#39;org-0POmhzyaeDng5lZtM7Cls3vt&#39;, result_files=[], seed=485481089, status=&#39;validating_files&#39;, trained_tokens=None, training_file=&#39;file-v6hGXPsQ2JYLRzgcmWPZvGke&#39;, validation_file=None, estimated_finish=None, integrations=[], user_provided_suffix=None)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FineTuningJob(id='ftjob-nSXw9q94peyfTaBatGGahuZN', created_at=1717680034, error=Error(code=None, message=None, param=None), fine_tuned_model=None, finished_at=None, hyperparameters=Hyperparameters(n_epochs='auto', batch_size='auto', learning_rate_multiplier='auto'), model='gpt-3.5-turbo-0125', object='fine_tuning.job', organization_id='org-0POmhzyaeDng5lZtM7Cls3vt', result_files=[], seed=485481089, status='validating_files', trained_tokens=None, training_file='file-v6hGXPsQ2JYLRzgcmWPZvGke', validation_file=None, estimated_finish=None, integrations=[], user_provided_suffix=None)
 </pre></div>
 </div>
 </div>
@@ -1090,7 +1090,7 @@ np_image = aics_image.get_image_data("ZYX")
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;validating_files&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'validating_files'
 </pre></div>
 </div>
 </div>
@@ -1103,7 +1103,7 @@ np_image = aics_image.get_image_data("ZYX")
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;validating_files&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'validating_files'
 </pre></div>
 </div>
 </div>
@@ -1124,7 +1124,7 @@ np_image = aics_image.get_image_data("ZYX")
 <p>In case you don’t want to run the cell above repeatedly manually, one can also run such a request in a loop:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">client</span><span class="o">.</span><span class="n">fine_tuning</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">fine_tuning_job</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;succeeded&quot;</span><span class="p">,</span> <span class="s2">&quot;failed&quot;</span><span class="p">]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">client</span><span class="o">.</span><span class="n">fine_tuning</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">fine_tuning_job</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"succeeded"</span><span class="p">,</span> <span class="s2">"failed"</span><span class="p">]:</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
 
 <span class="n">job_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">fine_tuning</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
@@ -1134,7 +1134,7 @@ np_image = aics_image.get_image_data("ZYX")
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;succeeded&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'succeeded'
 </pre></div>
 </div>
 </div>
@@ -1150,7 +1150,7 @@ np_image = aics_image.get_image_data("ZYX")
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ft:gpt-3.5-turbo-0125:leipzig-university::9X7PFVgP&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'ft:gpt-3.5-turbo-0125:leipzig-university::9X7PFVgP'
 </pre></div>
 </div>
 </div>
@@ -1249,7 +1249,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

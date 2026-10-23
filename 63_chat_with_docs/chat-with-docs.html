@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -940,7 +940,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_model</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># todo: the following does&#39;t work.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_model</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># todo: the following does't work.</span>
 <span class="k">if</span> <span class="n">local_model</span><span class="p">:</span>
     <span class="c1"># pip install llama-index-embeddings-huggingface llama-index-llms-ollama</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
@@ -948,10 +948,10 @@ title="Print to PDF"
     <span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.llms.ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ollama</span>
     
     <span class="c1"># bge-base embedding model</span>
-    <span class="n">Settings</span><span class="o">.</span><span class="n">embed_model</span> <span class="o">=</span> <span class="n">HuggingFaceEmbedding</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;BAAI/bge-base-en-v1.5&quot;</span><span class="p">)</span>
+    <span class="n">Settings</span><span class="o">.</span><span class="n">embed_model</span> <span class="o">=</span> <span class="n">HuggingFaceEmbedding</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">"BAAI/bge-base-en-v1.5"</span><span class="p">)</span>
     
     <span class="c1"># ollama</span>
-    <span class="n">Settings</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">Ollama</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;llama3&quot;</span><span class="p">,</span> <span class="n">request_timeout</span><span class="o">=</span><span class="mf">360.0</span><span class="p">)</span>
+    <span class="n">Settings</span><span class="o">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">Ollama</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">"llama3"</span><span class="p">,</span> <span class="n">request_timeout</span><span class="o">=</span><span class="mf">360.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -967,14 +967,14 @@ title="Print to PDF"
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count_documents</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">former_folder</span> <span class="o">=</span> <span class="n">folder</span>
         
-        <span class="n">documents</span> <span class="o">=</span> <span class="n">SimpleDirectoryReader</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">required_exts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;.pdf&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+        <span class="n">documents</span> <span class="o">=</span> <span class="n">SimpleDirectoryReader</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">required_exts</span><span class="o">=</span><span class="p">[</span><span class="s2">".pdf"</span><span class="p">])</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
         <span class="n">index</span> <span class="o">=</span> <span class="n">VectorStoreIndex</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_query_engine</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">as_query_engine</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_documents</span> <span class="o">=</span> <span class="n">documents</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count_documents</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">count_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_documents</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"file_name"</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_documents</span><span class="p">]))</span>
         
     <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_engine</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
@@ -985,21 +985,21 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create user interface</span>
-<span class="n">docs_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;./data&quot;</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter a directory here&quot;</span><span class="p">)</span>
-<span class="n">load_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Load&quot;</span><span class="p">)</span>
+<span class="n">docs_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">"./data"</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">"Enter a directory here"</span><span class="p">)</span>
+<span class="n">load_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Load"</span><span class="p">)</span>
 
-<span class="n">output_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">output_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 
-<span class="n">text_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter a question here&quot;</span><span class="p">)</span>
-<span class="n">submit_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
+<span class="n">text_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">placeholder</span><span class="o">=</span><span class="s2">"Enter a question here"</span><span class="p">)</span>
+<span class="n">submit_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit"</span><span class="p">)</span>
 
 <span class="n">chat</span> <span class="o">=</span> <span class="n">Chat</span><span class="p">()</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">on_load</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>    
     <span class="n">number_of_documents</span> <span class="o">=</span> <span class="n">chat</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">docs_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-    <span class="n">output_label</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    &lt;div style=&#39;text-align:left; color: darkgrey; font-size: 20px&#39;&gt;</span><span class="si">{</span><span class="n">number_of_documents</span><span class="si">}</span><span class="s2"> documents loaded.&lt;/div&gt;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">output_label</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    &lt;div style='text-align:left; color: darkgrey; font-size: 20px'&gt;</span><span class="si">{</span><span class="n">number_of_documents</span><span class="si">}</span><span class="s2"> documents loaded.&lt;/div&gt;</span>
+<span class="s2">    """</span>
     <span class="k">if</span> <span class="n">number_of_documents</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">submit_button</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -1007,16 +1007,16 @@ title="Print to PDF"
     <span class="n">question</span> <span class="o">=</span> <span class="n">text_input</span><span class="o">.</span><span class="n">value</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">question</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span>
-    <span class="n">text_input</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">text_input</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">""</span>
 
     <span class="c1"># submit prompt to LLM</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">chat</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
 
     <span class="c1"># Append question and answer to the existing HTML content</span>
-    <span class="n">output_label</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    &lt;div style=&#39;text-align:right; color: blue; font-size: 20px&#39;&gt;</span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
-<span class="s2">    &lt;div style=&#39;text-align:left; color: darkgreen; font-size: 20px&#39;&gt;</span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">output_label</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    &lt;div style='text-align:right; color: blue; font-size: 20px'&gt;</span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">    &lt;div style='text-align:left; color: darkgreen; font-size: 20px'&gt;</span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s2">&lt;/div&gt;</span>
+<span class="s2">    """</span>
 
 <span class="c1"># Attach the event handler to the text field and the button</span>
 <span class="n">docs_input</span><span class="o">.</span><span class="n">continuous_update</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1106,7 +1106,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

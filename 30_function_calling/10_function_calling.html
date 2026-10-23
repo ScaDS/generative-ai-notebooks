@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -989,9 +989,9 @@ title="Print to PDF"
 
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">load_image</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Loads an image from disk and stores it under a specified name</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="c1"># store the image in memory</span>
@@ -999,9 +999,9 @@ title="Print to PDF"
     
 <span class="nd">@tools</span><span class="o">.</span><span class="n">append</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">show_image</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Shows an image specified by a name</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">stackview</span><span class="w"> </span><span class="kn">import</span> <span class="n">imshow</span>
     <span class="n">imshow</span><span class="p">(</span><span class="n">image_memory</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
     
@@ -1015,14 +1015,14 @@ title="Print to PDF"
 <p>With this list of tools and a prompt that allows deciding which function to call, a large language model is capable of making the decision which function to call. With some additional infrastructure, as in the <code class="docutils literal notranslate"><span class="pre">act()</span></code> function, we can call functions directly like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">act</span><span class="p">(</span><span class="s2">&quot;Load the image data/membrane2d.tif and store it as membrane&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">act</span><span class="p">(</span><span class="s2">"Load the image data/membrane2d.tif and store it as membrane"</span><span class="p">,</span> <span class="n">tools</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">act</span><span class="p">(</span><span class="s2">&quot;Show the membrane image&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">act</span><span class="p">(</span><span class="s2">"Show the membrane image"</span><span class="p">,</span> <span class="n">tools</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1042,8 +1042,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;load_image&#39;: &lt;function __main__.load_image(filename: str, name: str)&gt;,
- &#39;show_image&#39;: &lt;function __main__.show_image(name: str)&gt;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'load_image': &lt;function __main__.load_image(filename: str, name: str)&gt;,
+ 'show_image': &lt;function __main__.show_image(name: str)&gt;}
 </pre></div>
 </div>
 </div>
@@ -1059,41 +1059,41 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
     {
-        &quot;type&quot;: &quot;function&quot;,
-        &quot;function&quot;: {
-            &quot;name&quot;: &quot;load_image&quot;,
-            &quot;description&quot;: &quot;Loads an image from disk and stores it under a specified name&quot;,
-            &quot;parameters&quot;: {
-                &quot;type&quot;: &quot;object&quot;,
-                &quot;properties&quot;: {
-                    &quot;filename&quot;: {
-                        &quot;type&quot;: &quot;&lt;class &#39;str&#39;&gt;&quot;
+        "type": "function",
+        "function": {
+            "name": "load_image",
+            "description": "Loads an image from disk and stores it under a specified name",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "&lt;class 'str'&gt;"
                     },
-                    &quot;name&quot;: {
-                        &quot;type&quot;: &quot;&lt;class &#39;str&#39;&gt;&quot;
+                    "name": {
+                        "type": "&lt;class 'str'&gt;"
                     }
                 },
-                &quot;required&quot;: [
-                    &quot;filename&quot;,
-                    &quot;name&quot;
+                "required": [
+                    "filename",
+                    "name"
                 ]
             }
         }
     },
     {
-        &quot;type&quot;: &quot;function&quot;,
-        &quot;function&quot;: {
-            &quot;name&quot;: &quot;show_image&quot;,
-            &quot;description&quot;: &quot;Shows an image specified by a name&quot;,
-            &quot;parameters&quot;: {
-                &quot;type&quot;: &quot;object&quot;,
-                &quot;properties&quot;: {
-                    &quot;name&quot;: {
-                        &quot;type&quot;: &quot;&lt;class &#39;str&#39;&gt;&quot;
+        "type": "function",
+        "function": {
+            "name": "show_image",
+            "description": "Shows an image specified by a name",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "&lt;class 'str'&gt;"
                     }
                 },
-                &quot;required&quot;: [
-                    &quot;name&quot;
+                "required": [
+                    "name"
                 ]
             }
         }
@@ -1110,19 +1110,19 @@ title="Print to PDF"
 <p>Its answer will be a JSON as well.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">task</span> <span class="o">=</span> <span class="s1">&#39;Load the image &quot;data/blobs.tif&quot; and store it as &quot;blobs&quot;&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">task</span> <span class="o">=</span> <span class="s1">'Load the image "data/blobs.tif" and store it as "blobs"'</span>
 
-<span class="n">my_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="n">my_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">[AVAILABLE_TOOLS]</span><span class="si">{</span><span class="n">json_text</span><span class="si">}</span><span class="s2">[/AVAILABLE_TOOLS][INST] </span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2"> [/INST]</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
 <span class="n">answer</span> <span class="o">=</span> <span class="n">prompt_ollama</span><span class="p">(</span><span class="n">my_prompt</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>message:  [AVAILABLE_TOOLS][ { &quot;type&quot;: &quot;function&quot;, &quot;function&quot;: { &quot;name&quot;: &quot;load_image&quot;, &quot;description&quot;: &quot;Loads an image from disk and stores it under a specified name&quot;, &quot;parameters&quot;: { &quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: { &quot;filename&quot;: { &quot;type&quot;: &quot;&lt;class &#39;str&#39;&gt;&quot; }, &quot;name&quot;: { &quot;type&quot;: &quot;&lt;class &#39;str&#39;&gt;&quot; } }, &quot;required&quot;: [ &quot;filename&quot;, &quot;name&quot; ] } } }, { &quot;type&quot;: &quot;function&quot;, &quot;function&quot;: { &quot;name&quot;: &quot;show_image&quot;, &quot;description&quot;: &quot;Shows an image specified by a name&quot;, &quot;parameters&quot;: { &quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: { &quot;name&quot;: { &quot;type&quot;: &quot;&lt;class &#39;str&#39;&gt;&quot; } }, &quot;required&quot;: [ &quot;name&quot; ] } } } ][/AVAILABLE_TOOLS][INST] Load the image &quot;data/blobs.tif&quot; and store it as &quot;blobs&quot; [/INST] 
-answer {&#39;model&#39;: &#39;mistral:v0.3&#39;, &#39;created_at&#39;: &#39;2024-07-18T12:52:55.566509Z&#39;, &#39;response&#39;: &#39;[TOOL_CALLS] [ { &quot;name&quot;: &quot;load_image&quot;, &quot;arguments&quot;: { &quot;filename&quot;: &quot;data/blobs.tif&quot;, &quot;name&quot;: &quot;blobs&quot; } } ]\n\nThis command will load the image file named \&#39;data/blobs.tif\&#39; and store it under the name \&#39;blobs\&#39;.\n\nThe result would be a variable \&#39;blobs\&#39; containing the loaded image.\n\nThen to display this loaded image, use the following command:\n\n[TOOL_CALLS] [ { &quot;name&quot;: &quot;show_image&quot;, &quot;arguments&quot;: { &quot;name&quot;: &quot;blobs&quot; } } ]\n\nThis command will show the image stored as \&#39;blobs\&#39;. The result would be the displayed image on your screen.&#39;, &#39;done&#39;: True, &#39;done_reason&#39;: &#39;stop&#39;, &#39;total_duration&#39;: 17149986100, &#39;load_duration&#39;: 2671700, &#39;prompt_eval_count&#39;: 22, &#39;prompt_eval_duration&#39;: 1351114000, &#39;eval_count&#39;: 150, &#39;eval_duration&#39;: 15795330000}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>message:  [AVAILABLE_TOOLS][ { "type": "function", "function": { "name": "load_image", "description": "Loads an image from disk and stores it under a specified name", "parameters": { "type": "object", "properties": { "filename": { "type": "&lt;class 'str'&gt;" }, "name": { "type": "&lt;class 'str'&gt;" } }, "required": [ "filename", "name" ] } } }, { "type": "function", "function": { "name": "show_image", "description": "Shows an image specified by a name", "parameters": { "type": "object", "properties": { "name": { "type": "&lt;class 'str'&gt;" } }, "required": [ "name" ] } } } ][/AVAILABLE_TOOLS][INST] Load the image "data/blobs.tif" and store it as "blobs" [/INST] 
+answer {'model': 'mistral:v0.3', 'created_at': '2024-07-18T12:52:55.566509Z', 'response': '[TOOL_CALLS] [ { "name": "load_image", "arguments": { "filename": "data/blobs.tif", "name": "blobs" } } ]\n\nThis command will load the image file named \'data/blobs.tif\' and store it under the name \'blobs\'.\n\nThe result would be a variable \'blobs\' containing the loaded image.\n\nThen to display this loaded image, use the following command:\n\n[TOOL_CALLS] [ { "name": "show_image", "arguments": { "name": "blobs" } } ]\n\nThis command will show the image stored as \'blobs\'. The result would be the displayed image on your screen.', 'done': True, 'done_reason': 'stop', 'total_duration': 17149986100, 'load_duration': 2671700, 'prompt_eval_count': 22, 'prompt_eval_duration': 1351114000, 'eval_count': 150, 'eval_duration': 15795330000}
 </pre></div>
 </div>
 </div>
@@ -1135,7 +1135,7 @@ answer {&#39;model&#39;: &#39;mistral:v0.3&#39;, &#39;created_at&#39;: &#39;2024
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;membrane&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys(['membrane'])
 </pre></div>
 </div>
 </div>
@@ -1143,12 +1143,12 @@ answer {&#39;model&#39;: &#39;mistral:v0.3&#39;, &#39;created_at&#39;: &#39;2024
 <p>Now we call the function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">call_function_from_response</span><span class="p">(</span><span class="n">answer</span><span class="p">[</span><span class="s2">&quot;response&quot;</span><span class="p">],</span> <span class="n">named_tools</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">call_function_from_response</span><span class="p">(</span><span class="n">answer</span><span class="p">[</span><span class="s2">"response"</span><span class="p">],</span> <span class="n">named_tools</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>calling load_image with {&#39;filename&#39;: &#39;data/blobs.tif&#39;, &#39;name&#39;: &#39;blobs&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>calling load_image with {'filename': 'data/blobs.tif', 'name': 'blobs'}
 </pre></div>
 </div>
 </div>
@@ -1161,7 +1161,7 @@ answer {&#39;model&#39;: &#39;mistral:v0.3&#39;, &#39;created_at&#39;: &#39;2024
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;membrane&#39;, &#39;blobs&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys(['membrane', 'blobs'])
 </pre></div>
 </div>
 </div>
@@ -1285,7 +1285,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

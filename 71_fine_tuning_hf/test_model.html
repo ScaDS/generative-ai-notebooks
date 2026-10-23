@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -921,18 +921,18 @@ title="Print to PDF"
 <p>Here we just test our fine-tuned model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_hf</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;haesleinhuepf/gemma-2b-it-bia-proof-of-concept2&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_hf</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"haesleinhuepf/gemma-2b-it-bia-proof-of-concept2"</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">prompt_hf</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">transformers</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
     
     <span class="k">if</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>    
         <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span>
-            <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;torch_dtype&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">},</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+            <span class="s2">"text-generation"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"torch_dtype"</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">},</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">,</span>
              <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">200</span>
         <span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span><span class="p">(</span><span class="n">request</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span><span class="p">(</span><span class="n">request</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">]</span>
 <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -941,14 +941,14 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">prompt_hf</span><span class="p">(</span><span class="s2">&quot;Write Python code for cropping an image in X and Y to coordinates 10-20 and 30-50&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">prompt_hf</span><span class="p">(</span><span class="s2">"Write Python code for cropping an image in X and Y to coordinates 10-20 and 30-50"</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">{"model_id": "ade3065e46914ab5b27eac86d175a10a", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`config.hidden_act` is ignored, you should use `config.hidden_activation` instead.
-Gemma&#39;s activation function will be set to `gelu_pytorch_tanh`. Please, use
+Gemma's activation function will be set to `gelu_pytorch_tanh`. Please, use
 `config.hidden_activation` if you want to override this behaviour.
 See https://github.com/huggingface/transformers/pull/29402 for more details.
 </pre></div>
@@ -962,13 +962,13 @@ C:\Users\rober\miniconda3\envs\genai-gpu\Lib\site-packages\transformers\models\g
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
 
 <span class="c1"># Load the image</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;image.jpg&quot;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">"image.jpg"</span><span class="p">)</span>
 
 <span class="c1"># Crop the image</span>
 <span class="n">cropped_image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">:</span><span class="mi">50</span><span class="p">]</span>
 
 <span class="c1"># Save the cropped image</span>
-<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;cropped_image.jpg&quot;</span><span class="p">,</span> <span class="n">cropped_image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">"cropped_image.jpg"</span><span class="p">,</span> <span class="n">cropped_image</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Explanation:</strong></p>
@@ -1055,7 +1055,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

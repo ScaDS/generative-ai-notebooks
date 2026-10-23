@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -956,7 +956,7 @@ Hence, we can ask bob to generate a notebook for a series of tasks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bob</span> 
-Please write a new notebook &quot;Blob_Segmentation_Analysis.ipynb&quot; that does the following:
+Please write a new notebook "Blob_Segmentation_Analysis.ipynb" that does the following:
 * open blobs.tif, 
 * segment the bright objects
 * measure their area and perimeter
@@ -983,7 +983,7 @@ Please write a new notebook &quot;Blob_Segmentation_Analysis.ipynb&quot; that do
 <p>The model we’re using per default has vision capabilities. Thus, we can pass an image to <code class="docutils literal notranslate"><span class="pre">bob</span></code> and ask it to create a notebook for segmenting it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hela_cells</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;hela-cells-8bit.tif&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hela_cells</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">"hela-cells-8bit.tif"</span><span class="p">)</span>
 <span class="n">stackview</span><span class="o">.</span><span class="n">insight</span><span class="p">(</span><span class="n">hela_cells</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1015,7 +1015,7 @@ Its filename is `hela-cells-8bit.tif`.
 At the beginning of the notebook describe the image it is made for.
 I would like to segment the objects in the blue channel.
 Write Python-code for doing this and please add explanatory notebook 
-cellls in between explaining what you&#39;re doing in detail as I&#39;m a 
+cellls in between explaining what you're doing in detail as I'm a 
 Python-beginner. 
 
 Thanks :-)
@@ -1052,7 +1052,7 @@ Please do the following:
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Open blobs.tif</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;blobs.tif&#39;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">'blobs.tif'</span><span class="p">)</span>
 
 <span class="c1"># Segment the bright objects using Otsu thresholding</span>
 <span class="n">threshold</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">threshold_otsu</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -1068,9 +1068,9 @@ Please do the following:
 
 <span class="c1"># Create a scatter plot of area vs perimeter</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">areas</span><span class="p">,</span> <span class="n">perimeters</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Perimeter&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Area vs Perimeter of Bright Objects&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Area'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Perimeter'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Area vs Perimeter of Bright Objects'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1178,7 +1178,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

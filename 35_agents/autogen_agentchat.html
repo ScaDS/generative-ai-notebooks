@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -945,11 +945,11 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define tools that do fantasy math</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate_random_number</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a random number between 0 and 100&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Generate a random number between 0 and 100"""</span>
     <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">roberts_operator</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply Robert&#39;s operator to a and b&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Apply Robert's operator to a and b"""</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
@@ -960,14 +960,14 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an agent that uses the OpenAI GPT-4o model.</span>
 <span class="n">model_client</span> <span class="o">=</span> <span class="n">OpenAIChatCompletionClient</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
-    <span class="c1"># api_key=&quot;YOUR_API_KEY&quot;,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-4o"</span><span class="p">,</span>
+    <span class="c1"># api_key="YOUR_API_KEY",</span>
 <span class="p">)</span>
 <span class="n">agent</span> <span class="o">=</span> <span class="n">AssistantAgent</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fantasy_math_expert&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"fantasy_math_expert"</span><span class="p">,</span>
     <span class="n">model_client</span><span class="o">=</span><span class="n">model_client</span><span class="p">,</span>
     <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">generate_random_number</span><span class="p">,</span> <span class="n">roberts_operator</span><span class="p">],</span>
-    <span class="n">system_message</span><span class="o">=</span><span class="s2">&quot;Use tools to solve tasks.&quot;</span><span class="p">,</span>
+    <span class="n">system_message</span><span class="o">=</span><span class="s2">"Use tools to solve tasks."</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -977,7 +977,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">on_messages</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">TextMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Give me a random number.&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;user&quot;</span><span class="p">)],</span>
+        <span class="p">[</span><span class="n">TextMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">"Give me a random number."</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">"user"</span><span class="p">)],</span>
         <span class="n">cancellation_token</span><span class="o">=</span><span class="n">CancellationToken</span><span class="p">(),</span>
     <span class="p">)</span>
 
@@ -986,7 +986,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;63&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'63'
 </pre></div>
 </div>
 </div>
@@ -996,18 +996,18 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">assistant_run</span><span class="p">(</span><span class="n">task_description</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">on_messages</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">TextMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">task_description</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;user&quot;</span><span class="p">)],</span>
+        <span class="p">[</span><span class="n">TextMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">task_description</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">"user"</span><span class="p">)],</span>
         <span class="n">cancellation_token</span><span class="o">=</span><span class="n">CancellationToken</span><span class="p">(),</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;## Inner messages&quot;</span><span class="p">))</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"## Inner messages"</span><span class="p">))</span>
         <span class="n">print_messages</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">inner_messages</span><span class="p">)</span>
-        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;## Chat messages&quot;</span><span class="p">))</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"## Chat messages"</span><span class="p">))</span>
         <span class="n">print_messages</span><span class="p">([</span><span class="n">response</span><span class="o">.</span><span class="n">chat_message</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">response</span>
     
 <span class="c1"># Use asyncio.run(assistant_run()) when running in a script.</span>
-<span class="k">await</span> <span class="n">assistant_run</span><span class="p">(</span><span class="s2">&quot;What is Robert&#39;s operator result on two random numbers?&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<span class="k">await</span> <span class="n">assistant_run</span><span class="p">(</span><span class="s2">"What is Robert's operator result on two random numbers?"</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1027,7 +1027,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">assistant_run</span><span class="p">(</span><span class="s2">&quot;What is Robert&#39;s operator result on 3 and 4?&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">assistant_run</span><span class="p">(</span><span class="s2">"What is Robert's operator result on 3 and 4?"</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1046,45 +1046,45 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">memory</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">save_state</span><span class="p">()</span>
-<span class="n">memory</span><span class="p">[</span><span class="s2">&quot;llm_messages&quot;</span><span class="p">]</span>
+<span class="n">memory</span><span class="p">[</span><span class="s2">"llm_messages"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;content&#39;: &#39;Give me a random number.&#39;,
-  &#39;source&#39;: &#39;user&#39;,
-  &#39;type&#39;: &#39;UserMessage&#39;},
- {&#39;content&#39;: [{&#39;id&#39;: &#39;call_nC19Sx9jHlV9IqY0gGWNj6Me&#39;,
-    &#39;arguments&#39;: &#39;{}&#39;,
-    &#39;name&#39;: &#39;generate_random_number&#39;}],
-  &#39;source&#39;: &#39;fantasy_math_expert&#39;,
-  &#39;type&#39;: &#39;AssistantMessage&#39;},
- {&#39;content&#39;: [{&#39;content&#39;: &#39;63&#39;, &#39;call_id&#39;: &#39;call_nC19Sx9jHlV9IqY0gGWNj6Me&#39;}],
-  &#39;type&#39;: &#39;FunctionExecutionResultMessage&#39;},
- {&#39;content&#39;: &quot;What is Robert&#39;s operator result on two random numbers?&quot;,
-  &#39;source&#39;: &#39;user&#39;,
-  &#39;type&#39;: &#39;UserMessage&#39;},
- {&#39;content&#39;: [{&#39;id&#39;: &#39;call_KIvs9uK1gXCipoYKPi7eCf8w&#39;,
-    &#39;arguments&#39;: &#39;{}&#39;,
-    &#39;name&#39;: &#39;generate_random_number&#39;},
-   {&#39;id&#39;: &#39;call_NXRo0zwvGGjxEEL546Oa4XjS&#39;,
-    &#39;arguments&#39;: &#39;{}&#39;,
-    &#39;name&#39;: &#39;generate_random_number&#39;}],
-  &#39;source&#39;: &#39;fantasy_math_expert&#39;,
-  &#39;type&#39;: &#39;AssistantMessage&#39;},
- {&#39;content&#39;: [{&#39;content&#39;: &#39;30&#39;, &#39;call_id&#39;: &#39;call_KIvs9uK1gXCipoYKPi7eCf8w&#39;},
-   {&#39;content&#39;: &#39;45&#39;, &#39;call_id&#39;: &#39;call_NXRo0zwvGGjxEEL546Oa4XjS&#39;}],
-  &#39;type&#39;: &#39;FunctionExecutionResultMessage&#39;},
- {&#39;content&#39;: &quot;What is Robert&#39;s operator result on 3 and 4?&quot;,
-  &#39;source&#39;: &#39;user&#39;,
-  &#39;type&#39;: &#39;UserMessage&#39;},
- {&#39;content&#39;: [{&#39;id&#39;: &#39;call_EdRQ65BV686cEp6VCm8ZdTP3&#39;,
-    &#39;arguments&#39;: &#39;{&quot;a&quot;:3,&quot;b&quot;:4}&#39;,
-    &#39;name&#39;: &#39;roberts_operator&#39;}],
-  &#39;source&#39;: &#39;fantasy_math_expert&#39;,
-  &#39;type&#39;: &#39;AssistantMessage&#39;},
- {&#39;content&#39;: [{&#39;content&#39;: &#39;13&#39;, &#39;call_id&#39;: &#39;call_EdRQ65BV686cEp6VCm8ZdTP3&#39;}],
-  &#39;type&#39;: &#39;FunctionExecutionResultMessage&#39;}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{'content': 'Give me a random number.',
+  'source': 'user',
+  'type': 'UserMessage'},
+ {'content': [{'id': 'call_nC19Sx9jHlV9IqY0gGWNj6Me',
+    'arguments': '{}',
+    'name': 'generate_random_number'}],
+  'source': 'fantasy_math_expert',
+  'type': 'AssistantMessage'},
+ {'content': [{'content': '63', 'call_id': 'call_nC19Sx9jHlV9IqY0gGWNj6Me'}],
+  'type': 'FunctionExecutionResultMessage'},
+ {'content': "What is Robert's operator result on two random numbers?",
+  'source': 'user',
+  'type': 'UserMessage'},
+ {'content': [{'id': 'call_KIvs9uK1gXCipoYKPi7eCf8w',
+    'arguments': '{}',
+    'name': 'generate_random_number'},
+   {'id': 'call_NXRo0zwvGGjxEEL546Oa4XjS',
+    'arguments': '{}',
+    'name': 'generate_random_number'}],
+  'source': 'fantasy_math_expert',
+  'type': 'AssistantMessage'},
+ {'content': [{'content': '30', 'call_id': 'call_KIvs9uK1gXCipoYKPi7eCf8w'},
+   {'content': '45', 'call_id': 'call_NXRo0zwvGGjxEEL546Oa4XjS'}],
+  'type': 'FunctionExecutionResultMessage'},
+ {'content': "What is Robert's operator result on 3 and 4?",
+  'source': 'user',
+  'type': 'UserMessage'},
+ {'content': [{'id': 'call_EdRQ65BV686cEp6VCm8ZdTP3',
+    'arguments': '{"a":3,"b":4}',
+    'name': 'roberts_operator'}],
+  'source': 'fantasy_math_expert',
+  'type': 'AssistantMessage'},
+ {'content': [{'content': '13', 'call_id': 'call_EdRQ65BV686cEp6VCm8ZdTP3'}],
+  'type': 'FunctionExecutionResultMessage'}]
 </pre></div>
 </div>
 </div>
@@ -1161,7 +1161,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

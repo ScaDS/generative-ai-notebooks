@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -967,12 +967,12 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="p">(</span><span class="s2">&quot;Hi!&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="p">(</span><span class="s2">"Hi!"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello! How can I assist you today? Feel free to ask me any questions or let me know if you need help with anything.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Hello! How can I assist you today? Feel free to ask me any questions or let me know if you need help with anything.'
 </pre></div>
 </div>
 </div>
@@ -983,24 +983,24 @@ title="Print to PDF"
 <p>Our prompt function does not have memory yet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="p">(</span><span class="s2">&quot;Hi, my name is Robert.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="p">(</span><span class="s2">"Hi, my name is Robert."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Hello Robert! It&#39;s nice to meet you. How can I assist you today? Is there anything specific you&#39;d like to know or discuss?&quot;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>"Hello Robert! It's nice to meet you. How can I assist you today? Is there anything specific you'd like to know or discuss?"
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="p">(</span><span class="s2">&quot;What is my name?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span><span class="p">(</span><span class="s2">"What is my name?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;I apologize, but I don&#39;t have access to personal information about individual users, including names. Each conversation I have starts fresh, so I don&#39;t have any prior context about who you are or what your name might be. If you&#39;d like me to refer to you by a specific name during our conversation, you&#39;re welcome to let me know what you&#39;d like to be called.&quot;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>"I apologize, but I don't have access to personal information about individual users, including names. Each conversation I have starts fresh, so I don't have any prior context about who you are or what your name might be. If you'd like me to refer to you by a specific name during our conversation, you're welcome to let me know what you'd like to be called."
 </pre></div>
 </div>
 </div>
@@ -1012,14 +1012,14 @@ title="Print to PDF"
 <span class="k">def</span><span class="w"> </span><span class="nf">prompt_with_memory</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     
     <span class="c1"># convert message in the right format and store it in memory</span>
-    <span class="n">question</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
     <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
     
     <span class="c1"># receive answer</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="n">chat_history</span><span class="p">)</span>
     
     <span class="c1"># convert answer in the right format and store it in memory</span>
-    <span class="n">answer</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"assistant"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
     <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">response</span>
@@ -1029,24 +1029,24 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_with_memory</span><span class="p">(</span><span class="s2">&quot;Hi, my name is Robert.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_with_memory</span><span class="p">(</span><span class="s2">"Hi, my name is Robert."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Hello Robert! It&#39;s nice to meet you. How can I assist you today? Feel free to ask me any questions or let me know if there&#39;s anything specific you&#39;d like help with.&quot;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>"Hello Robert! It's nice to meet you. How can I assist you today? Feel free to ask me any questions or let me know if there's anything specific you'd like help with."
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_with_memory</span><span class="p">(</span><span class="s2">&quot;What is my name?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_with_memory</span><span class="p">(</span><span class="s2">"What is my name?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Your name is Robert, as you mentioned in your introduction.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Your name is Robert, as you mentioned in your introduction.'
 </pre></div>
 </div>
 </div>
@@ -1057,27 +1057,27 @@ title="Print to PDF"
 <p>Finally, we use the functions above for a continuous chat.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="k">while</span><span class="p">(</span><span class="n">question</span> <span class="o">!=</span> <span class="s2">&quot;bye&quot;</span><span class="p">):</span>
-    <span class="n">question</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Q:&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">question</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="k">while</span><span class="p">(</span><span class="n">question</span> <span class="o">!=</span> <span class="s2">"bye"</span><span class="p">):</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Q:"</span><span class="p">)</span>
     
     <span class="n">answer</span> <span class="o">=</span> <span class="n">prompt_with_memory</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A:&quot;</span><span class="p">,</span><span class="n">answer</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"A:"</span><span class="p">,</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A: Hello Alice, it&#39;s nice to meet you. I apologize for the confusion earlier - I&#39;m Claude, an AI assistant. How can I help you today?
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A: Hello Alice, it's nice to meet you. I apologize for the confusion earlier - I'm Claude, an AI assistant. How can I help you today?
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A: I apologize for the confusion in my previous responses. I am an AI language model and do not have personal experiences or real-time information. I cannot predict the weather or know your actual name.
 
-To answer your question about rain tomorrow, I would need access to current weather data and forecasts for your specific location, which I don&#39;t have. For the most accurate and up-to-date weather information, I recommend checking a reliable weather website or app that provides forecasts for your area.
+To answer your question about rain tomorrow, I would need access to current weather data and forecasts for your specific location, which I don't have. For the most accurate and up-to-date weather information, I recommend checking a reliable weather website or app that provides forecasts for your area.
 
 Is there anything else I can assist you with?
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A: I apologize for the confusion in our previous exchanges. I am Claude, an AI assistant, and I don&#39;t actually share your name or have information about tomorrow&#39;s weather. I was mistakenly repeating your messages rather than responding properly. Is there anything I can actually assist you with today?
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A: I apologize for the confusion in our previous exchanges. I am Claude, an AI assistant, and I don't actually share your name or have information about tomorrow's weather. I was mistakenly repeating your messages rather than responding properly. Is there anything I can actually assist you with today?
 </pre></div>
 </div>
 </div>
@@ -1186,7 +1186,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

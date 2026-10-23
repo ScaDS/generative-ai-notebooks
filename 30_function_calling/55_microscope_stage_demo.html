@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -982,8 +982,8 @@ title="Print to PDF"
 <p>For demonstration purposes, we use a dataset that is provided by Theresa Suckert, OncoRay, University Hospital Carl Gustav Carus, TU Dresden. The dataset is licensed License: <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. We are using a cropped version here that was resaved a 8-bit image to be able to provide it with the notebook. You find the full size 16-bit image in CZI file format <a class="reference external" href="https://zenodo.org/record/4276076#.YX1F-55BxaQ">online</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;P1_H_C3H_M004_17-cropped.tif&quot;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/raw/main/data/&quot;</span> <span class="o">+</span> <span class="n">filename</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s2">"P1_H_C3H_M004_17-cropped.tif"</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://github.com/haesleinhuepf/BioImageAnalysisNotebooks/raw/main/data/"</span> <span class="o">+</span> <span class="n">filename</span>
 
 <span class="c1"># Check if file exists</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
@@ -1034,40 +1034,40 @@ Key is that the functions we would like to use later on have a meaningful docstr
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">move_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the current view to the left&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Move the current view to the left"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">step</span>
-        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved left by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Moved left by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         
     <span class="k">def</span><span class="w"> </span><span class="nf">move_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the current view to the right&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Move the current view to the right"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">step</span>
-        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved right by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Moved right by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         
     <span class="k">def</span><span class="w"> </span><span class="nf">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the current view up&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Move the current view up"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">step</span>
-        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved up by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Moved up by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">250</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move the current view down&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Move the current view down"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">step</span>
-        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moved down by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Moved down by </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         
     <span class="k">def</span><span class="w"> </span><span class="nf">show_current_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Show the current view&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Show the current view"""</span>
         <span class="n">crop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)]</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'Greys_r'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="s2">&quot;the current view is shown&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="s2">"the current view is shown"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">tell_position</span><span class="p">():</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current position of the view&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;x: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, y: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="sd">"""Get the current position of the view"""</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"x: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, y: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">"</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LOG:&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"LOG:"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">text</span>
 </pre></div>
 </div>
@@ -1086,7 +1086,7 @@ Key is that the functions we would like to use later on have a meaningful docstr
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LOG: the current view is shown
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;the current view is shown&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'the current view is shown'
 </pre></div>
 </div>
 </div>
@@ -1114,7 +1114,7 @@ Key is that the functions we would like to use later on have a meaningful docstr
 <p>We can now make the microscopist do certain things by telling it in English language.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microscopist</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;move left&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microscopist</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"move left"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1127,7 +1127,7 @@ I have moved left by 250 units.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microscopist</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;move left by 50&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microscopist</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"move left by 50"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1140,7 +1140,7 @@ I have moved left by 50 units.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microscopist</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;show me the current view&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microscopist</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"show me the current view"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1155,9 +1155,9 @@ The current view is shown.
 <p>We can also ask it to do multiple things in one sentence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microscopist</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">microscopist</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">Move the view up, show the current view, move the view left and show the view again.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1220,7 +1220,7 @@ You said: move down and show it again
 
 Listening...
 You said: move down and write and show the Vue again
-I have moved down and written the Vue. However, I am an AI language model and I don&#39;t have the capability to show visual content.
+I have moved down and written the Vue. However, I am an AI language model and I don't have the capability to show visual content.
 
 Listening...
 You said: moved down move right and show the current view
@@ -1231,7 +1231,7 @@ You said: moved down move right and show the current view
 
 Listening...
 You said: thank you bye
-You&#39;re welcome! If you have any more questions, feel free to ask. Goodbye!
+You're welcome! If you have any more questions, feel free to ask. Goodbye!
 
 Listening...
 Could not understand audio.
@@ -1364,7 +1364,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

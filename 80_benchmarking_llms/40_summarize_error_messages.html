@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -971,12 +971,12 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">directory</span> <span class="o">=</span> <span class="s2">&quot;data/&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">directory</span> <span class="o">=</span> <span class="s2">"data/"</span>
 <span class="c1"># if you want to investigate a single model only, add its name here:</span>
-<span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">search_term</span> <span class="o">=</span> <span class="s2">""</span>
 
 <span class="c1"># Enter the terms to search for here</span>
-<span class="n">common_errors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;has no attribute&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid syntax&#39;</span><span class="p">,</span> <span class="s2">&quot;Can&#39;t convert object&quot;</span><span class="p">,</span> <span class="s1">&#39;cannot import&#39;</span><span class="p">,</span> <span class="s1">&#39;out of range&#39;</span><span class="p">,</span> <span class="s1">&#39;unexpected keyword argument&#39;</span><span class="p">]</span>
+<span class="n">common_errors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'has no attribute'</span><span class="p">,</span> <span class="s1">'invalid syntax'</span><span class="p">,</span> <span class="s2">"Can't convert object"</span><span class="p">,</span> <span class="s1">'cannot import'</span><span class="p">,</span> <span class="s1">'out of range'</span><span class="p">,</span> <span class="s1">'unexpected keyword argument'</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -986,9 +986,9 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">collection</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">search_term</span> <span class="ow">in</span> <span class="n">filename</span> <span class="ow">and</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;_results.jsonl&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">search_term</span> <span class="ow">in</span> <span class="n">filename</span> <span class="ow">and</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">"_results.jsonl"</span><span class="p">):</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">directory</span> <span class="o">+</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;samples_&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_results&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.jsonl&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"samples_"</span><span class="p">,</span><span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"_results"</span><span class="p">,</span><span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".jsonl"</span><span class="p">,</span><span class="s2">""</span><span class="p">)</span>
         <span class="n">collection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -1002,7 +1002,7 @@ title="Print to PDF"
 <p>We then focus on the tests which failed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'passed'</span><span class="p">]</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -1145,21 +1145,21 @@ title="Print to PDF"
 <p>We just print out some example error messages:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)[</span><span class="s1">'result'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&quot;failed: OpenCV(4.9.0) D:\\a\\opencv-python\\opencv-python\\opencv\\modules\\imgproc\\src\\thresh.cpp:1555: error: (-2:Unspecified error) in function &#39;double __cdecl cv::threshold(const class cv::_InputArray &amp;,const class cv::_OutputArray &amp;,double,double,int)&#39;\n&gt; THRESH_OTSU mode:\n&gt;     &#39;src_type == CV_8UC1 || src_type == CV_16UC1&#39;\n&gt; where\n&gt;     &#39;src_type&#39; is 4 (CV_32SC1)\n&quot;,
- &#39;failed: Input must be a 2D numpy array of boolean type&#39;,
- &#39;failed: Input image and kernel image must have the same dimensions&#39;,
- &quot;failed: fft2() got an unexpected keyword argument &#39;s&#39;&quot;,
- &quot;failed: OpenCV(4.9.0) d:\\a\\opencv-python\\opencv-python\\opencv\\modules\\imgproc\\src\\color.simd_helpers.hpp:92: error: (-2:Unspecified error) in function &#39;__cdecl cv::impl::`anonymous-namespace&#39;::CvtHelper&lt;struct cv::impl::`anonymous namespace&#39;::Set&lt;3,4,-1&gt;,struct cv::impl::A0x59191d0d::Set&lt;1,-1,-1&gt;,struct cv::impl::A0x59191d0d::Set&lt;0,2,5&gt;,4&gt;::CvtHelper(const class cv::_InputArray &amp;,const class cv::_OutputArray &amp;,int)&#39;\n&gt; Invalid number of channels in input image:\n&gt;     &#39;VScn::contains(scn)&#39;\n&gt; where\n&gt;     &#39;scn&#39; is 1\n&quot;,
- &#39;failed: &#39;,
- &#39;failed: &#39;,
- &#39;failed: Input must be a numpy array of boolean type&#39;,
- &#39;failed: &#39;,
- &#39;failed: &#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>["failed: OpenCV(4.9.0) D:\\a\\opencv-python\\opencv-python\\opencv\\modules\\imgproc\\src\\thresh.cpp:1555: error: (-2:Unspecified error) in function 'double __cdecl cv::threshold(const class cv::_InputArray &amp;,const class cv::_OutputArray &amp;,double,double,int)'\n&gt; THRESH_OTSU mode:\n&gt;     'src_type == CV_8UC1 || src_type == CV_16UC1'\n&gt; where\n&gt;     'src_type' is 4 (CV_32SC1)\n",
+ 'failed: Input must be a 2D numpy array of boolean type',
+ 'failed: Input image and kernel image must have the same dimensions',
+ "failed: fft2() got an unexpected keyword argument 's'",
+ "failed: OpenCV(4.9.0) d:\\a\\opencv-python\\opencv-python\\opencv\\modules\\imgproc\\src\\color.simd_helpers.hpp:92: error: (-2:Unspecified error) in function '__cdecl cv::impl::`anonymous-namespace'::CvtHelper&lt;struct cv::impl::`anonymous namespace'::Set&lt;3,4,-1&gt;,struct cv::impl::A0x59191d0d::Set&lt;1,-1,-1&gt;,struct cv::impl::A0x59191d0d::Set&lt;0,2,5&gt;,4&gt;::CvtHelper(const class cv::_InputArray &amp;,const class cv::_OutputArray &amp;,int)'\n&gt; Invalid number of channels in input image:\n&gt;     'VScn::contains(scn)'\n&gt; where\n&gt;     'scn' is 1\n",
+ 'failed: ',
+ 'failed: ',
+ 'failed: Input must be a numpy array of boolean type',
+ 'failed: ',
+ 'failed: ']
 </pre></div>
 </div>
 </div>
@@ -1171,11 +1171,11 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the function to count errors</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">count_errors</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">error_list</span><span class="p">):</span>
-    <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">error</span><span class="p">:</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">error_list</span><span class="p">}</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">error</span><span class="p">:</span> <span class="n">group</span><span class="p">[</span><span class="s1">'result'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">error_list</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
 
 <span class="c1"># Apply the function to each model group</span>
-<span class="n">error_counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">count_errors</span><span class="p">,</span> <span class="n">error_list</span><span class="o">=</span><span class="n">common_errors</span><span class="p">)</span>
+<span class="n">error_counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'model'</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">count_errors</span><span class="p">,</span> <span class="n">error_list</span><span class="o">=</span><span class="n">common_errors</span><span class="p">)</span>
 
 <span class="c1"># Transpose the result for the desired format: models as columns, errors as rows</span>
 <span class="n">error_counts</span> <span class="o">=</span> <span class="n">error_counts</span><span class="o">.</span><span class="n">T</span>
@@ -1185,7 +1185,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\haase\AppData\Local\Temp\ipykernel_10772\3576577103.py:7: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  error_counts = df.groupby(&#39;model&#39;).apply(count_errors, error_list=common_errors)
+  error_counts = df.groupby('model').apply(count_errors, error_list=common_errors)
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1258,8 +1258,8 @@ title="Print to PDF"
 <p>Furthermore, we search for the three most observed reasons for failure. These might be either error messages, or in case the result is only <code class="docutils literal notranslate"><span class="pre">failed:</span> </code> this indicated that the tests were not passed, presumably because the tested function did not return the right result.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Group the DataFrame by &#39;model&#39; and get the value counts of &#39;result&#39;</span>
-<span class="n">model_result_count</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">)[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Group the DataFrame by 'model' and get the value counts of 'result'</span>
+<span class="n">model_result_count</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'model'</span><span class="p">)[</span><span class="s1">'result'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 
 <span class="c1"># Step 2: Create an empty DataFrame to store the results</span>
 <span class="n">model_top_results</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1270,13 +1270,13 @@ title="Print to PDF"
     <span class="n">top_three</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
     <span class="c1"># Prepare data to append to the DataFrame</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
-        <span class="s1">&#39;Top1 Result&#39;</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="s1">&#39;Top1 Count&#39;</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="s1">&#39;Top2 Result&#39;</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_three</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="s1">&#39;Top2 Count&#39;</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_three</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="s1">&#39;Top3 Result&#39;</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_three</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="s1">&#39;Top3 Count&#39;</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_three</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="s1">'Model'</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="s1">'Top1 Result'</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s1">'Top1 Count'</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s1">'Top2 Result'</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_three</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">'Top2 Count'</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_three</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">'Top3 Result'</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_three</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">'Top3 Count'</span><span class="p">:</span> <span class="n">top_three</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">top_three</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span>
     <span class="p">}</span>
     <span class="c1"># Append data</span>
     <span class="n">model_top_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -1471,7 +1471,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

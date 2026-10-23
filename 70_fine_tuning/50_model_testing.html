@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -948,18 +948,18 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fine_tuned_model</span> <span class="o">=</span> <span class="s2">&quot;ft:gpt-3.5-turbo-0125:leipzig-university::9X7PFVgP&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fine_tuned_model</span> <span class="o">=</span> <span class="s2">"ft:gpt-3.5-turbo-0125:leipzig-university::9X7PFVgP"</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">Write Python code to load the image ../11a_prompt_engineering/data/blobs.tif,</span>
 <span class="s2">segment the nuclei in it and</span>
 <span class="s2">show the result</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">fine_tuned_model</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">fine_tuned_model</span><span class="p">)</span>
 
 <span class="n">Markdown</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </pre></div>
@@ -967,7 +967,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <p>Sure! Here’s the code to load the image, segment the nuclei, and show the result:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stackview</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">segmentation</span><span class="o">.</span><span class="n">nuclei</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;threshold&#39;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stackview</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">segmentation</span><span class="o">.</span><span class="n">nuclei</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'threshold'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -975,11 +975,11 @@ title="Print to PDF"
 <p>We can also compare the output to plain chatGPT:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">Write Python code to load the image ../11a_prompt_engineering/data/blobs.tif,</span>
 <span class="s2">segment the nuclei in it and</span>
 <span class="s2">show the result</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s2">"""</span><span class="p">)</span>
 
 <span class="n">Markdown</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </pre></div>
@@ -992,13 +992,13 @@ title="Print to PDF"
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="c1"># Load the image</span>
-<span class="n">image_path</span> <span class="o">=</span> <span class="s2">&quot;../11a_prompt_engineering/data/blobs.tif&quot;</span>
+<span class="n">image_path</span> <span class="o">=</span> <span class="s2">"../11a_prompt_engineering/data/blobs.tif"</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
 
 <span class="c1"># Apply Gaussian blur to smoothen the image</span>
 <span class="n">image_blur</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 
-<span class="c1"># Perform Otsu&#39;s thresholding to binarize the image</span>
+<span class="c1"># Perform Otsu's thresholding to binarize the image</span>
 <span class="n">ret</span><span class="p">,</span> <span class="n">thresh</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">image_blur</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span> <span class="o">+</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_OTSU</span><span class="p">)</span>
 
 <span class="c1"># Perform morphological operations to clean up the image</span>
@@ -1025,7 +1025,7 @@ title="Print to PDF"
 
 <span class="c1"># Display the segmented nuclei</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1129,7 +1129,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

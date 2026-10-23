@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_anthropic_api.html">Anthropic Claude</a></li>
@@ -940,17 +940,17 @@ title="Print to PDF"
 <p>The <a class="reference external" href="https://huggingface.co">Huggingface</a> API make open source/weight models available locally. As the model is loaded into memory, we can reuse it, and do not have to reload it entirely. This might be beneficial in scenarios where we want to prompt the same model many times.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_hf</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;meta-llama/Meta-Llama-3.1-8B&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_hf</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"meta-llama/Meta-Llama-3.1-8B"</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">prompt_hf</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">transformers</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
     
     <span class="k">if</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>    
         <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="o">=</span> <span class="n">transformers</span><span class="o">.</span><span class="n">pipeline</span><span class="p">(</span>
-            <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;torch_dtype&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">},</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+            <span class="s2">"text-generation"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">"torch_dtype"</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">},</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">"auto"</span>
         <span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span><span class="p">(</span><span class="n">request</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span><span class="p">(</span><span class="n">request</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">]</span>
 <span class="n">prompt_hf</span><span class="o">.</span><span class="n">_pipeline</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -959,7 +959,7 @@ title="Print to PDF"
 <p>We can then submit a prompt to the LLM like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_hf</span><span class="p">(</span><span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_hf</span><span class="p">(</span><span class="s2">"What is the capital of France?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -974,7 +974,7 @@ C:\Users\rober\miniconda3\envs\genai-cpu\Lib\site-packages\transformers\generati
   warnings.warn(
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;What is the capital of France? New York City\nA. Paris\nB. Philadelphia\n&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'What is the capital of France? New York City\nA. Paris\nB. Philadelphia\n'
 </pre></div>
 </div>
 </div>
@@ -982,7 +982,7 @@ C:\Users\rober\miniconda3\envs\genai-cpu\Lib\site-packages\transformers\generati
 <p>As the model is kept loaded in memory, a second call might be faster, not showing the model-loading output:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_hf</span><span class="p">(</span><span class="s2">&quot;What is the capital of the Czech Republic?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_hf</span><span class="p">(</span><span class="s2">"What is the capital of the Czech Republic?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -990,7 +990,7 @@ C:\Users\rober\miniconda3\envs\genai-cpu\Lib\site-packages\transformers\generati
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;What is the capital of the Czech Republic? Prague\n...the Czech Republic? Prague\n...&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'What is the capital of the Czech Republic? Prague\n...the Czech Republic? Prague\n...'
 </pre></div>
 </div>
 </div>
@@ -1092,7 +1092,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

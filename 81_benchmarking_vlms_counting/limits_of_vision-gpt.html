@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -991,20 +991,20 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reply</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">Give me a json object of bounding boxes around ALL bright blobs in this image. Assume the image width and height are 1. </span>
 <span class="s2">The format should be like this: </span>
 
 <span class="s2">```json</span>
 <span class="s2">[</span>
-<span class="s2">    {&#39;x&#39;:float,&#39;y&#39;:float, &#39;width&#39;: float, &#39;height&#39;: float},</span>
-<span class="s2">    {&#39;x&#39;:float,&#39;y&#39;:float, &#39;width&#39;: float, &#39;height&#39;: float},</span>
+<span class="s2">    {'x':float,'y':float, 'width': float, 'height': float},</span>
+<span class="s2">    {'x':float,'y':float, 'width': float, 'height': float},</span>
 <span class="s2">    ...</span>
 <span class="s2">]</span>
 <span class="s2">```</span>
 
-<span class="s2">If you think you can&#39;t do this accuratly, please try anyway.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-5-2025-08-07&quot;</span><span class="p">)</span>
+<span class="s2">If you think you can't do this accuratly, please try anyway.</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-5-2025-08-07"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">reply</span><span class="p">)</span>
 <span class="n">bb</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">extract_json</span><span class="p">(</span><span class="n">reply</span><span class="p">))</span>
 <span class="n">bb</span>
@@ -1017,18 +1017,18 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
-  {&quot;x&quot;: 0.02, &quot;y&quot;: 0.01, &quot;width&quot;: 0.10, &quot;height&quot;: 0.10},
-  {&quot;x&quot;: 0.15, &quot;y&quot;: 0.02, &quot;width&quot;: 0.10, &quot;height&quot;: 0.10},
-  {&quot;x&quot;: 0.28, &quot;y&quot;: 0.06, &quot;width&quot;: 0.11, &quot;height&quot;: 0.11},
-  {&quot;x&quot;: 0.42, &quot;y&quot;: 0.09, &quot;width&quot;: 0.11, &quot;height&quot;: 0.11},
-  {&quot;x&quot;: 0.57, &quot;y&quot;: 0.08, &quot;width&quot;: 0.12, &quot;height&quot;: 0.12},
-  {&quot;x&quot;: 0.18, &quot;y&quot;: 0.22, &quot;width&quot;: 0.11, &quot;height&quot;: 0.11},
-  {&quot;x&quot;: 0.33, &quot;y&quot;: 0.26, &quot;width&quot;: 0.11, &quot;height&quot;: 0.11},
-  {&quot;x&quot;: 0.47, &quot;y&quot;: 0.30, &quot;width&quot;: 0.12, &quot;height&quot;: 0.12},
-  {&quot;x&quot;: 0.22, &quot;y&quot;: 0.48, &quot;width&quot;: 0.13, &quot;height&quot;: 0.13},
-  {&quot;x&quot;: 0.38, &quot;y&quot;: 0.57, &quot;width&quot;: 0.14, &quot;height&quot;: 0.14},
-  {&quot;x&quot;: 0.55, &quot;y&quot;: 0.62, &quot;width&quot;: 0.14, &quot;height&quot;: 0.14},
-  {&quot;x&quot;: 0.70, &quot;y&quot;: 0.73, &quot;width&quot;: 0.14, &quot;height&quot;: 0.14}
+  {"x": 0.02, "y": 0.01, "width": 0.10, "height": 0.10},
+  {"x": 0.15, "y": 0.02, "width": 0.10, "height": 0.10},
+  {"x": 0.28, "y": 0.06, "width": 0.11, "height": 0.11},
+  {"x": 0.42, "y": 0.09, "width": 0.11, "height": 0.11},
+  {"x": 0.57, "y": 0.08, "width": 0.12, "height": 0.12},
+  {"x": 0.18, "y": 0.22, "width": 0.11, "height": 0.11},
+  {"x": 0.33, "y": 0.26, "width": 0.11, "height": 0.11},
+  {"x": 0.47, "y": 0.30, "width": 0.12, "height": 0.12},
+  {"x": 0.22, "y": 0.48, "width": 0.13, "height": 0.13},
+  {"x": 0.38, "y": 0.57, "width": 0.14, "height": 0.14},
+  {"x": 0.55, "y": 0.62, "width": 0.14, "height": 0.14},
+  {"x": 0.70, "y": 0.73, "width": 0.14, "height": 0.14}
 ]
 </pre></div>
 </div>
@@ -1153,7 +1153,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -928,44 +928,44 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;babbage-002&#39;,
- &#39;dall-e-2&#39;,
- &#39;dall-e-3&#39;,
- &#39;davinci-002&#39;,
- &#39;ft:gpt-3.5-turbo-0125:leipzig-university::9VNFya3H:ckpt-step-77&#39;,
- &#39;ft:gpt-3.5-turbo-0125:leipzig-university::9VNFz3h3&#39;,
- &#39;ft:gpt-3.5-turbo-0125:leipzig-university::9VNFzOv6:ckpt-step-88&#39;,
- &#39;ft:gpt-3.5-turbo-0125:leipzig-university::9WlQiTl6:ckpt-step-77&#39;,
- &#39;ft:gpt-3.5-turbo-0125:leipzig-university::9WlQjtjc&#39;,
- &#39;ft:gpt-3.5-turbo-0125:leipzig-university::9WlQjz24:ckpt-step-88&#39;,
- &#39;gpt-3.5-turbo&#39;,
- &#39;gpt-3.5-turbo-0125&#39;,
- &#39;gpt-3.5-turbo-0301&#39;,
- &#39;gpt-3.5-turbo-0613&#39;,
- &#39;gpt-3.5-turbo-1106&#39;,
- &#39;gpt-3.5-turbo-16k&#39;,
- &#39;gpt-3.5-turbo-16k-0613&#39;,
- &#39;gpt-3.5-turbo-instruct&#39;,
- &#39;gpt-3.5-turbo-instruct-0914&#39;,
- &#39;gpt-4&#39;,
- &#39;gpt-4-0125-preview&#39;,
- &#39;gpt-4-0613&#39;,
- &#39;gpt-4-1106-preview&#39;,
- &#39;gpt-4-1106-vision-preview&#39;,
- &#39;gpt-4-turbo&#39;,
- &#39;gpt-4-turbo-2024-04-09&#39;,
- &#39;gpt-4-turbo-preview&#39;,
- &#39;gpt-4-vision-preview&#39;,
- &#39;gpt-4o&#39;,
- &#39;gpt-4o-2024-05-13&#39;,
- &#39;text-embedding-3-large&#39;,
- &#39;text-embedding-3-small&#39;,
- &#39;text-embedding-ada-002&#39;,
- &#39;tts-1&#39;,
- &#39;tts-1-1106&#39;,
- &#39;tts-1-hd&#39;,
- &#39;tts-1-hd-1106&#39;,
- &#39;whisper-1&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['babbage-002',
+ 'dall-e-2',
+ 'dall-e-3',
+ 'davinci-002',
+ 'ft:gpt-3.5-turbo-0125:leipzig-university::9VNFya3H:ckpt-step-77',
+ 'ft:gpt-3.5-turbo-0125:leipzig-university::9VNFz3h3',
+ 'ft:gpt-3.5-turbo-0125:leipzig-university::9VNFzOv6:ckpt-step-88',
+ 'ft:gpt-3.5-turbo-0125:leipzig-university::9WlQiTl6:ckpt-step-77',
+ 'ft:gpt-3.5-turbo-0125:leipzig-university::9WlQjtjc',
+ 'ft:gpt-3.5-turbo-0125:leipzig-university::9WlQjz24:ckpt-step-88',
+ 'gpt-3.5-turbo',
+ 'gpt-3.5-turbo-0125',
+ 'gpt-3.5-turbo-0301',
+ 'gpt-3.5-turbo-0613',
+ 'gpt-3.5-turbo-1106',
+ 'gpt-3.5-turbo-16k',
+ 'gpt-3.5-turbo-16k-0613',
+ 'gpt-3.5-turbo-instruct',
+ 'gpt-3.5-turbo-instruct-0914',
+ 'gpt-4',
+ 'gpt-4-0125-preview',
+ 'gpt-4-0613',
+ 'gpt-4-1106-preview',
+ 'gpt-4-1106-vision-preview',
+ 'gpt-4-turbo',
+ 'gpt-4-turbo-2024-04-09',
+ 'gpt-4-turbo-preview',
+ 'gpt-4-vision-preview',
+ 'gpt-4o',
+ 'gpt-4o-2024-05-13',
+ 'text-embedding-3-large',
+ 'text-embedding-3-small',
+ 'text-embedding-ada-002',
+ 'tts-1',
+ 'tts-1-1106',
+ 'tts-1-hd',
+ 'tts-1-hd-1106',
+ 'whisper-1']
 </pre></div>
 </div>
 </div>
@@ -1042,7 +1042,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

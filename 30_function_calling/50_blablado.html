@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -976,8 +976,8 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_sum</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sums two numbers&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;summing </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Sums two numbers"""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"summing </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
 <span class="n">assistant</span><span class="o">.</span><span class="n">register_tool</span><span class="p">(</span><span class="n">compute_sum</span><span class="p">)</span>
@@ -987,7 +987,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;add 5 plus 4&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"add 5 plus 4"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1005,8 +1005,8 @@ The sum of 5 plus 4 is 9.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">multiply_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiply two numbers&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Multiplying </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Multiply two numbers"""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Multiplying </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
 
 <span class="n">assistant</span><span class="o">.</span><span class="n">register_tool</span><span class="p">(</span><span class="n">multiply_numbers</span><span class="p">)</span>
@@ -1016,7 +1016,7 @@ The sum of 5 plus 4 is 9.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;Add 2 and 4. Afterwards, take the result and multiply it by three. What&#39;s the result?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"Add 2 and 4. Afterwards, take the result and multiply it by three. What's the result?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1038,11 +1038,11 @@ The result of adding 2 and 4, and then multiplying the result by 3 is 18.
 
 <span class="nd">@assistant</span><span class="o">.</span><span class="n">register_tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">book_room</span><span class="p">(</span><span class="n">room</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">author</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">datetime</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span><span class="n">datetime</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Book a room for a specific person from start to end time.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Book a room for a specific person from start to end time."""</span>
     
-    <span class="n">result</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">    Booking </span><span class="si">{</span><span class="n">room</span><span class="si">}</span><span class="s2"> for </span><span class="si">{</span><span class="n">author</span><span class="si">}</span><span class="s2"> from </span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="s2"> was successful.</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
     
@@ -1053,7 +1053,7 @@ The result of adding 2 and 4, and then multiplying the result by 3 is 18.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;Hi I&#39;m Robert, please book room A03.21 for me from 3 to 4 pm tomorrow. Thanks&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"Hi I'm Robert, please book room A03.21 for me from 3 to 4 pm tomorrow. Thanks"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1071,19 +1071,19 @@ I have successfully booked room A03.21 for you, Robert, from 3 to 4 pm tomorrow.
 <p>The following examples serve demonstrating that functions are not called in case the assistant doesn’t know what to do.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;Setup a coffee for me in the kitchen&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"Setup a coffee for me in the kitchen"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I&#39;m sorry, but I am not capable of setting up a coffee for you in the kitchen.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I'm sorry, but I am not capable of setting up a coffee for you in the kitchen.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;Why is Europe not in America?&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"Why is Europe not in America?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1095,7 +1095,7 @@ I have successfully booked room A03.21 for you, Robert, from 3 to 4 pm tomorrow.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s1">&#39;which room was booked for robert?&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s1">'which room was booked for robert?'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1223,7 +1223,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

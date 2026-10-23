@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -945,21 +945,21 @@ title="Print to PDF"
 <p>In this notebook we will generate a Powerpoint file that guides us through the basics of research data management. The receipe, all text and images will be auto-generated using generative artificial intelligence. We will use this prompt:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">Erklaere die Grundlagen von Datenmanagement. Fokussiere dich auf diese Aspekte:</span>
 <span class="s2">* Lebenszyklus von Daten</span>
 <span class="s2">* Arten von Daten</span>
 <span class="s2">* Verantwortlichkeiten von Personen und Rollen, die mit Daten umgehen.</span>
 <span class="s2">* Beispiele von Datenerzeugung, Datenverarbeitung und Datennutzung im Kontext einer Stadtverwaltung</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;chatGPT, Dall-E and Robert Haase&quot;</span>
-<span class="n">pptx_filename</span> <span class="o">=</span> <span class="s2">&quot;daten.pptx&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">authors</span> <span class="o">=</span> <span class="s2">"chatGPT, Dall-E and Robert Haase"</span>
+<span class="n">pptx_filename</span> <span class="o">=</span> <span class="s2">"daten.pptx"</span>
 </pre></div>
 </div>
 </div>
@@ -977,7 +977,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.6.23&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'0.6.23'
 </pre></div>
 </div>
 </div>
@@ -990,7 +990,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.5.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'1.5.0'
 </pre></div>
 </div>
 </div>
@@ -1003,7 +1003,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;10.1.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'10.1.0'
 </pre></div>
 </div>
 </div>
@@ -1016,7 +1016,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.22.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'0.22.0'
 </pre></div>
 </div>
 </div>
@@ -1047,11 +1047,11 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_slide</span><span class="p">(</span><span class="n">presentation</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a new slide to a given presentation</span>
+<span class="w">    </span><span class="sd">"""Add a new slide to a given presentation</span>
 <span class="sd">    </span>
 <span class="sd">    The presentation and the slide title are mandatory. </span>
 <span class="sd">    Addionally, text and images, or image urls can be passed as parameters.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
@@ -1068,22 +1068,22 @@ title="Print to PDF"
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="nb">object</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">slide</span><span class="o">.</span><span class="n">placeholders</span><span class="p">)[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
 
-        <span class="c1"># in case it&#39;s a numpy array</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="s1">&#39;shape&#39;</span><span class="p">):</span>
+        <span class="c1"># in case it's a numpy array</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="s2">"dtype"</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="s1">'shape'</span><span class="p">):</span>
             <span class="n">aspect_ratio</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-            <span class="n">image_path</span> <span class="o">=</span> <span class="s1">&#39;temp.png&#39;</span>
+            <span class="n">image_path</span> <span class="o">=</span> <span class="s1">'temp.png'</span>
             <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
             <span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
             
-            <span class="n">shape</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">shape</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">''</span>
             <span class="n">slide</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">add_picture</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">shape</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">shape</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">shape</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
 
             <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
         
-        <span class="c1"># in case it&#39;s an image file</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="ow">and</span> <span class="nb">object</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;.png&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;.tif&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-            <span class="n">shape</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># in case it's an image file</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="ow">and</span> <span class="nb">object</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'.png'</span><span class="p">,</span> <span class="s1">'.jpg'</span><span class="p">,</span> <span class="s1">'.tif'</span><span class="p">]</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+            <span class="n">shape</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">''</span>
             <span class="n">image_path</span> <span class="o">=</span> <span class="nb">object</span>
             <span class="n">slide</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">add_picture</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">shape</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">shape</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">shape</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
 
@@ -1096,8 +1096,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_dall_e_image</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">size_str</span><span class="o">=</span><span class="s2">&quot;1024x1024&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;dall-e-3&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate an image using a given prompt&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_dall_e_image</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">size_str</span><span class="o">=</span><span class="s2">"1024x1024"</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">'dall-e-3'</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Generate an image using a given prompt"""</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
 
     <span class="n">num_images</span><span class="o">=</span><span class="mi">1</span>
@@ -1113,7 +1113,7 @@ title="Print to PDF"
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">images_from_url_responses</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Turns a list of OpenAI&#39;s URL responses into numpy images&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Turns a list of OpenAI's URL responses into numpy images"""</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">transform</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1139,13 +1139,13 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_openai</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4-0125-preview&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Send a text prompt to chatGPT and return its result as string&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_openai</span><span class="p">(</span><span class="n">user_prompt</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-4-0125-preview"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Send a text prompt to chatGPT and return its result as string"""</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
 
     <span class="c1"># assemble prompt</span>
-    <span class="n">system_message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">}]</span>
-    <span class="n">user_message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_prompt</span><span class="p">}]</span>
+    <span class="n">system_message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">}]</span>
+    <span class="n">user_message</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">user_prompt</span><span class="p">}]</span>
 
     <span class="c1"># init client</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
@@ -1164,26 +1164,26 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">story</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;Separate important steps by two line breaks. Do not use separate headlines&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">story</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"Separate important steps by two line breaks. Do not use separate headlines"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
 <span class="n">story</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Datenmanagement umfasst den systematischen Umgang mit Daten, von ihrer Erzeugung bis zur Löschung. Es ermöglicht Organisationen, den Wert ihrer Daten voll auszuschöpfen, indem es für Qualität, Zugänglichkeit, und Sicherheit der Daten sorgt.\n\n**Lebenszyklus von Daten**\n\nDer Lebenszyklus von Daten beginnt mit der Datenerzeugung und geht über die Speicherung, Nutzung, Weitergabe, Archivierung bis hin zur Löschung der Daten. Jede Phase erfordert angemessene Managementpraktiken, um Datenintegrität und Datenschutz zu gewährleisten. Während des Lebenszyklus können Daten verarbeitet, analysiert oder transformiert werden, um Entscheidungsprozesse oder operationelle Abläufe zu unterstützen.\n\n**Arten von Daten**\n\nDaten können in diverse Kategorien eingeteilt werden, darunter:\n\n- **Strukturierte Daten**, die in einer festgelegten Form vorliegen, wie in Datenbanken. Beispiele sind Zahlen und Text in Tabellen.\n- **Unstrukturierte Daten**, die keine feste Struktur haben und somit schwerer zu analysieren sind. Beispiele sind E-Mails, Videos und Bilder.\n- **Semi-strukturierte Daten**, die irgendwo dazwischen liegen, wie XML-Dokumente.\n- **Big Data**, das sich durch großes Volumen, hohe Geschwindigkeit und Vielfalt auszeichnet und spezielle Technologien und Methoden für das Management benötigt.\n\n**Verantwortlichkeiten von Personen und Rollen, die mit Daten umgehen**\n\nDie Verantwortlichkeiten beim Datenmanagement können je nach Rolle variieren, einschließlich:\n\n- **Dateninhaber** sind für die Datenqualität und den gesamten Lebenszyklus der Daten verantwortlich.\n- **Datenstewards** arbeiten an der Definition von Datenrichtlinien und -standards und unterstützen deren Einhaltung.\n- **Datenanalysten** analysieren Daten, um Einblicke und Information zu extrahieren, die Geschäftsentscheidungen unterstützen.\n- **IT-Sicherheitsexperten** gewährleisten, dass die Daten während ihres gesamten Lebenszyklus sicher sind.\n\n**Beispiele von Datenerzeugung, Datenverarbeitung und Datennutzung im Kontext einer Stadtverwaltung**\n\n- **Datenerzeugung:** Einwohner einer Stadt nutzen Online-Formulare auf der Website der Stadt, um Anträge zu stellen, Beschwerden einzureichen oder Veranstaltungen zu melden. Diese Aktionen generieren Daten in Form von strukturierten Datensätzen.\n\n- **Datenverarbeitung:** Die Stadtverwaltung verarbeitet diese Daten, indem sie sie sichtet, kategorisiert und in Datenbanken speichert. Weiterhin kann die Analyse dieser Daten Trends oder Problemfelder aufzeigen, z.B. in Bezug auf Straßenverkehr oder Umweltschutz.\n\n- **Datennutzung:** Auf Basis der analysierten Daten kann die Stadtverwaltung Maßnahmen ergreifen, wie die Planung von Infrastrukturprojekten, die Umsetzung von Verkehrsberuhigungsmaßnahmen oder die Organisation kommunaler Dienstleistungen. Diese Nutzung demonstriert, wie durch effektives Datenmanagement Entscheidungen, die einen direkten Einfluss auf die Lebensqualität der Einwohner haben, informiert und verbessert werden können.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Datenmanagement umfasst den systematischen Umgang mit Daten, von ihrer Erzeugung bis zur Löschung. Es ermöglicht Organisationen, den Wert ihrer Daten voll auszuschöpfen, indem es für Qualität, Zugänglichkeit, und Sicherheit der Daten sorgt.\n\n**Lebenszyklus von Daten**\n\nDer Lebenszyklus von Daten beginnt mit der Datenerzeugung und geht über die Speicherung, Nutzung, Weitergabe, Archivierung bis hin zur Löschung der Daten. Jede Phase erfordert angemessene Managementpraktiken, um Datenintegrität und Datenschutz zu gewährleisten. Während des Lebenszyklus können Daten verarbeitet, analysiert oder transformiert werden, um Entscheidungsprozesse oder operationelle Abläufe zu unterstützen.\n\n**Arten von Daten**\n\nDaten können in diverse Kategorien eingeteilt werden, darunter:\n\n- **Strukturierte Daten**, die in einer festgelegten Form vorliegen, wie in Datenbanken. Beispiele sind Zahlen und Text in Tabellen.\n- **Unstrukturierte Daten**, die keine feste Struktur haben und somit schwerer zu analysieren sind. Beispiele sind E-Mails, Videos und Bilder.\n- **Semi-strukturierte Daten**, die irgendwo dazwischen liegen, wie XML-Dokumente.\n- **Big Data**, das sich durch großes Volumen, hohe Geschwindigkeit und Vielfalt auszeichnet und spezielle Technologien und Methoden für das Management benötigt.\n\n**Verantwortlichkeiten von Personen und Rollen, die mit Daten umgehen**\n\nDie Verantwortlichkeiten beim Datenmanagement können je nach Rolle variieren, einschließlich:\n\n- **Dateninhaber** sind für die Datenqualität und den gesamten Lebenszyklus der Daten verantwortlich.\n- **Datenstewards** arbeiten an der Definition von Datenrichtlinien und -standards und unterstützen deren Einhaltung.\n- **Datenanalysten** analysieren Daten, um Einblicke und Information zu extrahieren, die Geschäftsentscheidungen unterstützen.\n- **IT-Sicherheitsexperten** gewährleisten, dass die Daten während ihres gesamten Lebenszyklus sicher sind.\n\n**Beispiele von Datenerzeugung, Datenverarbeitung und Datennutzung im Kontext einer Stadtverwaltung**\n\n- **Datenerzeugung:** Einwohner einer Stadt nutzen Online-Formulare auf der Website der Stadt, um Anträge zu stellen, Beschwerden einzureichen oder Veranstaltungen zu melden. Diese Aktionen generieren Daten in Form von strukturierten Datensätzen.\n\n- **Datenverarbeitung:** Die Stadtverwaltung verarbeitet diese Daten, indem sie sie sichtet, kategorisiert und in Datenbanken speichert. Weiterhin kann die Analyse dieser Daten Trends oder Problemfelder aufzeigen, z.B. in Bezug auf Straßenverkehr oder Umweltschutz.\n\n- **Datennutzung:** Auf Basis der analysierten Daten kann die Stadtverwaltung Maßnahmen ergreifen, wie die Planung von Infrastrukturprojekten, die Umsetzung von Verkehrsberuhigungsmaßnahmen oder die Organisation kommunaler Dienstleistungen. Diese Nutzung demonstriert, wie durch effektives Datenmanagement Entscheidungen, die einen direkten Einfluss auf die Lebensqualität der Einwohner haben, informiert und verbessert werden können.'
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">headline</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s1">&#39;summarize the following into max 5 words:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">story</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">headline</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s1">'summarize the following into max 5 words:</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="n">story</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>    
 <span class="n">headline</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Datenmanagement: Erzeugung bis Löschung&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Datenmanagement: Erzeugung bis Löschung'
 </pre></div>
 </div>
 </div>
@@ -1191,7 +1191,7 @@ title="Print to PDF"
 <p>We now create a presentation file…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">presentation</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s1">&#39;ScaDS.AI_template.pptx&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">presentation</span> <span class="o">=</span> <span class="n">Presentation</span><span class="p">(</span><span class="s1">'ScaDS.AI_template.pptx'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1207,7 +1207,7 @@ title="Print to PDF"
 <p>We now split this story into parts to generate a slide for each part.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parts</span> <span class="o">=</span> <span class="n">story</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parts</span> <span class="o">=</span> <span class="n">story</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1222,9 +1222,9 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">:</span>
     
-    <span class="n">image</span> <span class="o">=</span> <span class="n">draw_dall_e_image</span><span class="p">(</span><span class="s1">&#39;draw an instructive image for this text section:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">part</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">draw_dall_e_image</span><span class="p">(</span><span class="s1">'draw an instructive image for this text section:</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="n">part</span><span class="p">)</span>
 
-    <span class="n">headline</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s1">&#39;summarize the following into max 5 words:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">part</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>    
+    <span class="n">headline</span> <span class="o">=</span> <span class="n">prompt_openai</span><span class="p">(</span><span class="s1">'summarize the following into max 5 words:</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="n">part</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>    
     
     <span class="n">add_slide</span><span class="p">(</span><span class="n">presentation</span><span class="p">,</span> <span class="n">headline</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
 
@@ -1342,7 +1342,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

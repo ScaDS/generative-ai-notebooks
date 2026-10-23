@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -961,9 +961,9 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">StableDiffusionInstructPix2PixPipeline</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-            <span class="s2">&quot;timbrooks/instruct-pix2pix&quot;</span><span class="p">,</span> 
+            <span class="s2">"timbrooks/instruct-pix2pix"</span><span class="p">,</span> 
             <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span> <span class="n">safety_checker</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">pipe</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">"cuda"</span><span class="p">)</span>
 <span class="n">pipe</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">EulerAncestralDiscreteScheduler</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -973,7 +973,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_np</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/blobs.tif&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_np</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">"data/blobs.tif"</span><span class="p">)</span>
 <span class="c1"># the model prefers images of specific sizes</span>
 <span class="n">scaled_image_np</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">image_np</span><span class="p">,</span> <span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> <span class="n">preserve_range</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">image_np</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 </pre></div>
@@ -996,7 +996,7 @@ title="Print to PDF"
 <p>We can then edit the image using a prompt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_image</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;blur the image&quot;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_image</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s2">"blur the image"</span><span class="p">,</span> 
                     <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> 
                     <span class="n">num_inference_steps</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
                     <span class="n">guidance_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
@@ -1042,7 +1042,7 @@ title="Print to PDF"
 <p>Note that the model is not trained on scientific images specifically. Thus, it may not know how to edit images using prompts that contain scientific image processing terms. It is capable of modifying images using common terms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_image</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;apply a median filter to the image&quot;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_image</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s2">"apply a median filter to the image"</span><span class="p">,</span> 
                     <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">,</span> 
                     <span class="n">num_inference_steps</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
                     <span class="n">guidance_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
@@ -1097,7 +1097,7 @@ title="Print to PDF"
                             <span class="n">image_guidance_scale</span><span class="o">=</span><span class="mi">1</span>
                            <span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     
-        <span class="n">axes</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span>].imshow(np.array(result_image)[:,:,0], cmap=&quot;Greys_r&quot;)
+        <span class="n">axes</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span>].imshow(np.array(result_image)[:,:,0], cmap="Greys_r")
         <span class="n">axes</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span>].set_title(prompt)
     
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1107,7 +1107,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_panel</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;blur the image&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_panel</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">[</span><span class="s2">"blur the image"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1121,10 +1121,10 @@ title="Print to PDF"
 <p>Generate more images using example prompts. How reproducible are the results?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apply a median filter to the image&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;deconvolve the image&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;blur the image&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;despeckle the image&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apply a median filter to the image"</span><span class="p">,</span>
+           <span class="s2">"deconvolve the image"</span><span class="p">,</span>
+           <span class="s2">"blur the image"</span><span class="p">,</span>
+           <span class="s2">"despeckle the image"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1228,7 +1228,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

@@ -601,7 +601,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -929,13 +929,13 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">fine_tuning</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">&quot;ftjob-3QzD0JsWtUffoHZQJShPnbsO&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">fine_tuning</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">"ftjob-3QzD0JsWtUffoHZQJShPnbsO"</span><span class="p">)</span>
 <span class="n">job_details</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FineTuningJob(id=&#39;ftjob-3QzD0JsWtUffoHZQJShPnbsO&#39;, created_at=1717678378, error=Error(code=None, message=None, param=None), fine_tuned_model=None, finished_at=None, hyperparameters=Hyperparameters(n_epochs=9, batch_size=1, learning_rate_multiplier=2), model=&#39;gpt-3.5-turbo-0125&#39;, object=&#39;fine_tuning.job&#39;, organization_id=&#39;org-0POmhzyaeDng5lZtM7Cls3vt&#39;, result_files=[], seed=1247612361, status=&#39;running&#39;, trained_tokens=None, training_file=&#39;file-rszpNn5JmSKnjOCZJMSNtwMX&#39;, validation_file=None, estimated_finish=1717678791, integrations=[], user_provided_suffix=None)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FineTuningJob(id='ftjob-3QzD0JsWtUffoHZQJShPnbsO', created_at=1717678378, error=Error(code=None, message=None, param=None), fine_tuned_model=None, finished_at=None, hyperparameters=Hyperparameters(n_epochs=9, batch_size=1, learning_rate_multiplier=2), model='gpt-3.5-turbo-0125', object='fine_tuning.job', organization_id='org-0POmhzyaeDng5lZtM7Cls3vt', result_files=[], seed=1247612361, status='running', trained_tokens=None, training_file='file-rszpNn5JmSKnjOCZJMSNtwMX', validation_file=None, estimated_finish=1717678791, integrations=[], user_provided_suffix=None)
 </pre></div>
 </div>
 </div>
@@ -1012,7 +1012,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

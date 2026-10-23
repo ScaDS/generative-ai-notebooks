@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -976,7 +976,7 @@ title="Print to PDF"
 <p>First, we define the repository we want to work on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repository</span> <span class="o">=</span> <span class="s2">&quot;scads/git-demo-dataweek2024&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repository</span> <span class="o">=</span> <span class="s2">"scads/git-demo-dataweek2024"</span>
 </pre></div>
 </div>
 </div>
@@ -1004,7 +1004,7 @@ Note: These functions all have a proper docstring, telling the LLM what the func
 <p>We start by exploring existing issues on the repository.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List all open issues on </span><span class="si">{</span><span class="n">repository</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="sa">f</span><span class="s2">"List all open issues on </span><span class="si">{</span><span class="n">repository</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1025,7 +1025,7 @@ Note: These functions all have a proper docstring, telling the LLM what the func
 <p>We then pick one issue and ask for details.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;Tell me the most important details of issue #9&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"Tell me the most important details of issue #9"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1045,7 +1045,7 @@ Note: These functions all have a proper docstring, telling the LLM what the func
 <p>In order to determine which file might need modifications to solve the issue, we first list all files.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List all files in the repository </span><span class="si">{</span><span class="n">repository</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="sa">f</span><span class="s2">"List all files in the repository </span><span class="si">{</span><span class="n">repository</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1061,20 +1061,20 @@ Note: These functions all have a proper docstring, telling the LLM what the func
 <p>Then, we ask the LLM which of the files might be related to the issue.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="n">assistant</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="s2">&quot;Which of these files might be relevant for issue 9 ? Respond ONLY the filename.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="n">assistant</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="s2">"Which of these files might be relevant for issue 9 ? Respond ONLY the filename."</span><span class="p">)</span>
 <span class="n">filename</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;content.md&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'content.md'
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Load the entire content of </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> from the  in the repository </span><span class="si">{</span><span class="n">repository</span><span class="si">}</span><span class="s2"> .&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Load the entire content of </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> from the  in the repository </span><span class="si">{</span><span class="n">repository</span><span class="si">}</span><span class="s2"> ."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1083,7 +1083,7 @@ Note: These functions all have a proper docstring, telling the LLM what the func
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># History of a sentence
 
 This sentence contains a tpyo.
-Let&#39;s see what is going to happen with it.
+Let's see what is going to happen with it.
 
 May it stay here forever? Or does an AI find it and fix it?
 
@@ -1101,7 +1101,7 @@ Robert
 <p>After identifying the file, we can ask the LLM to fix the issue in the file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Modify the file content of </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> to fix the issue in a new branch.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Modify the file content of </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> to fix the issue in a new branch."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1115,7 +1115,7 @@ Robert
 <p>In order to let developers of the repository know that we would like to change something, we send a pull-request.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">&quot;Send a pull-request of the new branch explaining what we changed.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assistant</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"Send a pull-request of the new branch explaining what we changed."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1232,7 +1232,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   

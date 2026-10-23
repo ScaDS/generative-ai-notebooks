@@ -605,7 +605,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/09_kiara_llm_endpoint.html">Kiara LLM endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/06_kisski_endpoint.html">KISSKI / GWDG endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/03_blablador_endpoint.html">Blablador endpoint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/05_azure_endpoints.html">Github Models Marketplace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/12_openrouter_endpoint.html">OpenRouter endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/07_mistral_endpoint.html">Mistral</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/08_deepseek_endpoint.html">DeepSeek endpoint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15_endpoint_apis/10_anthropic_api.html">Anthropic Claude</a></li>
@@ -945,14 +945,14 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">prompt</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A prompt helper function that sends a message to openAI</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prompt</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-3.5-turbo"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A prompt helper function that sends a message to openAI</span>
 <span class="sd">    and returns only the text response.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
         <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">message</span><span class="p">}]</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
 </pre></div>
@@ -962,7 +962,7 @@ title="Print to PDF"
 <p>A <em>simple</em> task could be described like in the following. We explictly specify that this should execute from Jupyter to prevent windows popping up.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_question</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_question</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">Write Python code only and no additional explanatory text.</span>
 
 <span class="s2">Write a python program, that </span>
@@ -972,7 +972,7 @@ title="Print to PDF"
 
 <span class="s2">Assume this program would be executed in a Jupyter notebook.</span>
 <span class="s2">It is not necessary to save the results. Show the results in Jupyter.</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 </pre></div>
 </div>
 </div>
@@ -989,7 +989,7 @@ title="Print to PDF"
 from skimage import io, morphology, measure
 
 # Load the image
-image = io.imread(&#39;../../data/blobs.tif&#39;)
+image = io.imread('../../data/blobs.tif')
 
 # Threshold the image
 thresh = image &gt; 150
@@ -1002,12 +1002,12 @@ mesh = morphology.dilation(labels) ^ labels
 
 # Show the results
 fig, axes = plt.subplots(ncols=2, figsize=(10, 5))
-axes[0].imshow(image, cmap=&#39;gray&#39;)
-axes[0].set_title(&#39;Original Image&#39;)
-axes[0].axis(&#39;off&#39;)
-axes[1].imshow(mesh, cmap=&#39;gray&#39;)
-axes[1].set_title(&#39;Mesh between labels&#39;)
-axes[1].axis(&#39;off&#39;)
+axes[0].imshow(image, cmap='gray')
+axes[0].set_title('Original Image')
+axes[0].axis('off')
+axes[1].imshow(mesh, cmap='gray')
+axes[1].set_title('Mesh between labels')
+axes[1].axis('off')
 plt.show()
 </pre></div>
 </div>
@@ -1016,7 +1016,7 @@ plt.show()
 <p>Now we provide more details. We explictly state that the code should be like if it was written by a professional. We also give hints for how to solve the image analysis problem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">more_sophisticated_question</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">more_sophisticated_question</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">Please program some python code like a professional would. </span>
 <span class="s2">Write Python code only and no additional explanatory text.</span>
 
@@ -1034,7 +1034,7 @@ plt.show()
 
 <span class="s2">Assume this program would be executed in a Jupyter notebook.</span>
 <span class="s2">It is not necessary to save the results. Show the results in Jupyter.</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 </pre></div>
 </div>
 </div>
@@ -1050,7 +1050,7 @@ plt.show()
 import matplotlib.pyplot as plt
 
 # Load the image
-image = cle.imread(&#39;../../data/blobs.tif&#39;)
+image = cle.imread('../../data/blobs.tif')
 
 # Label the objects using voronoi-otsu-labeling
 label_image = cle.voronoi_otsu_labeling(image)
@@ -1062,13 +1062,13 @@ mesh = cle.draw_mesh_between_proximal_labels(label_image, maximum_distance=50)
 plt.figure(figsize=(10, 5))
 plt.subplot(1, 2, 1)
 plt.imshow(cle.imshow(image))
-plt.title(&#39;Original Image&#39;)
-plt.axis(&#39;off&#39;)
+plt.title('Original Image')
+plt.axis('off')
 
 plt.subplot(1, 2, 2)
 plt.imshow(cle.imshow(mesh))
-plt.title(&#39;Mesh Between Labels&#39;)
-plt.axis(&#39;off&#39;)
+plt.title('Mesh Between Labels')
+plt.axis('off')
 
 plt.show()
 </pre></div>
@@ -1081,16 +1081,16 @@ plt.show()
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_code</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">num_executions</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Asks chatGPT for code n times and executes it. </span>
 <span class="sd">    It returns the number of attempts when it caused an error and the total number of attempts.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
     <span class="n">num_errors</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_executions</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Attempt&quot;</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Attempt"</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         
         <span class="c1"># sleep for a moment to prevent openAI blocking us right away</span>
         <span class="n">sleep_duration</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
@@ -1100,7 +1100,7 @@ plt.show()
         <span class="n">code</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
         
         <span class="c1"># clean it a bit</span>
-        <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;```python&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;```&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"```python"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"```"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
 
         <span class="c1"># execute it</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1179,15 +1179,15 @@ Attempt 8
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There were &quot;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"There were "</span><span class="p">,</span> 
       <span class="n">num_errors_simple</span><span class="p">,</span> 
-      <span class="s2">&quot;errors while executing code after asking the simple question for&quot;</span><span class="p">,</span> 
-      <span class="n">num_executions</span><span class="p">,</span> <span class="s2">&quot;times.&quot;</span><span class="p">)</span>
+      <span class="s2">"errors while executing code after asking the simple question for"</span><span class="p">,</span> 
+      <span class="n">num_executions</span><span class="p">,</span> <span class="s2">"times."</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There were &quot;</span><span class="p">,</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">"There were "</span><span class="p">,</span> 
       <span class="n">num_errors_sophisticated</span><span class="p">,</span> 
-      <span class="s2">&quot;errors while executing code after asking the more sophisticated question for&quot;</span><span class="p">,</span> 
-      <span class="n">num_executions</span><span class="p">,</span> <span class="s2">&quot;times.&quot;</span><span class="p">)</span>
+      <span class="s2">"errors while executing code after asking the more sophisticated question for"</span><span class="p">,</span> 
+      <span class="n">num_executions</span><span class="p">,</span> <span class="s2">"times."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1292,7 +1292,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-07-10.<br>
+Last updated on 2026-10-23.<br>
 </p>
   </div>
   
