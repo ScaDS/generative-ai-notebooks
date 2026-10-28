@@ -937,7 +937,7 @@ title="Print to PDF"
               
   <section class="tex2jax_ignore mathjax_ignore" id="blablador-endpoint">
 <h1>Blablador endpoint<a class="headerlink" href="#blablador-endpoint" title="Permalink to this heading">#</a></h1>
-<p>In this notebook we will use the <a class="reference external" href="https://helmholtz-blablador.fz-juelich.de/">blablardor</a> infrastructure at the Research Center Jülich. Before you can access it, you need to create an API key as explained <a class="reference external" href="https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/">on this page</a>. You will see that also this method uses the OpenAI API and we change the <code class="docutils literal notranslate"><span class="pre">base_url</span></code>.</p>
+<p>In this notebook we will use the <a class="reference external" href="https://helmholtz-blablador.fz-juelich.de/">blablador</a> infrastructure at the Research Center Jülich. Before you can access it, you need to create an API key as explained <a class="reference external" href="https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/">on this page</a>. You will see that also this method uses the OpenAI API and we change the <code class="docutils literal notranslate"><span class="pre">base_url</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -947,14 +947,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'1.35.14'
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'3.31.0'
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_blablador</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-3.5-turbo"</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prompt_blablador</span><span class="p">(</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"01 - GPT-OSS-120b - an open model released by OpenAI in August 2025"</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A prompt helper function that sends a message to Blablador (FZ Jülich)</span>
 <span class="sd">    and returns only the text response.</span>
 <span class="sd">    """</span>
@@ -966,7 +966,7 @@ title="Print to PDF"
     
     <span class="c1"># setup connection to the LLM</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">"https://helmholtz-blablador.fz-juelich.de:8000/v1"</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">"https://api.blablador.fz-juelich.de/v1/"</span>
     
     <span class="c1"># todo: enter your API key here:</span>
     <span class="c1"># client.api_key = ""</span>
@@ -989,7 +989,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'\nHello! How can I assist you today?'
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Hey there! 👋 How’s it going? Let me know if there’s anything you’d like to chat about or need help with today.'
 </pre></div>
 </div>
 </div>
@@ -1000,7 +1000,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">()</span>
-<span class="n">client</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">"https://helmholtz-blablador.fz-juelich.de:8000/v1"</span>
+<span class="n">client</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">"https://api.blablador.fz-juelich.de/v1/"</span>
 <span class="n">client</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'BLABLADOR_API_KEY'</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">]))</span>
@@ -1008,20 +1008,67 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 - Mistral-7B-Instruct-v0.2 - the best option in general - fast and good
-2 - Mixtral-8x7B-Instruct-v0.1 Slower with higher quality
-3 - starcoder2-15b - A model for programming
-4 - Cosmosage V3 - Answers your Cosmology and Astronomy questions (new version June 2024)
-5 - GritLM-7B - For Chat AND Text Embeddings
-6 - Llama3-8B-Instruct - A good model from META
-alias-code
-alias-embeddings
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70 - EVE-Instruct - Expert Earth Observation and Earth Science (ES) domains
+alias-eve
+01 - GPT-OSS-120b - an open model released by OpenAI in August 2025
 alias-fast
+02 - Qwen3.8-Flash-Next-NVFP4, general purpose large model
 alias-large
-alias-llama3-small
+alias-qwen3.8-flash-next
+alias-embeddings
 gpt-3.5-turbo
 text-davinci-003
 text-embedding-ada-002
+alias-qwen3-8b-embeddings
+07 - Qwen3.8-27B-FP8 - Multimodal model from Aug 2026
+alias-qwen38-27b
+alias-code
+alias-default
+00 - Aleph Kolibri
+15 - DeepSeek-V4.1-Flash on JUWELS Booster
+20 - EVE-Instruct - Expert Earth Observation and Earth Science (ES) domains
+30 - Swiss AI: Apertus-v1.5-70B
+80 - MiMo-V2.6-Flash-RL on Juwels Booster
+80 - MiMo-V2.6-Pro-RL on Juwels Booster
+90 - Glm-5.3-Flash on Juwels Booster
+90 - Kimi-K3 1M on Juwels Booster
+90 - Qwen 3.8-27B on Juwels Booster
+90 - Qwen 3.8-Flash-Next-125B-AWQ-W4A16 on Juwels Booster - An excellent model from September 2026
+999 - FLUX.2-dev - An image generator (Black Forest Labs)
+999 - Qwen-Image-2.1 on JUWELS Booster (generation + editing)
+Anonymizer: M-size ShinrAI PII 1.3
+Muse-Spark-Open-816B-A42B - Built with Muse Spark Open
+Swift-Qwen3.8-27b
+alias-aleph-kolibri-1
+alias-anonymizer
+alias-apertus
+alias-apertus-70b
+alias-clef
+alias-deepseek-v41-flash-booster
+alias-flux2
+alias-glm-5.3-flash
+alias-huge
+alias-hyperqwen-27b
+alias-image
+alias-kimi-k3-1m
+alias-mimo-v2.6-flash
+alias-mimo-v2.6-pro
+alias-muse-spark
+alias-ocr
+alias-qwen3-4b-embeddings
+alias-qwen3-4b-reranker
+alias-qwen3-4b-reranking
+alias-qwen3-8b-reranking
+alias-qwen3.8-27b
+alias-qwen38-quick
+alias-video
+alias-voice-drama3
+deepseek-v4.1-flash-at-hzdr
+faster-whisper-large-v3
+qwen3.8-27b
+trustllm-v2-8b-sft
+trustllm-v2-8b-sft-8k
+trustllm-v2-8b-sft-mixb2-exp
 </pre></div>
 </div>
 </div>
@@ -1120,7 +1167,7 @@ By Robert Haase
   
   <div class="footer-item">
     <p class="last-updated">
-Last updated on 2026-10-23.<br>
+Last updated on 2026-10-28.<br>
 </p>
   </div>
   
